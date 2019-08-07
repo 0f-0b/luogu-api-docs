@@ -56,6 +56,17 @@ interface ContestData {
   joined: boolean;
 }
 
+interface ThemeListData {
+  themes: {
+    result: ThemeDetails[];
+    count: number;
+  };
+}
+
+interface ThemeData {
+  theme: ThemeDetails;
+}
+
 interface Problem {
   pid: string;
   title: string;
@@ -134,6 +145,14 @@ interface Theme {
   header: ThemeHeaderFooter;
   sideNav: ThemeSideNav;
   footer: ThemeHeaderFooter;
+}
+
+interface ThemeDetails extends Theme {
+  name: string;
+  type: number;
+  author: User;
+  updateTime: number;
+  userCount: number;
 }
 
 interface ThemeHeaderFooter {
