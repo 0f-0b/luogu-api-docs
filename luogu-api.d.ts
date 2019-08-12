@@ -39,15 +39,21 @@ interface ContestData {
   contest: ContestDetails;
   contestProblems: Array<{
     score: number;
-    problem: {
-      pid: string;
-      title: string;
-      type: string;
-    };
+    problem: ProblemInfo;
     submitted: boolean;
   }>;
   accessLevel: number;
   joined: boolean;
+}
+
+interface RecordListData {
+  records: List<RecordBase>;
+}
+
+interface RecordData {
+  record: RecordDetails;
+  testCaseGroup: number[][];
+  showStatus: boolean;
 }
 
 interface ThemeListData {
@@ -66,10 +72,13 @@ interface RankingListData {
   rankList: List<RatingDetails>;
 }
 
-interface Problem {
+interface ProblemInfo {
   pid: string;
   title: string;
   type: string;
+}
+
+interface Problem extends ProblemInfo {
   accepted: boolean;
   submitted: boolean;
 }
@@ -96,20 +105,66 @@ interface ProblemDetails extends Problem {
   totalAccepted: number;
 }
 
-interface Contest {
-  ruleType: number;
-  visibilityType: number;
-  rated: boolean;
-  host: User | Team;
-  problemCount: number;
+interface ContestInfo {
   id: number;
   name: string;
   startTime: number;
   endTime: number;
 }
 
+interface Contest extends ContestInfo {
+  ruleType: number;
+  visibilityType: number;
+  rated: boolean;
+  host: User | Team;
+  problemCount: number;
+}
+
 interface ContestDetails extends Contest {
   description: string;
+}
+
+interface RecordBase {
+  time: number;
+  memory: number;
+  problem: ProblemInfo;
+  contest: ContestInfo | null;
+  sourceCodeLength: number;
+  submitTime: number;
+  language: number;
+  user: User;
+  id: number;
+  status: number;
+  score: number;
+}
+
+interface RecordDetails extends RecordBase {
+  detail: {
+    message: null;
+    subtasks?: Array<{
+      id: number;
+      time: number;
+      memory: number;
+      score: number;
+      status: number;
+      testcases: number[];
+    }>;
+    testcases?: {
+      [id: string]: {
+        id: number;
+        time: number;
+        memory: number;
+        score: number;
+        status: number;
+        message: string;
+      };
+    };
+    compile?: {
+      content: string;
+      success: boolean;
+    };
+  };
+  sourceCode: string;
 }
 
 interface User {
