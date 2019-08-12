@@ -1,6 +1,6 @@
 # Authentication API
 
-## Get CSRF Token
+## Get CSRF token
 
 ### Request
 
