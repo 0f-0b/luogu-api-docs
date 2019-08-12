@@ -39,3 +39,32 @@ GET /problem/:pid?_contentOnly=1
 ```
 application/json: DataResponse<ProblemData>
 ```
+
+## Submit code
+
+### Request
+
+```
+POST /api/problem/submit/:pid
+```
+
+### Request Headers
+
+| Key | Optional |
+|-|-|
+| X-CSRF-Token | |
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| code | `string` | |
+| lang | `number` | |
+| enableO2 | `number` | |
+| verify | `string` | |
+
+### Response Type
+
+```
+application/json: SubmitCodeAPIResponse
+```

@@ -177,6 +177,13 @@ interface ThemeSideNav {
   invertColor: boolean;
 }
 
+interface SubmitCodeAPIResponse {
+  status: number;
+  data: {
+    rid: number;
+  };
+}
+
 interface LoginAPIResponse {
   username: string;
   locked: boolean;
