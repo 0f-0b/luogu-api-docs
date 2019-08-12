@@ -48,12 +48,6 @@ application/json: DataResponse<ProblemData>
 POST /api/problem/submit/:pid
 ```
 
-### Request Headers
-
-| Key | Optional |
-|-|-|
-| X-CSRF-Token | |
-
 ### Parameters
 
 | Key | Type | Optional |

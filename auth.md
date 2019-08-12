@@ -1,19 +1,5 @@
 # Authentication API
 
-## Get CSRF token
-
-### Request
-
-```
-GET /
-```
-
-### Response Type
-
-```
-text/html, document.querySelector("meta[name=csrf-token]").content
-```
-
 ## Get captcha image
 
 ### Request
@@ -28,6 +14,24 @@ GET /api/verify/captcha
 image/jpeg
 ```
 
+## Register
+
+### Request
+
+```
+POST /api/auth/register
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| username | `string` | |
+| password | `string` | |
+| endpoint | `string` | |
+| endpointType | `number` | |
+| verificationCode | `string` | |
+
 ## Login
 
 ### Request
@@ -35,12 +39,6 @@ image/jpeg
 ```
 POST /api/auth/userPassLogin
 ```
-
-### Request Headers
-
-| Key | Optional |
-|-|-|
-| X-CSRF-Token | |
 
 ### Parameters
 
@@ -77,12 +75,6 @@ GET /api/auth/logout
 ```
 POST /api/auth/unlock
 ```
-
-### Request Headers
-
-| Key | Optional |
-|-|-|
-| X-CSRF-Token | |
 
 ### Parameters
 
