@@ -9,16 +9,13 @@ interface DataResponse<T> {
 
 interface ProblemListData {
   page: number;
-  problems: {
-    count: number;
-    result: Array<Problem & {
-      tags: number[];
-      wantsTranslation: boolean;
-      difficulty: number;
-      totalSubmit: string;
-      totalAccepted: string;
-    }>;
-  };
+  problems: List<Problem & {
+    tags: number[];
+    wantsTranslation: boolean;
+    difficulty: number;
+    totalSubmit: string;
+    totalAccepted: string;
+  }>;
 }
 
 interface ProblemData {
@@ -35,10 +32,7 @@ interface ProblemData {
 }
 
 interface ContestListData {
-  contests: {
-    result: Contest[];
-    count: number;
-  };
+  contests: List<Contest>;
 }
 
 interface ContestData {
@@ -57,10 +51,7 @@ interface ContestData {
 }
 
 interface ThemeListData {
-  themes: {
-    result: ThemeDetails[];
-    count: number;
-  };
+  themes: List<ThemeDetails>;
 }
 
 interface ThemeData {
@@ -69,6 +60,10 @@ interface ThemeData {
 
 interface UnlockModeData {
   mode: string;
+}
+
+interface RankingListData {
+  rankList: List<RatingDetails>;
 }
 
 interface Problem {
@@ -127,10 +122,7 @@ interface User {
 
 interface UserDetails extends User {
   passed: string;
-  rating: {
-    user: User;
-    rating: number;
-  };
+  rating: Rating;
   introduce: string;
   blogAddress: string;
   background: string;
@@ -175,6 +167,24 @@ interface ThemeSideNav {
   logoBackgroundColor: [number, number, number, number];
   color: [number, number, number, number];
   invertColor: boolean;
+}
+
+interface Rating {
+  user: User;
+  rating: number;
+}
+
+interface RatingDetails extends Rating {
+  contestRating: number;
+  socialRating: number;
+  practiceRating: number;
+  basicRating: number;
+  calculateTime: number;
+}
+
+interface List<T> {
+  result: T[];
+  count: number;
 }
 
 interface SubmitCodeAPIResponse {

@@ -6,3 +6,4 @@ For definitions of types, see [luogu-api.d.ts](luogu-api.d.ts).
 * [Contests](contests.md)
 * [Themes](themes.md)
 * [Authentication](auth.md)
+* [Miscellaneous](misc.md)
