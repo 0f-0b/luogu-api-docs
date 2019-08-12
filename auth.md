@@ -14,6 +14,29 @@ GET /api/verify/captcha
 image/jpeg
 ```
 
+## Send verification code
+
+### Request
+
+```
+POST /api/verify/sendVerificationCode
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| endpoint | `string` | |
+| endpointType | `number` | |
+| captcha | `string` | |
+| userExist | `boolean` | |
+
+### Response
+
+```
+application/json: /* TODO */
+```
+
 ## Register
 
 ### Request
@@ -31,6 +54,12 @@ POST /api/auth/register
 | endpoint | `string` | |
 | endpointType | `number` | |
 | verificationCode | `string` | |
+
+### Response Type
+
+```
+application/json: /* TODO */
+```
 
 ## Login
 
