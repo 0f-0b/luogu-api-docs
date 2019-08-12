@@ -96,7 +96,7 @@ POST /api/auth/unlock
 application/json: UnlockAPIResponse
 ```
 
-## Lock 
+## Lock
 
 ### Request
 
