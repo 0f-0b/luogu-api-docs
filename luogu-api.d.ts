@@ -1,4 +1,4 @@
-interface APIResponse<T> {
+interface DataResponse<T> {
   code: number;
   currentTemplate: string;
   currentData: T;
@@ -65,6 +65,10 @@ interface ThemeListData {
 
 interface ThemeData {
   theme: ThemeDetails;
+}
+
+interface UnlockModeData {
+  mode: string;
 }
 
 interface Problem {
@@ -171,4 +175,14 @@ interface ThemeSideNav {
   logoBackgroundColor: [number, number, number, number];
   color: [number, number, number, number];
   invertColor: boolean;
+}
+
+interface LoginAPIResponse {
+  username: string;
+  locked: boolean;
+  redirectTo: string;
+}
+
+interface UnlockAPIResponse {
+  redirectTo: string;
 }
