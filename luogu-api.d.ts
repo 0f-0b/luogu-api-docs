@@ -64,6 +64,14 @@ interface ThemeData {
   theme: ThemeDetails;
 }
 
+interface PasteListData {
+  pastes: List<Paste>;
+}
+
+interface PasteData {
+  paste: Paste;
+}
+
 interface UnlockModeData {
   mode: string;
 }
@@ -222,6 +230,14 @@ interface ThemeSideNav {
   logoBackgroundColor: [number, number, number, number];
   color: [number, number, number, number];
   invertColor: boolean;
+}
+
+interface Paste {
+  data: string;
+  id: string;
+  user: User;
+  time: number;
+  public: boolean;
 }
 
 interface Rating {
