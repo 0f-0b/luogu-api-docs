@@ -27,3 +27,17 @@ GET /fe/paste/:id?_contentOnly=1
 ```
 application/json: DataResponse<PasteData>
 ```
+
+## Delete paste
+
+### Request
+
+```
+POST /fe/paste/delete/:id
+```
+
+### Response Type
+
+```
+application/json: DeletePasteAPIResponse
+```

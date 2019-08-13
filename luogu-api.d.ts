@@ -265,6 +265,10 @@ interface SubmitCodeAPIResponse {
   };
 }
 
+interface DeletePasteAPIResponse {
+  id: string;
+}
+
 interface LoginAPIResponse {
   username: string;
   locked: boolean;
