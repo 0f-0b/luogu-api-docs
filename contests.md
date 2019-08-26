@@ -27,3 +27,23 @@ GET /contest/:id?_contentOnly=1
 ```
 application/json: DataResponse<ContestData>
 ```
+
+## Get scoreboard
+
+### Request
+
+```
+GET /fe/api/contest/scoreboard/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| page | `number` | ✓ |
+
+### Response
+
+```
+application/json: GetScoreboardAPIResponse
+```

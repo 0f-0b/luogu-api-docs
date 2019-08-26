@@ -30,6 +30,11 @@ interface EditProblemAPIResponse {
   data: string;
 }
 
+interface GetScoreboardAPIResponse {
+  scoreboard: List<Score>;
+  userScore: Score;
+}
+
 interface DeletePasteAPIResponse {
   id: string;
 }
@@ -171,6 +176,18 @@ interface Contest extends ContestInfo {
 
 interface ContestDetails extends Contest {
   description: string;
+}
+
+interface Score {
+  details: {
+    [pid: string]: {
+      score: number;
+      runningTime?: number;
+    };
+  };
+  user: User;
+  score: number;
+  runningTime: number;
 }
 
 interface RecordBase {
