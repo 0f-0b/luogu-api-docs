@@ -23,7 +23,7 @@ interface GetScoreboardAPIResponse {
   userScore: Score;
 }
 
-interface DeletePasteAPIResponse {
+interface EditPasteAPIResponse {
   id: string;
 }
 

@@ -28,6 +28,27 @@ GET /fe/paste/:id?_contentOnly=1
 application/json: DataResponse<PasteData>
 ```
 
+## Create paste
+
+### Request
+
+```
+POST /fe/paste/new
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| data | `string` | |
+| public | `number` | ✓ |
+
+### Response
+
+```
+application/json: EditPasteAPIResponse
+```
+
 ## Delete paste
 
 ### Request
@@ -39,5 +60,5 @@ POST /fe/paste/delete/:id
 ### Response
 
 ```
-application/json: DeletePasteAPIResponse
+application/json: EditPasteAPIResponse
 ```
