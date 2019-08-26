@@ -53,3 +53,24 @@ GET /space/ajax_getchatcontent
 ```
 application/json: AjaxResponse<MessagesData>
 ```
+
+## Send message
+
+### Request
+
+```
+POST /api/user/sendMessage
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| receiver | `number` | |
+| content | `string` | |
+
+### Response
+
+```
+application/json: APIResponse<[]>
+```
