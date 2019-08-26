@@ -49,6 +49,27 @@ POST /fe/paste/new
 application/json: EditPasteAPIResponse
 ```
 
+## Edit paste
+
+### Request
+
+```
+POST /fe/paste/edit/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| data | `string` | |
+| public | `number` | ✓ |
+
+### Response
+
+```
+application/json: EditPasteAPIResponse
+```
+
 ## Delete paste
 
 ### Request
