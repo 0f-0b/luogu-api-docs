@@ -7,7 +7,7 @@ interface DataResponse<T> {
   currentUser?: UserDetails;
 }
 
-interface LegacyResponse<T> {
+interface AjaxResponse<T> {
   code: number;
   message: string;
   more: T;
@@ -122,7 +122,7 @@ interface RankingListData {
   rankList: List<RatingDetails>;
 }
 
-interface PunchData {
+interface HTMLData {
   html: string;
 }
 

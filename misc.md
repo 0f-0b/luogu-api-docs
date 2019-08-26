@@ -46,5 +46,5 @@ GET /index/ajax_punch
 ### Response
 
 ```
-application/json: LegacyResponse<PunchData>
+application/json: AjaxResponse<HTMLData>
 ```
