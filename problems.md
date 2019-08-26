@@ -60,7 +60,7 @@ POST /api/problem/submit/:pid
 ### Response
 
 ```
-application/json: SubmitCodeAPIResponse
+application/json: APIResponse<SubmitCodeData>
 ```
 
 ## Create problem
@@ -93,7 +93,7 @@ POST /api/problem/new
 ### Response
 
 ```
-application/json: CreateProblemAPIResponse
+application/json: APIResponse<string>
 ```
 
 ## Edit problem
@@ -127,5 +127,5 @@ POST /api/problem/edit/:pid
 ### Response
 
 ```
-application/json: EditProblemAPIResponse
+application/json: APIResponse<string>
 ```

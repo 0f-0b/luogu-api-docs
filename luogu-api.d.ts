@@ -7,27 +7,15 @@ interface DataResponse<T> {
   currentUser?: UserDetails;
 }
 
+interface APIResponse<T> {
+  status: number;
+  data: T;
+}
+
 interface AjaxResponse<T> {
   code: number;
   message: string;
   more: T;
-}
-
-interface SubmitCodeAPIResponse {
-  status: number;
-  data: {
-    rid: number;
-  };
-}
-
-interface CreateProblemAPIResponse {
-  status: number;
-  data: string;
-}
-
-interface EditProblemAPIResponse {
-  status: number;
-  data: string;
 }
 
 interface GetScoreboardAPIResponse {
@@ -124,6 +112,10 @@ interface RankingListData {
 
 interface HTMLData {
   html: string;
+}
+
+interface SubmitCodeData {
+  rid: number;
 }
 
 interface ProblemInfo {
