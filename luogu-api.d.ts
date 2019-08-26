@@ -7,6 +7,43 @@ interface DataResponse<T> {
   currentUser?: UserDetails;
 }
 
+interface LegacyResponse<T> {
+  code: number;
+  message: string;
+  more: T;
+}
+
+interface SubmitCodeAPIResponse {
+  status: number;
+  data: {
+    rid: number;
+  };
+}
+
+interface CreateProblemAPIResponse {
+  status: number;
+  data: string;
+}
+
+interface EditProblemAPIResponse {
+  status: number;
+  data: string;
+}
+
+interface DeletePasteAPIResponse {
+  id: string;
+}
+
+interface LoginAPIResponse {
+  username: string;
+  locked: boolean;
+  redirectTo: string;
+}
+
+interface UnlockAPIResponse {
+  redirectTo: string;
+}
+
 interface ProblemListData {
   page: number;
   problems: List<Problem & {
@@ -78,6 +115,10 @@ interface UnlockModeData {
 
 interface RankingListData {
   rankList: List<RatingDetails>;
+}
+
+interface PunchData {
+  html: string;
 }
 
 interface ProblemInfo {
@@ -256,25 +297,4 @@ interface RatingDetails extends Rating {
 interface List<T> {
   result: T[];
   count: number;
-}
-
-interface SubmitCodeAPIResponse {
-  status: number;
-  data: {
-    rid: number;
-  };
-}
-
-interface DeletePasteAPIResponse {
-  id: string;
-}
-
-interface LoginAPIResponse {
-  username: string;
-  locked: boolean;
-  redirectTo: string;
-}
-
-interface UnlockAPIResponse {
-  redirectTo: string;
 }

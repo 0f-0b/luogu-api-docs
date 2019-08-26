@@ -8,7 +8,7 @@
 GET /contest/list?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<ContestListData>
@@ -22,7 +22,7 @@ application/json: DataResponse<ContestListData>
 GET /contest/:id?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<ContestData>

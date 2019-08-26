@@ -8,10 +8,10 @@
 GET /
 ```
 
-### Response Type
+### Response
 
 ```
-text/html, document.querySelector("meta[name=csrf-token]").content
+text/html: document.querySelector("meta[name=csrf-token]").content
 ```
 
 ## Get ranking list
@@ -29,8 +29,22 @@ GET /ranking
 | page | `number` | ✓ |
 | orderBy | `number` | ✓ |
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<RankingListData>
+```
+
+## Punch
+
+### Request
+
+```
+GET /index/ajax_punch
+```
+
+### Response
+
+```
+application/json: LegacyResponse<PunchData>
 ```

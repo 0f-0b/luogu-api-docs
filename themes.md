@@ -17,7 +17,7 @@ GET /theme/list?_contentOnly=1
 | order | `string` | ✓ |
 | type | `string` | ✓ |
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<ThemeListData>
@@ -31,7 +31,7 @@ application/json: DataResponse<ThemeListData>
 GET /theme/design/:id?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<ThemeData>

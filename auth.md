@@ -8,7 +8,7 @@
 GET /api/verify/captcha
 ```
 
-### Response Type
+### Response
 
 ```
 image/jpeg
@@ -55,7 +55,7 @@ POST /api/auth/register
 | endpointType | `number` | |
 | verificationCode | `string` | |
 
-### Response Type
+### Response
 
 ```
 application/json: /* TODO */
@@ -77,7 +77,7 @@ POST /api/auth/userPassLogin
 | password | `string` | |
 | captcha | `string` | |
 
-### Response Type
+### Response
 
 ```
 application/json: LoginAPIResponse
@@ -111,7 +111,7 @@ POST /api/auth/unlock
 |-|-|-|
 | code | `string` | |
 
-### Response Type
+### Response
 
 ```
 application/json: UnlockAPIResponse
@@ -139,7 +139,7 @@ GET /api/auth/lock
 GET /auth/unlock?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<UnlockModeData>

@@ -8,7 +8,7 @@
 GET /fe/paste/list?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<PasteListData>
@@ -22,7 +22,7 @@ application/json: DataResponse<PasteListData>
 GET /fe/paste/:id?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<PasteData>
@@ -36,7 +36,7 @@ application/json: DataResponse<PasteData>
 POST /fe/paste/delete/:id
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DeletePasteAPIResponse

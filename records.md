@@ -19,7 +19,7 @@ GET /record/list?_contentOnly=1
 | language | `number` | ✓ |
 | orderBy | `number` | ✓ |
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<RecordListData>
@@ -33,7 +33,7 @@ application/json: DataResponse<RecordListData>
 GET /record/:id?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<RecordData>

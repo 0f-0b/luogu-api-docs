@@ -20,7 +20,7 @@ GET /problem/list?_contentOnly=1
 | type | `string` | ✓ |
 | tag | `string` | ✓ |
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<ProblemListData>
@@ -34,7 +34,7 @@ application/json: DataResponse<ProblemListData>
 GET /problem/:pid?_contentOnly=1
 ```
 
-### Response Type
+### Response
 
 ```
 application/json: DataResponse<ProblemData>
@@ -57,8 +57,75 @@ POST /api/problem/submit/:pid
 | enableO2 | `number` | |
 | verify | `string` | |
 
-### Response Type
+### Response
 
 ```
 application/json: SubmitCodeAPIResponse
+```
+
+## Create problem
+
+### Request
+
+```
+POST /api/problem/new
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| name | `string` | |
+| background | `string` | |
+| describes | `string` | |
+| inputformat | `string` | |
+| outputformat | `string` | |
+| hint | `string` | |
+| sample | `Array<[string, string]>` | |
+| type | `string` | |
+| provider | `number` | |
+| flag | `number` | |
+| tags | `number[]` | |
+| difficulty | `number` | |
+| stdcode | `string` | |
+| showScore | `number` | |
+
+### Response
+
+```
+application/json: CreateProblemAPIResponse
+```
+
+## Edit problem
+
+### Request
+
+```
+POST /api/problem/edit/:pid
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| method | `string` | ✓ |
+| name | `string` | |
+| background | `string` | |
+| describes | `string` | |
+| inputformat | `string` | |
+| outputformat | `string` | |
+| hint | `string` | |
+| sample | `Array<[string, string]>` | |
+| type | `string` | |
+| provider | `number` | |
+| flag | `number` | |
+| tags | `number[]` | |
+| difficulty | `number` | |
+| stdcode | `string` | |
+| showScore | `number` | |
+
+### Response
+
+```
+application/json: EditProblemAPIResponse
 ```
