@@ -110,12 +110,26 @@ interface RankingListData {
   rankList: List<RatingDetails>;
 }
 
+interface SubmitCodeData {
+  rid: number;
+}
+
 interface HTMLData {
   html: string;
 }
 
-interface SubmitCodeData {
-  rid: number;
+interface UIDData {
+  uid: number;
+}
+
+interface MessagesData {
+  content: Array<{
+    way: number;
+    time: string;
+    content: string;
+  }>;
+  userme: string;
+  useroppo: string;
 }
 
 interface ProblemInfo {
