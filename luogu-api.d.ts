@@ -114,6 +114,17 @@ interface SubmitCodeData {
   rid: number;
 }
 
+interface ActivityData {
+  uid: number;
+  time: {
+    date: string;
+    timezone_type: number;
+    timezone: string;
+  };
+  type: number;
+  comment: string;
+}
+
 interface HTMLData {
   html: string;
 }
