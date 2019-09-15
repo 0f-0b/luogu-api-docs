@@ -23,6 +23,18 @@ interface GetScoreboardAPIResponse {
   userScore: Score;
 }
 
+interface GenerateUploadParametersAPIResponse {
+  uploadLink: {
+    host: string;
+    policy: string;
+    accessKeyID: string;
+    callback: string;
+    signature: string;
+    expiredTime: number;
+    dir: string;
+  };
+}
+
 interface EditPasteAPIResponse {
   id: string;
 }
@@ -92,6 +104,12 @@ interface ThemeListData {
 
 interface ThemeData {
   theme: ThemeDetails;
+}
+
+interface ImageListData {
+  images: List<Image>;
+  spaceLimit: number;
+  spaceUsage: number;
 }
 
 interface PasteListData {
@@ -208,14 +226,14 @@ interface Score {
 }
 
 interface RecordBase {
-  time: number;
-  memory: number;
+  time: number | null;
+  memory: number | null;
   problem: ProblemInfo;
   contest: ContestInfo | null;
   sourceCodeLength: number;
   submitTime: number;
   language: number;
-  user: User;
+  user?: User;
   id: number;
   status: number;
   score: number;
@@ -269,6 +287,20 @@ interface UserDetails extends User {
   verified: boolean;
 }
 
+interface Rating {
+  user: User;
+  rating: number;
+}
+
+interface RatingDetails extends Rating {
+  contestRating: number;
+  socialRating: number;
+  practiceRating: number;
+  basicRating: number;
+  prizeRating: number;
+  calculateTime: number;
+}
+
 interface Team {
   id: number;
   name: string;
@@ -307,6 +339,15 @@ interface ThemeSideNav {
   invertColor: boolean;
 }
 
+interface Image {
+  thumbnailUrl: string;
+  url: string;
+  id: string;
+  provider: User;
+  uploadTime: number;
+  size: number;
+}
+
 interface Paste {
   data: string;
   id: string;
@@ -315,17 +356,16 @@ interface Paste {
   public: boolean;
 }
 
-interface Rating {
-  user: User;
-  rating: number;
-}
-
-interface RatingDetails extends Rating {
-  contestRating: number;
-  socialRating: number;
-  practiceRating: number;
-  basicRating: number;
-  calculateTime: number;
+interface Article {
+  Type: string;
+  PostTime: number;
+  Author: User;
+  Status: number;
+  ContentDescription: string;
+  ThumbUp: number;
+  BlogID: number;
+  Identifier: string;
+  Title: string;
 }
 
 interface List<T> {

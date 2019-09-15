@@ -74,3 +74,26 @@ POST /api/user/sendMessage
 ```
 application/json: APIResponse<[]>
 ```
+
+## Bind RemoteJudge account
+
+### Request
+
+```
+POST /api/user/bindVjudgeAccount
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| username | `string` | |
+| password | `string` | |
+| oj | `string` | |
+| verify | `string` | |
+
+### Response
+
+```
+application/json: /* TODO */
+```
