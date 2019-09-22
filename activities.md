@@ -73,3 +73,24 @@ POST /api/feed/delete/:id
 ```
 application/json: APIResponse<[]>
 ```
+
+## Report activity
+
+### Request
+
+```
+POST /api/report/feed
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| relevantID | `number` | |
+| reason | `string` | |
+
+### Response
+
+```
+application/json: APIResponse<string>
+```
