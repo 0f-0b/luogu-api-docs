@@ -36,3 +36,17 @@ GET /theme/design/:id?_contentOnly=1
 ```
 application/json: DataResponse<ThemeData>
 ```
+
+## Apply theme
+
+### Request
+
+```
+POST /theme/setTheme/:id
+```
+
+### Response
+
+```
+application/json: []
+```

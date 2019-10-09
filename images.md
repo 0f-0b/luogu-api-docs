@@ -22,6 +22,20 @@ GET /image
 application/json: DataResponse<ImageListData>
 ```
 
+## Get image
+
+### Request
+
+```
+GET /api/image/detail/:id
+```
+
+### Response
+
+```
+application/json: GetImageAPIResponse
+```
+
 ## Generate upload parameters
 
 ### Request

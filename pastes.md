@@ -5,7 +5,7 @@
 ### Request
 
 ```
-GET /fe/paste/list?_contentOnly=1
+GET /paste?_contentOnly=1
 ```
 
 ### Response
@@ -19,7 +19,7 @@ application/json: DataResponse<PasteListData>
 ### Request
 
 ```
-GET /fe/paste/:id?_contentOnly=1
+GET /paste/:id?_contentOnly=1
 ```
 
 ### Response
@@ -33,7 +33,7 @@ application/json: DataResponse<PasteData>
 ### Request
 
 ```
-POST /fe/paste/new
+POST /paste/new
 ```
 
 ### Parameters
@@ -54,7 +54,7 @@ application/json: EditPasteAPIResponse
 ### Request
 
 ```
-POST /fe/paste/edit/:id
+POST /paste/edit/:id
 ```
 
 ### Parameters
@@ -75,7 +75,7 @@ application/json: EditPasteAPIResponse
 ### Request
 
 ```
-POST /fe/paste/delete/:id
+POST /paste/delete/:id
 ```
 
 ### Response

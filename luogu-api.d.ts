@@ -23,6 +23,18 @@ interface GetScoreboardAPIResponse {
   userScore: Score;
 }
 
+interface GetUserAPIResponse {
+  users: [User | null];
+}
+
+interface MessagesAPIResponse {
+  messages: List<Message>;
+}
+
+interface GetImageAPIResponse {
+  image: Image;
+}
+
 interface GenerateUploadParametersAPIResponse {
   uploadLink: {
     host: string;
@@ -98,6 +110,13 @@ interface RecordData {
   showStatus: boolean;
 }
 
+interface ChatListData {
+  latestMessages: List<Message>;
+  unreadMessageCount: [] | {
+    [user: string]: number
+  };
+}
+
 interface ThemeListData {
   themes: List<ThemeDetails>;
 }
@@ -120,12 +139,12 @@ interface PasteData {
   paste: Paste;
 }
 
-interface UnlockModeData {
-  mode: string;
-}
-
 interface RankingListData {
   rankList: List<RatingDetails>;
+}
+
+interface UnlockModeData {
+  mode: string;
 }
 
 interface SubmitCodeData {
@@ -149,16 +168,6 @@ interface HTMLData {
 
 interface UIDData {
   uid: number;
-}
-
-interface MessagesData {
-  content: Array<{
-    way: number;
-    time: string;
-    content: string;
-  }>;
-  userme: string;
-  useroppo: string;
 }
 
 interface ProblemInfo {
@@ -274,6 +283,7 @@ interface User {
   badge: string | null;
   isAdmin: boolean;
   color: string;
+  ccfLevel: number;
 }
 
 interface UserDetails extends User {
@@ -287,23 +297,18 @@ interface UserDetails extends User {
   verified: boolean;
 }
 
-interface Rating {
-  user: User;
-  rating: number;
-}
-
-interface RatingDetails extends Rating {
-  contestRating: number;
-  socialRating: number;
-  practiceRating: number;
-  basicRating: number;
-  prizeRating: number;
-  calculateTime: number;
-}
-
 interface Team {
   id: number;
   name: string;
+}
+
+interface Message {
+  id: number;
+  sender: User;
+  receiver: User;
+  time: number;
+  status: number;
+  content: string;
 }
 
 interface Theme {
@@ -354,6 +359,20 @@ interface Paste {
   user: User;
   time: number;
   public: boolean;
+}
+
+interface Rating {
+  user: User;
+  rating: number;
+}
+
+interface RatingDetails extends Rating {
+  contestRating: number;
+  socialRating: number;
+  practiceRating: number;
+  basicRating: number;
+  prizeRating: number;
+  calculateTime: number;
 }
 
 interface Article {
