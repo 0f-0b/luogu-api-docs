@@ -54,3 +54,23 @@ POST /api/chat/new
 ```
 application/json: {}
 ```
+
+## Delete message
+
+### Request
+
+```
+POST /api/chat/delete
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| id | `number` | |
+
+### Response
+
+```
+application/json: {}
+```
