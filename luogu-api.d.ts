@@ -7,8 +7,11 @@ interface DataResponse<T> {
   currentUser?: UserDetails;
 }
 
-interface APIResponse<T> {
+interface StatusResponse {
   status: number;
+}
+
+interface APIResponse<T> extends StatusResponse {
   data: T;
 }
 
@@ -385,6 +388,19 @@ interface Article {
   BlogID: number;
   Identifier: string;
   Title: string;
+}
+
+interface ArticleComment {
+  Author: {
+    UID: number;
+    Username: string;
+    isAdmin: boolean;
+    isValid: boolean;
+    isVerified: boolean;
+    DynamicRate: number;
+  };
+  ReplyTime: number;
+  Content: string;
 }
 
 interface List<T> {

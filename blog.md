@@ -1,6 +1,6 @@
 # Blog API
 
-## List articles
+## Get articles
 
 ### Request
 
@@ -21,4 +21,64 @@ GET /api/blog/lists
 
 ```
 application/json: APIResponse<List<Article>>
+```
+
+## Get comments
+
+### Request
+
+```
+GET /api/blog/replies/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| page | `number` | ✓ |
+
+### Response
+
+```
+application/json: APIResponse<List<ArticleComment>>
+```
+
+## Add comment
+
+### Request
+
+```
+POST /api/blog/reply/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| content | `string` | |
+
+### Response
+
+```
+application/json: StatusResponse
+```
+
+## Vote on article
+
+### Request
+
+```
+POST /api/blog/vote/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| Type | `number` | |
+
+### Response
+
+```
+application/json: APIResponse<number>
 ```
