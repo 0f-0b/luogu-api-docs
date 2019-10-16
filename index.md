@@ -17,3 +17,19 @@ All `POST` requests must have a header field named `X-CSRF-Token`, which is docu
 * [Blog](blog.md)
 * [Authentication](auth.md)
 * [Miscellaneous](misc.md)
+
+## Example
+
+```js
+fetch("/api/chat/new", {
+  headers: {
+    "Content-Type": "application/json",
+    "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content
+  },
+  body: JSON.stringify({
+    user: 206953,
+    content: "Hi"
+  }),
+  method: "POST"
+});
+```

@@ -74,3 +74,23 @@ POST /api/chat/delete
 ```
 application/json: {}
 ```
+
+## Clear unread notifications
+
+### Request
+
+```
+POST /api/chat/clearUnread
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| user | `number` | |
+
+### Response
+
+```
+application/json: {}
+```
