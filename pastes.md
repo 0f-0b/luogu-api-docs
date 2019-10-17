@@ -46,7 +46,7 @@ POST /paste/new
 ### Response
 
 ```
-application/json: EditPasteAPIResponse
+application/json: IDResponse
 ```
 
 ## Edit paste
@@ -67,7 +67,7 @@ POST /paste/edit/:id
 ### Response
 
 ```
-application/json: EditPasteAPIResponse
+application/json: IDResponse
 ```
 
 ## Delete paste
@@ -81,5 +81,5 @@ POST /paste/delete/:id
 ### Response
 
 ```
-application/json: EditPasteAPIResponse
+application/json: IDResponse
 ```

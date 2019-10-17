@@ -15,10 +15,16 @@ interface APIResponse<T> extends StatusResponse {
   data: T;
 }
 
-interface AjaxResponse<T> {
+interface IDResponse {
+  id: string;
+}
+
+interface HTMLResponse {
   code: number;
   message: string;
-  more: T;
+  more: {
+    html: string;
+  };
 }
 
 interface GetScoreboardAPIResponse {
@@ -48,10 +54,6 @@ interface GenerateUploadParametersAPIResponse {
     expiredTime: number;
     dir: string;
   };
-}
-
-interface EditPasteAPIResponse {
-  id: string;
 }
 
 interface LoginAPIResponse {
@@ -163,10 +165,6 @@ interface ActivityData {
   };
   type: number;
   comment: string;
-}
-
-interface HTMLData {
-  html: string;
 }
 
 interface UIDData {
