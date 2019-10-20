@@ -63,26 +63,6 @@ POST /api/blog/reply/:id
 application/json: StatusResponse
 ```
 
-## Delete comment
-
-### Request
-
-```
-POST /blogAdmin/article/deleteComment/:id
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| reply-id | number | |
-
-### Response
-
-```
-application/json: /*TODO*/
-```
-
 ## Vote on article
 
 ### Request
@@ -101,4 +81,24 @@ POST /api/blog/vote/:id
 
 ```
 application/json: APIResponse<number>
+```
+
+## Delete comment
+
+### Request
+
+```
+POST /blogAdmin/article/deleteComment/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| reply-id | `number` | |
+
+### Response
+
+```
+application/json: APIResponse<string>
 ```
