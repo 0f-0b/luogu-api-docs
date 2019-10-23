@@ -96,6 +96,7 @@ POST /blogAdmin/article/deleteComment/:id
 | Key | Type | Optional |
 |-|-|-|
 | reply-id | `number` | |
+| csrf-token | `string` | |
 
 ### Response
 
