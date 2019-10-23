@@ -1,4 +1,4 @@
-interface DataResponse<T> {
+export interface DataResponse<T> {
   code: number;
   currentTemplate: string;
   currentData: T;
@@ -7,19 +7,19 @@ interface DataResponse<T> {
   currentUser?: UserDetails;
 }
 
-interface StatusResponse {
+export interface StatusResponse {
   status: number;
 }
 
-interface APIResponse<T> extends StatusResponse {
+export interface APIResponse<T> extends StatusResponse {
   data: T;
 }
 
-interface IDResponse {
+export interface IDResponse {
   id: string;
 }
 
-interface HTMLResponse {
+export interface HTMLResponse {
   code: number;
   message: string;
   more: {
@@ -27,24 +27,24 @@ interface HTMLResponse {
   };
 }
 
-interface GetScoreboardAPIResponse {
+export interface GetScoreboardAPIResponse {
   scoreboard: List<Score>;
   userScore: Score;
 }
 
-interface GetUserAPIResponse {
+export interface GetUserAPIResponse {
   users: [User | null];
 }
 
-interface MessagesAPIResponse {
+export interface MessagesAPIResponse {
   messages: List<Message>;
 }
 
-interface GetImageAPIResponse {
+export interface GetImageAPIResponse {
   image: Image;
 }
 
-interface GenerateUploadParametersAPIResponse {
+export interface GenerateUploadParametersAPIResponse {
   uploadLink: {
     host: string;
     policy: string;
@@ -56,17 +56,17 @@ interface GenerateUploadParametersAPIResponse {
   };
 }
 
-interface LoginAPIResponse {
+export interface LoginAPIResponse {
   username: string;
   locked: boolean;
   redirectTo: string;
 }
 
-interface UnlockAPIResponse {
+export interface UnlockAPIResponse {
   redirectTo: string;
 }
 
-interface ProblemListData {
+export interface ProblemListData {
   page: number;
   problems: List<Problem & {
     tags: number[];
@@ -77,7 +77,7 @@ interface ProblemListData {
   }>;
 }
 
-interface ProblemData {
+export interface ProblemData {
   problem: ProblemDetails;
   discussions: Array<{
     title: string;
@@ -90,11 +90,11 @@ interface ProblemData {
   lastCode: string;
 }
 
-interface ContestListData {
+export interface ContestListData {
   contests: List<Contest>;
 }
 
-interface ContestData {
+export interface ContestData {
   contest: ContestDetails;
   contestProblems: Array<{
     score: number;
@@ -105,58 +105,62 @@ interface ContestData {
   joined: boolean;
 }
 
-interface RecordListData {
+export interface RecordListData {
   records: List<RecordBase>;
 }
 
-interface RecordData {
+export interface RecordData {
   record: RecordDetails;
   testCaseGroup: number[][];
   showStatus: boolean;
 }
 
-interface ChatListData {
+export interface ChatListData {
   latestMessages: List<Message>;
   unreadMessageCount: [] | {
     [user: string]: number
   };
 }
 
-interface ThemeListData {
+export interface ThemeListData {
   themes: List<ThemeDetails>;
 }
 
-interface ThemeData {
+export interface ThemeData {
   theme: ThemeDetails;
 }
 
-interface ImageListData {
+export interface ImageListData {
   images: List<Image>;
   spaceLimit: number;
   spaceUsage: number;
 }
 
-interface PasteListData {
+export interface PasteListData {
   pastes: List<Paste>;
 }
 
-interface PasteData {
+export interface PasteData {
   paste: Paste;
 }
 
-interface RankingListData {
+export interface RankingListData {
   rankList: List<RatingDetails>;
 }
 
-interface UnlockModeData {
+export interface NotificationsData {
+  notifications: List<Notification>;
+}
+
+export interface UnlockModeData {
   mode: string;
 }
 
-interface SubmitCodeData {
+export interface SubmitCodeData {
   rid: number;
 }
 
-interface ActivityData {
+export interface ActivityData {
   uid: number;
   time: {
     date: string;
@@ -167,22 +171,22 @@ interface ActivityData {
   comment: string;
 }
 
-interface UIDData {
+export interface UIDData {
   uid: number;
 }
 
-interface ProblemInfo {
+export interface ProblemInfo {
   pid: string;
   title: string;
   type: string;
 }
 
-interface Problem extends ProblemInfo {
+export interface Problem extends ProblemInfo {
   accepted: boolean;
   submitted: boolean;
 }
 
-interface ProblemDetails extends Problem {
+export interface ProblemDetails extends Problem {
   background: string;
   description: string;
   inputFormat: string;
@@ -204,14 +208,14 @@ interface ProblemDetails extends Problem {
   totalAccepted: number;
 }
 
-interface ContestInfo {
+export interface ContestInfo {
   id: number;
   name: string;
   startTime: number;
   endTime: number;
 }
 
-interface Contest extends ContestInfo {
+export interface Contest extends ContestInfo {
   ruleType: number;
   visibilityType: number;
   rated: boolean;
@@ -219,11 +223,11 @@ interface Contest extends ContestInfo {
   problemCount: number;
 }
 
-interface ContestDetails extends Contest {
+export interface ContestDetails extends Contest {
   description: string;
 }
 
-interface Score {
+export interface Score {
   details: {
     [pid: string]: {
       score: number;
@@ -235,7 +239,7 @@ interface Score {
   runningTime: number;
 }
 
-interface RecordBase {
+export interface RecordBase {
   time: number | null;
   memory: number | null;
   problem: ProblemInfo;
@@ -249,7 +253,7 @@ interface RecordBase {
   score: number;
 }
 
-interface RecordDetails extends RecordBase {
+export interface RecordDetails extends RecordBase {
   detail: {
     message: null;
     subtasks?: Array<{
@@ -278,7 +282,7 @@ interface RecordDetails extends RecordBase {
   sourceCode: string;
 }
 
-interface User {
+export interface User {
   uid: number;
   name: string;
   badge: string | null;
@@ -287,7 +291,7 @@ interface User {
   ccfLevel: number;
 }
 
-interface UserDetails extends User {
+export interface UserDetails extends User {
   passed: string;
   rating: Rating;
   introduce: string;
@@ -298,12 +302,12 @@ interface UserDetails extends User {
   verified: boolean;
 }
 
-interface Team {
+export interface Team {
   id: number;
   name: string;
 }
 
-interface Message {
+export interface Message {
   id: number;
   sender: User;
   receiver: User;
@@ -312,14 +316,23 @@ interface Message {
   content: string;
 }
 
-interface Theme {
+export interface Notification {
+  id: number;
+  time: number;
+  type: number;
+  title: string;
+  content: string;
+  read: boolean;
+}
+
+export interface Theme {
   id: number;
   header: ThemeHeaderFooter;
   sideNav: ThemeSideNav;
   footer: ThemeHeaderFooter;
 }
 
-interface ThemeDetails extends Theme {
+export interface ThemeDetails extends Theme {
   name: string;
   type: number;
   author: User;
@@ -327,7 +340,7 @@ interface ThemeDetails extends Theme {
   userCount: number;
 }
 
-interface ThemeHeaderFooter {
+export interface ThemeHeaderFooter {
   imagePath: string | null;
   color: Array<[number, number, number, number]>;
   blur: number;
@@ -339,13 +352,13 @@ interface ThemeHeaderFooter {
   type: number;
 }
 
-interface ThemeSideNav {
+export interface ThemeSideNav {
   logoBackgroundColor: [number, number, number, number];
   color: [number, number, number, number];
   invertColor: boolean;
 }
 
-interface Image {
+export interface Image {
   thumbnailUrl: string;
   url: string;
   id: string;
@@ -354,7 +367,7 @@ interface Image {
   size: number;
 }
 
-interface Paste {
+export interface Paste {
   data: string;
   id: string;
   user: User;
@@ -362,12 +375,12 @@ interface Paste {
   public: boolean;
 }
 
-interface Rating {
+export interface Rating {
   user: User;
   rating: number;
 }
 
-interface RatingDetails extends Rating {
+export interface RatingDetails extends Rating {
   contestRating: number;
   socialRating: number;
   practiceRating: number;
@@ -376,7 +389,7 @@ interface RatingDetails extends Rating {
   calculateTime: number;
 }
 
-interface Article {
+export interface Article {
   Type: string;
   PostTime: number;
   Author: User;
@@ -388,7 +401,7 @@ interface Article {
   Title: string;
 }
 
-interface ArticleComment {
+export interface ArticleComment {
   Author: {
     UID: number;
     Username: string;
@@ -401,7 +414,7 @@ interface ArticleComment {
   Content: string;
 }
 
-interface List<T> {
+export interface List<T> {
   result: T[];
   count: number;
 }

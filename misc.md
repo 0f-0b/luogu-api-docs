@@ -19,7 +19,7 @@ text/html: document.querySelector("meta[name=csrf-token]").content
 ### Request
 
 ```
-GET /ranking
+GET /ranking?_contentOnly=1
 ```
 
 ### Parameters
@@ -33,6 +33,25 @@ GET /ranking
 
 ```
 application/json: DataResponse<RankingListData>
+```
+
+## Get notifications
+
+```
+GET /user/notification?_contentOnly=1
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| type | `number` | ✓ |
+| page | `number` | ✓ |
+
+### Response
+
+```
+application/json: DataResponse<NotificationsData>
 ```
 
 ## Punch
