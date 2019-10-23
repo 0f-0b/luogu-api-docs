@@ -82,3 +82,24 @@ POST /api/blog/vote/:id
 ```
 application/json: APIResponse<number>
 ```
+
+## Delete comment
+
+### Request
+
+```
+POST /blogAdmin/article/deleteComment/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| reply-id | `number` | |
+| csrf-token | `string` | |
+
+### Response
+
+```
+application/json: APIResponse<string>
+```
