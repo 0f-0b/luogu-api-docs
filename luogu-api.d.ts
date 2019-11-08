@@ -4,7 +4,7 @@ export interface DataResponse<T> {
   currentData: T;
   currentTitle: string;
   currentTheme: Theme | null;
-  currentUser?: UserDetails;
+  currentUser?: User;
 }
 
 export interface StatusResponse {
@@ -32,8 +32,20 @@ export interface GetScoreboardAPIResponse {
   userScore: Score;
 }
 
+export interface GetJoinedContestsAPIResponse {
+  contests: List<Contest>;
+}
+
+export interface GetPostsAPIResponse {
+  posts: List<Post>;
+}
+
+export interface GetActivitiesAPIResponse {
+  feeds: List<Activity>;
+}
+
 export interface GetUserAPIResponse {
-  users: [User | null];
+  users: [UserInfo | null];
 }
 
 export interface MessagesAPIResponse {
@@ -115,6 +127,38 @@ export interface RecordData {
   showStatus: boolean;
 }
 
+export interface Post {
+  top: number;
+  author: UserInfo;
+  time: number;
+  valid: boolean;
+  recentReply: Reply;
+  id: number;
+  title: string;
+  forum: Forum;
+}
+
+export interface Reply {
+  author: UserInfo;
+  time: number;
+}
+
+export interface Forum {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export interface UserData {
+  user: UserDetails;
+  passedProblems: ProblemInfo[];
+  submittedProblems: ProblemInfo[];
+  teams: Array<{
+    team: Team;
+    permission: number;
+  }>;
+}
+
 export interface ChatListData {
   latestMessages: List<Message>;
   unreadMessageCount: [] | {
@@ -178,7 +222,8 @@ export interface UIDData {
 export interface ProblemInfo {
   pid: string;
   title: string;
-  type: string;
+  difficulty: number;
+  type: ProblemType;
 }
 
 export interface Problem extends ProblemInfo {
@@ -193,7 +238,7 @@ export interface ProblemDetails extends Problem {
   outputFormat: string;
   samples: Array<[string, string]>;
   hint: string;
-  provider: User;
+  provider: UserInfo;
   canEdit: boolean;
   limits: {
     time: number[];
@@ -208,6 +253,14 @@ export interface ProblemDetails extends Problem {
   totalAccepted: number;
 }
 
+export enum ProblemType {
+  P = "P",
+  CF = "CF",
+  SP = "SP",
+  AT = "AT",
+  UVA = "UVA"
+}
+
 export interface ContestInfo {
   id: number;
   name: string;
@@ -219,7 +272,7 @@ export interface Contest extends ContestInfo {
   ruleType: number;
   visibilityType: number;
   rated: boolean;
-  host: User | Team;
+  host: UserInfo | Team;
   problemCount: number;
 }
 
@@ -234,7 +287,7 @@ export interface Score {
       runningTime?: number;
     };
   };
-  user: User;
+  user: UserInfo;
   score: number;
   runningTime: number;
 }
@@ -247,7 +300,7 @@ export interface RecordBase {
   sourceCodeLength: number;
   submitTime: number;
   language: number;
-  user?: User;
+  user?: UserInfo;
   id: number;
   status: number;
   score: number;
@@ -282,24 +335,49 @@ export interface RecordDetails extends RecordBase {
   sourceCode: string;
 }
 
-export interface User {
+export interface Activity {
+  content: string;
+  id: number;
+  type: number;
+  time: number;
+  user: UserInfo;
+}
+
+export interface UserInfo {
   uid: number;
   name: string;
+  slogan: string;
   badge: string | null;
   isAdmin: boolean;
   color: string;
   ccfLevel: number;
 }
 
-export interface UserDetails extends User {
-  passed: string;
-  rating: Rating;
-  introduce: string;
+export interface User extends UserInfo {
   blogAddress: string;
-  background: string;
+  followingCount: number;
+  followerCount: number;
+  ranking: number;
   unreadMessageCount: number;
   unreadNoticeCount: number;
   verified: boolean;
+}
+
+export interface UserDetails extends User {
+  email: string;
+  rating: Rating;
+  registerTime: number;
+  introduction: string;
+  prize: Array<{
+    contestName: string;
+    year: number;
+    prize: string;
+  }>;
+  background: string;
+  userRelationship: number;
+  reverseUserRelationship: number;
+  passedProblemCount: number;
+  submittedProblemCount: number;
 }
 
 export interface Team {
@@ -309,8 +387,8 @@ export interface Team {
 
 export interface Message {
   id: number;
-  sender: User;
-  receiver: User;
+  sender: UserInfo;
+  receiver: UserInfo;
   time: number;
   status: number;
   content: string;
@@ -335,7 +413,7 @@ export interface Theme {
 export interface ThemeDetails extends Theme {
   name: string;
   type: number;
-  author: User;
+  author: UserInfo;
   updateTime: number;
   userCount: number;
 }
@@ -362,7 +440,7 @@ export interface Image {
   thumbnailUrl: string;
   url: string;
   id: string;
-  provider: User;
+  provider: UserInfo;
   uploadTime: number;
   size: number;
 }
@@ -370,13 +448,13 @@ export interface Image {
 export interface Paste {
   data: string;
   id: string;
-  user: User;
+  user: UserInfo;
   time: number;
   public: boolean;
 }
 
 export interface Rating {
-  user: User;
+  user: UserInfo;
   rating: number;
 }
 
@@ -392,7 +470,7 @@ export interface RatingDetails extends Rating {
 export interface Article {
   Type: string;
   PostTime: number;
-  Author: User;
+  Author: UserInfo;
   Status: number;
   ContentDescription: string;
   ThumbUp: number;

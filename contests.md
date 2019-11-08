@@ -47,3 +47,23 @@ GET /fe/api/contest/scoreboard/:id
 ```
 application/json: GetScoreboardAPIResponse
 ```
+
+## Get joined contests
+
+### Request
+
+```
+GET /fe/api/user/joinedContests
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| page | `number` | |
+
+### Response
+
+```
+application/json: GetJoinedContestsAPIResponse
+```

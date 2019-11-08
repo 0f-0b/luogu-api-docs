@@ -1,5 +1,26 @@
 # Activities API
 
+## Get activities of user
+
+### Request
+
+```
+GET /api/feed/list
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| user | `number` | |
+| page | `number` | ✓ |
+
+### Response
+
+```
+application/json: GetActivitiesAPIResponse
+```
+
 ## Get watching activities
 
 ### Request

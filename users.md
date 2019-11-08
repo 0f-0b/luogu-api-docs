@@ -1,5 +1,19 @@
 # Users API
 
+## Get user
+
+### Request
+
+```
+GET /user/:uid?_contentOnly=1
+```
+
+### Response
+
+```
+application/json: DataResponse<UserData>
+```
+
 ## Get user from name
 
 ### Request
@@ -18,6 +32,26 @@ GET /fe/api/user/search
 
 ```
 application/json: GetUserAPIResponse
+```
+
+## Edit slogan
+
+### Request
+
+```
+POST /fe/api/user/updateSlogan
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| slogan | `string` | |
+
+### Response
+
+```
+application/json: {}
 ```
 
 ## Bind RemoteJudge account

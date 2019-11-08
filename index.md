@@ -7,7 +7,7 @@ All `POST` requests must have a header field named `X-CSRF-Token`, which is docu
 * [Problems](problems.md)
 * [Contests](contests.md)
 * [Records](records.md)
-* [Discussions](discussions.md)
+* [Posts](posts.md)
 * [Activities](activities.md)
 * [Users](users.md)
 * [Chat](chat.md)

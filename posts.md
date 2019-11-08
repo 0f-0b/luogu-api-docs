@@ -1,4 +1,25 @@
-# Discussions API
+# Posts API
+
+## Get posts from user
+
+### Request
+
+```
+GET /fe/api/user/userPosts?page=1&orderBy=sendTime
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| page | `number` | |
+| orderBy | `string` | |
+
+### Response
+
+```
+application/json: GetPostsAPIResponse
+```
 
 ## Add reply
 
@@ -35,7 +56,7 @@ DELETE /api/discuss/deleteReply/:id
 application/json: APIResponse<[]>
 ```
 
-## Report discussion
+## Report post
 
 ### Request
 
