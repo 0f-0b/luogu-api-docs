@@ -34,6 +34,27 @@ GET /fe/api/user/search
 application/json: GetUserAPIResponse
 ```
 
+## Get followed users
+
+### Request
+
+```
+GET /fe/api/user/followings
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| user | `number` | |
+| page | `number` | ✓ |
+
+### Response
+
+```
+application/json: GetUsersAPIResponse
+```
+
 ## Get followers
 
 ### Request
