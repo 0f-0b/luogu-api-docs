@@ -1,11 +1,11 @@
 # Posts API
 
-## Get posts from user
+## Get sent posts
 
 ### Request
 
 ```
-GET /fe/api/user/userPosts?page=1&orderBy=sendTime
+GET /fe/api/user/userPosts
 ```
 
 ### Parameters

@@ -14,7 +14,7 @@ GET /user/:uid?_contentOnly=1
 application/json: DataResponse<UserData>
 ```
 
-## Get user from name
+## Get user from UID or name
 
 ### Request
 
@@ -32,6 +32,27 @@ GET /fe/api/user/search
 
 ```
 application/json: GetUserAPIResponse
+```
+
+## Get followers
+
+### Request
+
+```
+GET /fe/api/user/followers
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| user | `number` | |
+| page | `number` | ✓ |
+
+### Response
+
+```
+application/json: GetUsersAPIResponse
 ```
 
 ## Edit slogan

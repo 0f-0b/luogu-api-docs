@@ -48,6 +48,10 @@ export interface GetUserAPIResponse {
   users: [UserInfo | null];
 }
 
+export interface GetUsersAPIResponse {
+  users: List<User>;
+}
+
 export interface MessagesAPIResponse {
   messages: List<Message>;
 }
