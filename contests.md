@@ -60,10 +60,30 @@ GET /fe/api/user/joinedContests
 
 | Key | Type | Optional |
 |-|-|-|
-| page | `number` | |
+| page | `number` | ✓ |
 
 ### Response
 
 ```
 application/json: GetJoinedContestsAPIResponse
+```
+
+## Join contest
+
+### Request
+
+```
+POST /fe/api/contest/join/:id
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| code | `string` | ✓ |
+
+### Response
+
+```
+application/json: IDResponse
 ```
