@@ -96,6 +96,26 @@ POST /fe/api/user/updateSlogan
 application/json: {}
 ```
 
+## Set header image
+
+### Request
+
+```
+POST /fe/api/user/updateHeaderImage
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| imageID | `string` | |
+
+### Response
+
+```
+application/json: {}
+```
+
 ## Bind RemoteJudge account
 
 ### Request
