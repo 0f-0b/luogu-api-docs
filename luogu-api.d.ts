@@ -198,6 +198,9 @@ export interface RankingListData {
 
 export interface NotificationsData {
   notifications: List<Notification>;
+  hasUnreadNotification: [] | {
+    [type: number]: true
+  };
 }
 
 export interface UnlockModeData {
