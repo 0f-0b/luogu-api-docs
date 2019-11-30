@@ -96,6 +96,26 @@ POST /fe/api/user/updateSlogan
 application/json: {}
 ```
 
+## Edit introduction
+
+### Request
+
+```
+POST /fe/api/user/updateIntroduction
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| introduction | `string` | |
+
+### Response
+
+```
+application/json: {}
+```
+
 ## Set header image
 
 ### Request
