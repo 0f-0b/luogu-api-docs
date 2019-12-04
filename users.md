@@ -76,6 +76,34 @@ GET /fe/api/user/followers
 application/json: GetUsersAPIResponse
 ```
 
+## Get settings
+
+### Request
+
+```
+GET /user/setting?_contentOnly=1
+```
+
+### Response
+
+```
+application/json: DataResponse<UserSettingsData>
+```
+
+## Update settings
+
+### Request
+
+```
+POST /fe/api/user/updateSetting
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| settings | `UserSettings` | |
+
 ## Edit slogan
 
 ### Request
@@ -141,20 +169,40 @@ application/json: {}
 ### Request
 
 ```
-POST /api/user/bindVjudgeAccount
+POST /fe/api/user/bindVjudgeAccount
 ```
 
 ### Parameters
 
 | Key | Type | Optional |
 |-|-|-|
+| oj | `string` | |
 | username | `string` | |
 | password | `string` | |
-| oj | `string` | |
-| verify | `string` | |
+| captcha | `string` | |
 
 ### Response
 
 ```
-application/json: /* TODO */
+application/json: {}
+```
+
+## Unbind RemoteJudge account
+
+### Request
+
+```
+POST /fe/api/user/unbindVjudgeAccount
+```
+
+### Parameters
+
+| Key | Type | Optional |
+|-|-|-|
+| oj | `string` | |
+
+### Response
+
+```
+application/json: {}
 ```

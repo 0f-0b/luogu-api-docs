@@ -154,13 +154,34 @@ export interface Forum {
 }
 
 export interface UserData {
-  user: UserDetails;
+  user: UserDetails & {
+    userRelationship: number;
+    reverseUserRelationship: number;
+    passedProblemCount: number;
+    submittedProblemCount: number;
+  };
   passedProblems: ProblemInfo[];
   submittedProblems: ProblemInfo[];
   teams: Array<{
     team: Team;
     permission: number;
   }>;
+}
+
+export interface UserSettingsData {
+  userSetting: UserSettings;
+  usernameUpdateTime: number;
+  openSourceJoinTime: number;
+  hasSet2FA: boolean;
+  ccfLevelShowLevel: number;
+  vjudgeAccounts: {
+    AT?: string;
+    CF?: string;
+    SP?: string;
+    UVA?: string;
+  };
+  prizes: any[];
+  user: UserDetails;
 }
 
 export interface ChatListData {
@@ -356,6 +377,7 @@ export interface UserInfo {
   slogan: string;
   badge: string | null;
   isAdmin: boolean;
+  isBanned: boolean;
   color: string;
   ccfLevel: number;
 }
@@ -372,6 +394,7 @@ export interface User extends UserInfo {
 
 export interface UserDetails extends User {
   email: string;
+  phone: string;
   rating: Rating;
   registerTime: number;
   introduction: string;
@@ -381,10 +404,12 @@ export interface UserDetails extends User {
     prize: string;
   }>;
   background: string;
-  userRelationship: number;
-  reverseUserRelationship: number;
-  passedProblemCount: number;
-  submittedProblemCount: number;
+}
+
+export interface UserSettings {
+  openSource: number;
+  learningMode: boolean;
+  messageMode: number;
 }
 
 export interface Team {
