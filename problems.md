@@ -45,7 +45,7 @@ application/json: DataResponse<ProblemData>
 ### Request
 
 ```
-POST /api/problem/submit/:pid
+POST /fe/api/problem/submit/:pid
 ```
 
 ### Parameters
