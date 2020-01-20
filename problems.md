@@ -54,8 +54,8 @@ POST /fe/api/problem/submit/:pid
 |-|-|-|
 | code | `string` | |
 | lang | `number` | |
-| enableO2 | `number` | |
-| verify | `string` | |
+| enableO2 | `number` | ✓ |
+| verify | `string` | ✓ |
 
 ### Response
 
@@ -81,7 +81,7 @@ POST /api/problem/new
 | inputformat | `string` | |
 | outputformat | `string` | |
 | hint | `string` | |
-| sample | `Array<[string, string]>` | |
+| sample | `[string, string][]` | |
 | type | `string` | |
 | provider | `number` | |
 | flag | `number` | |
@@ -115,7 +115,7 @@ POST /api/problem/edit/:pid
 | inputformat | `string` | |
 | outputformat | `string` | |
 | hint | `string` | |
-| sample | `Array<[string, string]>` | |
+| sample | `[string, string][]` | |
 | type | `string` | |
 | provider | `number` | |
 | flag | `number` | |
