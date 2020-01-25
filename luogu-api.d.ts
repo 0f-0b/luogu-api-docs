@@ -2,8 +2,13 @@ export interface DataRequest {
   _contentOnly: 1;
 }
 
-export interface ProblemListRequest extends DataRequest {
+export interface PagedRequest {
   page?: number;
+}
+
+export interface PagedDataRequest extends DataRequest, PagedRequest { }
+
+export interface ProblemListRequest extends PagedDataRequest {
   keyword?: string;
   content?: boolean;
   orderBy?: string;
@@ -34,6 +39,10 @@ export interface EditProblemRequest {
   difficulty: number;
   stdcode: string;
   showScore: number;
+}
+
+export interface JoinContestRequest {
+  code?: string;
 }
 
 export interface DataResponse<T> {
@@ -69,13 +78,17 @@ export interface SubmitCodeResponse {
   rid: number;
 }
 
-export interface GetScoreboardAPIResponse {
+export interface GetScoreboardResponse {
   scoreboard: List<Score>;
   userScore: Score;
 }
 
-export interface GetJoinedContestsAPIResponse {
+export interface GetJoinedContestsResponse {
   contests: List<Contest>;
+}
+
+export interface JoinContestResponse {
+  id: number;
 }
 
 export interface GetPostsAPIResponse {
@@ -137,10 +150,10 @@ export interface ProblemListData {
 
 export interface ProblemData {
   problem: ProblemDetails;
-  discussions: Array<{
+  discussions: {
     title: string;
     id: number;
-  }>;
+  }[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
   recommendations: Problem[];
@@ -154,11 +167,11 @@ export interface ContestListData {
 
 export interface ContestData {
   contest: ContestDetails;
-  contestProblems: Array<{
+  contestProblems: {
     score: number;
     problem: ProblemInfo;
     submitted: boolean;
-  }>;
+  }[];
   accessLevel: number;
   joined: boolean;
 }
