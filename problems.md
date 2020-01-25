@@ -2,130 +2,85 @@
 
 ## List problems
 
-### Request
-
-```
-GET /problem/list?_contentOnly=1
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | ✓ |
-| keyword | `string` | ✓ |
-| content | `boolean` | ✓ |
-| orderBy | `string` | ✓ |
-| order | `string` | ✓ |
-| type | `string` | ✓ |
-| tag | `string` | ✓ |
-
-### Response
-
-```
-application/json: DataResponse<ProblemListData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /problem/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>ProblemListRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;ProblemListData&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Get problem
 
-### Request
-
-```
-GET /problem/:pid?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<ProblemData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /problem/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>DataRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;ProblemData&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Submit code
 
-### Request
-
-```
-POST /fe/api/problem/submit/:pid
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| code | `string` | |
-| lang | `number` | |
-| enableO2 | `number` | ✓ |
-| verify | `string` | ✓ |
-
-### Response
-
-```
-application/json: APIResponse<SubmitCodeData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/problem/submit/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>SubmitCodeRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>SubmitCodeResponse</code>)</td>
+  </tr>
+</table>
 
 ## Create problem
 
-### Request
-
-```
-POST /api/problem/new
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| name | `string` | |
-| background | `string` | |
-| describes | `string` | |
-| inputformat | `string` | |
-| outputformat | `string` | |
-| hint | `string` | |
-| sample | `[string, string][]` | |
-| type | `string` | |
-| provider | `number` | |
-| flag | `number` | |
-| tags | `number[]` | |
-| difficulty | `number` | |
-| stdcode | `string` | |
-| showScore | `number` | |
-
-### Response
-
-```
-application/json: APIResponse<string>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/problem/new</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditProblemRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Edit problem
 
-### Request
-
-```
-POST /api/problem/edit/:pid
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| method | `string` | ✓ |
-| name | `string` | |
-| background | `string` | |
-| describes | `string` | |
-| inputformat | `string` | |
-| outputformat | `string` | |
-| hint | `string` | |
-| sample | `[string, string][]` | |
-| type | `string` | |
-| provider | `number` | |
-| flag | `number` | |
-| tags | `number[]` | |
-| difficulty | `number` | |
-| stdcode | `string` | |
-| showScore | `number` | |
-
-### Response
-
-```
-application/json: APIResponse<string>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/problem/edit/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditProblemRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+  </tr>
+</table>

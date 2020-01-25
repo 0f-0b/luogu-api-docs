@@ -1,3 +1,41 @@
+export interface DataRequest {
+  _contentOnly: 1;
+}
+
+export interface ProblemListRequest extends DataRequest {
+  page?: number;
+  keyword?: string;
+  content?: boolean;
+  orderBy?: string;
+  order?: string;
+  type?: string;
+  tag?: string;
+}
+
+export interface SubmitCodeRequest {
+  code: string;
+  lang?: number;
+  enableO2?: number;
+  verify?: string;
+}
+
+export interface EditProblemRequest {
+  name: string;
+  background: string;
+  describes: string;
+  inputformat: string;
+  outputformat: string;
+  hint: string;
+  sample: [string, string][];
+  type: string;
+  provider: number;
+  flag: number;
+  tags: number[];
+  difficulty: number;
+  stdcode: string;
+  showScore: number;
+}
+
 export interface DataResponse<T> {
   code: number;
   currentTemplate: string;
@@ -25,6 +63,10 @@ export interface HTMLResponse {
   more: {
     html: string;
   };
+}
+
+export interface SubmitCodeResponse {
+  rid: number;
 }
 
 export interface GetScoreboardAPIResponse {
@@ -226,10 +268,6 @@ export interface NotificationsData {
 
 export interface UnlockModeData {
   mode: string;
-}
-
-export interface SubmitCodeData {
-  rid: number;
 }
 
 export interface ActivityData {
