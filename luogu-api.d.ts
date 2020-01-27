@@ -159,6 +159,102 @@ export interface UnlockResponse {
   redirectTo: string;
 }
 
+export interface ConfigResponse {
+  pageTree: PageTree;
+  ws: {
+    server: string;
+  };
+  codeLanguages: Record<number, Language>;
+  contestRuleTypes: Record<number, {
+    id: number;
+    name: string;
+    color: string;
+  }>;
+  recordStatus: Record<number, {
+    id: number;
+    name: string;
+    shortName: string;
+    color: string;
+    filterable: boolean;
+  }>;
+  tags: Record<number, {
+    name: string;
+    type: "Algorithm" | "Time" | "Region" | "Origin" | "SpecialProblem" | "Unknown";
+    color: string;
+  }>;
+  recordSortTypes: {
+    id: number;
+    name: string;
+  }[];
+  messageStatusTypes: {
+    id: number;
+    name: string;
+  }[];
+  translation: Translations;
+  recordLanguageTypes: Record<number, Language>;
+  problemTypes: Pick<Record<string, string>, ProblemType>;
+  problemDifficulty: {
+    id: number;
+    name: string;
+    color: string;
+  }[];
+  senderEndpointTypes: Record<number, {
+    id: number;
+    type: string;
+  }>;
+  contestAccessLevel: {
+    id: number;
+    name: string;
+  }[];
+  rankingSortTypes: {
+    id: number;
+    valueName: string;
+    name: string;
+  }[];
+  contestVisibilityTypes: {
+    id: number;
+    name: string;
+    color: string;
+  }[];
+  problemTags: {
+    group: string;
+    tags: number[];
+  }[];
+  routes: Record<string, string>;
+  userRelationshipTypes: {
+    id: number;
+    type: string;
+  }[];
+  messageModeTypes: {
+    id: number;
+    type: string;
+    name: string;
+  }[];
+  teamTypes: {
+    id: number;
+    displayName: string;
+  }[];
+  notificationTypes: Record<number, {
+    id: number;
+    type: string;
+    name: string;
+  }>;
+  imageHostingWatermarkTypes: {
+    id: number;
+    name: string;
+  }[];
+  teamMemberPermissionTypes: Record<number, {
+    id: number;
+    type: string;
+    name: string;
+  }>;
+  userPrizeShowLevelType: {
+    id: number;
+    type: string;
+    name: string;
+  }[];
+}
+
 export interface ProblemListData {
   page: number;
   problems: List<Problem & {
@@ -595,6 +691,24 @@ export interface ArticleComment {
   };
   ReplyTime: number;
   Content: string;
+}
+
+export interface PageTree {
+  name: string;
+  template: string;
+  route: string;
+  children?: PageTree[];
+  url?: string | null;
+}
+
+export interface Language {
+  id: number;
+  name: string;
+  aceMode: string;
+}
+
+export interface Translations {
+  [id: string]: string | Translations;
 }
 
 export interface List<T> {

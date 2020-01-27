@@ -13,6 +13,19 @@
   </tr>
 </table>
 
+## Get configuration
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /_lfe/config</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>ConfigResponse</code>)</td>
+  </tr>
+</table>
+
 ## Get ranking list
 
 ### Request
