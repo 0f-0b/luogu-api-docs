@@ -45,6 +45,36 @@ export interface JoinContestRequest {
   code?: string;
 }
 
+export interface RecordListRequest extends PagedDataRequest {
+  pid?: string;
+  user?: string;
+  status?: number;
+  language?: number;
+  orderBy?: number;
+}
+
+export interface GetPostsRequest extends PagedDataRequest {
+  orderBy?: string;
+}
+
+export interface AddReplyRequest {
+  content: string;
+  verify?: string;
+}
+
+export interface GetActivitiesRequest extends PagedRequest {
+  user: number;
+}
+
+export interface PostActivityRequest {
+  content: string;
+}
+
+export interface ReportRequest {
+  relevantID: number;
+  reason: string;
+}
+
 export interface DataResponse<T> {
   code: number;
   currentTemplate: string;
@@ -66,14 +96,6 @@ export interface IDResponse {
   id: string;
 }
 
-export interface HTMLResponse {
-  code: number;
-  message: string;
-  more: {
-    html: string;
-  };
-}
-
 export interface SubmitCodeResponse {
   rid: number;
 }
@@ -91,31 +113,31 @@ export interface JoinContestResponse {
   id: number;
 }
 
-export interface GetPostsAPIResponse {
+export interface GetPostsResponse {
   posts: List<Post>;
 }
 
-export interface GetActivitiesAPIResponse {
+export interface GetActivitiesResponse {
   feeds: List<Activity>;
 }
 
-export interface GetUserAPIResponse {
+export interface GetUserResponse {
   users: [UserInfo | null];
 }
 
-export interface GetUsersAPIResponse {
+export interface GetUsersResponse {
   users: List<User>;
 }
 
-export interface MessagesAPIResponse {
+export interface MessagesResponse {
   messages: List<Message>;
 }
 
-export interface GetImageAPIResponse {
+export interface GetImageResponse {
   image: Image;
 }
 
-export interface GenerateUploadParametersAPIResponse {
+export interface GenerateUploadParametersResponse {
   uploadLink: {
     host: string;
     policy: string;
@@ -127,13 +149,13 @@ export interface GenerateUploadParametersAPIResponse {
   };
 }
 
-export interface LoginAPIResponse {
+export interface LoginResponse {
   username: string;
   locked: boolean;
   redirectTo: string;
 }
 
-export interface UnlockAPIResponse {
+export interface UnlockResponse {
   redirectTo: string;
 }
 
@@ -242,7 +264,7 @@ export interface UserSettingsData {
 export interface ChatListData {
   latestMessages: List<Message>;
   unreadMessageCount: [] | {
-    [user: string]: number
+    [user: string]: number;
   };
 }
 
@@ -275,7 +297,7 @@ export interface RankingListData {
 export interface NotificationsData {
   notifications: List<Notification>;
   hasUnreadNotification: [] | {
-    [type: number]: true
+    [type: number]: true;
   };
 }
 

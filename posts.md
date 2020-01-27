@@ -2,77 +2,66 @@
 
 ## Get sent posts
 
-### Request
-
-```
-GET /fe/api/user/userPosts
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | |
-| orderBy | `string` | |
-
-### Response
-
-```
-application/json: GetPostsAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/userPosts</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>GetPostsRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>GetPostsResponse</code>)</td>
+  </tr>
+</table>
 
 ## Add reply
 
-### Request
-
-```
-POST /api/discuss/reply/:id
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| content | `string` | |
-| verify | `string` | |
-
-### Response
-
-```
-application/json: APIResponse<[]>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/discuss/reply/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>AddReplyRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;[]&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Delete reply
 
-### Request
+**Note**: Requires `X-CSRF-Token`.
 
-```
-DELETE /api/discuss/deleteReply/:id
-```
-
-### Response
-
-```
-application/json: APIResponse<[]>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>DELETE /api/discuss/deleteReply/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;[]&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Report post
 
-### Request
-
-```
-POST /api/report/post
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| relevantID | `number` | |
-| reason | `string` | |
-
-### Response
-
-```
-application/json: APIResponse<string>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/report/post</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>ReportRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+  </tr>
+</table>

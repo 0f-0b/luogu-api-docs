@@ -2,17 +2,16 @@
 
 ## Get CSRF token
 
-### Request
-
-```
-GET /
-```
-
-### Response
-
-```
-text/html: document.querySelector("meta[name=csrf-token]").content
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>text/html</code> (The token can be accessed through <code>document.querySelector("meta[name=csrf-token]").content</code>)</td>
+  </tr>
+</table>
 
 ## Get ranking list
 
@@ -52,18 +51,4 @@ GET /user/notification?_contentOnly=1
 
 ```
 application/json: DataResponse<NotificationsData>
-```
-
-## Punch
-
-### Request
-
-```
-GET /index/ajax_punch
-```
-
-### Response
-
-```
-application/json: HTMLResponse
 ```

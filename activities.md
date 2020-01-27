@@ -2,116 +2,98 @@
 
 ## Get activities of user
 
-### Request
-
-```
-GET /api/feed/list
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| user | `number` | |
-| page | `number` | ✓ |
-
-### Response
-
-```
-application/json: GetActivitiesAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /api/feed/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>GetActivitiesRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>GetActivitiesResponse</code>)</td>
+  </tr>
+</table>
 
 ## Get watching activities
 
-### Request
-
-```
-GET /feed/watching
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | ✓ |
-
-### Response
-
-```
-text/html
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /feed/watching</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>PagedRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>text/html</code></td>
+  </tr>
+</table>
 
 ## Get all activities
 
-### Request
-
-```
-GET /feed/all
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | ✓ |
-
-### Response
-
-```
-text/html
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /feed/all</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>PagedRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>text/html</code></td>
+  </tr>
+</table>
 
 ## Post activity
 
-### Request
-
-```
-POST /api/feed/postBenben
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| content | `string` | |
-
-### Response
-
-```
-application/json: APIResponse<ActivityData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/feed/postBenben</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>PostActivityRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;ActivityData&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Delete activity
 
-### Request
-
-```
-POST /api/feed/delete/:id
-```
-
-### Response
-
-```
-application/json: APIResponse<[]>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/feed/delete/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;[]&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Report activity
 
-### Request
-
-```
-POST /api/report/feed
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| relevantID | `number` | |
-| reason | `string` | |
-
-### Response
-
-```
-application/json: APIResponse<string>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/report/feed</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>ReportRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+  </tr>
+</table>

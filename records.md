@@ -2,39 +2,34 @@
 
 ## List records
 
-### Request
-
-```
-GET /record/list?_contentOnly=1
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | ✓ |
-| pid | `string` | ✓ |
-| user | `string` | ✓ |
-| status | `number` | ✓ |
-| language | `number` | ✓ |
-| orderBy | `number` | ✓ |
-
-### Response
-
-```
-application/json: DataResponse<RecordListData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /record/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>RecordListRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;RecordListData&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Get record
 
-### Request
-
-```
-GET /record/:id?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<RecordData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /record/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>DataRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;RecordData&gt;</code>)</td>
+  </tr>
+</table>

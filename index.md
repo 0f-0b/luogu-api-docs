@@ -1,8 +1,6 @@
 # Luogu API Documentation
 
-For definitions of types, see [luogu-api.d.ts](luogu-api.d.ts).
-
-All `POST` requests must have a header field named `X-CSRF-Token`, which is documented [here](misc.md#get-csrf-token).
+Definitions of types are in [luogu-api.d.ts](https://github.com/sjx233/luogu-api-docs/blob/master/luogu-api.d.ts).
 
 * [Problems](problems.md)
 * [Contests](contests.md)
@@ -18,7 +16,17 @@ All `POST` requests must have a header field named `X-CSRF-Token`, which is docu
 * [Authentication](auth.md)
 * [Miscellaneous](misc.md)
 
-## Example
+## Examples
+
+### `GET` requests
+
+```js
+fetch("/user/notification?_contentOnly=1&type=3");
+```
+
+### `POST` requests
+
+**Note**: All `POST` requests require a header field named [`X-CSRF-Token`](misc.md#get-csrf-token) to be included.
 
 ```js
 fetch("/api/chat/new", {
