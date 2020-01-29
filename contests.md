@@ -9,11 +9,11 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>PagedDataRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; page?: number; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;ContestListData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ contests: List&lt;Contes&gt;; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>DataRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
@@ -43,11 +43,11 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>PagedRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>GetScoreboardResponse</code>)</td>
+    <td><code>application/json</code> (<code>{ scoreboard: List&lt;Score&gt;; userScore: Score; }</code>)</td>
   </tr>
 </table>
 
@@ -60,11 +60,11 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>PagedRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>GetJoinedContestsResponse</code>)</td>
+    <td><code>application/json</code> (<code>{ contests: List&lt;Contest&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -76,11 +76,11 @@
     <td><code>POST /fe/api/contest/join/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
-    <td><code>application/json</code> (<code>JoinContestRequest</code>)</td>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ code?: string; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>JoinContestResponse</code>)</td>
+    <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
   </tr>
 </table>

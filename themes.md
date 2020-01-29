@@ -2,111 +2,94 @@
 
 ## List themes
 
-### Request
-
-```
-GET /theme/list?_contentOnly=1
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | ✓ |
-| orderBy | `string` | ✓ |
-| order | `string` | ✓ |
-| type | `string` | ✓ |
-
-### Response
-
-```
-application/json: DataResponse<ThemeListData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /theme/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>ListThemesRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ themes: List&lt;ThemeDetails&gt;; }&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Get theme
 
-### Request
-
-```
-GET /theme/design/:id?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<ThemeData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /theme/design/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ theme: ThemeDetails; }&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Apply theme
 
-### Request
-
-```
-POST /theme/setTheme/:id
-```
-
-### Response
-
-```
-application/json: []
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /theme/setTheme/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>[]</code>)</td>
+  </tr>
+</table>
 
 ## Create theme
 
-### Request
-
-```
-POST /theme/edit/
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| name | `string` | |
-| header | `ThemeHeaderFooter` | |
-| sideNav | `ThemeSideNav` | |
-| footer | `ThemeHeaderFooter` | |
-
-### Response
-
-```
-application/json: IDResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /theme/edit/</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>EditThemeRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+  </tr>
+</table>
 
 ## Edit theme
 
-### Request
-
-```
-POST /theme/edit/:id
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| name | `string` | |
-| header | `ThemeHeaderFooter` | |
-| sideNav | `ThemeSideNav` | |
-| footer | `ThemeHeaderFooter` | |
-
-### Response
-
-```
-application/json: IDResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /theme/edit/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>EditThemeRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+  </tr>
+</table>
 
 ## Delete theme
 
-### Request
-
-```
-POST /theme/delete/:id
-```
-
-### Response
-
-```
-application/json: []
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /theme/delete/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>[]</code>)</td>
+  </tr>
+</table>

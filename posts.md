@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>GetPostsResponse</code>)</td>
+    <td><code>application/json</code> (<code>{ posts: List&lt;Post&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -26,11 +26,11 @@
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>AddReplyRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; verify?: string; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>APIResponse&lt;[]&gt;</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
   </tr>
 </table>
 
@@ -45,7 +45,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>APIResponse&lt;[]&gt;</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
   </tr>
 </table>
 
@@ -58,10 +58,10 @@
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>ReportRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ relevantID: number; reason: string; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
   </tr>
 </table>

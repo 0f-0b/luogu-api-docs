@@ -2,207 +2,187 @@
 
 ## Get user
 
-### Request
-
-```
-GET /user/:uid?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<UserData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /user/:uid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;UserData&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Get user from UID or name
 
-### Request
-
-```
-GET /fe/api/user/search
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| keyword | `string` | |
-
-### Response
-
-```
-application/json: GetUserAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/search</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ keyword: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ users: [UserInfo | null]; }</code>)</td>
+  </tr>
+</table>
 
 ## Get followed users
 
-### Request
-
-```
-GET /fe/api/user/followings
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| user | `number` | |
-| page | `number` | ✓ |
-
-### Response
-
-```
-application/json: GetUsersAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/followings</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
+  </tr>
+</table>
 
 ## Get followers
 
-### Request
-
-```
-GET /fe/api/user/followers
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| user | `number` | |
-| page | `number` | ✓ |
-
-### Response
-
-```
-application/json: GetUsersAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/followers</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
+  </tr>
+</table>
 
 ## Get settings
 
-### Request
-
-```
-GET /user/setting?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<UserSettingsData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /user/setting</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;UserSettingsData&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Update settings
 
-### Request
-
-```
-POST /fe/api/user/updateSetting
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| settings | `UserSettings` | |
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/updateSetting</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ settings: UserSettings; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Edit slogan
 
-### Request
-
-```
-POST /fe/api/user/updateSlogan
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| slogan | `string` | |
-
-### Response
-
-```
-application/json: {}
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/updateSlogan</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ slogan: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Edit introduction
 
-### Request
-
-```
-POST /fe/api/user/updateIntroduction
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| introduction | `string` | |
-
-### Response
-
-```
-application/json: {}
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/updateIntroduction</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ introduction: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Set header image
 
-### Request
-
-```
-POST /fe/api/user/updateHeaderImage
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| imageID | `string` | |
-
-### Response
-
-```
-application/json: {}
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/updateHeaderImage</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ imageID: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Bind RemoteJudge account
 
-### Request
-
-```
-POST /fe/api/user/bindVjudgeAccount
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| oj | `string` | |
-| username | `string` | |
-| password | `string` | |
-| captcha | `string` | |
-
-### Response
-
-```
-application/json: {}
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/bindVjudgeAccount</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>BindRemoteJudgeAccountRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Unbind RemoteJudge account
 
-### Request
-
-```
-POST /fe/api/user/unbindVjudgeAccount
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| oj | `string` | |
-
-### Response
-
-```
-application/json: {}
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/unbindVjudgeAccount</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ oj: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>

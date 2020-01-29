@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>DataRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
@@ -47,7 +47,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>SubmitCodeResponse</code>)</td>
+    <td><code>application/json</code> (<code>{ rid: number; }</code>)</td>
   </tr>
 </table>
 
@@ -64,7 +64,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
   </tr>
 </table>
 
@@ -81,6 +81,6 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>APIResponse&lt;string&gt;</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
   </tr>
 </table>

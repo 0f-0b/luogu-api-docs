@@ -2,145 +2,124 @@
 
 ## Get captcha image
 
-### Request
-
-```
-GET /api/verify/captcha
-```
-
-### Response
-
-```
-image/jpeg
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /api/verify/captcha</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>image/jpeg</code></td>
+  </tr>
+</table>
 
 ## Send verification code
 
-### Request
-
-```
-POST /api/verify/sendVerificationCode
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| endpoint | `string` | |
-| endpointType | `number` | |
-| captcha | `string` | |
-| userExist | `boolean` | |
-
-### Response
-
-```
-application/json: /* TODO */
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/verify/sendVerificationCode</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>SendVerificationCodeRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Register
 
-### Request
-
-```
-POST /api/auth/register
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| username | `string` | |
-| password | `string` | |
-| endpoint | `string` | |
-| endpointType | `number` | |
-| verificationCode | `string` | |
-
-### Response
-
-```
-application/json: /* TODO */
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/auth/register</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>RegisterRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
 
 ## Login
 
-### Request
-
-```
-POST /api/auth/userPassLogin
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| username | `string` | |
-| password | `string` | |
-| captcha | `string` | |
-
-### Response
-
-```
-application/json: LoginAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/auth/userPassLogin</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>LoginRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>LoginResponse</code>)</td>
+  </tr>
+</table>
 
 ## Logout
 
-### Request
-
-```
-GET /api/auth/logout
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| uid | `number` | |
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /api/auth/logout</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ uid: number; }</code>)</td>
+  </tr>
+</table>
 
 ## Unlock
 
-### Request
-
-```
-POST /api/auth/unlock
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| code | `string` | |
-
-### Response
-
-```
-application/json: UnlockAPIResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/auth/unlock</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ code: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ redirectTo: string; }</code>)</td>
+  </tr>
+</table>
 
 ## Lock
 
-### Request
-
-```
-GET /api/auth/lock
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| uid | `number` | |
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /api/auth/lock</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ uid: number; }</code>)</td>
+  </tr>
+</table>
 
 ## Get unlock mode
 
-### Request
-
-```
-GET /auth/unlock?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<UnlockModeData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /auth/unlock</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ mode: string; }&gt;</code>)</td>
+  </tr>
+</table>

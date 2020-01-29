@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;RecordListData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ records: List&lt;RecordBase&gt;; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>DataRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>

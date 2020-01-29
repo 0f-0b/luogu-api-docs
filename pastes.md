@@ -2,84 +2,81 @@
 
 ## List pastes
 
-### Request
-
-```
-GET /paste?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<PasteListData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /paste</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ pastes: List&lt;Paste&gt;; }&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Get paste
 
-### Request
-
-```
-GET /paste/:id?_contentOnly=1
-```
-
-### Response
-
-```
-application/json: DataResponse<PasteData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /paste/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ paste: Paste; }&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Create paste
 
-### Request
-
-```
-POST /paste/new
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| data | `string` | |
-| public | `number` | ✓ |
-
-### Response
-
-```
-application/json: IDResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /paste/new</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ data: string; public?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+  </tr>
+</table>
 
 ## Edit paste
 
-### Request
-
-```
-POST /paste/edit/:id
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| data | `string` | |
-| public | `number` | ✓ |
-
-### Response
-
-```
-application/json: IDResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /paste/edit/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ data: string; public?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+  </tr>
+</table>
 
 ## Delete paste
 
-### Request
-
-```
-POST /paste/delete/:id
-```
-
-### Response
-
-```
-application/json: IDResponse
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /paste/delete/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+  </tr>
+</table>

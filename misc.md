@@ -28,40 +28,34 @@
 
 ## Get ranking list
 
-### Request
-
-```
-GET /ranking?_contentOnly=1
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| page | `number` | ✓ |
-| orderBy | `number` | ✓ |
-
-### Response
-
-```
-application/json: DataResponse<RankingListData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /ranking</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>GetRankingListRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ rankList: List&lt;RatingDetails&gt;; }&gt;</code>)</td>
+  </tr>
+</table>
 
 ## Get notifications
 
-```
-GET /user/notification?_contentOnly=1
-```
-
-### Parameters
-
-| Key | Type | Optional |
-|-|-|-|
-| type | `number` | ✓ |
-| page | `number` | ✓ |
-
-### Response
-
-```
-application/json: DataResponse<NotificationsData>
-```
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /user/notification</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>GetNotificationsRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;NotificationsData&gt;</code>)</td>
+  </tr>
+</table>

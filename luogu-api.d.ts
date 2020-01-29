@@ -1,14 +1,6 @@
-export interface DataRequest {
+export interface ProblemListRequest {
   _contentOnly: 1;
-}
-
-export interface PagedRequest {
   page?: number;
-}
-
-export interface PagedDataRequest extends DataRequest, PagedRequest { }
-
-export interface ProblemListRequest extends PagedDataRequest {
   keyword?: string;
   content?: boolean;
   orderBy?: string;
@@ -41,11 +33,9 @@ export interface EditProblemRequest {
   showScore: number;
 }
 
-export interface JoinContestRequest {
-  code?: string;
-}
-
-export interface RecordListRequest extends PagedDataRequest {
+export interface RecordListRequest {
+  _contentOnly: 1;
+  page?: number;
   pid?: string;
   user?: string;
   status?: number;
@@ -53,26 +43,78 @@ export interface RecordListRequest extends PagedDataRequest {
   orderBy?: number;
 }
 
-export interface GetPostsRequest extends PagedDataRequest {
+export interface GetPostsRequest {
+  _contentOnly: 1;
+  page?: number;
   orderBy?: string;
 }
 
-export interface AddReplyRequest {
-  content: string;
-  verify?: string;
+export interface BindRemoteJudgeAccountRequest {
+  oj: string;
+  username: string;
+  password: string;
+  captcha: string;
 }
 
-export interface GetActivitiesRequest extends PagedRequest {
-  user: number;
+export interface ListThemesRequest {
+  _contentOnly: 1;
+  page?: number;
+  orderBy?: string;
+  order?: string;
+  type?: string;
 }
 
-export interface PostActivityRequest {
-  content: string;
+export interface EditThemeRequest {
+  name: string;
+  header: ThemeHeaderFooter;
+  sideNav: ThemeSideNav;
+  footer: ThemeHeaderFooter;
 }
 
-export interface ReportRequest {
-  relevantID: number;
-  reason: string;
+export interface ListImagesRequest {
+  order?: string;
+  bigImage?: boolean;
+  page?: number;
+}
+
+export interface GetArticlesRequest {
+  uid: number;
+  keyword?: string;
+  type?: string;
+  page?: number;
+}
+
+export interface SendVerificationCodeRequest {
+  endpoint: string;
+  endpointType: number;
+  captcha: string;
+  userExist: boolean;
+}
+
+export interface RegisterRequest {
+  username: string;
+  password: string;
+  endpoint: string;
+  endpointType: number;
+  verificationCode: string;
+}
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+  captcha: string;
+}
+
+export interface GetRankingListRequest {
+  _contentOnly: 1;
+  page?: number;
+  orderBy?: number;
+}
+
+export interface GetNotificationsRequest {
+  _contentOnly: 1;
+  type?: number;
+  page?: number;
 }
 
 export interface DataResponse<T> {
@@ -82,59 +124,6 @@ export interface DataResponse<T> {
   currentTitle: string;
   currentTheme: Theme | null;
   currentUser?: User;
-}
-
-export interface StatusResponse {
-  status: number;
-}
-
-export interface APIResponse<T> extends StatusResponse {
-  data: T;
-}
-
-export interface IDResponse {
-  id: string;
-}
-
-export interface SubmitCodeResponse {
-  rid: number;
-}
-
-export interface GetScoreboardResponse {
-  scoreboard: List<Score>;
-  userScore: Score;
-}
-
-export interface GetJoinedContestsResponse {
-  contests: List<Contest>;
-}
-
-export interface JoinContestResponse {
-  id: number;
-}
-
-export interface GetPostsResponse {
-  posts: List<Post>;
-}
-
-export interface GetActivitiesResponse {
-  feeds: List<Activity>;
-}
-
-export interface GetUserResponse {
-  users: [UserInfo | null];
-}
-
-export interface GetUsersResponse {
-  users: List<User>;
-}
-
-export interface MessagesResponse {
-  messages: List<Message>;
-}
-
-export interface GetImageResponse {
-  image: Image;
 }
 
 export interface GenerateUploadParametersResponse {
@@ -152,10 +141,6 @@ export interface GenerateUploadParametersResponse {
 export interface LoginResponse {
   username: string;
   locked: boolean;
-  redirectTo: string;
-}
-
-export interface UnlockResponse {
   redirectTo: string;
 }
 
@@ -179,7 +164,7 @@ export interface ConfigResponse {
   }>;
   tags: Record<number, {
     name: string;
-    type: "Algorithm" | "Time" | "Region" | "Origin" | "SpecialProblem" | "Unknown";
+    type: string;
     color: string;
   }>;
   recordSortTypes: {
@@ -279,10 +264,6 @@ export interface ProblemData {
   lastCode: string;
 }
 
-export interface ContestListData {
-  contests: List<Contest>;
-}
-
 export interface ContestData {
   contest: ContestDetails;
   contestProblems: {
@@ -292,10 +273,6 @@ export interface ContestData {
   }[];
   accessLevel: number;
   joined: boolean;
-}
-
-export interface RecordListData {
-  records: List<RecordBase>;
 }
 
 export interface RecordData {
@@ -309,21 +286,17 @@ export interface Post {
   author: UserInfo;
   time: number;
   valid: boolean;
-  recentReply: Reply;
+  recentReply: {
+    author: UserInfo;
+    time: number;
+  };
   id: number;
   title: string;
-  forum: Forum;
-}
-
-export interface Reply {
-  author: UserInfo;
-  time: number;
-}
-
-export interface Forum {
-  id: number;
-  name: string;
-  slug: string;
+  forum: {
+    id: number;
+    name: string;
+    slug: string;
+  };
 }
 
 export interface UserData {
@@ -364,30 +337,10 @@ export interface ChatListData {
   };
 }
 
-export interface ThemeListData {
-  themes: List<ThemeDetails>;
-}
-
-export interface ThemeData {
-  theme: ThemeDetails;
-}
-
 export interface ImageListData {
   images: List<Image>;
   spaceLimit: number;
   spaceUsage: number;
-}
-
-export interface PasteListData {
-  pastes: List<Paste>;
-}
-
-export interface PasteData {
-  paste: Paste;
-}
-
-export interface RankingListData {
-  rankList: List<RatingDetails>;
 }
 
 export interface NotificationsData {
@@ -395,10 +348,6 @@ export interface NotificationsData {
   hasUnreadNotification: [] | {
     [type: number]: true;
   };
-}
-
-export interface UnlockModeData {
-  mode: string;
 }
 
 export interface ActivityData {
@@ -410,10 +359,6 @@ export interface ActivityData {
   };
   type: number;
   comment: string;
-}
-
-export interface UIDData {
-  uid: number;
 }
 
 export interface ProblemInfo {
