@@ -1,5 +1,7 @@
 # Luogu API Documentation
 
+**English** | [中文](https://bingogyz.github.io/luogu-api-docs/)
+
 Definitions of types are in [luogu-api.d.ts](https://github.com/sjx233/luogu-api-docs/blob/master/luogu-api.d.ts).
 
 * [Problems](problems.md)

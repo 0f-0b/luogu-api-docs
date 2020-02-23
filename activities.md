@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ user?: number; page?: number; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th align="right">Request</th>
-    <td><code>GET /feed/watching</code></td>
+    <td><code>GET /api/feed/watching</code></td>
   </tr>
   <tr>
     <th align="right">Parameters</th>
@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>text/html</code></td>
+    <td><code>application/json</code> (<code>{ status: number; data: ActivityData[]; }</code>)</td>
   </tr>
 </table>
 

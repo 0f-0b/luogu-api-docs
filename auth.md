@@ -115,8 +115,8 @@
     <td><code>GET /auth/unlock</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
-    <td><code>application/json</code> (<code>{ _contentOnly: 1; }</code>)</td>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
