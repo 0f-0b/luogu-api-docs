@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ contests: List&lt;Contes&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ contests: List&lt;Contest&gt;; }&gt;</code>)</td>
   </tr>
 </table>
 

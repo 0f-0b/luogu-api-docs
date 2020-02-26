@@ -420,6 +420,7 @@ export interface Contest extends ContestInfo {
 
 export interface ContestDetails extends Contest {
   description: string;
+  totalParticipants: number;
 }
 
 export interface Score {
