@@ -77,6 +77,14 @@ export interface ListImagesRequest {
   page?: number;
 }
 
+export interface IDESubmitRequest {
+  code: string;
+  lang: number;
+  input?: string;
+  o2?: boolean;
+  "csrf-token": string;
+}
+
 export interface GetArticlesRequest {
   uid: number;
   keyword?: string;

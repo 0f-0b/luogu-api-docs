@@ -13,6 +13,7 @@ Definitions of types are in [luogu-api.d.ts](https://github.com/sjx233/luogu-api
 * [Chat](chat.md)
 * [Themes](themes.md)
 * [Images](images.md)
+* [IDE](ide.md)
 * [Pastes](pastes.md)
 * [Blog](blog.md)
 * [Authentication](auth.md)
