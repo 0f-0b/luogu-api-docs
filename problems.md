@@ -34,6 +34,40 @@
   </tr>
 </table>
 
+## Add problem to task list
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/problem/tasklistAdd</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+  </tr>
+</table>
+
+## Remove problem from task list
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/problem/tasklistRemove</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+  </tr>
+</table>
+
 ## Submit code
 
 <table>

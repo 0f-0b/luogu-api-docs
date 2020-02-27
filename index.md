@@ -5,6 +5,7 @@
 Definitions of types are in [luogu-api.d.ts](https://github.com/sjx233/luogu-api-docs/blob/master/luogu-api.d.ts).
 
 * [Problems](problems.md)
+* [Problem Sets](problem-sets.md)
 * [Contests](contests.md)
 * [Records](records.md)
 * [Posts](posts.md)

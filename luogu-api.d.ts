@@ -33,6 +33,15 @@ export interface EditProblemRequest {
   showScore: number;
 }
 
+export interface EditProblemSetRequest {
+  settings: {
+    title: string;
+    description: string;
+    type: number;
+    deadline?: number;
+  };
+}
+
 export interface RecordListRequest {
   _contentOnly: 1;
   page?: number;
@@ -157,24 +166,32 @@ export interface ConfigResponse {
   ws: {
     server: string;
   };
-  codeLanguages: Record<number, Language>;
-  contestRuleTypes: Record<number, {
-    id: number;
-    name: string;
-    color: string;
-  }>;
-  recordStatus: Record<number, {
-    id: number;
-    name: string;
-    shortName: string;
-    color: string;
-    filterable: boolean;
-  }>;
-  tags: Record<number, {
-    name: string;
-    type: string;
-    color: string;
-  }>;
+  codeLanguages: {
+    [id: number]: Language;
+  };
+  contestRuleTypes: {
+    [id: number]: {
+      id: number;
+      name: string;
+      color: string;
+    };
+  };
+  recordStatus: {
+    [id: number]: {
+      id: number;
+      name: string;
+      shortName: string;
+      color: string;
+      filterable: boolean;
+    };
+  };
+  tags: {
+    [id: number]: {
+      name: string;
+      type: string;
+      color: string;
+    };
+  };
   recordSortTypes: {
     id: number;
     name: string;
@@ -184,17 +201,23 @@ export interface ConfigResponse {
     name: string;
   }[];
   translation: Translations;
-  recordLanguageTypes: Record<number, Language>;
-  problemTypes: Pick<Record<string, string>, ProblemType>;
+  recordLanguageTypes: {
+    [id: number]: Language;
+  };
+  problemTypes: {
+    [id in ProblemType]: string;
+  };
   problemDifficulty: {
     id: number;
     name: string;
     color: string;
   }[];
-  senderEndpointTypes: Record<number, {
-    id: number;
-    type: string;
-  }>;
+  senderEndpointTypes: {
+    [id: number]: {
+      id: number;
+      type: string;
+    };
+  };
   contestAccessLevel: {
     id: number;
     name: string;
@@ -213,7 +236,9 @@ export interface ConfigResponse {
     group: string;
     tags: number[];
   }[];
-  routes: Record<string, string>;
+  routes: {
+    [id: string]: string;
+  };
   userRelationshipTypes: {
     id: number;
     type: string;
@@ -223,24 +248,36 @@ export interface ConfigResponse {
     type: string;
     name: string;
   }[];
+  trainingTypes: {
+    id: number;
+    type: string;
+    name: string;
+    public: boolean;
+    scope: "hidden" | "global" | "team" | "user";
+    userCreatable: boolean;
+  }[];
   teamTypes: {
     id: number;
     displayName: string;
   }[];
-  notificationTypes: Record<number, {
-    id: number;
-    type: string;
-    name: string;
-  }>;
+  notificationTypes: {
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+    };
+  };
   imageHostingWatermarkTypes: {
     id: number;
     name: string;
   }[];
-  teamMemberPermissionTypes: Record<number, {
-    id: number;
-    type: string;
-    name: string;
-  }>;
+  teamMemberPermissionTypes: {
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+    };
+  };
   userPrizeShowLevelType: {
     id: number;
     type: string;
@@ -250,10 +287,9 @@ export interface ConfigResponse {
 
 export interface ProblemListData {
   page: number;
-  problems: List<Problem & {
+  problems: List<ProblemInfo & ProblemStatus & {
     tags: number[];
     wantsTranslation: boolean;
-    difficulty: number;
     totalSubmit: string;
     totalAccepted: string;
   }>;
@@ -267,7 +303,7 @@ export interface ProblemData {
   }[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
-  recommendations: Problem[];
+  recommendations: (ProblemInfo & ProblemStatus)[];
   lastLanguage: string;
   lastCode: string;
 }
@@ -341,7 +377,7 @@ export interface UserSettingsData {
 export interface ChatListData {
   latestMessages: List<Message>;
   unreadMessageCount: [] | {
-    [user: string]: number;
+    [user: number]: number;
   };
 }
 
@@ -373,15 +409,18 @@ export interface ProblemInfo {
   pid: string;
   title: string;
   difficulty: number;
+  fullScore: number;
   type: ProblemType;
 }
 
 export interface Problem extends ProblemInfo {
-  accepted: boolean;
-  submitted: boolean;
+  tags: number[];
+  wantsTranslation: boolean;
+  totalSubmit: number;
+  totalAccepted: number;
 }
 
-export interface ProblemDetails extends Problem {
+export interface ProblemDetails extends Problem, ProblemStatus {
   background: string;
   description: string;
   inputFormat: string;
@@ -396,19 +435,39 @@ export interface ProblemDetails extends Problem {
   };
   showScore: boolean;
   score: number;
-  tags: number[];
-  wantsTranslation: boolean;
-  difficulty: number;
-  totalSubmit: number;
-  totalAccepted: number;
 }
 
-export enum ProblemType {
-  P = "P",
-  CF = "CF",
-  SP = "SP",
-  AT = "AT",
-  UVA = "UVA"
+export type ProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
+
+export interface ProblemStatus {
+  accepted: boolean;
+  submitted: boolean;
+}
+
+export interface ProblemSet {
+  id: number;
+  title: string;
+  type: number;
+}
+
+export interface ProblemSetDetails extends ProblemSet {
+  description: string;
+  markCount: number;
+  marked: boolean;
+  problems: { problem: Problem; }[];
+  createTime: number;
+  deadline: number | null;
+  problemCount: number;
+  userScore: {
+    user: UserInfo;
+    totalScore: number;
+    score: {
+      [pid: string]: number | null;
+    };
+    status: {
+      [pid: string]: boolean;
+    };
+  };
 }
 
 export interface ContestInfo {

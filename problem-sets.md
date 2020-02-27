@@ -1,0 +1,112 @@
+# Problem Sets API
+
+## Get problem set
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /training/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ training: ProblemSetDetails; canEdit: boolean; }&gt;</code>)</td>
+  </tr>
+</table>
+
+## Add problem set to task list
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/training/mark/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
+
+## Remove problem set from task list
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/training/unmark/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
+
+## Create problem set
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/training/new</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>EditProblemSetRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
+  </tr>
+</table>
+
+## Edit problem set
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/training/edit/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>EditProblemSetRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
+  </tr>
+</table>
+
+## Edit problems in problem set
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/training/editProblems/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ pids: string[]; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
+
+## Clone problem set
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /api/training/clone/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ type: number; providerID: number | null; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
