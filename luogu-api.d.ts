@@ -454,7 +454,16 @@ export interface ProblemSetDetails extends ProblemSet {
   markCount: number;
   marked: boolean;
   problems: { problem: Problem; }[];
-  userScore: null; // any other possible value?
+  userScore: {
+    user: UserInfo;
+    totalScore: number;
+    score: {
+      [pid: string]: number | null;
+    };
+    status: {
+      [pid: string]: boolean;
+    };
+  };
   createTime: number;
   deadline: number | null;
   problemCount: number;
