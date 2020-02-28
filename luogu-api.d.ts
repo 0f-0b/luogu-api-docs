@@ -285,17 +285,13 @@ export interface ConfigResponse {
   }[];
 }
 
-export interface ProblemListData {
-  page: number;
-  problems: List<Problem & ProblemStatus>;
-}
-
 export interface ProblemData {
   problem: ProblemDetails & ProblemStatus;
   contest: ContestInfo | null;
   discussions: {
-    title: string;
     id: number;
+    title: string;
+    forum: Forum;
   }[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
@@ -332,11 +328,13 @@ export interface Post {
   } | null;
   id: number;
   title: string;
-  forum: {
-    id: number;
-    name: string;
-    slug: string;
-  };
+  forum: Forum;
+}
+
+export interface Forum {
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export interface UserData {
