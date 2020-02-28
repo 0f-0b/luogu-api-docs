@@ -287,16 +287,12 @@ export interface ConfigResponse {
 
 export interface ProblemListData {
   page: number;
-  problems: List<ProblemInfo & ProblemStatus & {
-    tags: number[];
-    wantsTranslation: boolean;
-    totalSubmit: string;
-    totalAccepted: string;
-  }>;
+  problems: List<Problem & ProblemStatus>;
 }
 
 export interface ProblemData {
-  problem: ProblemDetails;
+  problem: ProblemDetails & ProblemStatus;
+  contest: ContestInfo | null;
   discussions: {
     title: string;
     id: number;
@@ -304,7 +300,7 @@ export interface ProblemData {
   bookmarked: boolean;
   vjudgeUsername: string | null;
   recommendations: (ProblemInfo & ProblemStatus)[];
-  lastLanguage: string;
+  lastLanguage: false; // any other possible value?
   lastCode: string;
 }
 
@@ -333,7 +329,7 @@ export interface Post {
   recentReply: {
     author: UserInfo;
     time: number;
-  };
+  } | null;
   id: number;
   title: string;
   forum: {
@@ -352,10 +348,11 @@ export interface UserData {
   };
   passedProblems: ProblemInfo[];
   submittedProblems: ProblemInfo[];
-  teams: Array<{
+  teams?: {
     team: Team;
     permission: number;
-  }>;
+  }[];
+  trainings?: ProblemSet[];
 }
 
 export interface UserSettingsData {
@@ -420,21 +417,22 @@ export interface Problem extends ProblemInfo {
   totalAccepted: number;
 }
 
-export interface ProblemDetails extends Problem, ProblemStatus {
+export interface ProblemDetails extends Problem {
   background: string;
   description: string;
   inputFormat: string;
   outputFormat: string;
-  samples: Array<[string, string]>;
+  samples: [string, string][];
   hint: string;
-  provider: UserInfo;
+  provider: UserInfo | Team;
   canEdit: boolean;
   limits: {
     time: number[];
     memory: number[];
   };
   showScore: boolean;
-  score: number;
+  score: number | null;
+  stdCode: string;
 }
 
 export type ProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
@@ -448,6 +446,7 @@ export interface ProblemSet {
   id: number;
   title: string;
   type: number;
+  provider: User | Team;
 }
 
 export interface ProblemSetDetails extends ProblemSet {
@@ -455,19 +454,10 @@ export interface ProblemSetDetails extends ProblemSet {
   markCount: number;
   marked: boolean;
   problems: { problem: Problem; }[];
+  userScore: null; // any other possible value?
   createTime: number;
   deadline: number | null;
   problemCount: number;
-  userScore: {
-    user: UserInfo;
-    totalScore: number;
-    score: {
-      [pid: string]: number | null;
-    };
-    status: {
-      [pid: string]: boolean;
-    };
-  };
 }
 
 export interface ContestInfo {
@@ -519,14 +509,14 @@ export interface RecordBase {
 export interface RecordDetails extends RecordBase {
   detail: {
     message: null;
-    subtasks?: Array<{
+    subtasks?: {
       id: number;
       time: number;
       memory: number;
       score: number;
       status: number;
       testcases: number[];
-    }>;
+    }[];
     testcases?: {
       [id: string]: {
         id: number;
@@ -580,11 +570,11 @@ export interface UserDetails extends User {
   rating: Rating;
   registerTime: number;
   introduction: string;
-  prize: Array<{
-    contestName: string;
+  prize: {
     year: number;
+    contestName: string;
     prize: string;
-  }>;
+  }[];
   background: string;
 }
 
@@ -634,7 +624,7 @@ export interface ThemeDetails extends Theme {
 
 export interface ThemeHeaderFooter {
   imagePath: string | null;
-  color: Array<[number, number, number, number]>;
+  color: [number, number, number, number][];
   blur: number;
   brightness: number;
   degree: number;
@@ -668,17 +658,14 @@ export interface Paste {
 }
 
 export interface Rating {
-  user: UserInfo;
-  rating: number;
-}
-
-export interface RatingDetails extends Rating {
   contestRating: number;
   socialRating: number;
   practiceRating: number;
   basicRating: number;
   prizeRating: number;
   calculateTime: number;
+  user: UserInfo;
+  rating: number;
 }
 
 export interface Article {
