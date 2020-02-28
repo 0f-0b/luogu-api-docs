@@ -1,5 +1,39 @@
 # Problem Sets API
 
+## List problem sets
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /training/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>ProblemSetListRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ trainings: List&lt;ProblemSet&gt;; }&gt;</code>)</td>
+  </tr>
+</table>
+
+## Get created problem sets
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/createdTrainings</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ trainings: List&lt;ProblemSet&gt; }</code>)</td>
+  </tr>
+</table>
+
 ## Get problem set
 
 <table>
@@ -13,7 +47,24 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ training: ProblemSetDetails; canEdit: boolean; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetData&gt;</code>)</td>
+  </tr>
+</table>
+
+## Get problem sets in task list
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/markedTrainings</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ trainingParticipations: List&lt;{ training: ProblemSet; user: UserInfo; }&gt; }</code>)</td>
   </tr>
 </table>
 

@@ -42,6 +42,14 @@ export interface EditProblemSetRequest {
   };
 }
 
+export interface ProblemSetListRequest {
+  _contentOnly: 1;
+  page?: number;
+  orderBy?: string;
+  order?: string;
+  type?: "official" | "public";
+}
+
 export interface RecordListRequest {
   _contentOnly: 1;
   page?: number;
@@ -296,8 +304,14 @@ export interface ProblemData {
   bookmarked: boolean;
   vjudgeUsername: string | null;
   recommendations: (ProblemInfo & ProblemStatus)[];
-  lastLanguage: false; // any other possible value?
+  lastLanguage: false;
   lastCode: string;
+}
+
+export interface ProblemSetData {
+  training: ProblemSetDetails;
+  trainingProblems: List<[]>;
+  canEdit: boolean;
 }
 
 export interface ContestData {
@@ -350,7 +364,6 @@ export interface UserData {
     team: Team;
     permission: number;
   }[];
-  trainings?: ProblemSet[];
 }
 
 export interface UserSettingsData {
@@ -441,10 +454,13 @@ export interface ProblemStatus {
 }
 
 export interface ProblemSet {
+  createTime: number;
+  deadline: number | null;
+  problemCount: number;
   id: number;
   title: string;
   type: number;
-  provider: User | Team;
+  provider: UserInfo | Team;
 }
 
 export interface ProblemSetDetails extends ProblemSet {
@@ -452,19 +468,7 @@ export interface ProblemSetDetails extends ProblemSet {
   markCount: number;
   marked: boolean;
   problems: { problem: Problem; }[];
-  userScore: {
-    user: UserInfo;
-    totalScore: number;
-    score: {
-      [pid: string]: number | null;
-    };
-    status: {
-      [pid: string]: boolean;
-    };
-  };
-  createTime: number;
-  deadline: number | null;
-  problemCount: number;
+  userScore: null;
 }
 
 export interface ContestInfo {
