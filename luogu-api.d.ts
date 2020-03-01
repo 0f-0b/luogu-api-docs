@@ -468,7 +468,16 @@ export interface ProblemSetDetails extends ProblemSet {
   markCount: number;
   marked: boolean;
   problems: { problem: Problem; }[];
-  userScore: null;
+  userScore: {
+    user: UserInfo;
+    totalScore: number;
+    score: {
+      [pid: string]: number | null;
+    };
+    status: {
+      [pid: string]: boolean;
+    };
+  } | null;
 }
 
 export interface ContestInfo {
@@ -725,4 +734,5 @@ export interface Translations {
 export interface List<T> {
   result: T[];
   count: number;
+  perPage: number | null;
 }
