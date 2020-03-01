@@ -165,6 +165,7 @@ export interface GenerateUploadParametersResponse {
 
 export interface LoginResponse {
   username: string;
+  syncToken: string;
   locked: boolean;
   redirectTo: string;
 }
