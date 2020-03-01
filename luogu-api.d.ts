@@ -310,7 +310,11 @@ export interface ProblemData {
 
 export interface ProblemSetData {
   training: ProblemSetDetails;
-  trainingProblems: List<[]>;
+  trainingProblems: {
+    result: [][];
+    perPage: null;
+    count: number;
+  };
   canEdit: boolean;
 }
 
@@ -734,5 +738,5 @@ export interface Translations {
 export interface List<T> {
   result: T[];
   count: number;
-  perPage: number | null;
+  perPage: number;
 }
