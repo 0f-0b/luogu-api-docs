@@ -42,14 +42,6 @@ export interface EditProblemSetRequest {
   };
 }
 
-export interface ProblemSetListRequest {
-  _contentOnly: 1;
-  page?: number;
-  orderBy?: string;
-  order?: string;
-  type?: "official" | "public";
-}
-
 export interface RecordListRequest {
   _contentOnly: 1;
   page?: number;
@@ -309,6 +301,13 @@ export interface ProblemData {
   lastCode: string;
 }
 
+export interface ProblemSetListData {
+  trainings: List<ProblemSet>;
+  acceptedCounts: {
+    [id: number]: number;
+  };
+}
+
 export interface ProblemSetData {
   training: ProblemSetDetails;
   trainingProblems: {
@@ -317,6 +316,7 @@ export interface ProblemSetData {
     count: number;
   };
   canEdit: boolean;
+  privilegedTeams: Team[];
 }
 
 export interface ContestData {
@@ -462,6 +462,7 @@ export interface ProblemSet {
   createTime: number;
   deadline: number | null;
   problemCount: number;
+  markCount: number;
   id: number;
   title: string;
   type: number;
@@ -470,7 +471,6 @@ export interface ProblemSet {
 
 export interface ProblemSetDetails extends ProblemSet {
   description: string;
-  markCount: number;
   marked: boolean;
   problems: { problem: Problem; }[];
   userScore: {

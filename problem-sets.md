@@ -9,11 +9,11 @@
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>ProblemSetListRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: 1; page?: number; type?: "official" | "public"; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ trainings: List&lt;ProblemSet&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetListData&gt;</code>)</td>
   </tr>
 </table>
 
