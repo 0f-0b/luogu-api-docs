@@ -449,6 +449,12 @@ export interface ProblemDetails extends Problem {
   showScore: boolean;
   score: number | null;
   stdCode: string;
+  vjudge?: {
+    origin: string;
+    link: string;
+    id: string;
+  };
+  translation?: string;
 }
 
 export type ProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
