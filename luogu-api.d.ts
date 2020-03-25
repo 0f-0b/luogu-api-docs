@@ -42,6 +42,11 @@ export interface EditProblemSetRequest {
   };
 }
 
+export interface EditContestRequest {
+  settings: ContestSettings;
+  hostID: number | null;
+}
+
 export interface RecordListRequest {
   _contentOnly: 1;
   page?: number;
@@ -50,12 +55,6 @@ export interface RecordListRequest {
   status?: number;
   language?: number;
   orderBy?: number;
-}
-
-export interface GetPostsRequest {
-  _contentOnly: 1;
-  page?: number;
-  orderBy?: string;
 }
 
 export interface BindRemoteJudgeAccountRequest {
@@ -141,6 +140,12 @@ export interface DataResponse<T> {
   currentTitle: string;
   currentTheme: Theme | null;
   currentUser?: User;
+}
+
+export interface GetScoreboardResponse {
+  scoreboard: List<Score>;
+  userScore: Score | null;
+  firstBloodUID: { [pid: string]: number; } | null;
 }
 
 export interface GenerateUploadParametersResponse {
@@ -333,8 +338,19 @@ export interface ContestData {
     problem: ProblemInfo;
     submitted: boolean;
   }[];
+  isScoreboardFrozen: boolean;
   accessLevel: number;
   joined: boolean;
+}
+
+export interface CreatedContestData {
+  contest: ContestDetails & { joinCode: string; };
+  contestProblems: {
+    score: number;
+    problem: ProblemInfo;
+  };
+  contestSetting: ContestSettings;
+  privilegedTeams: Team[];
 }
 
 export interface RecordData {
@@ -518,13 +534,22 @@ export interface ContestDetails extends Contest {
   totalParticipants: number;
 }
 
+export interface ContestSettings {
+  name: string;
+  description: string;
+  visibilityType: number;
+  ruleType: number;
+  startTime: number;
+  endTime: number;
+}
+
 export interface Score {
   details: {
     [pid: string]: {
       score: number;
       runningTime?: number;
     };
-  };
+  } | [];
   user: UserInfo;
   score: number;
   runningTime: number;
@@ -620,6 +645,7 @@ export interface UserSettings {
   openSource: number;
   learningMode: boolean;
   messageMode: number;
+  acceptPromotion: boolean;
 }
 
 export interface Team {

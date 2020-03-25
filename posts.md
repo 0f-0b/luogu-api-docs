@@ -1,15 +1,15 @@
 # Posts API
 
-## Get sent posts
+## Get created posts
 
 <table>
   <tr>
     <th align="right">Request</th>
-    <td><code>GET /fe/api/user/userPosts</code></td>
+    <td><code>GET /fe/api/user/createdPosts</code></td>
   </tr>
   <tr>
     <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>GetPostsRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; orderBy?: string; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>

@@ -13,7 +13,24 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ page: number; problems: List&lt;Problem & ProblemStatus&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;Problem & ProblemStatus&gt;; page: number; }&gt;</code>)</td>
+  </tr>
+</table>
+
+## Get created problems
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/user/createdProblems</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;Problem&gt;; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -111,7 +128,7 @@
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>EditProblemRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditProblemRequest | { method: "delete"; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>

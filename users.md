@@ -186,3 +186,31 @@
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
+
+## Bind OpenID account
+
+**Note**: Redirects to the corresponding authorization page.
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /api/openid/connect/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>text/html</code></td>
+  </tr>
+</table>
+
+## Unbind OpenID account
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/user/unbindOpenId/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>

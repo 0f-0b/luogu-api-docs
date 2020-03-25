@@ -33,3 +33,33 @@
     <td><code>application/json</code> (<code>DataResponse&lt;RecordData&gt;</code>)</td>
   </tr>
 </table>
+
+## Get downloadable test case
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /fe/api/record/queryDownloadableTestcase/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ testcaseId: number | null; }</code>)</td>
+  </tr>
+</table>
+
+## Download test case
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/record/downloadTestcase/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ testcaseId: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ status: number; data: { input: string; output: string; }; }</code>)</td>
+  </tr>
+</table>
