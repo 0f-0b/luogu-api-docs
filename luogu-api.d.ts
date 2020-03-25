@@ -228,10 +228,15 @@ export interface ConfigResponse {
     valueName: string;
     name: string;
   }[];
+  openIdPlatformTypes: {
+    [id: number]: string;
+  };
   contestVisibilityTypes: {
     id: number;
     name: string;
     color: string;
+    userCreatable: boolean;
+    scope: "disabled" | "global" | "team" | "personal";
   }[];
   problemTags: {
     group: string;
@@ -254,8 +259,10 @@ export interface ConfigResponse {
     type: string;
     name: string;
     public: boolean;
+    select: boolean;
     scope: "hidden" | "global" | "team" | "user";
     userCreatable: boolean;
+    color: string;
   }[];
   teamTypes: {
     id: number;
