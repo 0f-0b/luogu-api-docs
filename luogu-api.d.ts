@@ -298,6 +298,24 @@ export interface ConfigResponse {
   }[];
 }
 
+export interface PageTree {
+  name: string;
+  template: string;
+  route: string;
+  children?: PageTree[];
+  url?: string | null;
+}
+
+export interface Language {
+  id: number;
+  name: string;
+  aceMode: string;
+}
+
+export interface Translations {
+  [id: string]: string | Translations;
+}
+
 export interface ProblemData {
   problem: ProblemDetails & ProblemStatus;
   contest: ContestInfo | null;
@@ -755,24 +773,6 @@ export interface ArticleComment {
   };
   ReplyTime: number;
   Content: string;
-}
-
-export interface PageTree {
-  name: string;
-  template: string;
-  route: string;
-  children?: PageTree[];
-  url?: string | null;
-}
-
-export interface Language {
-  id: number;
-  name: string;
-  aceMode: string;
-}
-
-export interface Translations {
-  [id: string]: string | Translations;
 }
 
 export interface List<T> {
