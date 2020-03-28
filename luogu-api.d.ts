@@ -750,7 +750,33 @@ export interface Rating {
   rating: number;
 }
 
-export interface Article {
+export interface List<T> {
+  result: T[];
+  count: number;
+  perPage: number;
+}
+
+export interface LPost {
+  PostID: number;
+  Title: string;
+  Author: LUser;
+  Forum: {
+    ForumID: number;
+    Name: string;
+    InternalName: string;
+  };
+  Top: number;
+  SubmitTime: number;
+  isValid: boolean;
+  LatestReply: LReply;
+  RepliesCount: number;
+}
+
+export interface LPostDetails extends LPost {
+  Content: string;
+}
+
+export interface LArticle {
   Type: string;
   PostTime: number;
   Author: UserInfo;
@@ -762,21 +788,21 @@ export interface Article {
   Title: string;
 }
 
-export interface ArticleComment {
-  Author: {
-    UID: number;
-    Username: string;
-    isAdmin: boolean;
-    isValid: boolean;
-    isVerified: boolean;
-    DynamicRate: number;
-  };
+export interface LReply {
+  Author: LUser;
   ReplyTime: number;
   Content: string;
 }
 
-export interface List<T> {
-  result: T[];
+export interface LUser {
+  UID: number;
+  Username: string;
+  isAdmin: boolean;
+  isValid: boolean;
+  isVerified: boolean;
+}
+
+export interface LList<T> {
   count: number;
-  perPage: number;
+  result: T[];
 }
