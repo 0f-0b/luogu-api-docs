@@ -64,6 +64,10 @@
   </tr>
 </table>
 
+## Login with OpenID
+
+See [Bind OpenID account](users.md#bind-openid-account).
+
 ## Logout
 
 <table>
