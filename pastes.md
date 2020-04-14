@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/json</code> (<code>{ data: string; public?: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ data?: string; public?: boolean; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/json</code> (<code>{ data: string; public?: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ data?: string; public?: boolean; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
