@@ -1,5 +1,5 @@
 export interface ProblemListRequest {
-  _contentOnly: 1;
+  _contentOnly: any;
   page?: number;
   keyword?: string;
   content?: boolean;
@@ -48,7 +48,7 @@ export interface EditContestRequest {
 }
 
 export interface RecordListRequest {
-  _contentOnly: 1;
+  _contentOnly: any;
   page?: number;
   pid?: string;
   user?: string;
@@ -65,7 +65,7 @@ export interface BindRemoteJudgeAccountRequest {
 }
 
 export interface ListThemesRequest {
-  _contentOnly: 1;
+  _contentOnly: any;
   page?: number;
   orderBy?: string;
   order?: string;
@@ -122,13 +122,13 @@ export interface LoginRequest {
 }
 
 export interface GetRankingListRequest {
-  _contentOnly: 1;
+  _contentOnly: any;
   page?: number;
   orderBy?: number;
 }
 
 export interface GetNotificationsRequest {
-  _contentOnly: 1;
+  _contentOnly: any;
   type?: number;
   page?: number;
 }

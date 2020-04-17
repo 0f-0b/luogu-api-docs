@@ -25,7 +25,7 @@ Definitions of types are in [luogu-api.d.ts](https://github.com/sjx233/luogu-api
 ### `GET` requests
 
 ```js
-fetch("/user/notification?_contentOnly=1&type=3");
+fetch("/user/notification?_contentOnly&type=3");
 ```
 
 ### `POST` requests
