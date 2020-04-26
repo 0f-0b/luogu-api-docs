@@ -173,7 +173,12 @@ export interface ConfigResponse {
     server: string;
   };
   codeLanguages: {
-    [id: number]: Language;
+    [id: number]: {
+      id: number;
+      fileExtensions: string;
+      name: string;
+      aceMode: string;
+    };
   };
   contestRuleTypes: {
     [id: number]: {
@@ -208,10 +213,11 @@ export interface ConfigResponse {
   }[];
   translation: Translations;
   recordLanguageTypes: {
-    [id: number]: Language;
-  };
-  problemTypes: {
-    [id in ProblemType]: string;
+    [id: number]: {
+      id: number;
+      name: string;
+      aceMode: string;
+    };
   };
   problemDifficulty: {
     id: number;
@@ -254,21 +260,54 @@ export interface ConfigResponse {
     id: number;
     type: string;
   }[];
+  scoringStrategyTypes: {
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+    };
+  };
+  problemTypes: {
+    [id in ProblemType]: {
+      id: ProblemType;
+      type: string;
+      name: string;
+      vjudge: boolean;
+      userCreatable: boolean;
+      searchable: boolean;
+    };
+  };
   messageModeTypes: {
     id: number;
     type: string;
     name: string;
   }[];
+  problemFlagTypes: {
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+    };
+  };
+  contestInvitationCodeType: {
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+    };
+  };
   trainingTypes: {
-    id: number;
-    type: string;
-    name: string;
-    public: boolean;
-    select: boolean;
-    scope: "hidden" | "global" | "team" | "user";
-    userCreatable: boolean;
-    color: string;
-  }[];
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+      public: boolean;
+      select: boolean;
+      scope: "hidden" | "global" | "team" | "user";
+      userCreatable: boolean;
+      color: string;
+    };
+  };
   teamTypes: {
     id: number;
     displayName: string;
@@ -304,12 +343,6 @@ export interface PageTree {
   route: string;
   children?: PageTree[];
   url?: string | null;
-}
-
-export interface Language {
-  id: number;
-  name: string;
-  aceMode: string;
 }
 
 export interface Translations {
