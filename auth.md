@@ -73,11 +73,7 @@ See [Bind OpenID account](users.md#bind-openid-account).
 <table>
   <tr>
     <th align="right">Request</th>
-    <td><code>GET /api/auth/logout</code></td>
-  </tr>
-  <tr>
-    <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ uid: number; }</code>)</td>
+    <td><code>POST /api/auth/logout</code></td>
   </tr>
 </table>
 
@@ -103,11 +99,7 @@ See [Bind OpenID account](users.md#bind-openid-account).
 <table>
   <tr>
     <th align="right">Request</th>
-    <td><code>GET /api/auth/lock</code></td>
-  </tr>
-  <tr>
-    <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ uid: number; }</code>)</td>
+    <td><code>POST /api/auth/lock</code></td>
   </tr>
 </table>
 
