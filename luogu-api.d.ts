@@ -16,21 +16,19 @@ export interface SubmitCodeRequest {
   verify?: string;
 }
 
-export interface EditProblemRequest {
-  name: string;
-  background: string;
-  describes: string;
-  inputformat: string;
-  outputformat: string;
-  hint: string;
-  sample: [string, string][];
-  type: string;
-  provider: number;
-  flag: number;
-  tags: number[];
-  difficulty: number;
-  stdcode: string;
-  showScore: number;
+export interface CreateProblemRequest {
+  settings: ProblemSettings;
+  type: ProblemType;
+  providerID: number | null;
+}
+
+export interface UpdateTestCasesSettingsRequest {
+  cases: TestCase[];
+  subtaskScoringStrategies: {
+    [id: number]: ScoringStrategy;
+  };
+  scoringStrategy: ScoringStrategy;
+  showSubtask: boolean;
 }
 
 export interface EditProblemSetRequest {
@@ -140,6 +138,13 @@ export interface DataResponse<T> {
   currentTitle: string;
   currentTheme: Theme | null;
   currentUser?: User;
+}
+
+export interface UpdateTestCasesSettingsResponse {
+  problem: ProblemDetails;
+  testCases: TestCase[];
+  scoringStrategy: ScoringStrategy;
+  subtaskScoringStrategies: ScoringStrategy[];
 }
 
 export interface GetScoreboardResponse {
@@ -515,6 +520,13 @@ export interface ProblemDetails extends Problem {
   samples: [string, string][];
   hint: string;
   provider: UserInfo | Team;
+  attachments: {
+    size: number;
+    uploadTime: number;
+    downloadLink: string;
+    id: string;
+    fileName: string;
+  }[];
   canEdit: boolean;
   limits: {
     time: number[];
@@ -531,11 +543,45 @@ export interface ProblemDetails extends Problem {
   translation?: string;
 }
 
+export interface ProblemSettings {
+  title: string;
+  background: string;
+  description: string;
+  inputFormat: string;
+  outputFormat: string;
+  samples: [string, string][];
+  hint: string;
+  translation: string;
+  needsTranslation: boolean;
+  acceptSolution: boolean;
+  allowDataDownload: boolean;
+  difficulty: number;
+  showScore: boolean;
+  flag: number;
+  tags: number[];
+}
+
 export type ProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
 
 export interface ProblemStatus {
   accepted: boolean;
   submitted: boolean;
+}
+
+export interface TestCase {
+  upid: number;
+  inputFileName: string;
+  outputFileName: string;
+  timeLimit: number;
+  memoryLimit: number;
+  fullScore: number;
+  isPretest: boolean;
+  subtaskId: number;
+}
+
+export interface ScoringStrategy {
+  type: number;
+  script: string;
 }
 
 export interface ProblemSet {
@@ -617,33 +663,41 @@ export interface RecordBase {
   user?: UserInfo;
   id: number;
   status: number;
+  enableO2: boolean;
   score: number;
 }
 
 export interface RecordDetails extends RecordBase {
   detail: {
-    message: null;
-    subtasks?: {
-      id: number;
-      time: number;
-      memory: number;
-      score: number;
-      status: number;
-      testcases: number[];
-    }[];
-    testcases?: {
-      [id: string]: {
-        id: number;
-        time: number;
-        memory: number;
-        score: number;
-        status: number;
-        message: string;
-      };
-    };
-    compile?: {
-      content: string;
+    compileResult: {
       success: boolean;
+      message: string | null;
+    };
+    judgeResult: {
+      subtasks: {
+        [id: number]: {
+          id: number;
+          score: number;
+          status: number;
+          testCases: {
+            [id: number]: {
+              id: number;
+              status: number;
+              time: number;
+              memory: number;
+              score: number;
+              signal: number | null;
+              exitCode: number;
+              description: string;
+              subtaskID: number;
+            };
+          };
+          judger: null;
+          time: number;
+          memory: number;
+        };
+      }[];
+      finishedCaseCount: number;
     };
   };
   sourceCode: string;

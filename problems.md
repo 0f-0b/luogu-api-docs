@@ -107,15 +107,15 @@
 <table>
   <tr>
     <th align="right">Request</th>
-    <td><code>POST /api/problem/new</code></td>
+    <td><code>POST /fe/api/problem/new</code></td>
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>EditProblemRequest</code>)</td>
+    <td><code>application/json</code> (<code>CreateProblemRequest</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
   </tr>
 </table>
 
@@ -124,14 +124,61 @@
 <table>
   <tr>
     <th align="right">Request</th>
-    <td><code>POST /api/problem/edit/:pid</code></td>
+    <td><code>POST /fe/api/problem/edit/:pid</code></td>
   </tr>
   <tr>
     <th align="right">Body</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>EditProblemRequest | { method: "delete"; }</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: ProblemSettings; }</code>)</td>
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+  </tr>
+</table>
+
+## Update test cases settings
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/problem/editTestCase/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>UpdateTestCasesSettingsRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>UpdateTestCasesSettingsResponse</code>)</td>
+  </tr>
+</table>
+
+## Transfer problem
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/problem/transfer/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Body</th>
+    <td><code>application/json</code> (<code>{ type: ProblemType; teamID?: number; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+  </tr>
+</table>
+
+## Delete problem
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>POST /fe/api/problem/delete/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
