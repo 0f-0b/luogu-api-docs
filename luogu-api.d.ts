@@ -837,6 +837,20 @@ export interface Rating {
   rating: number;
 }
 
+export interface Article {
+  type: string;
+  status: number;
+  postTime: number;
+  author: UserInfo;
+  content: string;
+  thumbUp: number;
+  commentCount: number;
+  currentUserVoteType: number;
+  id: number;
+  identifier: string;
+  title: string;
+}
+
 export interface List<T> {
   result: T[];
   count: number;
@@ -861,18 +875,6 @@ export interface LPost {
 
 export interface LPostDetails extends LPost {
   Content: string;
-}
-
-export interface LArticle {
-  Type: string;
-  PostTime: number;
-  Author: UserInfo;
-  Status: number;
-  ContentDescription: string;
-  ThumbUp: number;
-  BlogID: number;
-  Identifier: string;
-  Title: string;
 }
 
 export interface LReply {

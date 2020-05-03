@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LArticle&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Article&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <th align="right">Response</th>
-    <td><code>application/json</code> (<code>{ status: number; data: LList&lt;LReply&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LReply&gt;; }</code>)</td>
   </tr>
 </table>
 
