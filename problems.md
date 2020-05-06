@@ -51,6 +51,23 @@
   </tr>
 </table>
 
+## Get solutions
+
+<table>
+  <tr>
+    <th align="right">Request</th>
+    <td><code>GET /problem/solution/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">Parameters</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">Response</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;SolutionsData&gt;</code>)</td>
+  </tr>
+</table>
+
 ## Add problem to task list
 
 <table>
