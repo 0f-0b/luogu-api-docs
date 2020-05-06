@@ -369,6 +369,12 @@ export interface ProblemData {
   lastCode: string;
 }
 
+export interface SolutionsData {
+  solutions: List<ArticleDetails>;
+  problem: ProblemInfo;
+  acceptSolution: boolean;
+}
+
 export interface ProblemSetListData {
   trainings: List<ProblemSet>;
   acceptedCounts: {
@@ -842,13 +848,17 @@ export interface Article {
   status: number;
   postTime: number;
   author: UserInfo;
-  content: string;
   thumbUp: number;
   commentCount: number;
   currentUserVoteType: number;
+  contentDescription: string;
   id: number;
   identifier: string;
   title: string;
+}
+
+export interface ArticleDetails extends Article {
+  content: string;
 }
 
 export interface List<T> {
