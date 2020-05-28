@@ -1,6 +1,6 @@
 # 团队 API
 
-## Get team
+## 获取团队
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get problems by team
+## 列出团队题目
 
 <table>
   <tr>
