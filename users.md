@@ -1,18 +1,18 @@
-# Users API
+# 用户 API
 
 ## Get user
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /user/:uid</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;UserData&gt;</code>)</td>
   </tr>
 </table>
@@ -21,15 +21,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/search</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ keyword: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ users: [UserInfo | null]; }</code>)</td>
   </tr>
 </table>
@@ -38,15 +38,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/followings</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
   </tr>
 </table>
@@ -55,15 +55,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/followers</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
   </tr>
 </table>
@@ -72,15 +72,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /user/setting</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;UserSettingsData&gt;</code>)</td>
   </tr>
 </table>
@@ -89,15 +89,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/updateSetting</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ settings: UserSettings; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
@@ -106,15 +106,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/updateSlogan</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ slogan: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
@@ -123,15 +123,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/updateIntroduction</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ introduction: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
@@ -140,15 +140,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/updateHeaderImage</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ imageID: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
@@ -157,15 +157,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/bindVjudgeAccount</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>BindRemoteJudgeAccountRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
@@ -174,15 +174,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/unbindVjudgeAccount</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ oj: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
@@ -193,11 +193,11 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /api/openid/connect/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>text/html</code></td>
   </tr>
 </table>
@@ -206,11 +206,11 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/user/unbindOpenId/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>

@@ -1,163 +1,163 @@
-# Problem Sets API
+# 题单 API
 
-## List problem sets
+## 列出题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /training/list</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; page?: number; type?: "official" | "public"; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetListData&gt;</code>)</td>
   </tr>
 </table>
 
-## Get created problem sets
+## 列出创建的题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/createdTrainings</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ trainings: List&lt;ProblemSet&gt; }</code>)</td>
   </tr>
 </table>
 
-## Get problem set
+## 获取题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /training/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetData&gt;</code>)</td>
   </tr>
 </table>
 
-## Get problem sets in task list
+## 列出收藏的题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/markedTrainings</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ trainingParticipations: List&lt;{ training: ProblemSet; user: UserInfo; }&gt; }</code>)</td>
   </tr>
 </table>
 
-## Add problem set to task list
+## 收藏题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/training/mark/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
 
-## Remove problem set from task list
+## 取消收藏题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/training/unmark/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
 
-## Create problem set
+## 创建题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/training/new</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>EditProblemSetRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
   </tr>
 </table>
 
-## Edit problem set
+## 编辑题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/training/edit/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>EditProblemSetRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
   </tr>
 </table>
 
-## Edit problems in problem set
+## 编排题单题目
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/training/editProblems/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ pids: string[]; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
 
-## Clone problem set
+## 转存题单
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/training/clone/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ type: number; providerID: number | null; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>

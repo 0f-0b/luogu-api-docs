@@ -1,167 +1,167 @@
-# Contests API
+# 比赛 API
 
-## List public contests
+## 列出比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /contest/list</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;{ contests: List&lt;Contest&gt;; }&gt;</code>)</td>
   </tr>
 </table>
 
-## Get joined contests
+## 列出参加的比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/joinedContests</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ contests: List&lt;Contest&gt;; }</code>)</td>
   </tr>
 </table>
 
-## Get created contests
+## 列出创建的比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/createdContests</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ contests: List&lt;Contest&gt;; }</code>)</td>
   </tr>
 </table>
 
-## Get contest
+## 获取比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /contest/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;ContestData&gt;</code>)</td>
   </tr>
 </table>
 
-## Get scoreboard
+## 获取排行榜
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/contest/scoreboard/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>GetScoreboardResponse</code>)</td>
   </tr>
 </table>
 
-## Join contest
+## 参加比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/contest/join/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ code?: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
   </tr>
 </table>
 
-## Create contest
+## 创建比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/contest/new</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>EditContestRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
   </tr>
 </table>
 
-## Edit contest
+## 编辑比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/contest/edit/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>EditContestRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
   </tr>
 </table>
 
-## Edit problems in contest
+## 编排比赛题目
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/contest/editProblem/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ pids: string[]; scores: { [pid: string]: number; }; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
 
-## Delete contest
+## 删除比赛
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /fe/api/contest/delete/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>

@@ -1,99 +1,82 @@
-# Activities API
+# 动态 API
 
-## Get activities of user
+## 获取用户动态
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /api/feed/list</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ user?: number; page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ feeds: List&lt;Activity&gt;; }</code>)</td>
   </tr>
 </table>
 
-## Get watching activities
+## 获取关注的用户的动态
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /api/feed/watching</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: ActivityData[]; }</code>)</td>
   </tr>
 </table>
 
-## Get all activities
+## 发布动态
 
 <table>
   <tr>
-    <th align="right">Request</th>
-    <td><code>GET /feed/all</code></td>
-  </tr>
-  <tr>
-    <th align="right">Parameters</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
-  </tr>
-  <tr>
-    <th align="right">Response</th>
-    <td><code>text/html</code></td>
-  </tr>
-</table>
-
-## Post activity
-
-<table>
-  <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/feed/postBenben</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: ActivityData; }</code>)</td>
   </tr>
 </table>
 
-## Delete activity
+## 删除动态
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/feed/delete/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
   </tr>
 </table>
 
-## Report activity
+## 举报动态
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/report/feed</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ relevantID: number; reason: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
   </tr>
 </table>

@@ -1,42 +1,41 @@
-# Luogu API Documentation
+# 洛谷 API 文档
 
-**English** \| [中文](https://bingogyz.github.io/luogu-api-docs/) (unmaintained)
+不方便直接列出的类型定义在 [luogu-api.d.ts](https://github.com/sjx233/luogu-api-docs/blob/master/luogu-api.d.ts).
 
-Definitions of types are in [luogu-api.d.ts](https://github.com/sjx233/luogu-api-docs/blob/master/luogu-api.d.ts).
-
-* [Problems](problems.md)
-* [Problem Sets](problem-sets.md)
-* [Contests](contests.md)
-* [Records](records.md)
-* [Posts](posts.md)
-* [Activities](activities.md)
-* [Users](users.md)
-* [Chat](chat.md)
-* [Themes](themes.md)
-* [Images](images.md)
+* [题目](problems.md)
+* [题单](problem-sets.md)
+* [比赛](contests.md)
+* [记录](records.md)
+* [讨论](posts.md)
+* [动态](activities.md)
+* [用户](users.md)
+* [团队](teams.md)
+* [私信](chat.md)
+* [主题](themes.md)
+* [图片](images.md)
 * [IDE](ide.md)
-* [Pastes](pastes.md)
-* [Blog](blog.md)
-* [Authentication](auth.md)
-* [Miscellaneous](misc.md)
+* [剪贴板](pastes.md)
+* [博客](blog.md)
+* [身份验证](auth.md)
+* [杂项](misc.md)
 
-## Examples
+## 范例
 
-### `GET` requests
+### `GET` 请求
 
 ```js
-fetch("/user/notification?_contentOnly&type=3");
+fetch("https://www.luogu.com.cn/problem/list?type=P&keyword=%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91&_contentOnly");
 ```
 
-### `POST` requests
+### `POST` 请求
 
-**Note**: All `POST` requests require a header field named [`X-CSRF-Token`](misc.md#get-csrf-token) to be included.
+**注**: 所有 `POST` 请求都需要包含名为 [`X-CSRF-Token`](misc.md#获取-csrf-token) 的请求头字段.
 
 ```js
-fetch("/api/chat/new", {
+fetch("https://www.luogu.com.cn/api/chat/new", {
   headers: {
     "Content-Type": "application/json",
-    "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content
+    "X-CSRF-Token": token
   },
   body: JSON.stringify({
     user: 206953,

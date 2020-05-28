@@ -1,61 +1,61 @@
-# Miscellaneous
+# 杂项
 
-## Get CSRF token
+## 获取 CSRF Token
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
-    <td><code>text/html</code> (The token can be accessed through <code>document.querySelector("meta[name=csrf-token]").content</code>)</td>
+    <th align="right">响应主体</th>
+    <td><code>text/html</code> (可以通过 <code>document.querySelector("meta[name=csrf-token]").content</code> 获取)</td>
   </tr>
 </table>
 
-## Get configuration
+## 获取配置
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /_lfe/config</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>ConfigResponse</code>)</td>
   </tr>
 </table>
 
-## Get ranking list
+## 获取咕值排名
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /ranking</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>GetRankingListRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;{ rankList: List&lt;Rating&gt;; }&gt;</code>)</td>
   </tr>
 </table>
 
-## Get notifications
+## 获取通知
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /user/notification</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>GetNotificationsRequest</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;NotificationsData&gt;</code>)</td>
   </tr>
 </table>

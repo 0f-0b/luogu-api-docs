@@ -390,7 +390,7 @@ export interface ProblemSetData {
     count: number;
   };
   canEdit: boolean;
-  privilegedTeams: Team[];
+  privilegedTeams: TeamInfo[];
 }
 
 export interface ContestData {
@@ -412,7 +412,7 @@ export interface CreatedContestData {
     problem: ProblemInfo;
   };
   contestSetting: ContestSettings;
-  privilegedTeams: Team[];
+  privilegedTeams: TeamInfo[];
 }
 
 export interface RecordData {
@@ -451,7 +451,7 @@ export interface UserData {
   passedProblems: ProblemInfo[];
   submittedProblems: ProblemInfo[];
   teams?: {
-    team: Team;
+    team: TeamInfo;
     permission: number;
   }[];
 }
@@ -470,6 +470,17 @@ export interface UserSettingsData {
   };
   prizes: any[];
   user: UserDetails;
+}
+
+export interface TeamData {
+  team: Team;
+  currentTeamMember: {
+    type: string;
+    realName: string;
+    user: UserInfo;
+    permission: number;
+  } | null;
+  latestDiscussions: Post[] | null;
 }
 
 export interface ChatListData {
@@ -525,7 +536,7 @@ export interface ProblemDetails extends Problem {
   outputFormat: string;
   samples: [string, string][];
   hint: string;
-  provider: UserInfo | Team;
+  provider: UserInfo | TeamInfo;
   attachments: {
     size: number;
     uploadTime: number;
@@ -598,7 +609,7 @@ export interface ProblemSet {
   id: number;
   title: string;
   type: number;
-  provider: UserInfo | Team;
+  provider: UserInfo | TeamInfo;
 }
 
 export interface ProblemSetDetails extends ProblemSet {
@@ -628,7 +639,7 @@ export interface Contest extends ContestInfo {
   ruleType: number;
   visibilityType: number;
   rated: boolean;
-  host: UserInfo | Team;
+  host: UserInfo | TeamInfo;
   problemCount: number;
 }
 
@@ -759,9 +770,19 @@ export interface UserSettings {
   acceptPromotion: boolean;
 }
 
-export interface Team {
+export interface TeamInfo {
   id: number;
   name: string;
+}
+
+export interface Team extends TeamInfo {
+  introduction: string;
+  createTime: number;
+  joinPermission: number;
+  master: UserInfo;
+  notice: string;
+  type: number;
+  memberCount: number;
 }
 
 export interface Message {

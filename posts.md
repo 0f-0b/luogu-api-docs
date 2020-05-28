@@ -1,18 +1,18 @@
-# Posts API
+# 讨论 API
 
 ## List posts
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /api/discuss/lists</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ forum?: string; page?: number; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: LList&lt;LPost&gt;; }</code>)</td>
   </tr>
 </table>
@@ -21,15 +21,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /fe/api/user/createdPosts</code></td>
   </tr>
   <tr>
-    <th align="right">Parameters</th>
+    <th align="right">参数</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; orderBy?: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ posts: List&lt;Post&gt;; }</code>)</td>
   </tr>
 </table>
@@ -38,11 +38,11 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /api/discuss/detail/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: LPostDetails; }</code>)</td>
   </tr>
 </table>
@@ -51,11 +51,11 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>GET /api/discuss/replies/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: LList&lt;LReply&gt;; }</code>)</td>
   </tr>
 </table>
@@ -64,15 +64,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/discuss/reply/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; verify?: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
   </tr>
 </table>
@@ -83,11 +83,11 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>DELETE /api/discuss/deleteReply/:id</code></td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
   </tr>
 </table>
@@ -96,15 +96,15 @@
 
 <table>
   <tr>
-    <th align="right">Request</th>
+    <th align="right">请求</th>
     <td><code>POST /api/report/post</code></td>
   </tr>
   <tr>
-    <th align="right">Body</th>
+    <th align="right">请求主体</th>
     <td><code>application/x-www-form-urlencoded</code> (<code>{ relevantID: number; reason: string; }</code>)</td>
   </tr>
   <tr>
-    <th align="right">Response</th>
+    <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
   </tr>
 </table>
