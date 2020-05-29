@@ -1,6 +1,6 @@
 # 博客 API
 
-## Get articles
+## 列出文章
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get comments
+## 获取评论
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Add comment
+## 发表评论
 
 <table>
   <tr>
@@ -51,7 +51,7 @@
   </tr>
 </table>
 
-## Vote on article
+## 赞/踩文章
 
 <table>
   <tr>
@@ -68,7 +68,7 @@
   </tr>
 </table>
 
-## Delete comment
+## 删除评论
 
 <table>
   <tr>

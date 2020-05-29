@@ -1,6 +1,6 @@
 # 剪贴板 API
 
-## List pastes
+## 列出剪贴板
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get paste
+## 获取剪贴板
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Create paste
+## 创建剪贴板
 
 <table>
   <tr>
@@ -51,7 +51,7 @@
   </tr>
 </table>
 
-## Edit paste
+## 编辑剪贴板
 
 <table>
   <tr>
@@ -68,7 +68,7 @@
   </tr>
 </table>
 
-## Delete paste
+## 删除剪贴板
 
 <table>
   <tr>

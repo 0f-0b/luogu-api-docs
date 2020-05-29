@@ -6,7 +6,7 @@
 * [题单](problem-sets.md)
 * [比赛](contests.md)
 * [记录](records.md)
-* [讨论](posts.md)
+* [讨论](discussions.md)
 * [动态](activities.md)
 * [用户](users.md)
 * [团队](teams.md)

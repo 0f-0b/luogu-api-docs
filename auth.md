@@ -1,6 +1,6 @@
 # 身份验证 API
 
-## Get captcha image
+## 获取验证码图片
 
 <table>
   <tr>
@@ -13,7 +13,7 @@
   </tr>
 </table>
 
-## Send verification code
+## 发送验证码
 
 <table>
   <tr>
@@ -30,7 +30,7 @@
   </tr>
 </table>
 
-## Register
+## 注册
 
 <table>
   <tr>
@@ -47,7 +47,7 @@
   </tr>
 </table>
 
-## Login
+## 登录
 
 <table>
   <tr>
@@ -64,9 +64,9 @@
   </tr>
 </table>
 
-## Login with OpenID
+## 用 OpenID 登录
 
-See [Bind OpenID account](users.md#bind-openid-account).
+**注**: 见[绑定 OpenID](users.md#绑定-openid).
 
 ## Logout
 
@@ -77,7 +77,16 @@ See [Bind OpenID account](users.md#bind-openid-account).
   </tr>
 </table>
 
-## Unlock
+## 锁定
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/auth/lock</code></td>
+  </tr>
+</table>
+
+## 解锁
 
 <table>
   <tr>
@@ -94,16 +103,7 @@ See [Bind OpenID account](users.md#bind-openid-account).
   </tr>
 </table>
 
-## Lock
-
-<table>
-  <tr>
-    <th align="right">请求</th>
-    <td><code>POST /api/auth/lock</code></td>
-  </tr>
-</table>
-
-## Get unlock mode
+## 获取解锁方式
 
 <table>
   <tr>

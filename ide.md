@@ -1,6 +1,6 @@
 # IDE API
 
-## Submit code
+## 提交代码
 
 <table>
   <tr>

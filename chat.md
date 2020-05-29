@@ -1,6 +1,6 @@
 # 私信 API
 
-## List chat sessions
+## 列出最近联系
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get messages
+## 获取私信
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Send message
+## 发送私信
 
 <table>
   <tr>
@@ -51,7 +51,7 @@
   </tr>
 </table>
 
-## Delete message
+## 删除私信
 
 <table>
   <tr>
@@ -68,7 +68,7 @@
   </tr>
 </table>
 
-## Clear unread notifications
+## 清除未读私信通知
 
 <table>
   <tr>

@@ -1,6 +1,6 @@
 # 主题 API
 
-## List themes
+## 列出主题
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get theme
+## 获取主题
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Apply theme
+## 应用主题
 
 <table>
   <tr>
@@ -47,7 +47,7 @@
   </tr>
 </table>
 
-## Create theme
+## 创建主题
 
 <table>
   <tr>
@@ -64,7 +64,7 @@
   </tr>
 </table>
 
-## Edit theme
+## 编辑主题
 
 <table>
   <tr>
@@ -81,7 +81,7 @@
   </tr>
 </table>
 
-## Delete theme
+## 删除主题
 
 <table>
   <tr>

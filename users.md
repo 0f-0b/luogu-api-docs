@@ -1,6 +1,6 @@
 # 用户 API
 
-## Get user
+## 获取用户
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get user from UID or name
+## 根据 UID 或名字搜索用户
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Get followed users
+## 列出关注
 
 <table>
   <tr>
@@ -51,7 +51,7 @@
   </tr>
 </table>
 
-## Get followers
+## 列出粉丝
 
 <table>
   <tr>
@@ -68,7 +68,7 @@
   </tr>
 </table>
 
-## Get settings
+## 获取设置
 
 <table>
   <tr>
@@ -85,7 +85,7 @@
   </tr>
 </table>
 
-## Update settings
+## 更新设置
 
 <table>
   <tr>
@@ -102,7 +102,7 @@
   </tr>
 </table>
 
-## Edit slogan
+## 更新签名
 
 <table>
   <tr>
@@ -119,7 +119,7 @@
   </tr>
 </table>
 
-## Edit introduction
+## 更新介绍
 
 <table>
   <tr>
@@ -136,7 +136,7 @@
   </tr>
 </table>
 
-## Set header image
+## 更新封面
 
 <table>
   <tr>
@@ -153,7 +153,7 @@
   </tr>
 </table>
 
-## Bind RemoteJudge account
+## 绑定 RemoteJudge
 
 <table>
   <tr>
@@ -170,7 +170,7 @@
   </tr>
 </table>
 
-## Unbind RemoteJudge account
+## 解除绑定 RemoteJudge
 
 <table>
   <tr>
@@ -187,22 +187,18 @@
   </tr>
 </table>
 
-## Bind OpenID account
+## 绑定 OpenID
 
-**Note**: Redirects to the corresponding authorization page.
+**注**: 重定向到对应的认证页面。
 
 <table>
   <tr>
     <th align="right">请求</th>
     <td><code>GET /api/openid/connect/:id</code></td>
   </tr>
-  <tr>
-    <th align="right">响应主体</th>
-    <td><code>text/html</code></td>
-  </tr>
 </table>
 
-## Unbind OpenID account
+## 解除绑定 OpenID
 
 <table>
   <tr>

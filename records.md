@@ -1,6 +1,6 @@
 # 记录 API
 
-## List records
+## 列出记录
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get record
+## 获取记录
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Get downloadable test case
+## 获取可下载的数据点
 
 <table>
   <tr>
@@ -47,7 +47,7 @@
   </tr>
 </table>
 
-## Download test case
+## 获取数据点内容
 
 <table>
   <tr>

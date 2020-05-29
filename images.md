@@ -1,6 +1,6 @@
 # 图片 API
 
-## List images
+## 列出图片
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get image
+## 获取图片
 
 <table>
   <tr>
@@ -30,7 +30,7 @@
   </tr>
 </table>
 
-## Generate upload parameters
+## 生成上传参数
 
 <table>
   <tr>
@@ -47,7 +47,7 @@
   </tr>
 </table>
 
-## Delete image
+## 删除图片
 
 <table>
   <tr>

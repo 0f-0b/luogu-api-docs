@@ -1,6 +1,6 @@
 # 讨论 API
 
-## List posts
+## 列出讨论
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## Get created posts
+## 列出发起的讨论
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## Get post
+## 获取讨论
 
 <table>
   <tr>
@@ -47,7 +47,7 @@
   </tr>
 </table>
 
-## Get replies
+## 获取回复
 
 <table>
   <tr>
@@ -60,7 +60,7 @@
   </tr>
 </table>
 
-## Add reply
+## 发表回复
 
 <table>
   <tr>
@@ -77,9 +77,9 @@
   </tr>
 </table>
 
-## Delete reply
+## 删除回复
 
-**Note**: Requires [`X-CSRF-Token`](misc.md#get-csrf-token).
+**注**: 需要 [`X-CSRF-Token`](misc.md#获取-csrf-token).
 
 <table>
   <tr>
@@ -92,7 +92,7 @@
   </tr>
 </table>
 
-## Report post
+## 举报讨论
 
 <table>
   <tr>
