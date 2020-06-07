@@ -119,6 +119,23 @@
   </tr>
 </table>
 
+## 提交翻译
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /problemnew/translate/:pid</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ "translation": string; "csrf-token": string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td>（暂缺）</td>
+  </tr>
+</table>
+
 ## 创建题目
 
 <table>
