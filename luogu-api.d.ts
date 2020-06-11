@@ -335,6 +335,11 @@ export interface ConfigResponse {
       name: string;
     };
   };
+  teamJoinPermissionTypes: {
+    id: number;
+    type: string;
+    name: string;
+  }[];
   userPrizeShowLevelType: {
     id: number;
     type: string;
