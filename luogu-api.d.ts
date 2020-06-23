@@ -55,6 +55,13 @@ export interface RecordListRequest {
   orderBy?: number;
 }
 
+export interface CreatePostRequest {
+  title: string;
+  forum: string;
+  content: string;
+  verify?: string;
+}
+
 export interface BindRemoteJudgeAccountRequest {
   oj: string;
   username: string;

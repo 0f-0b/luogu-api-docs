@@ -29,7 +29,7 @@ fetch("https://www.luogu.com.cn/problem/list?type=P&keyword=%E3%80%90%E6%A8%A1%E
 
 ### `POST` 请求
 
-**注**: 所有 `POST` 请求都需要包含名为 [`X-CSRF-Token`](misc.md#获取-csrf-token) 的请求头字段.
+**注**: 所有非 `GET` 请求都需要包含[名为 `X-CSRF-Token` 的请求头字段](misc.md#获取-csrf-token)。
 
 ```js
 fetch("https://www.luogu.com.cn/api/chat/new", {

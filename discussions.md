@@ -60,6 +60,23 @@
   </tr>
 </table>
 
+## 发起讨论
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/discuss/post</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>CreatePostRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; data: number; }</code>)</td>
+  </tr>
+</table>
+
 ## 发表回复
 
 <table>
@@ -77,9 +94,20 @@
   </tr>
 </table>
 
-## 删除回复
+## 删除讨论
 
-**注**: 需要 [`X-CSRF-Token`](misc.md#获取-csrf-token).
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>DELETE /api/discuss/delete/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
+  </tr>
+</table>
+
+## 删除回复
 
 <table>
   <tr>
