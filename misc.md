@@ -59,3 +59,16 @@
     <td><code>application/json</code> (<code>DataResponse&lt;NotificationsData&gt;</code>)</td>
   </tr>
 </table>
+
+## 获取广告（恰饭）
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/qiaFan/getFan/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ advertisement: { image: Image; url: string; id: number; }; }</code>)</td>
+  </tr>
+</table>
