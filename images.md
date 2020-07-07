@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; content: string; }</code>)</td>
+    <td><code>{ user: number; content: string; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -39,7 +39,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ watermarkType: number; captcha: string; }</code>)</td>
+    <td><code>{ watermarkType: number; captcha: string; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

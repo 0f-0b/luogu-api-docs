@@ -35,7 +35,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>GetRankingListRequest</code>)</td>
+    <td><code>GetRankingListRequest</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -52,7 +52,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>GetNotificationsRequest</code>)</td>
+    <td><code>GetNotificationsRequest</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

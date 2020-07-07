@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>GetArticlesRequest</code>)</td>
+    <td><code>GetArticlesRequest</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ page?: number; }</code>)</td>
+    <td><code>{ page?: number; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

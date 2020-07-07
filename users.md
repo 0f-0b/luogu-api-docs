@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
+    <td><code>{ _contentOnly: any; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ keyword: string; }</code>)</td>
+    <td><code>{ keyword: string; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
+    <td><code>{ user: number; page?: number; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ user: number; page?: number; }</code>)</td>
+    <td><code>{ user: number; page?: number; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -77,7 +77,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; }</code>)</td>
+    <td><code>{ _contentOnly: any; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
