@@ -657,6 +657,7 @@ export interface ContestInfo {
 export interface Contest extends ContestInfo {
   ruleType: number;
   visibilityType: number;
+  invitationCodeType: number;
   rated: boolean;
   host: UserInfo | TeamInfo;
   problemCount: number;
@@ -665,6 +666,7 @@ export interface Contest extends ContestInfo {
 export interface ContestDetails extends Contest {
   description: string;
   totalParticipants: number;
+  canEdit: boolean;
 }
 
 export interface ContestSettings {
