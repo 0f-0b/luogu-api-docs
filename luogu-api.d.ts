@@ -200,10 +200,11 @@ export interface ConfigResponse {
   };
   codeLanguages: {
     [id: number]: {
-      id: number;
-      fileExtensions: string;
-      name: string;
       aceMode: string;
+      hljsLang: string;
+      name: string;
+      fileExtensions: string;
+      id: number;
     };
   };
   contestRuleTypes: {
@@ -604,7 +605,7 @@ export interface ProblemSettings {
   tags: number[];
 }
 
-export type ProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
+export type ProblemType = "P" | "T" | "U" | "CF" | "SP" | "AT" | "UVA";
 
 export interface ProblemStatus {
   accepted: boolean;
