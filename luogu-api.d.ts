@@ -31,6 +31,13 @@ export interface UpdateTestCasesSettingsRequest {
   showSubtask: boolean;
 }
 
+export interface ProblemSetListRequest {
+  _contentOnly: any;
+  page?: number;
+  keyword?: string;
+  type?: "official" | "select";
+}
+
 export interface EditProblemSetRequest {
   settings: {
     title: string;

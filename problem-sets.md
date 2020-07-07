@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ _contentOnly: any; page?: number; type?: "official" | "public"; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>ProblemSetListRequest</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
