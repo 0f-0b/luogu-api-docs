@@ -76,6 +76,13 @@ export interface BindRemoteJudgeAccountRequest {
   captcha: string;
 }
 
+export interface ManageTeamMemberRequest {
+  uid: number;
+  realName: string;
+  group: string;
+  permission: number;
+}
+
 export interface ListThemesRequest {
   _contentOnly: any;
   page?: number;
@@ -804,6 +811,13 @@ export interface Team extends TeamInfo {
   notice: string;
   type: number;
   memberCount: number;
+}
+
+export interface TeamMember {
+  type: string;
+  realName: string;
+  user: UserInfo;
+  permission: number;
 }
 
 export interface Message {
