@@ -64,6 +64,8 @@
   </tr>
 </table>
 
+**注**: 登陆请求需设置`Referer`请求头为`www.luogu.com.cn`.
+
 ## 用 OpenID 登录
 
 **注**: 见[绑定 OpenID](users.md#绑定-openid).
