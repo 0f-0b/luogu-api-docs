@@ -49,6 +49,8 @@
 
 ## 登录
 
+**注**: 需要包含请求头字段 `Referer: www.luogu.com.cn`。
+
 <table>
   <tr>
     <th align="right">请求</th>
@@ -66,9 +68,9 @@
 
 ## 用 OpenID 登录
 
-**注**: 见[绑定 OpenID](users.md#绑定-openid).
+**注**: 见[绑定 OpenID](users.md#绑定-openid)。
 
-## Logout
+## 注销
 
 <table>
   <tr>
