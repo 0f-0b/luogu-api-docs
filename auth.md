@@ -70,7 +70,7 @@
 
 **注**: 见[绑定 OpenID](users.md#绑定-openid)。
 
-## 注销
+## 登出
 
 <table>
   <tr>
