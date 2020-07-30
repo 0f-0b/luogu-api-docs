@@ -6,6 +6,7 @@ export interface ProblemListRequest {
   orderBy?: string;
   order?: string;
   type?: string;
+  difficulty?: number;
   tag?: string;
 }
 
