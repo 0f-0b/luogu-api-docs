@@ -5,7 +5,7 @@ export interface ProblemListRequest {
   content?: boolean;
   orderBy?: string;
   order?: string;
-  type?: string;
+  type?: PublicProblemType;
   difficulty?: number;
   tag?: string;
 }
@@ -606,7 +606,8 @@ export interface ProblemSettings {
   tags: number[];
 }
 
-export type ProblemType = "P" | "T" | "U" | "CF" | "SP" | "AT" | "UVA";
+export type PublicProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
+export type ProblemType = PublicProblemType | "T" | "U";
 
 export interface ProblemStatus {
   accepted: boolean;
