@@ -14,7 +14,7 @@ export interface SubmitCodeRequest {
   code: string;
   lang?: number;
   enableO2?: number;
-  verify?: string;
+  captcha: string;
 }
 
 export interface CreateProblemRequest {
@@ -67,7 +67,7 @@ export interface CreatePostRequest {
   title: string;
   forum: string;
   content: string;
-  verify?: string;
+  captcha: string;
 }
 
 export interface BindRemoteJudgeAccountRequest {
