@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/createdProblems</code></td>
+    <td><code>GET /api/user/createdProblems</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -73,7 +73,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/tasklistAdd</code></td>
+    <td><code>POST /api/problem/tasklistAdd</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -90,7 +90,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/tasklistRemove</code></td>
+    <td><code>POST /api/problem/tasklistRemove</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -107,7 +107,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/submit/:pid</code></td>
+    <td><code>POST /api/problem/submit/:pid</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -141,7 +141,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/new</code></td>
+    <td><code>POST /api/problem/new</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -158,7 +158,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/edit/:pid</code></td>
+    <td><code>POST /api/problem/edit/:pid</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -175,7 +175,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/editTestCase/:pid</code></td>
+    <td><code>POST /api/problem/editTestCase/:pid</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -192,7 +192,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/transfer/:pid</code></td>
+    <td><code>POST /api/problem/transfer/:pid</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -209,7 +209,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/problem/delete/:id</code></td>
+    <td><code>POST /api/problem/delete/:id</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
