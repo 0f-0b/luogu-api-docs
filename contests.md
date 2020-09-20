@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/joinedContests</code></td>
+    <td><code>GET /api/user/joinedContests</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -39,7 +39,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/createdContests</code></td>
+    <td><code>GET /api/user/createdContests</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -73,7 +73,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/contest/scoreboard/:id</code></td>
+    <td><code>GET /api/contest/scoreboard/:id</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -90,7 +90,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/contest/join/:id</code></td>
+    <td><code>POST /api/contest/join/:id</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -107,7 +107,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/contest/new</code></td>
+    <td><code>POST /api/contest/new</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -124,7 +124,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/contest/edit/:id</code></td>
+    <td><code>POST /api/contest/edit/:id</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -141,7 +141,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/contest/editProblem/:id</code></td>
+    <td><code>POST /api/contest/editProblem/:id</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -158,7 +158,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/contest/delete/:id</code></td>
+    <td><code>POST /api/contest/delete/:id</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
