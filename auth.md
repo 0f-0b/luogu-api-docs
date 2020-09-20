@@ -49,7 +49,6 @@
 
 ## 登录
 
-**注**: 需要包含请求头字段 `Referer: www.luogu.com.cn`。
 
 <table>
   <tr>
