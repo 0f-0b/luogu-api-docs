@@ -39,7 +39,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/record/queryDownloadableTestcase/:id</code></td>
+    <td><code>GET /api/record/queryDownloadableTestcase/:id</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -52,7 +52,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/record/downloadTestcase/:id</code></td>
+    <td><code>POST /api/record/downloadTestcase/:id</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
