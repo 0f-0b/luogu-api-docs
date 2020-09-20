@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/createdPosts</code></td>
+    <td><code>GET /api/user/createdPosts</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
