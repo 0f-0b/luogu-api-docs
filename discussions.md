@@ -86,7 +86,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; verify?: string; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; captcha: string; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
