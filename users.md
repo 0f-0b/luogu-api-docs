@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/search</code></td>
+    <td><code>GET /api/user/search</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -39,7 +39,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/followings</code></td>
+    <td><code>GET /api/user/followings</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -56,7 +56,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/followers</code></td>
+    <td><code>GET /api/user/followers</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -90,7 +90,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/updateSetting</code></td>
+    <td><code>POST /api/user/updateSetting</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -107,7 +107,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/updateSlogan</code></td>
+    <td><code>POST /api/user/updateSlogan</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -124,7 +124,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/updateIntroduction</code></td>
+    <td><code>POST /api/user/updateIntroduction</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -141,7 +141,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/updateHeaderImage</code></td>
+    <td><code>POST /api/user/updateHeaderImage</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -158,7 +158,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/bindVjudgeAccount</code></td>
+    <td><code>POST /api/user/bindVjudgeAccount</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -175,7 +175,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/unbindVjudgeAccount</code></td>
+    <td><code>POST /api/user/unbindVjudgeAccount</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
@@ -203,7 +203,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /fe/api/user/unbindOpenId/:id</code></td>
+    <td><code>POST /api/user/unbindOpenId/:id</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
