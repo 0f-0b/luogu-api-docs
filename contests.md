@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/joinedContests</code></td>
+    <td><code>GET /api/user/joinedContests</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -39,7 +39,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/api/user/createdContests</code></td>
+    <td><code>GET /api/user/createdContests</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
