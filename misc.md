@@ -1,6 +1,6 @@
 # 杂项
 
-## 获取 CSRF Token
+## 获取 CSRF 令牌
 
 <table>
   <tr>

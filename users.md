@@ -145,7 +145,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ imageID: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ imageID: string | null; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

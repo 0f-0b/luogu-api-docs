@@ -49,8 +49,6 @@
 
 ## 登录
 
-**注**: 需要包含请求头字段 `Referer: www.luogu.com.cn`。
-
 <table>
   <tr>
     <th align="right">请求</th>
@@ -69,6 +67,25 @@
 ## 用 OpenID 登录
 
 **注**: 见[绑定 OpenID](users.md#绑定-openid)。
+
+## 同步登录状态
+
+**注**: 此处的域名为 www.luogu.org。
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/auth/syncLogin</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/json</code> (<code>{ syncToken: string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ uid: number; }</code>)</td>
+  </tr>
+</table>
 
 ## 登出
 

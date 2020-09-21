@@ -67,7 +67,7 @@ export interface CreatePostRequest {
   title: string;
   forum: string;
   content: string;
-  verify?: string;
+  captcha: string;
 }
 
 export interface BindRemoteJudgeAccountRequest {
@@ -337,9 +337,11 @@ export interface ConfigResponse {
     };
   };
   teamTypes: {
-    id: number;
-    displayName: string;
-  }[];
+    [id: number]: {
+      id: number;
+      displayName: string | null;
+    };
+  };
   notificationTypes: {
     [id: number]: {
       id: number;
