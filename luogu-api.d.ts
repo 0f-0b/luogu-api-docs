@@ -57,6 +57,7 @@ export interface RecordListRequest {
   _contentOnly: any;
   page?: number;
   pid?: string;
+  contestId?: number;
   user?: string;
   status?: number;
   language?: number;
