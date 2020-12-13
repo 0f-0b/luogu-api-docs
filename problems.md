@@ -200,7 +200,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ type: ProblemType; teamID?: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ type: ProblemType; teamID?: number; } | { operation: "clone"; type: "T"; teamID: number; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
