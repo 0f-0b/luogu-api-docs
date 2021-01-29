@@ -68,6 +68,23 @@
   </tr>
 </table>
 
+## 获取黑名单
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/user/blacklist</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ user: number; page?: number; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
+  </tr>
+</table>
+
 ## 获取设置
 
 <table>
