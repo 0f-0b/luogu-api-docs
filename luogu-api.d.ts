@@ -170,7 +170,7 @@ export interface DataResponse<T> {
   currentData: T;
   currentTitle: string;
   currentTheme: Theme | null;
-  currentUser?: User;
+  currentUser?: Self;
 }
 
 export interface UpdateTestCasesSettingsResponse {
@@ -510,6 +510,9 @@ export interface UserData {
   submittedProblems: ProblemInfo[];
   teams?: {
     team: TeamInfo;
+    group: Group;
+    user: UserInfo;
+    type: number;
     permission: number;
   }[];
 }
@@ -532,13 +535,10 @@ export interface UserSettingsData {
 
 export interface TeamData {
   team: Team;
-  currentTeamMember: {
-    type: string;
-    realName: string;
-    user: UserInfo;
-    permission: number;
-  } | null;
+  currentTeamMember: TeamMember | null;
   latestDiscussions: Post[] | null;
+  joinRequest: null; // TODO: other possibilities?
+  groups: Group[];
 }
 
 export interface ChatListData {
@@ -802,20 +802,25 @@ export interface UserInfo {
   ccfLevel: number;
 }
 
-export interface User extends UserInfo {
+export interface BaseUser extends UserInfo {
   blogAddress: string;
   followingCount: number;
   followerCount: number;
-  ranking: number;
-  unreadMessageCount: number;
-  unreadNoticeCount: number;
-  verified: boolean;
+  ranking?: number;
 }
 
-export interface UserDetails extends User {
+export interface Self extends BaseUser {
+  verified: boolean;
   email: string;
   phone: string;
-  rating: Rating;
+  unreadMessageCount: number;
+  unreadNoticeCount: number;
+}
+
+export type User = BaseUser | Self;
+
+export interface BaseUserDetails extends BaseUser {
+  rating?: Rating;
   registerTime: number;
   introduction: string;
   prize: {
@@ -825,6 +830,10 @@ export interface UserDetails extends User {
   }[];
   background: string;
 }
+
+export interface SelfDetails extends BaseUserDetails, Self { }
+
+export type UserDetails = BaseUserDetails | SelfDetails;
 
 export interface UserSettings {
   openSource: number;
@@ -836,23 +845,34 @@ export interface UserSettings {
 export interface TeamInfo {
   id: number;
   name: string;
+  isPremium: boolean;
 }
 
 export interface Team extends TeamInfo {
-  introduction: string;
   createTime: number;
-  joinPermission: number;
   master: UserInfo;
-  notice: string;
+  setting: {
+    description: string;
+    notice?: string;
+    joinPermission: number;
+  };
+  premiumUntil?: number;
   type: number;
   memberCount: number;
 }
 
 export interface TeamMember {
-  type: string;
-  realName: string;
+  group: Group;
   user: UserInfo;
+  type: number;
   permission: number;
+  realName: string;
+}
+
+export interface Group {
+  id: number;
+  name: string;
+  no: number;
 }
 
 export interface Message {
