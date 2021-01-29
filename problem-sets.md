@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>ProblemSetListRequest</code></td>
+    <td><code>ProblemSetListParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>RecordListRequest</code></td>
+    <td><code>RecordListParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

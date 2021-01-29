@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>ListThemesRequest</code></td>
+    <td><code>ListThemesParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

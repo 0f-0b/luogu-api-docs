@@ -35,7 +35,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>GetRankingListRequest</code></td>
+    <td><code>GetRankingListParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -52,7 +52,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>GetNotificationsRequest</code></td>
+    <td><code>GetNotificationsParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

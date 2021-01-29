@@ -9,11 +9,45 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>GetArticlesRequest</code></td>
+    <td><code>GetArticlesParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ status: number; data: List&lt;Article&gt;; }</code>)</td>
+  </tr>
+</table>
+
+## 创建文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /blogAdmin/article/post_new</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditArticleRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; data: number; }</code>)</td>
+  </tr>
+</table>
+
+## 编辑文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /blogAdmin/article/post_edit/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditArticleRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; data: number; }</code>)</td>
   </tr>
 </table>
 

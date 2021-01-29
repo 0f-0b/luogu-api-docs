@@ -1,4 +1,4 @@
-export interface ProblemListRequest {
+export interface ProblemListParams {
   _contentOnly: any;
   page?: number;
   keyword?: string;
@@ -8,6 +8,51 @@ export interface ProblemListRequest {
   type?: PublicProblemType;
   difficulty?: number;
   tag?: string;
+}
+
+export interface ProblemSetListParams {
+  _contentOnly: any;
+  page?: number;
+  keyword?: string;
+  type?: "official" | "select";
+}
+
+export interface RecordListParams {
+  _contentOnly: any;
+  page?: number;
+  pid?: string;
+  contestId?: number;
+  user?: string;
+  status?: number;
+  language?: number;
+  orderBy?: number;
+}
+
+export interface ListThemesParams {
+  _contentOnly: any;
+  page?: number;
+  orderBy?: string;
+  order?: string;
+  type?: string;
+}
+
+export interface GetArticlesParams {
+  uid: number;
+  keyword?: string;
+  type?: string;
+  page?: number;
+}
+
+export interface GetRankingListParams {
+  _contentOnly: any;
+  page?: number;
+  orderBy?: number;
+}
+
+export interface GetNotificationsParams {
+  _contentOnly: any;
+  type?: number;
+  page?: number;
 }
 
 export interface SubmitCodeRequest {
@@ -32,13 +77,6 @@ export interface UpdateTestCasesSettingsRequest {
   showSubtask: boolean;
 }
 
-export interface ProblemSetListRequest {
-  _contentOnly: any;
-  page?: number;
-  keyword?: string;
-  type?: "official" | "select";
-}
-
 export interface EditProblemSetRequest {
   settings: {
     title: string;
@@ -51,17 +89,6 @@ export interface EditProblemSetRequest {
 export interface EditContestRequest {
   settings: ContestSettings;
   hostID: number | null;
-}
-
-export interface RecordListRequest {
-  _contentOnly: any;
-  page?: number;
-  pid?: string;
-  contestId?: number;
-  user?: string;
-  status?: number;
-  language?: number;
-  orderBy?: number;
 }
 
 export interface CreatePostRequest {
@@ -85,14 +112,6 @@ export interface ManageTeamMemberRequest {
   permission: number;
 }
 
-export interface ListThemesRequest {
-  _contentOnly: any;
-  page?: number;
-  orderBy?: string;
-  order?: string;
-  type?: string;
-}
-
 export interface EditThemeRequest {
   name: string;
   header: ThemeHeaderFooter;
@@ -114,11 +133,14 @@ export interface IDESubmitRequest {
   "csrf-token": string;
 }
 
-export interface GetArticlesRequest {
-  uid: number;
-  keyword?: string;
-  type?: string;
-  page?: number;
+export interface EditArticleRequest {
+  title: string;
+  content: string;
+  identifier: string;
+  type: string;
+  top: number;
+  status: number;
+  "csrf-token": string;
 }
 
 export interface SendVerificationCodeRequest {
@@ -140,18 +162,6 @@ export interface LoginRequest {
   username: string;
   password: string;
   captcha: string;
-}
-
-export interface GetRankingListRequest {
-  _contentOnly: any;
-  page?: number;
-  orderBy?: number;
-}
-
-export interface GetNotificationsRequest {
-  _contentOnly: any;
-  type?: number;
-  page?: number;
 }
 
 export interface DataResponse<T> {
