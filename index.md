@@ -2,7 +2,7 @@
 
 不方便直接列出的类型定义在 [luogu-api.d.ts](https://github.com/sjx233/luogu-api-docs/blob/master/luogu-api.d.ts).
 
-所有非 `GET` 请求都需要包含头字段 <code>X-CSRF-Token: <a href="misc.md#获取-csrf-令牌">&lt;CSRF 令牌&gt;</a></code> 和 `Referer: https://www.luogu.com.cn/`。
+文本编码均为 UTF-8。所有非 `GET` 请求都需要包含头字段 <code>x-csrf-token: <a href="misc.md#获取-csrf-令牌">&lt;CSRF 令牌&gt;</a></code>（除非在请求主体中给出）和 `referer: https://www.luogu.com.cn/`。
 
 * [题目](problems.md)
 * [题单](problem-sets.md)
@@ -25,18 +25,22 @@
 
 ### `GET` 请求
 
+列出主题库中标题含有“【模板】”的题目。
+
 ```js
 await fetch("https://www.luogu.com.cn/problem/list?type=P&keyword=%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91&_contentOnly");
 ```
 
 ### `POST` 请求
 
+向[此文档的作者](https://www.luogu.com.cn/user/206953)发送一条内容为“Hi”的私信。假设 CSRF 令牌保存在 `token` 中。
+
 ```js
 await fetch("https://www.luogu.com.cn/api/chat/new", {
   headers: {
-    "Content-Type": "application/json",
-    "X-CSRF-Token": token,
-    "Referer": "https://www.luogu.com.cn/"
+    "content-type": "application/json",
+    "x-csrf-token": token,
+    "referer": "https://www.luogu.com.cn/"
   },
   body: JSON.stringify({
     user: 206953,

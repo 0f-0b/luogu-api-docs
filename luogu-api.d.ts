@@ -183,7 +183,9 @@ export interface UpdateTestCasesSettingsResponse {
 export interface GetScoreboardResponse {
   scoreboard: List<Score>;
   userScore: Score | null;
-  firstBloodUID: { [pid: string]: number; } | null;
+  firstBloodUID: {
+    [pid: string]: number;
+  } | null;
 }
 
 export interface GenerateUploadParametersResponse {
@@ -460,7 +462,9 @@ export interface ContestData {
 }
 
 export interface CreatedContestData {
-  contest: ContestDetails & { joinCode: string; };
+  contest: ContestDetails & {
+    joinCode: string;
+  };
   contestProblems: {
     score: number;
     problem: ProblemInfo;
@@ -670,7 +674,9 @@ export interface ProblemSet {
 export interface ProblemSetDetails extends ProblemSet {
   description: string;
   marked: boolean;
-  problems: { problem: Problem; }[];
+  problems: {
+    problem: Problem;
+  }[];
   userScore: {
     user: UserInfo;
     totalScore: number;
@@ -946,6 +952,13 @@ export interface ArticleDetails extends Article {
   content: string;
 }
 
+export interface Comment {
+  content: string;
+  id: number;
+  author: UserInfo;
+  time: number;
+}
+
 export interface List<T> {
   result: T[];
   count: number;
@@ -984,6 +997,19 @@ export interface LUser {
   isAdmin: boolean;
   isValid: boolean;
   isVerified: boolean;
+}
+
+export interface LArticle {
+  BlogID: number;
+  Identifier: string;
+  Title: string;
+  Type: string;
+  PostTime: number;
+  Author: {};
+  Status: number;
+  ContentDescription: string;
+  ThumbUp: number;
+  Content: string;
 }
 
 export interface LList<T> {

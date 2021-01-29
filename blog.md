@@ -17,6 +17,19 @@
   </tr>
 </table>
 
+## 获取文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/blog/detail/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LArticle&gt;; }</code>)</td>
+  </tr>
+</table>
+
 ## 创建文章
 
 <table>
@@ -51,6 +64,61 @@
   </tr>
 </table>
 
+## 删除文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/blog/delete/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+  </tr>
+</table>
+
+## 批量更新文章状态
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /blogAdmin/article/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ pageType: "list"; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ method: "update"; "blog-id": number[]; "edit-status": number; "csrf-token": string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>text/html</code></td>
+  </tr>
+</table>
+
+## 批量恢复/删除回收站中的文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /blogAdmin/article/list</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ pageType: "trash"; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ method: "recover" | "delete"; "blog-id": number[]; "csrf-token": string; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>text/html</code></td>
+  </tr>
+</table>
+
 ## 获取评论
 
 <table>
@@ -64,7 +132,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LReply&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Comment&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -81,7 +149,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; reply: Comment; }</code>)</td>
   </tr>
 </table>
 
