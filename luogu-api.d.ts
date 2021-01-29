@@ -277,6 +277,7 @@ export interface ConfigResponse {
     color: string;
     userCreatable: boolean;
     scope: "disabled" | "global" | "team" | "personal";
+    invitation: boolean;
   }[];
   problemTags: {
     group: string;
@@ -311,6 +312,11 @@ export interface ConfigResponse {
     type: string;
     name: string;
   }[];
+  TeamJoinRequestStatusTypes: {
+    id: number;
+    type: string;
+    name: string;
+  }[];
   problemFlagTypes: {
     [id: number]: {
       id: number;
@@ -318,7 +324,7 @@ export interface ConfigResponse {
       name: string;
     };
   };
-  contestInvitationCodeType: {
+  contestInvitationCodeTypes: {
     [id: number]: {
       id: number;
       type: string;
@@ -354,6 +360,13 @@ export interface ConfigResponse {
     id: number;
     name: string;
   }[];
+  teamMemberTypes: {
+    [id: number]: {
+      id: number;
+      type: string;
+      name: string;
+    };
+  };
   teamMemberPermissionTypes: {
     [id: number]: {
       id: number;
