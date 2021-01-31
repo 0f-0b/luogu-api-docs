@@ -116,7 +116,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>EditProblemSetRequest</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: ProblemSetSettings; providerID: number | null; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -133,7 +133,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>EditProblemSetRequest</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: ProblemSetSettings; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -185,6 +185,19 @@
   <tr>
     <th align="right">请求主体</th>
     <td><code>application/json</code> (<code>{ type: number; providerID: number | null; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
+</table>
+
+## 删除题单
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/training/delete/:id</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

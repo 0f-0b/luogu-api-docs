@@ -71,15 +71,6 @@ export interface UpdateTestCasesSettingsRequest {
   showSubtask: boolean;
 }
 
-export interface EditProblemSetRequest {
-  settings: {
-    title: string;
-    description: string;
-    type: number;
-    deadline?: number;
-  };
-}
-
 export interface EditContestRequest {
   settings: ContestSettings;
   hostID: number | null;
@@ -686,6 +677,13 @@ export interface ProblemSetDetails extends ProblemSet {
       [pid: string]: boolean;
     };
   } | null;
+}
+
+export interface ProblemSetSettings {
+  title: string;
+  description: string;
+  type: number;
+  deadline: number | null;
 }
 
 export interface ContestInfo {
