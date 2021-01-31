@@ -8,10 +8,6 @@
     <td><code>GET /contest/list</code></td>
   </tr>
   <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; page?: number; }</code></td>
-  </tr>
-  <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;{ contests: List&lt;Contest&gt;; }&gt;</code>)</td>
   </tr>
@@ -57,10 +53,6 @@
   <tr>
     <th align="right">请求</th>
     <td><code>GET /contest/:id</code></td>
-  </tr>
-  <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

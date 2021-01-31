@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; contestId?: number; }</code></td>
+    <td><code>{ contestId?: number; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -57,10 +57,6 @@
   <tr>
     <th align="right">请求</th>
     <td><code>GET /problem/solution/:pid</code></td>
-  </tr>
-  <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

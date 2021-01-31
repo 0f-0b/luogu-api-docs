@@ -1,5 +1,4 @@
 export interface ProblemListParams {
-  _contentOnly: any;
   page?: number;
   keyword?: string;
   content?: boolean;
@@ -11,14 +10,12 @@ export interface ProblemListParams {
 }
 
 export interface ProblemSetListParams {
-  _contentOnly: any;
   page?: number;
   keyword?: string;
   type?: "official" | "select";
 }
 
 export interface RecordListParams {
-  _contentOnly: any;
   page?: number;
   pid?: string;
   contestId?: number;
@@ -29,7 +26,6 @@ export interface RecordListParams {
 }
 
 export interface ListThemesParams {
-  _contentOnly: any;
   page?: number;
   orderBy?: string;
   order?: string;
@@ -44,13 +40,11 @@ export interface ListArticlesParams {
 }
 
 export interface GetRankingListParams {
-  _contentOnly: any;
   page?: number;
   orderBy?: number;
 }
 
 export interface GetNotificationsParams {
-  _contentOnly: any;
   type?: number;
   page?: number;
 }
@@ -717,6 +711,7 @@ export interface ContestSettings {
   name: string;
   description: string;
   visibilityType: number;
+  invitationCodeType: number;
   ruleType: number;
   startTime: number;
   endTime: number;

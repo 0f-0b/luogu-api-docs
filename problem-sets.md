@@ -42,10 +42,6 @@
     <td><code>GET /training/:id</code></td>
   </tr>
   <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; }</code></td>
-  </tr>
-  <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetData&gt;</code>)</td>
   </tr>

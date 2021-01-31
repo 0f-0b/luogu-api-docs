@@ -130,10 +130,6 @@
     <td><code>GET /auth/unlock</code></td>
   </tr>
   <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; }</code></td>
-  </tr>
-  <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;{ mode: string; }&gt;</code>)</td>
   </tr>

@@ -8,10 +8,6 @@
     <td><code>GET /user/:uid</code></td>
   </tr>
   <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; }</code></td>
-  </tr>
-  <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;UserData&gt;</code>)</td>
   </tr>
@@ -91,10 +87,6 @@
   <tr>
     <th align="right">请求</th>
     <td><code>GET /user/setting</code></td>
-  </tr>
-  <tr>
-    <th align="right">参数</th>
-    <td><code>{ _contentOnly: any; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
