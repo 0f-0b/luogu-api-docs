@@ -484,13 +484,15 @@ export interface Post {
   author: UserInfo;
   time: number;
   valid: boolean;
-  recentReply: {
-    author: UserInfo;
-    time: number;
-  } | null;
+  recentReply: Reply | null;
   id: number;
   title: string;
   forum: Forum;
+}
+
+export interface Reply {
+  author: UserInfo;
+  time: number;
 }
 
 export interface Forum {
@@ -991,12 +993,8 @@ export interface List<T> {
 export interface LPost {
   PostID: number;
   Title: string;
-  Author: LUser;
-  Forum: {
-    ForumID: number;
-    Name: string;
-    InternalName: string;
-  };
+  Author: {};
+  Forum: LForum;
   Top: number;
   SubmitTime: number;
   isValid: boolean;
@@ -1009,17 +1007,15 @@ export interface LPostDetails extends LPost {
 }
 
 export interface LReply {
-  Author: LUser;
+  Author: {};
   ReplyTime: number;
   Content: string;
 }
 
-export interface LUser {
-  UID: number;
-  Username: string;
-  isAdmin: boolean;
-  isValid: boolean;
-  isVerified: boolean;
+export interface LForum {
+  ForumID: number;
+  Name: string;
+  InternalName: string;
 }
 
 export interface LArticle {
