@@ -36,7 +36,7 @@ export interface ListThemesParams {
   type?: string;
 }
 
-export interface GetArticlesParams {
+export interface ListArticlesParams {
   uid: number;
   keyword?: string;
   type?: string;
@@ -954,7 +954,13 @@ export interface Rating {
   rating: number;
 }
 
-export interface Article {
+export interface ArticleInfo {
+  id: number;
+  identifier: string;
+  title: string;
+}
+
+export interface Article extends ArticleInfo {
   type: string;
   status: number;
   postTime: number;
@@ -963,9 +969,6 @@ export interface Article {
   commentCount: number;
   currentUserVoteType: number;
   contentDescription: string;
-  id: number;
-  identifier: string;
-  title: string;
 }
 
 export interface ArticleDetails extends Article {

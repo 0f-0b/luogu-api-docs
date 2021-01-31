@@ -1,6 +1,23 @@
 # 博客 API
 
-## 列出文章
+## 列出所有文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/blog/userBlogs</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ user?: number; page?: number; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ blogs: List&lt;ArticleInfo&gt;; }</code>)</td>
+  </tr>
+</table>
+
+## 列出未隐藏的文章
 
 <table>
   <tr>
@@ -9,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>GetArticlesParams</code></td>
+    <td><code>ListArticlesParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
