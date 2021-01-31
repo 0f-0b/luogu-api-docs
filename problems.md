@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;Problem&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>{ problems: List&lt;Problem&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -132,7 +132,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td>（暂缺）</td>
+    <td><!-- TODO --></td>
   </tr>
 </table>
 

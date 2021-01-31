@@ -415,8 +415,10 @@ export interface ProblemData {
   bookmarked: boolean;
   vjudgeUsername: string | null;
   recommendations: (ProblemInfo & ProblemStatus)[];
-  lastLanguage: false;
+  lastLanguage: number;
   lastCode: string;
+  privilegedTeams: TeamInfo[];
+  userTranslation: null; // TODO
 }
 
 export interface SolutionsData {
@@ -533,7 +535,7 @@ export interface TeamData {
   team: Team;
   currentTeamMember: TeamMember | null;
   latestDiscussions: Post[] | null;
-  joinRequest: null; // TODO: other possibilities?
+  joinRequest: null; // TODO
   groups: Group[];
 }
 
@@ -581,6 +583,7 @@ export interface Problem extends ProblemInfo {
   wantsTranslation: boolean;
   totalSubmit: number;
   totalAccepted: number;
+  flag: number;
 }
 
 export interface ProblemDetails extends Problem {
@@ -660,6 +663,7 @@ export interface ProblemSet {
   createTime: number;
   deadline: number | null;
   problemCount: number;
+  marked: boolean;
   markCount: number;
   id: number;
   title: string;
@@ -669,7 +673,6 @@ export interface ProblemSet {
 
 export interface ProblemSetDetails extends ProblemSet {
   description: string;
-  marked: boolean;
   problems: {
     problem: Problem;
   }[];

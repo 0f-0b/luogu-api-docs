@@ -34,6 +34,23 @@
   </tr>
 </table>
 
+## 列出团队题单
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/team/trainings/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ page?: number; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ trainings: List&lt;ProblemSet&gt; }</code>)</td>
+  </tr>
+</table>
+
 ## 获取题单
 
 <table>
@@ -121,6 +138,23 @@
   <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
+  </tr>
+</table>
+
+## 添加题单题目
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/training/addProblem/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/json</code> (<code>{ pids: string[]; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ addedProblems: string[]; }</code>)</td>
   </tr>
 </table>
 
