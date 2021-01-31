@@ -124,11 +124,11 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /problemnew/translate/:pid</code></td>
+    <td><code>POST /fe/api/problem/translate/:pid</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ "translation": string; "csrf-token": string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ translation: string; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
