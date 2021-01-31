@@ -53,7 +53,6 @@ export interface SubmitCodeRequest {
   code: string;
   lang?: number;
   enableO2?: number;
-  verify?: string;
 }
 
 export interface CreateProblemRequest {
@@ -620,10 +619,10 @@ export interface ProblemSettings {
   needsTranslation: boolean;
   acceptSolution: boolean;
   allowDataDownload: boolean;
+  tags: number[];
   difficulty: number;
   showScore: boolean;
   flag: number;
-  tags: number[];
 }
 
 export type PublicProblemType = "P" | "CF" | "SP" | "AT" | "UVA";
