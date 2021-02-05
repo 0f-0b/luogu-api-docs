@@ -752,27 +752,25 @@ export interface RecordDetails extends RecordBase {
     };
     judgeResult: {
       subtasks: {
-        [id: number]: {
-          id: number;
-          score: number;
-          status: number;
-          testCases: {
-            [id: number]: {
-              id: number;
-              status: number;
-              time: number;
-              memory: number;
-              score: number;
-              signal: number | null;
-              exitCode: number;
-              description: string;
-              subtaskID: number;
-            };
+        id: number;
+        score: number;
+        status: number;
+        testCases: {
+          [id: number]: {
+            id: number;
+            status: number;
+            time: number;
+            memory: number;
+            score: number;
+            signal: number | null;
+            exitCode: number;
+            description: string;
+            subtaskID: number;
           };
-          judger: null;
-          time: number;
-          memory: number;
         };
+        judger: null;
+        time: number;
+        memory: number;
       }[];
       finishedCaseCount: number;
     };
