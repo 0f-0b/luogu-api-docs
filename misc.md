@@ -26,6 +26,19 @@
   </tr>
 </table>
 
+## 获取标签
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /_lfe/tags</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>TagsResponse</code>)</td>
+  </tr>
+</table>
+
 ## 获取咕值排名
 
 <table>
@@ -60,7 +73,7 @@
   </tr>
 </table>
 
-## 获取广告（恰饭）
+## 获取广告
 
 <table>
   <tr>

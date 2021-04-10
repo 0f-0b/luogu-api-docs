@@ -221,13 +221,6 @@ export interface ConfigResponse {
       filterable: boolean;
     };
   };
-  tags: {
-    [id: number]: {
-      name: string;
-      type: string;
-      color: string;
-    };
-  };
   recordSortTypes: {
     id: number;
     name: string;
@@ -274,10 +267,6 @@ export interface ConfigResponse {
     userCreatable: boolean;
     scope: "disabled" | "global" | "team" | "personal";
     invitation: boolean;
-  }[];
-  problemTags: {
-    group: string;
-    tags: number[];
   }[];
   routes: {
     [id: string]: string;
@@ -382,16 +371,19 @@ export interface ConfigResponse {
   }[];
 }
 
-export interface PageTree {
-  name: string;
-  template: string;
-  route: string;
-  children?: PageTree[];
-  url?: string | null;
-}
-
-export interface Translations {
-  [id: string]: string | Translations;
+export interface TagsResponse {
+  tags: {
+    id: number;
+    name: string;
+    type: number;
+    parent: number;
+  }[];
+  types: {
+    id: number;
+    name: string;
+    color: string;
+  }[];
+  version: number;
 }
 
 export interface ProblemData {
@@ -974,6 +966,18 @@ export interface Comment {
   id: number;
   author: UserInfo;
   time: number;
+}
+
+export interface PageTree {
+  name: string;
+  template: string;
+  route: string;
+  children?: PageTree[];
+  url?: string | null;
+}
+
+export interface Translations {
+  [id: string]: string | Translations;
 }
 
 export interface List<T> {
