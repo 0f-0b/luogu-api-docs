@@ -617,7 +617,7 @@ export interface ProblemSettings {
   flag: number;
 }
 
-export type ProblemType = "P" | "CF" | "SP" | "AT" | "UVA" | "T" | "U";
+export type ProblemType = "P" | "B" | "CF" | "SP" | "AT" | "UVA" | "T" | "U";
 
 export interface ProblemStatus {
   accepted: boolean;
@@ -986,35 +986,8 @@ export interface List<T> {
   perPage: number;
 }
 
-export interface LPost {
-  PostID: number;
-  Title: string;
-  Author: {};
-  Forum: LForum;
-  Top: number;
-  SubmitTime: number;
-  isValid: boolean;
-  LatestReply: LReply;
-  RepliesCount: number;
-}
-
-export interface LPostDetails extends LPost {
-  Content: string;
-}
-
-export interface LReply {
-  Author: {};
-  ReplyTime: number;
-  Content: string;
-}
-
-export interface LForum {
-  ForumID: number;
-  Name: string;
-  InternalName: string;
-}
-
-export interface LArticle {
+/** @deprecated */
+export interface LegacyArticle {
   BlogID: number;
   Identifier: string;
   Title: string;
@@ -1025,9 +998,4 @@ export interface LArticle {
   ContentDescription: string;
   ThumbUp: number;
   Content: string;
-}
-
-export interface LList<T> {
-  count: number;
-  result: T[];
 }

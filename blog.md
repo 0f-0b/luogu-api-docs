@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LArticle&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LegacyArticle&gt;; }</code>)</td>
   </tr>
 </table>
 
