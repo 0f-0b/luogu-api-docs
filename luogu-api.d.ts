@@ -388,7 +388,7 @@ export interface TagsResponse {
 
 export interface ProblemData {
   problem: ProblemDetails & ProblemStatus;
-  contest: ContestInfo | null;
+  contest: ContestSummary | null;
   discussions: {
     id: number;
     title: string;
@@ -396,16 +396,16 @@ export interface ProblemData {
   }[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
-  recommendations: (ProblemInfo & ProblemStatus)[];
+  recommendations: (ProblemSummary & ProblemStatus)[];
   lastLanguage: number;
   lastCode: string;
-  privilegedTeams: TeamInfo[];
+  privilegedTeams: TeamSummary[];
   userTranslation: null; // TODO
 }
 
 export interface SolutionsData {
   solutions: List<ArticleDetails>;
-  problem: ProblemInfo;
+  problem: ProblemSummary;
   acceptSolution: boolean;
 }
 
@@ -424,14 +424,14 @@ export interface ProblemSetData {
     count: number;
   };
   canEdit: boolean;
-  privilegedTeams: TeamInfo[];
+  privilegedTeams: TeamSummary[];
 }
 
 export interface ContestData {
   contest: ContestDetails;
   contestProblems: {
     score: number;
-    problem: ProblemInfo;
+    problem: ProblemSummary;
     submitted: boolean;
   }[];
   isScoreboardFrozen: boolean;
@@ -445,10 +445,10 @@ export interface CreatedContestData {
   };
   contestProblems: {
     score: number;
-    problem: ProblemInfo;
+    problem: ProblemSummary;
   };
   contestSetting: ContestSettings;
-  privilegedTeams: TeamInfo[];
+  privilegedTeams: TeamSummary[];
 }
 
 export interface RecordData {
@@ -459,7 +459,7 @@ export interface RecordData {
 
 export interface Post {
   top: number;
-  author: UserInfo;
+  author: UserSummary;
   time: number;
   valid: boolean;
   recentReply: Reply | null;
@@ -469,7 +469,7 @@ export interface Post {
 }
 
 export interface Reply {
-  author: UserInfo;
+  author: UserSummary;
   time: number;
 }
 
@@ -486,12 +486,12 @@ export interface UserData {
     passedProblemCount: number;
     submittedProblemCount: number;
   };
-  passedProblems: ProblemInfo[];
-  submittedProblems: ProblemInfo[];
+  passedProblems: ProblemSummary[];
+  submittedProblems: ProblemSummary[];
   teams?: {
-    team: TeamInfo;
+    team: TeamSummary;
     group: Group;
-    user: UserInfo;
+    user: UserSummary;
     type: number;
     permission: number;
   }[];
@@ -552,7 +552,7 @@ export interface ActivityData {
   comment: string;
 }
 
-export interface ProblemInfo {
+export interface ProblemSummary {
   pid: string;
   title: string;
   difficulty: number;
@@ -560,7 +560,7 @@ export interface ProblemInfo {
   type: ProblemType;
 }
 
-export interface Problem extends ProblemInfo {
+export interface Problem extends ProblemSummary {
   tags: number[];
   wantsTranslation: boolean;
   totalSubmit: number;
@@ -575,7 +575,7 @@ export interface ProblemDetails extends Problem {
   outputFormat: string;
   samples: [string, string][];
   hint: string;
-  provider: UserInfo | TeamInfo;
+  provider: UserSummary | TeamSummary;
   attachments: {
     size: number;
     uploadTime: number;
@@ -649,7 +649,7 @@ export interface ProblemSet {
   id: number;
   title: string;
   type: number;
-  provider: UserInfo | TeamInfo;
+  provider: UserSummary | TeamSummary;
 }
 
 export interface ProblemSetDetails extends ProblemSet {
@@ -658,7 +658,7 @@ export interface ProblemSetDetails extends ProblemSet {
     problem: Problem;
   }[];
   userScore: {
-    user: UserInfo;
+    user: UserSummary;
     totalScore: number;
     score: {
       [pid: string]: number | null;
@@ -676,19 +676,19 @@ export interface ProblemSetSettings {
   deadline: number | null;
 }
 
-export interface ContestInfo {
+export interface ContestSummary {
   id: number;
   name: string;
   startTime: number;
   endTime: number;
 }
 
-export interface Contest extends ContestInfo {
+export interface Contest extends ContestSummary {
   ruleType: number;
   visibilityType: number;
   invitationCodeType: number;
   rated: boolean;
-  host: UserInfo | TeamInfo;
+  host: UserSummary | TeamSummary;
   problemCount: number;
 }
 
@@ -715,7 +715,7 @@ export interface Score {
       runningTime?: number;
     };
   } | [];
-  user: UserInfo;
+  user: UserSummary;
   score: number;
   runningTime: number;
 }
@@ -723,12 +723,12 @@ export interface Score {
 export interface RecordBase {
   time: number | null;
   memory: number | null;
-  problem: ProblemInfo;
-  contest: ContestInfo | null;
+  problem: ProblemSummary;
+  contest: ContestSummary | null;
   sourceCodeLength: number;
   submitTime: number;
   language: number;
-  user?: UserInfo;
+  user?: UserSummary;
   id: number;
   status: number;
   enableO2: boolean;
@@ -774,10 +774,10 @@ export interface Activity {
   id: number;
   type: number;
   time: number;
-  user: UserInfo;
+  user: UserSummary;
 }
 
-export interface UserInfo {
+export interface UserSummary {
   uid: number;
   name: string;
   slogan: string;
@@ -788,7 +788,7 @@ export interface UserInfo {
   ccfLevel: number;
 }
 
-export interface BaseUser extends UserInfo {
+export interface BaseUser extends UserSummary {
   blogAddress: string;
   followingCount: number;
   followerCount: number;
@@ -828,15 +828,15 @@ export interface UserSettings {
   acceptPromotion: boolean;
 }
 
-export interface TeamInfo {
+export interface TeamSummary {
   id: number;
   name: string;
   isPremium: boolean;
 }
 
-export interface Team extends TeamInfo {
+export interface Team extends TeamSummary {
   createTime: number;
-  master: UserInfo;
+  master: UserSummary;
   setting: {
     description: string;
     notice?: string;
@@ -849,7 +849,7 @@ export interface Team extends TeamInfo {
 
 export interface TeamMember {
   group: Group;
-  user: UserInfo;
+  user: UserSummary;
   type: number;
   permission: number;
   realName: string;
@@ -863,8 +863,8 @@ export interface Group {
 
 export interface Message {
   id: number;
-  sender: UserInfo;
-  receiver: UserInfo;
+  sender: UserSummary;
+  receiver: UserSummary;
   time: number;
   status: number;
   content: string;
@@ -889,7 +889,7 @@ export interface Theme {
 export interface ThemeDetails extends Theme {
   name: string;
   type: number;
-  author: UserInfo;
+  author: UserSummary;
   updateTime: number;
   userCount: number;
 }
@@ -916,7 +916,7 @@ export interface Image {
   thumbnailUrl: string;
   url: string;
   id: string;
-  provider: UserInfo;
+  provider: UserSummary;
   uploadTime: number;
   size: number;
 }
@@ -924,7 +924,7 @@ export interface Image {
 export interface Paste {
   data: string;
   id: string;
-  user: UserInfo;
+  user: UserSummary;
   time: number;
   public: boolean;
 }
@@ -936,21 +936,21 @@ export interface Rating {
   basicRating: number;
   prizeRating: number;
   calculateTime: number;
-  user: UserInfo;
+  user: UserSummary;
   rating: number;
 }
 
-export interface ArticleInfo {
+export interface ArticleSummary {
   id: number;
   identifier: string;
   title: string;
 }
 
-export interface Article extends ArticleInfo {
+export interface Article extends ArticleSummary {
   type: string;
   status: number;
   postTime: number;
-  author: UserInfo;
+  author: UserSummary;
   thumbUp: number;
   commentCount: number;
   currentUserVoteType: number;
@@ -964,7 +964,7 @@ export interface ArticleDetails extends Article {
 export interface Comment {
   content: string;
   id: number;
-  author: UserInfo;
+  author: UserSummary;
   time: number;
 }
 
@@ -987,6 +987,33 @@ export interface List<T> {
 }
 
 /** @deprecated */
+export interface LegacyPost {
+  PostID: number;
+  Title: string;
+  Author: {};
+  Forum: LegacyForum;
+  Top: number;
+  SubmitTime: number;
+  isValid: boolean;
+  LatestReply: LegacyReply;
+  RepliesCount: number;
+}
+
+/** @deprecated */
+export interface LegacyReply {
+  Author: {};
+  ReplyTime: number;
+  Content: string;
+}
+
+/** @deprecated */
+export interface LegacyForum {
+  ForumID: number;
+  Name: string;
+  InternalName: string;
+}
+
+/** @deprecated */
 export interface LegacyArticle {
   BlogID: number;
   Identifier: string;
@@ -998,4 +1025,10 @@ export interface LegacyArticle {
   ContentDescription: string;
   ThumbUp: number;
   Content: string;
+}
+
+/** @deprecated */
+export interface LegacyList<T> {
+  count: number;
+  result: T[];
 }
