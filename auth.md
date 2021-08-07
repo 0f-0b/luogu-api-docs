@@ -1,5 +1,7 @@
 # 身份验证 API
 
+**注**: 此页面部分 API 可能要求从其他路径（如 `/auth/login`）获取 CSRF 令牌。
+
 ## 获取验证码图片
 
 <table>
@@ -66,7 +68,7 @@
 
 ## 用 OpenID 登录
 
-**注**: 见[绑定 OpenID](users.md#绑定-openid)。
+**注**: 见[绑定 OpenID](users#绑定-openid)。
 
 ## 同步登录状态
 
