@@ -732,7 +732,7 @@ export interface RecordBase {
   id: number;
   status: number;
   enableO2: boolean;
-  score: number;
+  score?: number;
 }
 
 export interface RecordDetails extends RecordBase {
@@ -740,7 +740,7 @@ export interface RecordDetails extends RecordBase {
     compileResult: {
       success: boolean;
       message: string | null;
-    };
+    } | null;
     judgeResult: {
       subtasks: {
         id: number;
