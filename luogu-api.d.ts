@@ -198,11 +198,17 @@ export interface ConfigResponse {
   };
   codeLanguages: {
     [id: number]: {
-      aceMode: string;
-      hljsLang: string;
       name: string;
-      fileExtensions: string;
-      id: number;
+      identifier: string;
+      family: string | null;
+      disabled: boolean;
+      canO2: boolean;
+      fileExtensions: string[];
+      aceMode: string;
+      hljsMode: string;
+      value: number;
+      type: string;
+      order: number;
     };
   };
   contestRuleTypes: {
@@ -230,13 +236,6 @@ export interface ConfigResponse {
     name: string;
   }[];
   translation: Translations;
-  recordLanguageTypes: {
-    [id: number]: {
-      id: number;
-      name: string;
-      aceMode: string;
-    };
-  };
   problemDifficulty: {
     id: number;
     name: string;
@@ -617,7 +616,7 @@ export interface ProblemSettings {
   flag: number;
 }
 
-export type ProblemType = "P" | "B" | "CF" | "SP" | "AT" | "UVA" | "T" | "U";
+export type ProblemType = "P" | "T" | "U" | "B" | "CF" | "SP" | "AT" | "UVA";
 
 export interface ProblemStatus {
   accepted: boolean;
