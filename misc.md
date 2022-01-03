@@ -85,3 +85,44 @@
     <td><code>application/json</code> (<code>{ advertisement: { image: Image; url: string; id: number; }; }</code>)</td>
   </tr>
 </table>
+
+## 冬日绘版内容
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /paintboard/board</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>text/plain</code></td>
+  </tr>
+</table>
+
+## 冬日绘版更新 token
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /paintboard/resetToken </code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code>(<code>{ token: string }</code>)</td>
+  </tr>
+</table>
+注：不需要 CSRF 令牌。
+
+## 冬日绘版更新检测
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET wss://ws.luogu.com.cn/ws </code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td>自己意会</td>
+  </tr>
+</table>
+
