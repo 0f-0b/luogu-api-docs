@@ -108,7 +108,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code>(<code>{ token: string }</code>)</td>
+    <td><code>application/json</code>(<code>{ token: string; }</code>)</td>
   </tr>
 </table>
 注：不需要 CSRF 令牌。
@@ -126,3 +126,22 @@
   </tr>
 </table>
 
+## 冬日绘版绘制
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /paintboard/paint </code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ token: string; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/json</code>(<code>{ x: int; y: int; color: char; }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code>(<code>{}</code>)</td>
+</table>
