@@ -95,25 +95,24 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>text/plain</code></td>
+    <td><code>text/plain</code> (1000 行 * 600 列的字符矩阵，第 i 行第 j 个字符表示第 j 行第 i 个像素。)</td>
   </tr>
 </table>
 
-## 冬日绘版更新 token
+## 冬日绘版重置 token
 
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /paintboard/resetToken </code></td>
+    <td><code>POST /paintboard/resetToken</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code>(<code>{ token: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ token: string; }</code>)</td>
   </tr>
 </table>
-注：不需要 CSRF 令牌。
 
-## 冬日绘版更新检测
+<!-- ## 冬日绘版更新检测
 
 <table>
   <tr>
@@ -124,24 +123,24 @@
     <th align="right">响应主体</th>
     <td>自己意会</td>
   </tr>
-</table>
+</table> -->
 
 ## 冬日绘版绘制
 
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /paintboard/paint </code></td>
+    <td><code>POST /paintboard/paint</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ token: string; }</code></td>
+    <td><code>{ token?: string; }</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code>(<code>{ x: int; y: int; color: char; }</code>)</td>
+    <td><code>application/json</code> (<code>{ x: number; y: number; color: number; }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code>(<code>{}</code>)</td>
+    <td><code>application/json</code> (<code>{}</code>)</td>
 </table>
