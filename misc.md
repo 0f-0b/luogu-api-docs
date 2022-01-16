@@ -112,7 +112,8 @@
   </tr>
 </table>
 
-<!-- ## 冬日绘版更新检测
+<!--
+## 冬日绘版更新检测
 
 <table>
   <tr>
@@ -123,7 +124,8 @@
     <th align="right">响应主体</th>
     <td>自己意会</td>
   </tr>
-</table> -->
+</table>
+-->
 
 ## 冬日绘版绘制
 
@@ -143,4 +145,5 @@
   <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{}</code>)</td>
+  </tr>
 </table>
