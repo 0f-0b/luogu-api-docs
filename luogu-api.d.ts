@@ -199,7 +199,6 @@ export interface ConfigResponse {
   codeLanguages: {
     [id: number]: {
       name: string;
-      identifier: string;
       family: string | null;
       disabled: boolean;
       canO2: boolean;
