@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: [UserInfo | null]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: [UserSummary | null]; }</code>)</td>
   </tr>
 </table>
 
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt;; }</code>)</td>
   </tr>
 </table>
 
@@ -77,7 +77,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: List&lt;User&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt;; }</code>)</td>
   </tr>
 </table>
 

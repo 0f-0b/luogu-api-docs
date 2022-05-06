@@ -77,7 +77,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ trainingParticipations: List&lt;{ training: ProblemSet; user: UserInfo; }&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ trainingParticipations: List&lt;{ training: ProblemSet; user: UserSummary; }&gt; }</code>)</td>
   </tr>
 </table>
 

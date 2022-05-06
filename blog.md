@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ blogs: List&lt;ArticleInfo&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ blogs: List&lt;ArticleSummary&gt;; }</code>)</td>
   </tr>
 </table>
 

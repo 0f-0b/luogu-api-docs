@@ -57,7 +57,7 @@ export interface SubmitCodeRequest {
 
 export interface CreateProblemRequest {
   settings: ProblemSettings;
-  type: ProblemType;
+  type: string;
   providerID: number | null;
 }
 
@@ -154,7 +154,8 @@ export interface DataResponse<T> {
   currentData: T;
   currentTitle: string;
   currentTheme: Theme | null;
-  currentUser?: Self;
+  currentTime: number;
+  currentUser?: User & Self;
 }
 
 export interface UpdateTestCasesSettingsResponse {
@@ -281,8 +282,8 @@ export interface ConfigResponse {
     };
   };
   problemTypes: {
-    [id in ProblemType]: {
-      id: ProblemType;
+    [id: string]: {
+      id: string;
       type: string;
       name: string;
       vjudge: boolean;
@@ -478,14 +479,9 @@ export interface Forum {
 }
 
 export interface UserData {
-  user: UserDetails & {
-    userRelationship: number;
-    reverseUserRelationship: number;
-    passedProblemCount: number;
-    submittedProblemCount: number;
-  };
-  passedProblems: ProblemSummary[];
-  submittedProblems: ProblemSummary[];
+  user: UserDetails & UserStats & Maybe<SelfDetails>;
+  passedProblems?: ProblemSummary[];
+  submittedProblems?: ProblemSummary[];
   teams?: {
     team: TeamSummary;
     group: Group;
@@ -502,13 +498,15 @@ export interface UserSettingsData {
   hasSet2FA: boolean;
   ccfLevelShowLevel: number;
   vjudgeAccounts: {
-    AT?: string;
-    CF?: string;
-    SP?: string;
-    UVA?: string;
-  };
-  prizes: any[];
-  user: UserDetails;
+    oj: string;
+    username: string;
+  }[];
+  openIdAccounts: {
+    platform: number;
+    username: string;
+  }[];
+  prizes: []; // TODO
+  user: UserDetails & Maybe<SelfDetails>;
 }
 
 export interface TeamData {
@@ -524,6 +522,7 @@ export interface ChatListData {
   unreadMessageCount: [] | {
     [user: number]: number;
   };
+  currentChat: UserSummary | null;
 }
 
 export interface ImageListData {
@@ -555,7 +554,7 @@ export interface ProblemSummary {
   title: string;
   difficulty: number;
   fullScore: number;
-  type: ProblemType;
+  type: string;
 }
 
 export interface Problem extends ProblemSummary {
@@ -614,8 +613,6 @@ export interface ProblemSettings {
   showScore: boolean;
   flag: number;
 }
-
-export type ProblemType = "P" | "T" | "U" | "B" | "CF" | "SP" | "AT" | "UVA";
 
 export interface ProblemStatus {
   accepted: boolean;
@@ -775,49 +772,55 @@ export interface Activity {
   user: UserSummary;
 }
 
+export interface Self {
+  verified: boolean;
+  unreadMessageCount: number;
+  unreadNoticeCount: number;
+}
+
+export interface SelfDetails extends Self {
+  organization: null; // TODO
+  email: string;
+  phone: string;
+}
+
 export interface UserSummary {
   uid: number;
   name: string;
-  slogan: string;
+  slogan: string | null;
   badge: string | null;
   isAdmin: boolean;
   isBanned: boolean;
   color: string;
   ccfLevel: number;
+  background: string;
+  isRoot?: true;
 }
 
-export interface BaseUser extends UserSummary {
-  blogAddress: string;
+export interface User extends UserSummary {
+  blogAddress: string | null;
   followingCount: number;
   followerCount: number;
-  ranking?: number;
+  ranking: number | null;
 }
 
-export interface Self extends BaseUser {
-  verified: boolean;
-  email: string;
-  phone: string;
-  unreadMessageCount: number;
-  unreadNoticeCount: number;
-}
-
-export type User = BaseUser | Self;
-
-export interface BaseUserDetails extends BaseUser {
+export interface UserDetails extends User {
   rating?: Rating;
   registerTime: number;
-  introduction: string;
+  introduction: string | null;
   prize: {
     year: number;
     contestName: string;
     prize: string;
   }[];
-  background: string;
 }
 
-export interface SelfDetails extends BaseUserDetails, Self { }
-
-export type UserDetails = BaseUserDetails | SelfDetails;
+export interface UserStats {
+  userRelationship: number;
+  reverseUserRelationship: number;
+  passedProblemCount: number;
+  submittedProblemCount: number;
+}
 
 export interface UserSettings {
   openSource: number;
@@ -978,16 +981,20 @@ export interface Translations {
   [id: string]: string | Translations;
 }
 
+// deno-lint-ignore ban-types
+export type Maybe<T> = {} | T;
+
 export interface List<T> {
   result: T[];
   count: number;
-  perPage: number;
+  perPage: number | null;
 }
 
 /** @deprecated */
 export interface LegacyPost {
   PostID: number;
   Title: string;
+  // deno-lint-ignore ban-types
   Author: {};
   Forum: LegacyForum;
   Top: number;
@@ -999,6 +1006,7 @@ export interface LegacyPost {
 
 /** @deprecated */
 export interface LegacyReply {
+  // deno-lint-ignore ban-types
   Author: {};
   ReplyTime: number;
   Content: string;
@@ -1018,6 +1026,7 @@ export interface LegacyArticle {
   Title: string;
   Type: string;
   PostTime: number;
+  // deno-lint-ignore ban-types
   Author: {};
   Status: number;
   ContentDescription: string;
