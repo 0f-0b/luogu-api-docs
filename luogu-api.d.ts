@@ -615,8 +615,8 @@ export interface ProblemSettings {
 }
 
 export interface ProblemStatus {
-  accepted: boolean;
-  submitted: boolean;
+  accepted?: boolean;
+  submitted?: boolean;
 }
 
 export interface TestCase {
