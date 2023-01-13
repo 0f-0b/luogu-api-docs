@@ -386,7 +386,7 @@ export interface TagsResponse {
 }
 
 export interface ProblemData {
-  problem: ProblemDetails & ProblemStatus;
+  problem: ProblemDetails & Maybe<ProblemStatus>;
   contest: ContestSummary | null;
   discussions: {
     id: number;
@@ -395,7 +395,7 @@ export interface ProblemData {
   }[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
-  recommendations: (ProblemSummary & ProblemStatus)[];
+  recommendations: (ProblemSummary & Maybe<ProblemStatus>)[];
   lastLanguage: number;
   lastCode: string;
   privilegedTeams: TeamSummary[];
@@ -615,8 +615,8 @@ export interface ProblemSettings {
 }
 
 export interface ProblemStatus {
-  accepted?: boolean;
-  submitted?: boolean;
+  accepted: boolean;
+  submitted: boolean;
 }
 
 export interface TestCase {
