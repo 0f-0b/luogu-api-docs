@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user: number; }</code></td>
+    <td><code>{ user: number; page?: number; }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
