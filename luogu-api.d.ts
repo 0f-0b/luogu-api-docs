@@ -815,11 +815,16 @@ export interface UserDetails extends User {
   }[];
 }
 
-export interface UserStats {
+export type UserStats = Maybe<UserRelationship> & UserPractice;
+
+export interface UserRelationship {
   userRelationship: number;
   reverseUserRelationship: number;
-  passedProblemCount: number;
-  submittedProblemCount: number;
+}
+
+export interface UserPractice {
+  passedProblemCount: number | null;
+  submittedProblemCount: number | null;
 }
 
 export interface UserSettings {
