@@ -289,6 +289,7 @@ export interface ConfigResponse {
       vjudge: boolean;
       userCreatable: boolean;
       searchable: boolean;
+      tds: string;
     };
   };
   messageModeTypes: {
