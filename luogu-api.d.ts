@@ -63,9 +63,7 @@ export interface CreateProblemRequest {
 
 export interface UpdateTestCasesSettingsRequest {
   cases: TestCase[];
-  subtaskScoringStrategies: {
-    [id: number]: ScoringStrategy;
-  };
+  subtaskScoringStrategies: { [id: number]: ScoringStrategy };
   scoringStrategy: ScoringStrategy;
   showSubtask: boolean;
 }
@@ -168,9 +166,7 @@ export interface UpdateTestCasesSettingsResponse {
 export interface GetScoreboardResponse {
   scoreboard: List<Score>;
   userScore: Score | null;
-  firstBloodUID: {
-    [pid: string]: number;
-  } | null;
+  firstBloodUID: { [pid: string]: number } | null;
 }
 
 export interface GenerateUploadParametersResponse {
@@ -194,9 +190,7 @@ export interface LoginResponse {
 
 export interface ConfigResponse {
   pageTree: PageTree;
-  ws: {
-    server: string;
-  };
+  ws: { server: string };
   codeLanguages: {
     [id: number]: {
       name: string;
@@ -212,11 +206,7 @@ export interface ConfigResponse {
     };
   };
   contestRuleTypes: {
-    [id: number]: {
-      id: number;
-      name: string;
-      color: string;
-    };
+    [id: number]: { id: number; name: string; color: string };
   };
   recordStatus: {
     [id: number]: {
@@ -227,38 +217,14 @@ export interface ConfigResponse {
       filterable: boolean;
     };
   };
-  recordSortTypes: {
-    id: number;
-    name: string;
-  }[];
-  messageStatusTypes: {
-    id: number;
-    name: string;
-  }[];
+  recordSortTypes: { id: number; name: string }[];
+  messageStatusTypes: { id: number; name: string }[];
   translation: Translations;
-  problemDifficulty: {
-    id: number;
-    name: string;
-    color: string;
-  }[];
-  senderEndpointTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-    };
-  };
-  contestAccessLevel: {
-    id: number;
-    name: string;
-  }[];
-  rankingSortTypes: {
-    id: number;
-    valueName: string;
-    name: string;
-  }[];
-  openIdPlatformTypes: {
-    [id: number]: string;
-  };
+  problemDifficulty: { id: number; name: string; color: string }[];
+  senderEndpointTypes: { [id: number]: { id: number; type: string } };
+  contestAccessLevel: { id: number; name: string }[];
+  rankingSortTypes: { id: number; valueName: string; name: string }[];
+  openIdPlatformTypes: { [id: number]: string };
   contestVisibilityTypes: {
     id: number;
     name: string;
@@ -267,19 +233,10 @@ export interface ConfigResponse {
     scope: "disabled" | "global" | "team" | "personal";
     invitation: boolean;
   }[];
-  routes: {
-    [id: string]: string;
-  };
-  userRelationshipTypes: {
-    id: number;
-    type: string;
-  }[];
+  routes: { [id: string]: string };
+  userRelationshipTypes: { id: number; type: string }[];
   scoringStrategyTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-      name: string;
-    };
+    [id: number]: { id: number; type: string; name: string };
   };
   problemTypes: {
     [id: string]: {
@@ -292,29 +249,13 @@ export interface ConfigResponse {
       tds: string;
     };
   };
-  messageModeTypes: {
-    id: number;
-    type: string;
-    name: string;
-  }[];
-  TeamJoinRequestStatusTypes: {
-    id: number;
-    type: string;
-    name: string;
-  }[];
+  messageModeTypes: { id: number; type: string; name: string }[];
+  TeamJoinRequestStatusTypes: { id: number; type: string; name: string }[];
   problemFlagTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-      name: string;
-    };
+    [id: number]: { id: number; type: string; name: string };
   };
   contestInvitationCodeTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-      name: string;
-    };
+    [id: number]: { id: number; type: string; name: string };
   };
   trainingTypes: {
     [id: number]: {
@@ -328,72 +269,29 @@ export interface ConfigResponse {
       color: string;
     };
   };
-  teamTypes: {
-    [id: number]: {
-      id: number;
-      displayName: string | null;
-    };
-  };
+  teamTypes: { [id: number]: { id: number; displayName: string | null } };
   notificationTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-      name: string;
-    };
+    [id: number]: { id: number; type: string; name: string };
   };
-  imageHostingWatermarkTypes: {
-    id: number;
-    name: string;
-  }[];
-  teamMemberTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-      name: string;
-    };
-  };
+  imageHostingWatermarkTypes: { id: number; name: string }[];
+  teamMemberTypes: { [id: number]: { id: number; type: string; name: string } };
   teamMemberPermissionTypes: {
-    [id: number]: {
-      id: number;
-      type: string;
-      name: string;
-    };
+    [id: number]: { id: number; type: string; name: string };
   };
-  teamJoinPermissionTypes: {
-    id: number;
-    type: string;
-    name: string;
-  }[];
-  userPrizeShowLevelType: {
-    id: number;
-    type: string;
-    name: string;
-  }[];
+  teamJoinPermissionTypes: { id: number; type: string; name: string }[];
+  userPrizeShowLevelType: { id: number; type: string; name: string }[];
 }
 
 export interface TagsResponse {
-  tags: {
-    id: number;
-    name: string;
-    type: number;
-    parent: number;
-  }[];
-  types: {
-    id: number;
-    name: string;
-    color: string;
-  }[];
+  tags: { id: number; name: string; type: number; parent: number }[];
+  types: { id: number; name: string; color: string }[];
   version: number;
 }
 
 export interface ProblemData {
   problem: ProblemDetails & Maybe<ProblemStatus>;
   contest: ContestSummary | null;
-  discussions: {
-    id: number;
-    title: string;
-    forum: Forum;
-  }[];
+  discussions: { id: number; title: string; forum: Forum }[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
   recommendations: (ProblemSummary & Maybe<ProblemStatus>)[];
@@ -411,18 +309,12 @@ export interface SolutionsData {
 
 export interface ProblemSetListData {
   trainings: List<ProblemSet>;
-  acceptedCounts: {
-    [id: number]: number;
-  };
+  acceptedCounts: { [id: number]: number };
 }
 
 export interface ProblemSetData {
   training: ProblemSetDetails;
-  trainingProblems: {
-    result: [][];
-    perPage: null;
-    count: number;
-  };
+  trainingProblems: { result: [][]; perPage: null; count: number };
   canEdit: boolean;
   privilegedTeams: TeamSummary[];
 }
@@ -437,16 +329,12 @@ export interface ContestData {
   isScoreboardFrozen: boolean;
   accessLevel: number;
   joined: boolean;
+  userElo: (EloRating & { previous: EloRating | null }) | null;
 }
 
 export interface CreatedContestData {
-  contest: ContestDetails & {
-    joinCode: string;
-  };
-  contestProblems: {
-    score: number;
-    problem: ProblemSummary;
-  };
+  contest: ContestDetails & { joinCode: string };
+  contestProblems: { score: number; problem: ProblemSummary };
   contestSetting: ContestSettings;
   privilegedTeams: TeamSummary[];
 }
@@ -481,6 +369,7 @@ export interface Forum {
 
 export interface UserData {
   user: UserDetails & UserStats & Maybe<SelfDetails>;
+  eloMax: { rating: number; time: number; latest: boolean } | null;
   passedProblems?: ProblemSummary[];
   submittedProblems?: ProblemSummary[];
   teams?: {
@@ -498,14 +387,8 @@ export interface UserSettingsData {
   openSourceJoinTime: number;
   hasSet2FA: boolean;
   ccfLevelShowLevel: number;
-  vjudgeAccounts: {
-    oj: string;
-    username: string;
-  }[];
-  openIdAccounts: {
-    platform: number;
-    username: string;
-  }[];
+  vjudgeAccounts: { oj: string; username: string }[];
+  openIdAccounts: { platform: number; username: string }[];
   prizes: []; // TODO
   user: UserDetails & Maybe<SelfDetails>;
 }
@@ -520,9 +403,7 @@ export interface TeamData {
 
 export interface ChatListData {
   latestMessages: List<Message>;
-  unreadMessageCount: [] | {
-    [user: number]: number;
-  };
+  unreadMessageCount: { [user: number]: number } | [];
   currentChat: UserSummary | null;
 }
 
@@ -534,18 +415,12 @@ export interface ImageListData {
 
 export interface NotificationsData {
   notifications: List<Notification>;
-  hasUnreadNotification: [] | {
-    [type: number]: true;
-  };
+  hasUnreadNotification: { [type: number]: true } | [];
 }
 
 export interface ActivityData {
   uid: number;
-  time: {
-    date: string;
-    timezone_type: number;
-    timezone: string;
-  };
+  time: { date: string; timezone_type: number; timezone: string };
   type: number;
   comment: string;
 }
@@ -582,18 +457,11 @@ export interface ProblemDetails extends Problem {
     fileName: string;
   }[];
   canEdit: boolean;
-  limits: {
-    time: number[];
-    memory: number[];
-  };
+  limits: { time: number[]; memory: number[] };
   showScore: boolean;
   score: number | null;
   stdCode: string;
-  vjudge?: {
-    origin: string;
-    link: string;
-    id: string;
-  };
+  vjudge?: { origin: string; link: string; id: string };
   translation?: string;
 }
 
@@ -650,18 +518,12 @@ export interface ProblemSet {
 
 export interface ProblemSetDetails extends ProblemSet {
   description: string;
-  problems: {
-    problem: Problem;
-  }[];
+  problems: { problem: Problem }[];
   userScore: {
     user: UserSummary;
     totalScore: number;
-    score: {
-      [pid: string]: number | null;
-    };
-    status: {
-      [pid: string]: boolean;
-    };
+    score: { [pid: string]: number | null };
+    status: { [pid: string]: boolean };
   } | null;
 }
 
@@ -691,6 +553,7 @@ export interface Contest extends ContestSummary {
 export interface ContestDetails extends Contest {
   description: string;
   totalParticipants: number;
+  eloDone: boolean;
   canEdit: boolean;
 }
 
@@ -705,12 +568,7 @@ export interface ContestSettings {
 }
 
 export interface Score {
-  details: {
-    [pid: string]: {
-      score: number;
-      runningTime?: number;
-    };
-  } | [];
+  details: { [pid: string]: { score: number; runningTime?: number } } | [];
   user: UserSummary;
   score: number;
   runningTime: number;
@@ -733,10 +591,7 @@ export interface RecordBase {
 
 export interface RecordDetails extends RecordBase {
   detail: {
-    compileResult: {
-      success: boolean;
-      message: string | null;
-    } | null;
+    compileResult: { success: boolean; message: string | null } | null;
     judgeResult: {
       subtasks: {
         id: number;
@@ -803,17 +658,22 @@ export interface User extends UserSummary {
   followingCount: number;
   followerCount: number;
   ranking: number | null;
+  eloValue: number | null;
 }
 
 export interface UserDetails extends User {
   rating?: Rating;
   registerTime: number;
   introduction: string | null;
-  prize: {
-    year: number;
-    contestName: string;
-    prize: string;
-  }[];
+  prize: { year: number; contestName: string; prize: string }[];
+  elo: EloRating | null;
+}
+
+export interface EloRating {
+  contest: ContestSummary;
+  rating: number;
+  time: number;
+  latest: boolean;
 }
 
 export type UserStats = Maybe<UserRelationship> & UserPractice;
@@ -844,11 +704,7 @@ export interface TeamSummary {
 export interface Team extends TeamSummary {
   createTime: number;
   master: UserSummary;
-  setting: {
-    description: string;
-    notice?: string;
-    joinPermission: number;
-  };
+  setting: { description: string; notice?: string; joinPermission: number };
   premiumUntil?: number;
   type: number;
   memberCount: number;

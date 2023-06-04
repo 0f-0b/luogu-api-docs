@@ -30,6 +30,23 @@
   </tr>
 </table>
 
+## 获取历史等级分
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/rating/elo</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ user: number; page?: number; limit?: number; }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ records: List&lt;EloRating&gt;; }</code>)</td>
+  </tr>
+</table>
+
 ## 列出关注
 
 <table>
