@@ -73,7 +73,7 @@
 
 ## 同步登录状态
 
-**注**: 此处的域名为 www.luogu.org。
+**注**: 此处的域名为 `www.luogu.org`。
 
 <table>
   <tr>
@@ -82,11 +82,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ syncToken: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ syncToken: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ uid: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ uid: number }</code>)</td>
   </tr>
 </table>
 
@@ -117,11 +117,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ code: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ code: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ redirectTo: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ redirectTo: string }</code>)</td>
   </tr>
 </table>
 
@@ -134,6 +134,6 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ mode: string; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ mode: string }&gt;</code>)</td>
   </tr>
 </table>

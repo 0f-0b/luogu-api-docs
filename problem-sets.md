@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page?: number; }</code></td>
+    <td><code>{ page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page?: number; }</code></td>
+    <td><code>{ page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -73,11 +73,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page?: number; }</code></td>
+    <td><code>{ page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ trainingParticipations: List&lt;{ training: ProblemSet; user: UserSummary; }&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ trainingParticipations: List&lt;{ training: ProblemSet; user: UserSummary }&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -116,11 +116,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ settings: ProblemSetSettings; providerID: number | null; }</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: ProblemSetSettings; providerID: number | null }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: number }</code>)</td>
   </tr>
 </table>
 
@@ -133,11 +133,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ settings: ProblemSetSettings; }</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: ProblemSetSettings }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: number }</code>)</td>
   </tr>
 </table>
 
@@ -150,11 +150,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ pids: string[]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pids: string[] }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ addedProblems: string[]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ addedProblems: string[] }</code>)</td>
   </tr>
 </table>
 
@@ -167,7 +167,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ pids: string[]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pids: string[] }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -184,7 +184,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ type: number; providerID: number | null; }</code>)</td>
+    <td><code>application/json</code> (<code>{ type: number; providerID: number | null }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

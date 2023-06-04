@@ -52,7 +52,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ rankList: List&lt;Rating&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ rankList: List&lt;Rating&gt; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -82,7 +82,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ advertisement: { image: Image; url: string; id: number; }; }</code>)</td>
+    <td><code>application/json</code> (<code>{ advertisement: { image: Image; url: string; id: number } }</code>)</td>
   </tr>
 </table>
 
@@ -108,7 +108,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ token: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ token: string }</code>)</td>
   </tr>
 </table>
 
@@ -136,11 +136,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ token?: string; }</code></td>
+    <td><code>{ token?: string }</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ x: number; y: number; color: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ x: number; y: number; color: number }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

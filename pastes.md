@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ pastes: List&lt;Paste&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ pastes: List&lt;Paste&gt; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ paste: Paste; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ paste: Paste }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -35,11 +35,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ data?: string; public?: boolean; }</code>)</td>
+    <td><code>application/json</code> (<code>{ data?: string; public?: boolean }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: string }</code>)</td>
   </tr>
 </table>
 
@@ -52,11 +52,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ data?: string; public?: boolean; }</code>)</td>
+    <td><code>application/json</code> (<code>{ data?: string; public?: boolean }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: string }</code>)</td>
   </tr>
 </table>
 
@@ -69,6 +69,6 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: string }</code>)</td>
   </tr>
 </table>

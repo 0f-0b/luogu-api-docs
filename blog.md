@@ -9,11 +9,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user?: number; page?: number; }</code></td>
+    <td><code>{ user?: number; page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ blogs: List&lt;ArticleSummary&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ blogs: List&lt;ArticleSummary&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Article&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Article&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LegacyArticle&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LegacyArticle&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: number }</code>)</td>
   </tr>
 </table>
 
@@ -77,7 +77,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: number }</code>)</td>
   </tr>
 </table>
 
@@ -90,7 +90,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number }</code>)</td>
   </tr>
 </table>
 
@@ -103,11 +103,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ pageType: "list"; }</code></td>
+    <td><code>{ pageType: "list" }</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ method: "update"; "blog-id": number[]; "edit-status": number; "csrf-token": string; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ method: "update"; "blog-id": number[]; "edit-status": number; "csrf-token": string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -124,11 +124,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ pageType: "trash"; }</code></td>
+    <td><code>{ pageType: "trash" }</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ method: "recover" | "delete"; "blog-id": number[]; "csrf-token": string; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ method: "recover" | "delete"; "blog-id": number[]; "csrf-token": string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -145,11 +145,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page?: number; }</code></td>
+    <td><code>{ page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Comment&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Comment&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -162,11 +162,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ content: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ content: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; reply: Comment; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; reply: Comment }</code>)</td>
   </tr>
 </table>
 
@@ -179,11 +179,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ Type: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ Type: number }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: number }</code>)</td>
   </tr>
 </table>
 
@@ -196,10 +196,10 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ "reply-id": number; "csrf-token": string; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ "reply-id": number; "csrf-token": string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: string }</code>)</td>
   </tr>
 </table>

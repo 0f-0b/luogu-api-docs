@@ -9,11 +9,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user?: number; page?: number; }</code></td>
+    <td><code>{ user?: number; page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ feeds: List&lt;Activity&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ feeds: List&lt;Activity&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -26,11 +26,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page?: number; }</code></td>
+    <td><code>{ page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: ActivityData[]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: ActivityData[] }</code>)</td>
   </tr>
 </table>
 
@@ -43,11 +43,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: ActivityData; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: ActivityData }</code>)</td>
   </tr>
 </table>
 
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: []; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: [] }</code>)</td>
   </tr>
 </table>
 
@@ -73,10 +73,10 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ relevantID: number; reason: string; }</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>{ relevantID: number; reason: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: string }</code>)</td>
   </tr>
 </table>

@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;Problem &amp; Maybe&lt;ProblemStatus&gt;&gt;; page: number; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;Problem &amp; Maybe&lt;ProblemStatus&gt;&gt;; page: number }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -26,11 +26,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page?: number; }</code></td>
+    <td><code>{ page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ problems: List&lt;Problem&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ problems: List&lt;Problem&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ contestId?: number; }</code></td>
+    <td><code>{ contestId?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -73,11 +73,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number }</code>)</td>
   </tr>
 </table>
 
@@ -90,11 +90,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number }</code>)</td>
   </tr>
 </table>
 
@@ -107,15 +107,15 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ contestId?: number; }</code></td>
+    <td><code>{ contestId?: number }</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>SubmitCodeRequest</code>) 或 <code>multipart/form-data</code> (<code>{ file: Blob; }</code>)</td>
+    <td><code>application/json</code> (<code>SubmitCodeRequest</code>) 或 <code>multipart/form-data</code> (<code>{ file: Blob }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ rid: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ rid: number }</code>)</td>
   </tr>
 </table>
 
@@ -128,7 +128,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ translation: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ translation: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -149,7 +149,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string }</code>)</td>
   </tr>
 </table>
 
@@ -162,11 +162,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ settings: ProblemSettings; }</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: ProblemSettings }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string }</code>)</td>
   </tr>
 </table>
 
@@ -196,11 +196,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ type: string; teamID?: number; } | { operation: "clone"; type: "T"; teamID: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ type: string; teamID?: number } | { operation: "clone"; type: "T"; teamID: number }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ pid: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ pid: string }</code>)</td>
   </tr>
 </table>
 

@@ -13,6 +13,6 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: { rid: number; }; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: { rid: number } }</code>)</td>
   </tr>
 </table>

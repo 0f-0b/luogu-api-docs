@@ -22,11 +22,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ keyword: string; }</code></td>
+    <td><code>{ keyword: string }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: [UserSummary | null]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: [UserSummary | null] }</code>)</td>
   </tr>
 </table>
 
@@ -39,11 +39,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user: number; page?: number; limit?: number; }</code></td>
+    <td><code>{ user: number; page?: number; limit?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ records: List&lt;EloRating&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ records: List&lt;EloRating&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -56,11 +56,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user: number; page?: number; }</code></td>
+    <td><code>{ user: number; page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -73,11 +73,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user: number; page?: number; }</code></td>
+    <td><code>{ user: number; page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -90,11 +90,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user: number; page?: number; }</code></td>
+    <td><code>{ user: number; page?: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ users: List&lt;User &amp; UserStats&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -120,7 +120,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ settings: UserSettings; }</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: UserSettings }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -137,7 +137,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ slogan: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ slogan: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -154,7 +154,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ introduction: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ introduction: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -171,7 +171,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ imageID: string | null; }</code>)</td>
+    <td><code>application/json</code> (<code>{ imageID: string | null }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -205,7 +205,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ oj: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ oj: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

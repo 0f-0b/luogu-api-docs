@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ themes: List&lt;ThemeDetails&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ themes: List&lt;ThemeDetails&gt; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ theme: ThemeDetails; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ theme: ThemeDetails }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -56,7 +56,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: string }</code>)</td>
   </tr>
 </table>
 
@@ -73,7 +73,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ id: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ id: string }</code>)</td>
   </tr>
 </table>
 

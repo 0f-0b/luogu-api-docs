@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ members: TeamMember[]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ members: TeamMember[] }</code>)</td>
   </tr>
 </table>
 
@@ -35,11 +35,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page: number; }</code></td>
+    <td><code>{ page: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ problems: List&lt;Problem&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ problems: List&lt;Problem&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -52,11 +52,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page: number; }</code></td>
+    <td><code>{ page: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ trainings: List&lt;ProblemSet&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ trainings: List&lt;ProblemSet&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -69,11 +69,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ page: number; }</code></td>
+    <td><code>{ page: number }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ contests: List&lt;Contest&gt;; }</code>)</td>
+    <td><code>application/json</code> (<code>{ contests: List&lt;Contest&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -86,7 +86,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ applyMessage?: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ applyMessage?: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -116,11 +116,11 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ name: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ name: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ teamId: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ teamId: number }</code>)</td>
   </tr>
 </table>
 
@@ -133,7 +133,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ settings: { description: string; joinPermission: number; }; }</code>)</td>
+    <td><code>application/json</code> (<code>{ settings: { description: string; joinPermission: number } }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -150,7 +150,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ uid: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ uid: number }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -167,7 +167,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ notice: string; }</code>)</td>
+    <td><code>application/json</code> (<code>{ notice: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -201,7 +201,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ uid: number; reviewResult: "apply" | "refuse" | "ban"; }</code>)</td>
+    <td><code>application/json</code> (<code>{ uid: number; reviewResult: "apply" | "refuse" | "ban" }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -218,7 +218,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ uid: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ uid: number }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

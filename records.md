@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ records: List&lt;RecordBase&gt;; }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ records: List&lt;RecordBase&gt; }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -39,7 +39,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ testcaseId: number | null; }</code>)</td>
+    <td><code>application/json</code> (<code>{ testcaseId: number | null }</code>)</td>
   </tr>
 </table>
 
@@ -52,10 +52,10 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ testcaseId: number; }</code>)</td>
+    <td><code>application/json</code> (<code>{ testcaseId: number }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: { input: string; output: string; }; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: { input: string; output: string } }</code>)</td>
   </tr>
 </table>

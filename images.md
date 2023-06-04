@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ user: number; content: string; }</code></td>
+    <td><code>{ user: number; content: string }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ image: Image; }</code>)</td>
+    <td><code>application/json</code> (<code>{ image: Image }</code>)</td>
   </tr>
 </table>
 
@@ -39,7 +39,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ watermarkType: number; captcha: string; }</code></td>
+    <td><code>{ watermarkType: number; captcha: string }</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -56,7 +56,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ images: string[]; }</code>)</td>
+    <td><code>application/json</code> (<code>{ images: string[] }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
