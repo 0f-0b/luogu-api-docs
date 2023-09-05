@@ -5,7 +5,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /api/discuss</code></td>
+    <td><code>GET /fe/discuss</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: LegacyList&lt;LegacyPost&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;PostListData&gt;</code>)</td>
   </tr>
 </table>
 
@@ -30,7 +30,24 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ posts: List&lt;Post&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ posts: List&lt;LegacyPost&gt; }</code>)</td>
+  </tr>
+</table>
+
+## 获取讨论
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /fe/discuss/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ page?: number }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;PostData&gt;</code>)</td>
   </tr>
 </table>
 

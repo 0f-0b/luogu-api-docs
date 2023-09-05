@@ -25,26 +25,26 @@ export interface RecordListParams {
   orderBy?: number;
 }
 
-export interface ListThemesParams {
+export interface ThemeListParams {
   page?: number;
   orderBy?: string;
   order?: string;
   type?: string;
 }
 
-export interface ListArticlesParams {
+export interface ArticleListParams {
   uid: number;
   keyword?: string;
   type?: string;
   page?: number;
 }
 
-export interface GetRankingListParams {
+export interface RankingListParams {
   page?: number;
   orderBy?: number;
 }
 
-export interface GetNotificationsParams {
+export interface NotificationsParams {
   type?: number;
   page?: number;
 }
@@ -291,7 +291,7 @@ export interface TagsResponse {
 export interface ProblemData {
   problem: ProblemDetails & Maybe<ProblemStatus>;
   contest: ContestSummary | null;
-  discussions: { id: number; title: string; forum: Forum }[];
+  discussions: LegacyPostSummary[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
   recommendations: (ProblemSummary & Maybe<ProblemStatus>)[];
@@ -345,26 +345,17 @@ export interface RecordData {
   showStatus: boolean;
 }
 
-export interface Post {
-  top: number;
-  author: UserSummary;
-  time: number;
-  valid: boolean;
-  recentReply: Reply | null;
-  id: number;
-  title: string;
-  forum: Forum;
+export interface PostListData {
+  forum: Forum | null;
+  publicForums: Forum[];
+  posts: List<PostSummary>;
+  canPost: boolean;
 }
 
-export interface Reply {
-  author: UserSummary;
-  time: number;
-}
-
-export interface Forum {
-  id: number;
-  name: string;
-  slug: string;
+export interface PostData {
+  post: Post;
+  replies: List<Reply>;
+  canReply: boolean;
 }
 
 export interface UserData {
@@ -396,9 +387,15 @@ export interface UserSettingsData {
 export interface TeamData {
   team: Team;
   currentTeamMember: TeamMember | null;
-  latestDiscussions: Post[] | null;
+  latestDiscussions: LegacyPost[] | null;
   joinRequest: null; // TODO
   groups: Group[];
+  usages: {
+    problem: [number, number];
+    training: [number, number];
+    contest: [number, number];
+    file: [number, number];
+  };
 }
 
 export interface ChatListData {
@@ -618,6 +615,39 @@ export interface RecordDetails extends RecordBase {
     };
   };
   sourceCode: string;
+}
+
+export interface PostSummary {
+  id: number;
+  title: string;
+  author: UserSummary;
+  time: number;
+  forum: Forum;
+  topped: boolean;
+  valid: boolean;
+  replyCount: number;
+  recentReply: ReplySummary | false;
+}
+
+export interface Post extends PostSummary {
+  content: string;
+}
+
+export interface ReplySummary {
+  id: number;
+  author: UserSummary;
+  time: number;
+}
+
+export interface Reply extends ReplySummary {
+  content: string;
+}
+
+export interface Forum {
+  name: string;
+  type: number;
+  slug: string;
+  color: string;
 }
 
 export interface Activity {
@@ -853,32 +883,27 @@ export interface List<T> {
 }
 
 /** @deprecated */
-export interface LegacyPost {
-  PostID: number;
-  Title: string;
-  // deno-lint-ignore ban-types
-  Author: {};
-  Forum: LegacyForum;
-  Top: number;
-  SubmitTime: number;
-  isValid: boolean;
-  LatestReply: LegacyReply;
-  RepliesCount: number;
+export interface LegacyPostSummary {
+  id: number;
+  title: string;
+  forum: LegacyForum;
 }
 
 /** @deprecated */
-export interface LegacyReply {
-  // deno-lint-ignore ban-types
-  Author: {};
-  ReplyTime: number;
-  Content: string;
+export interface LegacyPost extends LegacyPostSummary {
+  top: number;
+  author: UserSummary;
+  time: number;
+  valid: boolean;
+  replyCount: number;
+  recentReply: ReplySummary | null;
 }
 
 /** @deprecated */
 export interface LegacyForum {
-  ForumID: number;
-  Name: string;
-  InternalName: string;
+  id: number;
+  name: string;
+  slug: string;
 }
 
 /** @deprecated */
@@ -894,10 +919,4 @@ export interface LegacyArticle {
   ContentDescription: string;
   ThumbUp: number;
   Content: string;
-}
-
-/** @deprecated */
-export interface LegacyList<T> {
-  count: number;
-  result: T[];
 }

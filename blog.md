@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>ListArticlesParams</code></td>
+    <td><code>ArticleListParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
