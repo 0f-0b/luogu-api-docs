@@ -679,7 +679,7 @@ export interface UserSummary {
   isBanned: boolean;
   color: string;
   ccfLevel: number;
-  background: string;
+  background: string | null;
   isRoot?: true;
 }
 
@@ -877,7 +877,7 @@ export interface Translations {
 export type Maybe<T> = {} | T;
 
 export interface List<T> {
-  result: T[];
+  result: T[] | Record<number, T>;
   count: number;
   perPage: number | null;
 }

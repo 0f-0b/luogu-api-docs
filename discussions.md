@@ -5,7 +5,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/discuss</code></td>
+    <td><code>GET /discuss</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
@@ -39,7 +39,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /fe/discuss/:id</code></td>
+    <td><code>GET /discuss/:id</code></td>
   </tr>
   <tr>
     <th align="right">参数</th>
