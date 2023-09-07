@@ -1,6 +1,6 @@
 # 讨论 API
 
-## 列出讨论
+## 列出帖子
 
 <table>
   <tr>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-## 列出发起的讨论
+## 列出发布的帖子
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
   </tr>
 </table>
 
-## 获取讨论
+## 获取帖子
 
 <table>
   <tr>
@@ -51,7 +51,7 @@
   </tr>
 </table>
 
-## 发起讨论
+## 发布帖子
 
 <table>
   <tr>
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>CreatePostRequest</code>)</td>
+    <td><code>application/json</code> (<code>CreatePostRequest</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -77,7 +77,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ content: string; captcha: string }</code>)</td>
+    <td><code>application/json</code> (<code>{ captcha: string; content: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -85,7 +85,7 @@
   </tr>
 </table>
 
-## 删除讨论
+## 删除帖子
 
 <table>
   <tr>
@@ -111,7 +111,7 @@
   </tr>
 </table>
 
-## 举报讨论
+## 举报帖子
 
 <table>
   <tr>
@@ -120,7 +120,24 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>{ relevantID: number; reason: string }</code>)</td>
+    <td><code>application/json</code> (<code>{ relevantID: number; reason: string }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ status: number; data: string }</code>)</td>
+  </tr>
+</table>
+
+## 举报回复
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/report/post_reply</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/json</code> (<code>{ relevantID: number; reason: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

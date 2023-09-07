@@ -74,10 +74,10 @@ export interface EditContestRequest {
 }
 
 export interface CreatePostRequest {
+  captcha: string;
+  content: string;
   title: string;
   forum: string;
-  content: string;
-  captcha: string;
 }
 
 export interface BindRemoteJudgeAccountRequest {
@@ -153,7 +153,7 @@ export interface DataResponse<T> {
   currentTitle: string;
   currentTheme: Theme | null;
   currentTime: number;
-  currentUser?: User & Self;
+  currentUser?: User & Maybe<Self>;
 }
 
 export interface UpdateTestCasesSettingsResponse {
@@ -353,6 +353,7 @@ export interface PostListData {
 }
 
 export interface PostData {
+  forum: Forum;
   post: Post;
   replies: List<Reply>;
   canReply: boolean;
@@ -688,7 +689,7 @@ export interface User extends UserSummary {
   followingCount: number;
   followerCount: number;
   ranking: number | null;
-  eloValue: number | null;
+  eloValue?: number | null;
 }
 
 export interface UserDetails extends User {
