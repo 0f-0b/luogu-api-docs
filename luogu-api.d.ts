@@ -166,6 +166,7 @@ export interface UpdateTestCasesSettingsResponse {
 export interface GetScoreboardResponse {
   scoreboard: List<Score>;
   userScore: Score | null;
+  userRank: number | null;
   firstBloodUID: { [pid: string]: number } | null;
 }
 
@@ -544,6 +545,7 @@ export interface Contest extends ContestSummary {
   visibilityType: number;
   invitationCodeType: number;
   rated: boolean;
+  eloThreshold: number | null;
   host: UserSummary | TeamSummary;
   problemCount: number;
 }
