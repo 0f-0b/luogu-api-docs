@@ -226,6 +226,7 @@ export interface ConfigResponse {
   contestAccessLevel: { id: number; name: string }[];
   rankingSortTypes: { id: number; valueName: string; name: string }[];
   openIdPlatformTypes: { [id: number]: string };
+  UserPermissionType: { [id: number]: { id: number; name: string } };
   contestVisibilityTypes: {
     id: number;
     name: string;
