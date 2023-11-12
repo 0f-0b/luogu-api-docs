@@ -331,7 +331,7 @@ export interface ContestData {
   isScoreboardFrozen: boolean;
   accessLevel: number;
   joined: boolean;
-  userElo: (EloRating & { previous: EloRating | null }) | null;
+  userElo: (EloRatingSummary & { previous: EloRatingSummary | null }) | null;
 }
 
 export interface CreatedContestData {
@@ -774,14 +774,7 @@ export interface UserDetails extends User {
   registerTime: number;
   introduction: string | null;
   prize: { year: number; contestName: string; prize: string }[];
-  elo: EloRating | null;
-}
-
-export interface EloRating {
-  contest: ContestSummary;
-  rating: number;
-  time: number;
-  latest: boolean;
+  elo: EloRatingSummary | null;
 }
 
 export type UserStats = Maybe<UserRelationship> & UserPractice;
@@ -909,6 +902,19 @@ export interface Rating {
   calculateTime: number;
   user: UserSummary;
   rating: number;
+}
+
+export interface EloRatingSummary {
+  contest: ContestSummary;
+  rating: number;
+  time: number;
+  latest: boolean;
+}
+
+export interface EloRating extends EloRatingSummary {
+  userCount: number;
+  prevDiff: number;
+  user: UserSummary;
 }
 
 export interface ArticleSummary {

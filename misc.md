@@ -56,6 +56,23 @@
   </tr>
 </table>
 
+## 获取等级分排名
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /ranking/elo</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ page?: number }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ ranking: List&lt;EloRating &amp; { previous: EloRating | null }&gt; }&gt;</code>)</td>
+  </tr>
+</table>
+
 ## 获取通知
 
 <table>
