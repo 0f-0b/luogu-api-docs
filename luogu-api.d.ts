@@ -477,6 +477,45 @@ export interface ClientboundServerBroadcastMessage
   _ws_type: "server_broadcast";
 }
 
+export interface ClientboundInitialRecordStatusMessageData {
+  detail: RecordStatus;
+  memory: `${number}` | null;
+  record: {
+    detail: RecordStatus;
+    enableO2: boolean;
+    id: number;
+    memory: `${number}`;
+    score?: `${number}`;
+    status: number;
+    time: `${number}`;
+  };
+  score: `${number}` | null;
+  status: number;
+  time: `${number}` | null;
+  type: "status_push";
+}
+
+export interface ClientboundUpdateRecordStatusMessageData {
+  record: {
+    detail: RecordStatus;
+    enableO2: boolean;
+    id: number;
+    memory: number;
+    score: number;
+    status: number;
+    time: number;
+  };
+  type: "status_push";
+}
+
+export interface ClientboundFlushRecordStatusMessageData {
+  type: "flush";
+}
+
+export type ClientboundRecordStatusMessageData =
+  | ClientboundUpdateRecordStatusMessageData
+  | ClientboundFlushRecordStatusMessageData;
+
 export interface ClientboundChatMessageData {
   message: {
     content: string;
@@ -654,23 +693,25 @@ export interface RecordBase {
 }
 
 export interface RecordDetails extends RecordBase {
-  detail: {
-    compileResult: {
-      success: boolean;
-      message: string | null;
-      opt2: boolean;
-    } | null;
-    judgeResult: {
-      subtasks: SubtaskStatus[] | { [group: number]: SubtaskStatus };
-      finishedCaseCount: number;
-      status: 0;
-      time: 0;
-      memory: 0;
-      score: 0;
-    };
-    version: number;
-  };
+  detail: RecordStatus;
   sourceCode?: string;
+}
+
+export interface RecordStatus {
+  compileResult: {
+    success: boolean;
+    message: string | null;
+    opt2: boolean;
+  } | null;
+  judgeResult: {
+    subtasks: SubtaskStatus[] | { [group: number]: SubtaskStatus };
+    finishedCaseCount: number;
+    status: 0;
+    time: 0;
+    memory: 0;
+    score: 0;
+  };
+  version: number;
 }
 
 export interface SubtaskStatus {

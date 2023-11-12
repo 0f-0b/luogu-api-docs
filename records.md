@@ -59,3 +59,24 @@
     <td><code>application/json</code> (<code>{ status: number; data: { input: string; output: string } }</code>)</td>
   </tr>
 </table>
+
+## 监听记录状态
+
+<table>
+  <tr>
+    <th align="right">WebSocket 频道</th>
+    <td><code>channel</code> = <code>record.track</code>, <code>channel_param</code> = <var>rid</var></td>
+  </tr>
+  <tr>
+    <th align="right">初始数据</th>
+    <td><code>ClientboundInitialRecordStatusMessageData</code></td>
+  </tr>
+  <tr>
+    <th align="right">接收数据</th>
+    <td><code>ClientboundRecordStatusMessageData</code></td>
+  </tr>
+  <tr>
+    <th align="right">发送数据</th>
+    <td><code>never</code></td>
+  </tr>
+</table>
