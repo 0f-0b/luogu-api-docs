@@ -80,3 +80,24 @@
     <td><code>application/json</code> (<code>{}</code>)</td>
   </tr>
 </table>
+
+## 监听私信
+
+<table>
+  <tr>
+    <th align="right">WebSocket 频道</th>
+    <td><code>channel</code> = <code>chat</code>, <code>channel_param</code> = <var>uid</var></td>
+  </tr>
+  <tr>
+    <th align="right">初始数据</th>
+    <td><code>""</code></td>
+  </tr>
+  <tr>
+    <th align="right">接收数据</th>
+    <td><code>ClientboundChatMessageData</code></td>
+  </tr>
+  <tr>
+    <th align="right">发送数据</th>
+    <td><code>never</code></td>
+  </tr>
+</table>

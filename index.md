@@ -36,6 +36,7 @@
 - [博客](blog)
 - [身份验证](auth)
 - [杂项](misc)
+- [WebSocket](ws)
 
 ## 范例
 
@@ -68,4 +69,31 @@ await fetch("https://www.luogu.com.cn/api/chat/new", {
   }),
   method: "POST",
 });
+```
+
+### WebSocket 连接
+
+监听私信，在日志中记录内容和双方的用户名。
+
+```js
+const ws = new WebSocket("wss://ws.luogu.com.cn/ws");
+ws.onopen = () => {
+  ws.send(JSON.stringify({
+    channel: "chat",
+    channel_param: `${_feInstance.currentUser.uid}`,
+    type: "join_channel",
+  }));
+};
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  switch (data._ws_type) {
+    case "server_broadcast": {
+      const { message } = data;
+      console.log(
+        `${message.sender.name} → ${message.receiver.name}: ${message.content}`,
+      );
+      break;
+    }
+  }
+};
 ```

@@ -425,6 +425,69 @@ export interface ActivityData {
   comment: string;
 }
 
+export interface BaseServerboundMessage {
+  channel: string;
+  channel_param: string;
+  type: string;
+}
+
+export interface ServerboundJoinChannelMessage extends BaseServerboundMessage {
+  type: "join_channel";
+  exclusive_key?: string;
+}
+
+export interface ServerboundDisconnectChannelMessage
+  extends BaseServerboundMessage {
+  type: "disconnect_channel";
+}
+
+export interface ServerboundDataMessage<T> extends BaseServerboundMessage {
+  type: "data";
+  data: T;
+}
+
+export interface BaseClientboundMessage {
+  _channel: string;
+  _channel_param: string;
+  _ws_type: string;
+}
+
+export interface ClientboundJoinResultMessage<T>
+  extends BaseClientboundMessage {
+  _ws_type: "join_result";
+  client_number: number;
+  result: "success";
+  type: "result";
+  welcome_message: T;
+}
+
+export interface ClientboundHeartbeatMessage extends BaseClientboundMessage {
+  _ws_type: "heartbeat";
+  client_number: number;
+  type: "heartbeat";
+}
+
+export interface ClientboundExclusiveKickoffMessage
+  extends BaseClientboundMessage {
+  _ws_type: "exclusive_kickoff";
+}
+
+export interface ClientboundServerBroadcastMessage
+  extends BaseClientboundMessage {
+  _ws_type: "server_broadcast";
+}
+
+export interface ClientboundChatMessageData {
+  message: {
+    content: string;
+    id: number;
+    receiver: UserSummary;
+    sender: UserSummary;
+    status: number;
+    time: number;
+  };
+}
+
 export interface ProblemSummary {
   pid: string;
   title: string;
