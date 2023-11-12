@@ -343,7 +343,7 @@ export interface CreatedContestData {
 
 export interface RecordData {
   record: RecordDetails;
-  testCaseGroup: number[][];
+  testCaseGroup: number[][] | { [group: number]: number[] };
   showStatus: boolean;
 }
 
@@ -592,33 +592,44 @@ export interface RecordBase {
 
 export interface RecordDetails extends RecordBase {
   detail: {
-    compileResult: { success: boolean; message: string | null } | null;
+    compileResult: {
+      success: boolean;
+      message: string | null;
+      opt2: boolean;
+    } | null;
     judgeResult: {
-      subtasks: {
-        id: number;
-        score: number;
-        status: number;
-        testCases: {
-          [id: number]: {
-            id: number;
-            status: number;
-            time: number;
-            memory: number;
-            score: number;
-            signal: number | null;
-            exitCode: number;
-            description: string;
-            subtaskID: number;
-          };
-        };
-        judger: null;
-        time: number;
-        memory: number;
-      }[];
+      subtasks: SubtaskStatus[] | { [group: number]: SubtaskStatus };
       finishedCaseCount: number;
+      status: 0;
+      time: 0;
+      memory: 0;
+      score: 0;
     };
+    version: number;
   };
-  sourceCode: string;
+  sourceCode?: string;
+}
+
+export interface SubtaskStatus {
+  id: number;
+  score: number;
+  status: number;
+  testCases: TestCaseStatus[] | { [id: number]: TestCaseStatus };
+  judger: "";
+  time: number;
+  memory: number;
+}
+
+export interface TestCaseStatus {
+  id: number;
+  status: number;
+  time: number;
+  memory: number;
+  score: number;
+  signal: number | null;
+  exitCode: number;
+  description: string | 0;
+  subtaskID: number;
 }
 
 export interface PostSummary {
