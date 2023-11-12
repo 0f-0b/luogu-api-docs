@@ -10,7 +10,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>客户端 → 服务端</code></td>
+    <td>客户端 → 服务端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
@@ -23,7 +23,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>客户端 → 服务端</code></td>
+    <td>客户端 → 服务端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
@@ -36,7 +36,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>客户端 → 服务端</code></td>
+    <td>客户端 → 服务端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
@@ -51,7 +51,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>服务端 → 客户端</code></td>
+    <td>服务端 → 客户端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
@@ -66,7 +66,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>服务端 → 客户端</code></td>
+    <td>服务端 → 客户端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
@@ -81,7 +81,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>服务端 → 客户端</code></td>
+    <td>服务端 → 客户端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
@@ -94,7 +94,7 @@ URI。连接中以 JSON 文本形式传输以下消息，其中
 <table>
   <tr>
     <th align="right">方向</th>
-    <td><code>服务端 → 客户端</code></td>
+    <td>服务端 → 客户端</td>
   </tr>
   <tr>
     <th align="right">内容</th>
