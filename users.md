@@ -13,6 +13,17 @@
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/user/:uid</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>UserData</code>)</td>
+  </tr>
+</table>
+
 ## 根据 UID 或名字搜索用户
 
 <table>
