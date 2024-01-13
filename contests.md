@@ -8,6 +8,10 @@
     <td><code>GET /contest/list</code></td>
   </tr>
   <tr>
+    <th align="right">参数</th>
+    <td><code>{ page?: number }</code></td>
+  </tr>
+  <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>DataResponse&lt;{ contests: List&lt;Contest&gt; }&gt;</code>)</td>
   </tr>
