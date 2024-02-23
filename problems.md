@@ -100,6 +100,8 @@
 
 ## 提交代码
 
+**注**：提交代码时，主页的 `CSRF` 令牌会失效，比如 `AT_abc001_a` 题目的提交需要页面`https://www.luogu.com.cn/problem/AT_abc001_a` 页面返回的 `CSRF` 令牌，而使用主页返回的令牌则无法通过鉴权。
+
 <table>
   <tr>
     <th align="right">请求</th>
