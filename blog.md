@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ blogs: List&lt;ArticleSummary&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ blogs: List&lt;BlogSummary&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -26,11 +26,11 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>ArticleListParams</code></td>
+    <td><code>BlogListParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Article&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;Blog&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LegacyArticle&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ status: number; data: List&lt;LegacyBlog&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -56,7 +56,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>EditArticleRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditBlogRequest</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -73,7 +73,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/x-www-form-urlencoded</code> (<code>EditArticleRequest</code>)</td>
+    <td><code>application/x-www-form-urlencoded</code> (<code>EditBlogRequest</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

@@ -18,6 +18,10 @@
 - 需要参数 `_contentOnly`（值任意）或头字段 `x-luogu-type`（值为
   `content-only`）。
 
+对于响应主体类型为 `LentilleDataResponse` 的请求：
+
+- 需要头字段 `x-lentille-request`（值为 `content-only`）。
+
 ## 目录
 
 - [题目](problems)
@@ -33,6 +37,7 @@
 - [图片](images)
 - [IDE](ide)
 - [剪贴板](pastes)
+- [专栏](articles)
 - [博客](blog)
 - [身份验证](auth)
 - [杂项](misc)

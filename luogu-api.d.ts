@@ -33,6 +33,15 @@ export interface ThemeListParams {
 }
 
 export interface ArticleListParams {
+  user: number;
+  page?: number;
+  category?: number;
+  ascending?: boolean;
+  promoted?: boolean;
+  title?: string;
+}
+
+export interface BlogListParams {
   uid: number;
   keyword?: string;
   type?: string;
@@ -117,6 +126,14 @@ export interface IDESubmitRequest {
 
 export interface EditArticleRequest {
   title: string;
+  category: number;
+  content: string;
+  solutionFor: string | null;
+  status: number;
+}
+
+export interface EditBlogRequest {
+  title: string;
   content: string;
   identifier: string;
   type: string;
@@ -154,6 +171,16 @@ export interface DataResponse<T> {
   currentTheme: Theme | null;
   currentTime: number;
   currentUser?: User & Maybe<Self>;
+}
+
+export interface LentilleDataResponse<T> {
+  instance: string;
+  template: string;
+  status: number;
+  locale: string;
+  data: T;
+  user: (UserSummary & Maybe<SelfSummary>) | null;
+  time: number;
 }
 
 export interface UpdateTestCasesSettingsResponse {
@@ -362,7 +389,7 @@ export interface ProblemData {
 }
 
 export interface SolutionsData {
-  solutions: List<ArticleDetails>;
+  solutions: List<BlogDetails>;
   problem: ProblemSummary;
   acceptSolution: boolean;
 }
@@ -469,6 +496,19 @@ export interface ImageListData {
   images: List<Image>;
   spaceLimit: number;
   spaceUsage: number;
+}
+
+export interface ArticleListData {
+  articles: List<Article>;
+  stat: { promoted: number; public: number; hidden: number };
+}
+
+export interface ArticleData {
+  article: ArticleDetails;
+  favored: boolean;
+  voted: number | null;
+  canReply: boolean;
+  canEdit: boolean;
 }
 
 export interface NotificationsData {
@@ -835,8 +875,11 @@ export interface Activity {
   user: UserSummary;
 }
 
-export interface Self {
+export interface SelfSummary {
   verified: boolean;
+}
+
+export interface Self extends SelfSummary {
   unreadMessageCount: number;
   unreadNoticeCount: number;
 }
@@ -849,6 +892,7 @@ export interface SelfDetails extends Self {
 
 export interface UserSummary {
   uid: number;
+  avatar: string;
   name: string;
   slogan: string | null;
   badge: string | null;
@@ -1016,13 +1060,36 @@ export interface EloRating extends EloRatingSummary {
   user: UserSummary;
 }
 
-export interface ArticleSummary {
+export interface Article {
+  lid: string;
+  title: string;
+  time: number;
+  author: UserSummary & Maybe<SelfSummary>;
+  upvote: number;
+  replyCount: number;
+  favorCount: number;
+  category: number;
+  status: number;
+  solutionFor: ProblemSummary | null;
+  promoteStatus: number;
+  content: string;
+  promoteResult?: { updateAt: null }; // TODO
+  categoryOld?: string;
+}
+
+export interface ArticleDetails extends Article {
+  id: number;
+  contentFull: boolean;
+}
+
+export interface BlogSummary {
+  lid: string;
   id: number;
   identifier: string;
   title: string;
 }
 
-export interface Article extends ArticleSummary {
+export interface Blog extends BlogSummary {
   type: string;
   status: number;
   postTime: number;
@@ -1033,7 +1100,7 @@ export interface Article extends ArticleSummary {
   contentDescription: string;
 }
 
-export interface ArticleDetails extends Article {
+export interface BlogDetails extends Blog {
   content: string;
 }
 
@@ -1090,7 +1157,7 @@ export interface LegacyForum {
 }
 
 /** @deprecated */
-export interface LegacyArticle {
+export interface LegacyBlog {
   BlogID: number;
   Identifier: string;
   Title: string;
