@@ -343,7 +343,7 @@ export interface ConfigResponse {
 }
 
 export interface TagsResponse {
-  tags: { id: number; name: string; type: number; parent: number }[];
+  tags: { id: number; name: string; type: number; parent: number | null }[];
   types: { id: number; name: string; color: string }[];
   version: number;
 }
