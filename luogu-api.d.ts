@@ -235,7 +235,6 @@ export interface ConfigResponse {
     scope: "disabled" | "global" | "team" | "personal";
     invitation: boolean;
   }[];
-  routes: { [id: string]: string };
   userRelationshipTypes: { id: number; type: string }[];
   scoringStrategyTypes: {
     [id: number]: { id: number; type: string; name: string };
@@ -282,6 +281,65 @@ export interface ConfigResponse {
   };
   teamJoinPermissionTypes: { id: number; type: string; name: string }[];
   userPrizeShowLevelType: { id: number; type: string; name: string }[];
+  ArticleCategory: {
+    [id: number]: {
+      type: string;
+      id: number;
+      name: string;
+      color: string | null;
+      locked: boolean;
+      listing: boolean;
+    };
+  };
+  ArticlePromoteStatus: {
+    type: string;
+    id: number;
+    name: string;
+    canSubmit: boolean;
+  }[];
+  ArticleStatus: { type: string; id: number; name: string }[];
+  ContestInvitationType: {
+    [id: number]: { type: string; id: number; name: string };
+  };
+  ContestMethodType: {
+    [id: number]: { type: string; id: number; name: string; color: string };
+  };
+  ContestPublicType: {
+    type: string;
+    id: number;
+    name: string;
+    color: string;
+    scope: "disabled" | "global" | "team" | "user";
+    userCreatable: boolean;
+    invitation: boolean;
+  }[];
+  OpenIdPlatformType: {
+    [id: number]: { type: string; id: number; name: string };
+  };
+  ProblemType: {
+    [id: string]: {
+      type: string;
+      id: string;
+      name: string;
+      vjudge: boolean;
+      userCreatable: boolean;
+      searchable: boolean;
+    };
+  };
+  TeamJoinPermissionType: { type: string; id: number; name: string }[];
+  TeamJoinRequestStatusType: { type: string; id: number; name: string }[];
+  TeamMemberType: { [id: number]: { type: string; id: number; name: string } };
+  TeamType: { [id: number]: { type: string; id: number; name: string } };
+  UserOpenSourceType: { [id: number]: { type: string; id: number } };
+  UserRelationshipType: { [id: number]: { type: string; id: number } };
+  VoteType: { [id: number]: { type: string; id: number } };
+  route: { [id: string]: string };
+  routeAttr: [];
+  _locale: string;
+  _instance: string;
+  routes: { [id: string]: string };
+  _version_lentille: string;
+  _version: number;
 }
 
 export interface TagsResponse {
