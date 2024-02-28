@@ -132,6 +132,12 @@ export interface EditArticleRequest {
   status: number;
 }
 
+export interface BatchEditArticleRequest {
+  status: number;
+  category: number;
+  lids: string[];
+}
+
 export interface EditBlogRequest {
   title: string;
   content: string;

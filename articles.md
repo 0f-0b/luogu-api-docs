@@ -113,6 +113,23 @@
   </tr>
 </table>
 
+## 批量修改文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/article/batchEdit</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/json</code> (<code>BatchEditArticleRequest</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ lids: string[] }</code>)</td>
+  </tr>
+</table>
+
 ## 收藏文章
 
 <table>
