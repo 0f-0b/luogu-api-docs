@@ -10,13 +10,11 @@
 对于非 `GET` 请求：
 
 - 头字段 `referer` 的值为 `https://www.luogu.com.cn/`。
-- 需要头字段 `x-csrf-token`，值为未失效的
-  [CSRF 令牌](misc#获取-csrf-令牌)（除非在请求主体中给出）。
+- 需要头字段 `x-csrf-token`，值为未失效的 [CSRF 令牌](misc#获取-csrf-令牌)（除非在请求主体中给出）。
 
 对于响应主体类型为 `DataResponse` 的请求：
 
-- 需要参数 `_contentOnly`（值任意）或头字段 `x-luogu-type`（值为
-  `content-only`）。
+- 需要参数 `_contentOnly`（值任意）或头字段 `x-luogu-type`（值为 `content-only`）。
 
 对于响应主体类型为 `LentilleDataResponse` 的请求：
 

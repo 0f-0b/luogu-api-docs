@@ -1,4 +1,7 @@
 {
+  "fmt": {
+    "proseWrap": "never"
+  },
   "tasks": {
     "lint": "deno fmt --check && deno lint"
   }

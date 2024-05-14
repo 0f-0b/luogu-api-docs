@@ -1,9 +1,6 @@
 # WebSocket API
 
-[获取配置](misc#获取配置)并从响应主体的 `.ws.server` 属性得到需连接的 WebSocket
-URI。连接中以 JSON 文本形式传输以下消息，其中
-<var>初始数据</var>、<var>接收数据</var> 和
-<var>发送数据</var> 的类型在具体频道的文档说明。
+[获取配置](misc#获取配置)并从响应主体的 `.ws.server` 属性得到需连接的 WebSocket URI。连接中以 JSON 文本形式传输以下消息，其中 <var>初始数据</var>、<var>接收数据</var> 和 <var>发送数据</var> 的类型在具体频道的文档说明。
 
 ## 请求加入频道
 
