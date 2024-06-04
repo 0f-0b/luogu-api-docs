@@ -1,6 +1,6 @@
 # 身份验证 API
 
-**注**: `_uid` 和 `__client_id` 是有关登录状态的 cookie；此页面部分 API 可能要求从其他路径（如 `/auth/login`）获取 CSRF 令牌。
+**注**: `_uid` 和 `__client_id` 是有关会话状态的 cookie。本页面部分接口可能要求从 `/` 以外的特定路径[获取 CSRF 令牌](misc#获取-csrf-令牌)。
 
 ## 获取验证码图片
 
@@ -54,7 +54,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /api/auth/userPassLogin</code></td>
+    <td><code>POST /do-auth/password</code></td>
   </tr>
   <tr>
     <th align="right">请求主体</th>
