@@ -1079,7 +1079,10 @@ export interface Article {
   solutionFor: ProblemSummary | null;
   promoteStatus: number;
   content: string;
-  promoteResult?: { updateAt: null }; // TODO
+  promoteResult?: {
+    updateAt: number | null;
+    rejectReason?: string | null;
+  };
   categoryOld?: string;
 }
 
