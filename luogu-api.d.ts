@@ -187,6 +187,7 @@ export interface LentilleDataResponse<T> {
   data: T;
   user: (UserSummary & Maybe<SelfSummary>) | null;
   time: number;
+  theme: Theme | null;
 }
 
 export interface UpdateTestCasesSettingsResponse {
@@ -259,7 +260,14 @@ export interface ConfigResponse {
   contestAccessLevel: { id: number; name: string }[];
   rankingSortTypes: { id: number; valueName: string; name: string }[];
   openIdPlatformTypes: { [id: number]: string };
-  UserPermissionType: { [id: number]: { id: number; name: string } };
+  UserPermissionType: {
+    [id: number]: {
+      type: string;
+      id: number;
+      name: string;
+      role: string | null;
+    };
+  };
   contestVisibilityTypes: {
     id: number;
     name: string;
@@ -363,11 +371,14 @@ export interface ConfigResponse {
   TeamJoinRequestStatusType: { type: string; id: number; name: string }[];
   TeamMemberType: { [id: number]: { type: string; id: number; name: string } };
   TeamType: { [id: number]: { type: string; id: number; name: string } };
+  UserNotificationType: {
+    [id: number]: { type: string; id: number; name: string };
+  };
   UserOpenSourceType: { [id: number]: { type: string; id: number } };
   UserRelationshipType: { [id: number]: { type: string; id: number } };
   VoteType: { [id: number]: { type: string; id: number } };
   route: { [id: string]: string };
-  routeAttr: [];
+  routeAttr: { [id: string]: { instance: string } };
   _locale: string;
   _instance: string;
   routes: { [id: string]: string };
@@ -515,6 +526,11 @@ export interface ArticleData {
   voted: number | null;
   canReply: boolean;
   canEdit: boolean;
+}
+
+export interface ArticleCollectionData {
+  articles: List<Article>;
+  collection: ArticleCollection;
 }
 
 export interface NotificationsData {
@@ -1078,6 +1094,7 @@ export interface Article {
   status: number;
   solutionFor: ProblemSummary | null;
   promoteStatus: number;
+  collection: ArticleCollectionSummary | null;
   content: string;
   promoteResult?: {
     updateAt: number | null;
@@ -1089,6 +1106,16 @@ export interface Article {
 export interface ArticleDetails extends Article {
   id: number;
   contentFull: boolean;
+}
+
+export interface ArticleCollectionSummary {
+  id: number;
+  name: string;
+}
+
+export interface ArticleCollection extends ArticleCollectionSummary {
+  opening: boolean;
+  categoryLimitation: null;
 }
 
 export interface BlogSummary {
