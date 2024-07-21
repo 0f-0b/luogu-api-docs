@@ -66,6 +66,36 @@
   </tr>
 </table>
 
+## 列出合集文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /article/collection/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ page?: number }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ArticleCollectionData&gt;</code>)</td>
+  </tr>
+</table>
+
+## 获取可投稿的官方合集
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /article/:lid/availableCollection</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ collections: ArticleCollectionSummary[] }</code>)</td>
+  </tr>
+</table>
+
 ## 创建文章
 
 <table>
@@ -195,7 +225,7 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>POST /api/article/deleteReply/:lid/:id</code></td>
+    <td><code>POST /article/:lid/deleteReply/:id</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
