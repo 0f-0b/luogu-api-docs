@@ -1159,6 +1159,13 @@ export interface Translations {
   [id: string]: string | Translations;
 }
 
+export interface Advertisement {
+  image: Image;
+  imageUrl: string;
+  url: string;
+  id: number;
+}
+
 // deno-lint-ignore ban-types
 export type Maybe<T> = {} | T;
 

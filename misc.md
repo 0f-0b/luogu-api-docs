@@ -99,7 +99,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ advertisement: { image: Image; url: string; id: number } }</code>)</td>
+    <td><code>application/json</code> (<code>{ advertisement: Advertisement | null }</code>)</td>
   </tr>
 </table>
 
