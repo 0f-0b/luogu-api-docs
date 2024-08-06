@@ -13,6 +13,20 @@
   </tr>
 </table>
 
+## 获取用户头像
+
+**主**: 此处的域名为 `https://cdn.luogu.com.cn`。
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET upload/usericon/{{ uid }}.png</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/octet-stream</code></td>
+  </tr>
+</table>
+
 ## 根据 UID 或名字搜索用户
 
 <table>
