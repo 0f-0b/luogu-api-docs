@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;ArticleListData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ArticleListData&gt;</code>)</td>
   </tr>
 </table>
 
