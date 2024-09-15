@@ -398,7 +398,7 @@ export interface ProblemData {
   discussions: LegacyPostSummary[];
   bookmarked: boolean;
   vjudgeUsername: string | null;
-  recommendations: (ProblemSummary & Maybe<ProblemStatus>)[];
+  recommendations: (LegacyProblemSummary & Maybe<ProblemStatus>)[];
   lastLanguage: number;
   lastCode: string;
   privilegedTeams: TeamSummary[];
@@ -406,8 +406,8 @@ export interface ProblemData {
 }
 
 export interface SolutionsData {
-  solutions: List<BlogDetails>;
-  problem: ProblemSummary;
+  solutions: List<ArticleDetails>;
+  problem: ProblemSummary & Maybe<ProblemStatus>;
   acceptSolution: boolean;
 }
 
@@ -427,7 +427,7 @@ export interface ContestData {
   contest: ContestDetails;
   contestProblems: {
     score: number;
-    problem: ProblemSummary;
+    problem: LegacyProblemSummary;
     submitted: boolean;
   }[];
   isScoreboardFrozen: boolean;
@@ -438,7 +438,7 @@ export interface ContestData {
 
 export interface CreatedContestData {
   contest: ContestDetails & { joinCode: string };
-  contestProblems: { score: number; problem: ProblemSummary };
+  contestProblems: { score: number; problem: LegacyProblemSummary };
   contestSetting: ContestSettings;
   privilegedTeams: TeamSummary[];
 }
@@ -466,8 +466,8 @@ export interface PostData {
 export interface UserData {
   user: UserDetails & UserStats & Maybe<SelfDetails>;
   eloMax: { rating: number; time: number; latest: boolean } | null;
-  passedProblems?: ProblemSummary[];
-  submittedProblems?: ProblemSummary[];
+  passedProblems?: LegacyProblemSummary[];
+  submittedProblems?: LegacyProblemSummary[];
   teams?: {
     team: TeamSummary;
     group: Group;
@@ -651,11 +651,10 @@ export interface ProblemSummary {
   pid: string;
   title: string;
   difficulty: number;
-  fullScore: number;
   type: string;
 }
 
-export interface Problem extends ProblemSummary {
+export interface Problem extends LegacyProblemSummary {
   tags: number[];
   wantsTranslation: boolean;
   totalSubmit: number;
@@ -800,7 +799,7 @@ export interface Score {
 export interface RecordBase {
   time: number | null;
   memory: number | null;
-  problem: ProblemSummary;
+  problem: LegacyProblemSummary;
   contest: ContestSummary | null;
   sourceCodeLength: number;
   submitTime: number;
@@ -1092,7 +1091,7 @@ export interface Article {
   favorCount: number;
   category: number;
   status: number;
-  solutionFor: ProblemSummary | null;
+  solutionFor: (ProblemSummary & Maybe<ProblemStatus>) | null;
   promoteStatus: number;
   collection: ArticleCollectionSummary | null;
   content: string;
@@ -1106,6 +1105,10 @@ export interface Article {
 export interface ArticleDetails extends Article {
   id: number;
   contentFull: boolean;
+  adminNote: string | null;
+  voted?: number | null;
+  canReply?: boolean;
+  canEdit?: boolean;
 }
 
 export interface ArticleCollectionSummary {
@@ -1134,10 +1137,6 @@ export interface Blog extends BlogSummary {
   commentCount: number;
   currentUserVoteType: number;
   contentDescription: string;
-}
-
-export interface BlogDetails extends Blog {
-  content: string;
 }
 
 export interface Comment {
@@ -1173,6 +1172,11 @@ export interface List<T> {
   result: T[] | Record<number, T>;
   count: number;
   perPage: number | null;
+}
+
+/** @deprecated */
+export interface LegacyProblemSummary extends ProblemSummary {
+  fullScore: number;
 }
 
 /** @deprecated */
