@@ -1165,8 +1165,7 @@ export interface Advertisement {
   id: number;
 }
 
-// deno-lint-ignore ban-types
-export type Maybe<T> = {} | T;
+export type Maybe<T> = T | { [K in keyof T]?: never };
 
 export interface List<T> {
   result: T[] | { [index: number]: T };
