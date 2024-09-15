@@ -649,9 +649,9 @@ export interface ClientboundChatMessageData {
 
 export interface ProblemSummary {
   pid: string;
+  type: string;
   title: string;
   difficulty: number;
-  type: string;
 }
 
 export interface Problem extends LegacyProblemSummary {
@@ -705,8 +705,8 @@ export interface ProblemSettings {
 }
 
 export interface ProblemStatus {
-  accepted: boolean;
   submitted: boolean;
+  accepted: boolean;
 }
 
 export interface TestCase {
@@ -913,8 +913,8 @@ export interface SelfDetails extends Self {
 
 export interface UserSummary {
   uid: number;
-  avatar: string;
   name: string;
+  avatar: string;
   slogan: string | null;
   badge: string | null;
   isAdmin: boolean;
@@ -1169,7 +1169,7 @@ export interface Advertisement {
 export type Maybe<T> = {} | T;
 
 export interface List<T> {
-  result: T[] | Record<number, T>;
+  result: T[] | { [index: number]: T };
   count: number;
   perPage: number | null;
 }
