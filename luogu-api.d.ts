@@ -808,12 +808,12 @@ export interface RecordBase {
   id: number;
   status: number;
   enableO2: boolean;
-  score?: number;
+  score?: number | null;
 }
 
 export interface RecordDetails extends RecordBase {
   detail: RecordStatus;
-  sourceCode?: string;
+  sourceCode?: string | null;
 }
 
 export interface RecordStatus {
@@ -829,7 +829,7 @@ export interface RecordStatus {
     time: 0;
     memory: 0;
     score: 0;
-  };
+  } | null;
   version: number;
 }
 
@@ -838,7 +838,7 @@ export interface SubtaskStatus {
   score: number;
   status: number;
   testCases: TestCaseStatus[] | { [id: number]: TestCaseStatus };
-  judger: "";
+  judger: "" | null;
   time: number;
   memory: number;
 }
