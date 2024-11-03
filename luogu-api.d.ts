@@ -517,6 +517,12 @@ export interface ImageListData {
 
 export interface ArticleListData {
   articles: List<Article>;
+  featuredCollections: ArticleCollectionSummary[];
+  category: number | null;
+}
+
+export interface CreatedArticleListData {
+  articles: List<Article>;
   stat: { promoted: number; public: number; hidden: number };
 }
 
@@ -530,6 +536,7 @@ export interface ArticleData {
 
 export interface ArticleCollectionData {
   articles: List<Article>;
+  featuredCollections: ArticleCollectionSummary[];
   collection: ArticleCollection;
 }
 
@@ -651,7 +658,7 @@ export interface ProblemSummary {
   pid: string;
   type: string;
   title: string;
-  difficulty: number;
+  difficulty: number | null;
 }
 
 export interface Problem extends LegacyProblemSummary {
@@ -1103,7 +1110,6 @@ export interface Article {
 }
 
 export interface ArticleDetails extends Article {
-  id: number;
   contentFull: boolean;
   adminNote: string | null;
   voted?: number | null;
@@ -1118,6 +1124,7 @@ export interface ArticleCollectionSummary {
 
 export interface ArticleCollection extends ArticleCollectionSummary {
   opening: boolean;
+  featured: number;
   categoryLimitation: null;
 }
 
@@ -1140,10 +1147,10 @@ export interface Blog extends BlogSummary {
 }
 
 export interface Comment {
-  content: string;
   id: number;
-  author: UserSummary;
+  author: UserSummary & Maybe<SelfSummary>;
   time: number;
+  content: string;
 }
 
 export interface PageTree {
