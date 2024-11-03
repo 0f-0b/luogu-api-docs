@@ -5,6 +5,23 @@
 <table>
   <tr>
     <th align="right">请求</th>
+    <td><code>GET /article</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ category?: number; page?: number }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ArticleListData&gt;</code>)</td>
+  </tr>
+</table>
+
+## 列出用户文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
     <td><code>GET /api/article/find</code></td>
   </tr>
   <tr>
@@ -17,7 +34,7 @@
   </tr>
 </table>
 
-## 列出发布的文章
+## 列出创建的文章
 
 <table>
   <tr>
@@ -30,7 +47,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ArticleListData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;CreatedArticleListData&gt;</code>)</td>
   </tr>
 </table>
 
@@ -177,6 +194,23 @@
   </tr>
 </table>
 
+## 赞/踩文章
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /api/article/vote/:lid</code></td>
+  </tr>
+  <tr>
+    <th align="right">参数</th>
+    <td><code>{ vote: number }</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ voted: number; upvotes: number }</code>)</td>
+  </tr>
+</table>
+
 ## 申请全站推荐
 
 <table>
@@ -217,6 +251,23 @@
   <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ replySlice: Comment[] }</code>)</td>
+  </tr>
+</table>
+
+## 发表评论
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>POST /article/:lid/reply</code></td>
+  </tr>
+  <tr>
+    <th align="right">请求主体</th>
+    <td><code>application/json</code> (<code>{ content: string }</code>)</td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ reply: Comment }</code>)</td>
   </tr>
 </table>
 
