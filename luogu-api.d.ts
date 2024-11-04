@@ -437,8 +437,9 @@ export interface ContestData {
 }
 
 export interface CreatedContestData {
+  isContestAdmin: boolean;
   contest: ContestDetails & { joinCode: string };
-  contestProblems: { score: number; problem: LegacyProblemSummary };
+  contestProblems: { score: number; problem: LegacyProblemSummary }[];
   contestSetting: ContestSettings;
   privilegedTeams: TeamSummary[];
 }
@@ -794,6 +795,10 @@ export interface ContestSettings {
   ruleType: number;
   startTime: number;
   endTime: number;
+  rated: boolean;
+  ratingGroup: string | null;
+  eloThreshold: number | null;
+  eloCenter: number | null;
 }
 
 export interface Score {

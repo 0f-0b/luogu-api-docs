@@ -64,6 +64,19 @@
   </tr>
 </table>
 
+## 获取创建的比赛
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /contest/edit/:id</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>DataResponse&lt;CreatedContestData&gt;</code>)</td>
+  </tr>
+</table>
+
 ## 获取排行榜
 
 <table>
