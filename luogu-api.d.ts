@@ -429,7 +429,7 @@ export interface ContestData {
     score: number;
     problem: LegacyProblemSummary;
     submitted: boolean;
-  }[];
+  }[] | null;
   isScoreboardFrozen: boolean;
   accessLevel: number;
   joined: boolean;
