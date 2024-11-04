@@ -466,8 +466,8 @@ export interface PostData {
 export interface UserData {
   user: UserDetails & UserStats & Maybe<SelfDetails>;
   eloMax: { rating: number; time: number; latest: boolean } | null;
-  passedProblems?: LegacyProblemSummary[];
-  submittedProblems?: LegacyProblemSummary[];
+  passedProblems?: ProblemSummary[];
+  submittedProblems?: ProblemSummary[];
   teams?: {
     team: TeamSummary;
     group: Group;
