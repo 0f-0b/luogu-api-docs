@@ -875,12 +875,14 @@ export interface PostSummary {
   forum: Forum;
   topped: boolean;
   valid: boolean;
+  locked: boolean;
   replyCount: number;
   recentReply: ReplySummary | false;
 }
 
 export interface Post extends PostSummary {
   content: string;
+  pinnedReply: Reply | null;
 }
 
 export interface ReplySummary {
@@ -938,11 +940,11 @@ export interface UserSummary {
 }
 
 export interface User extends UserSummary {
-  blogAddress: string | null;
   followingCount: number;
   followerCount: number;
   ranking: number | null;
-  eloValue?: number | null;
+  eloValue: number | null;
+  blogAddress: string | null;
 }
 
 export interface UserDetails extends User {
