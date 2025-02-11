@@ -191,7 +191,7 @@ export interface LentilleDataResponse<T> {
 }
 
 export interface UpdateTestCasesSettingsResponse {
-  problem: ProblemDetails;
+  problem: LegacyProblemDetails;
   testCases: TestCase[];
   scoringStrategy: ScoringStrategy;
   subtaskScoringStrategies: ScoringStrategy[];
@@ -357,6 +357,13 @@ export interface ConfigResponse {
   OpenIdPlatformType: {
     [id: number]: { type: string; id: number; name: string };
   };
+  ProblemDifficulty: {
+    type: string;
+    id: number;
+    name: string;
+    color: string;
+  }[];
+  ProblemFlag: { [id: number]: { type: string; id: number; name: string } };
   ProblemType: {
     [id: string]: {
       type: string;
@@ -367,15 +374,40 @@ export interface ConfigResponse {
       searchable: boolean;
     };
   };
+  CodeLanguage: {
+    [id: number]: {
+      type: string;
+      id: number;
+      name: string;
+      order: number;
+      family: string | null;
+      disabled: boolean;
+      canO2: boolean;
+      fileExt: string[];
+      hljs: string;
+    };
+  };
+  RecordStatus: {
+    [id: number]: {
+      type: string;
+      id: number;
+      name: string;
+      shortName: string;
+      color: string;
+      filterable: boolean;
+    };
+  };
   TeamJoinPermissionType: { type: string; id: number; name: string }[];
   TeamJoinRequestStatusType: { type: string; id: number; name: string }[];
   TeamMemberType: { [id: number]: { type: string; id: number; name: string } };
   TeamType: { [id: number]: { type: string; id: number; name: string } };
+  UserMessageReceiveMode: { type: string; id: number }[];
   UserNotificationType: {
     [id: number]: { type: string; id: number; name: string };
   };
+  UserOfflinePrizeShowLevel: { type: string; id: number; name: string }[];
   UserOpenSourceType: { [id: number]: { type: string; id: number } };
-  UserRelationshipType: { [id: number]: { type: string; id: number } };
+  UserRelationship: { [id: number]: { type: string; id: number } };
   VoteType: { [id: number]: { type: string; id: number } };
   route: { [id: string]: string };
   routeAttr: { [id: string]: { instance: string } };
@@ -394,15 +426,16 @@ export interface TagsResponse {
 
 export interface ProblemData {
   problem: ProblemDetails & Maybe<ProblemStatus>;
-  contest: ContestSummary | null;
-  discussions: LegacyPostSummary[];
+  translations: { [locale: string]: ProblemContents };
   bookmarked: boolean;
+  contest: ContestSummary | null;
   vjudgeUsername: string | null;
-  recommendations: (LegacyProblemSummary & Maybe<ProblemStatus>)[];
-  lastLanguage: number;
-  lastCode: string;
-  privilegedTeams: TeamSummary[];
-  userTranslation: null; // TODO
+  lastLanguage: number | null;
+  lastCode: string | null;
+  recommendations: (ProblemSummary & Maybe<ProblemStatus>)[];
+  forum: Forum | null;
+  discussions: PostSummary[] | null;
+  canEdit: boolean;
 }
 
 export interface SolutionsData {
@@ -453,13 +486,13 @@ export interface RecordData {
 export interface PostListData {
   forum: Forum | null;
   publicForums: Forum[];
-  posts: List<PostSummary>;
+  posts: List<Post>;
   canPost: boolean;
 }
 
 export interface PostData {
   forum: Forum;
-  post: Post;
+  post: PostDetails;
   replies: List<Reply>;
   canReply: boolean;
 }
@@ -662,7 +695,7 @@ export interface ProblemSummary {
   difficulty: number | null;
 }
 
-export interface Problem extends LegacyProblemSummary {
+export interface Problem extends ProblemSummary {
   tags: number[];
   wantsTranslation: boolean;
   totalSubmit: number;
@@ -671,27 +704,38 @@ export interface Problem extends LegacyProblemSummary {
 }
 
 export interface ProblemDetails extends Problem {
+  provider: (UserSummary & Maybe<SelfSummary>) | TeamSummary;
+  content: ProblemContents;
+  attachments: ProblemAttachment[];
+  acceptSolution: boolean;
+  acceptLanguages: number[];
+  samples: [input: string, output: string][];
+  limits: { time: number[]; memory: number[] };
+  stdCode: string;
+  showScore?: boolean;
+  score?: number | null;
+  vjudge?: { id: string; link: string };
+  translation: string;
+}
+
+export interface ProblemContents {
+  user: null;
+  version: 1;
+  name: string;
   background: string;
   description: string;
-  inputFormat: string;
-  outputFormat: string;
-  samples: [string, string][];
+  formatI: string;
+  formatO: string;
   hint: string;
-  provider: UserSummary | TeamSummary;
-  attachments: {
-    size: number;
-    uploadTime: number;
-    downloadLink: string;
-    id: string;
-    fileName: string;
-  }[];
-  canEdit: boolean;
-  limits: { time: number[]; memory: number[] };
-  showScore: boolean;
-  score: number | null;
-  stdCode: string;
-  vjudge?: { origin: string; link: string; id: string };
-  translation?: string;
+  locale: string;
+}
+
+export interface ProblemAttachment {
+  id: string;
+  filename: string;
+  size: number;
+  uploadTime: number;
+  downloadLink: string;
 }
 
 export interface ProblemSettings {
@@ -700,16 +744,16 @@ export interface ProblemSettings {
   description: string;
   inputFormat: string;
   outputFormat: string;
-  samples: [string, string][];
+  samples: [input: string, output: string][];
   hint: string;
   translation: string;
   needsTranslation: boolean;
   acceptSolution: boolean;
   allowDataDownload: boolean;
-  tags: number[];
   difficulty: number;
   showScore: boolean;
   flag: number;
+  tags: number[];
 }
 
 export interface ProblemStatus {
@@ -730,7 +774,7 @@ export interface TestCase {
 
 export interface ScoringStrategy {
   type: number;
-  script: string;
+  script?: string;
 }
 
 export interface ProblemSet {
@@ -747,7 +791,7 @@ export interface ProblemSet {
 
 export interface ProblemSetDetails extends ProblemSet {
   description: string;
-  problems: { problem: Problem }[];
+  problems: { problem: LegacyProblem }[];
   userScore: {
     user: UserSummary;
     totalScore: number;
@@ -872,6 +916,9 @@ export interface PostSummary {
   title: string;
   author: UserSummary;
   time: number;
+}
+
+export interface Post extends PostSummary {
   forum: Forum;
   topped: boolean;
   valid: boolean;
@@ -880,7 +927,7 @@ export interface PostSummary {
   recentReply: ReplySummary | false;
 }
 
-export interface Post extends PostSummary {
+export interface PostDetails extends Post {
   content: string;
   pinnedReply: Reply | null;
 }
@@ -1190,6 +1237,31 @@ export interface List<T> {
 /** @deprecated */
 export interface LegacyProblemSummary extends ProblemSummary {
   fullScore: number;
+}
+
+/** @deprecated */
+export interface LegacyProblem extends LegacyProblemSummary {
+  tags: number[];
+  wantsTranslation: boolean;
+  totalSubmit: number;
+  totalAccepted: number;
+  flag: number;
+}
+
+/** @deprecated */
+export interface LegacyProblemDetails extends LegacyProblem {
+  background: string;
+  description: string;
+  inputFormat: string;
+  outputFormat: string;
+  samples: [input: string, output: string][];
+  hint: string;
+  provider: UserSummary | TeamSummary;
+  attachments: ProblemAttachment[];
+  canEdit: boolean;
+  limits: { time: number[]; memory: number[] };
+  stdCode: string;
+  translation?: string;
 }
 
 /** @deprecated */

@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;Problem &amp; Maybe&lt;ProblemStatus&gt;&gt;; page: number }&gt;</code>)</td>
+    <td><code>application/json</code> (<code>DataResponse&lt;{ problems: List&lt;LegacyProblem &amp; Maybe&lt;ProblemStatus&gt;&gt;; page: number }&gt;</code>)</td>
   </tr>
 </table>
 
@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>{ problems: List&lt;Problem&gt; }</code>)</td>
+    <td><code>application/json</code> (<code>{ problems: List&lt;LegacyProblem&gt; }</code>)</td>
   </tr>
 </table>
 
@@ -47,7 +47,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;ProblemData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ProblemData&gt;</code>)</td>
   </tr>
 </table>
 
