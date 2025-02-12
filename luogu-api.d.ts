@@ -972,6 +972,15 @@ export interface SelfDetails extends Self {
   phone: string;
 }
 
+export type UserColor =
+  | "Cheater"
+  | "Gray"
+  | "Blue"
+  | "Green"
+  | "Orange"
+  | "Red"
+  | "Purple";
+
 export interface UserSummary {
   uid: number;
   name: string;
@@ -980,7 +989,7 @@ export interface UserSummary {
   badge: string | null;
   isAdmin: boolean;
   isBanned: boolean;
-  color: string;
+  color: UserColor;
   ccfLevel: number;
   background: string | null;
   isRoot?: true;
