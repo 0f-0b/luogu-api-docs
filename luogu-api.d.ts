@@ -997,6 +997,7 @@ export interface UserSummary {
   isBanned: boolean;
   color: UserColor;
   ccfLevel: number;
+  xcpcLevel: number;
   background: string | null;
   isRoot?: true;
 }
