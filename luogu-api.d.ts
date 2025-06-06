@@ -41,6 +41,15 @@ export interface ArticleListParams {
   title?: string;
 }
 
+export interface CreatedArticleListParams {
+  page?: number;
+  category?: number;
+  status?: number;
+  time?: "asc" | "desc";
+  type?: "all" | "promotion";
+  title?: string;
+}
+
 export interface BlogListParams {
   uid: number;
   keyword?: string;
