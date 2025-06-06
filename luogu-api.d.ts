@@ -1181,6 +1181,7 @@ export interface Article {
   promoteStatus: number;
   collection: ArticleCollectionSummary | null;
   content: string;
+  top: number;
   promoteResult?: {
     updateAt: number | null;
     rejectReason?: string | null;
