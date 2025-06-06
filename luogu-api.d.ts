@@ -342,7 +342,7 @@ export interface ConfigResponse {
   ContestInvitationType: {
     [id: number]: { type: string; id: number; name: string };
   };
-  ContestMethodType: {
+  ContestMethod: {
     [id: number]: { type: string; id: number; name: string; color: string };
   };
   ContestPublicType: {
@@ -354,9 +354,8 @@ export interface ConfigResponse {
     userCreatable: boolean;
     invitation: boolean;
   }[];
-  OpenIdPlatformType: {
-    [id: number]: { type: string; id: number; name: string };
-  };
+  ImageHostingWatermarkStyle: { type: string; id: number }[];
+  OpenIdPlatform: { [id: number]: { type: string; id: number; name: string } };
   ProblemDifficulty: {
     type: string;
     id: number;
@@ -397,20 +396,27 @@ export interface ConfigResponse {
       filterable: boolean;
     };
   };
-  TeamJoinPermissionType: { type: string; id: number; name: string }[];
-  TeamJoinRequestStatusType: { type: string; id: number; name: string }[];
+  SendEndpoint: { [id: number]: { type: string; id: number } };
+  TeamJoinOpenness: { type: string; id: number; name: string }[];
+  TeamJoinRequestStatus: { type: string; id: number; name: string }[];
   TeamMemberType: { [id: number]: { type: string; id: number; name: string } };
   TeamType: { [id: number]: { type: string; id: number; name: string } };
-  UserMessageReceiveMode: { type: string; id: number }[];
+  TicketActionType: { [id: string]: { type: string; id: string } };
+  TicketStatus: {
+    [id: number]: { type: string; id: number; name: string; color: string };
+  };
+  UserMessageReceiveMode: { type: string; id: number; name: string }[];
   UserNotificationType: {
     [id: number]: { type: string; id: number; name: string };
   };
   UserOfflinePrizeShowLevel: { type: string; id: number; name: string }[];
-  UserOpenSourceType: { [id: number]: { type: string; id: number } };
+  UserOpenSourceType: {
+    [id: number]: { type: string; id: number; name: string };
+  };
   UserRelationship: { [id: number]: { type: string; id: number } };
   VoteType: { [id: number]: { type: string; id: number } };
   route: { [id: string]: string };
-  routeAttr: { [id: string]: { instance: string } };
+  routeAttr: { [id: string]: { instance?: string; rawLink?: boolean } };
   _locale: string;
   _instance: string;
   routes: { [id: string]: string };
