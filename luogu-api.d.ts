@@ -139,6 +139,7 @@ export interface EditArticleRequest {
   content: string;
   solutionFor: string | null;
   status: number;
+  top: number;
 }
 
 export interface BatchEditArticleRequest {
