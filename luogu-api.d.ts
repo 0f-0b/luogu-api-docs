@@ -71,6 +71,7 @@ export interface SubmitCodeRequest {
   code: string;
   lang?: number;
   enableO2?: number;
+  captcha: string;
 }
 
 export interface CreateProblemRequest {
