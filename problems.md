@@ -113,7 +113,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>SubmitCodeRequest</code>) 或 <code>multipart/form-data</code> (<code>{ file: Blob }</code>)</td>
+    <td><code>application/json</code> (<code>SubmitCodeRequest</code>) 或 <code>multipart/form-data</code> (<code>{ file: Blob; captcha?: string }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
