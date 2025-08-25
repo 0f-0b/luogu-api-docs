@@ -159,13 +159,6 @@ export interface EditBlogRequest {
   "csrf-token": string;
 }
 
-export interface SendVerificationCodeRequest {
-  endpoint: string;
-  endpointType: number;
-  captcha: string;
-  userExist: boolean;
-}
-
 export interface RegisterRequest {
   username: string;
   password: string;

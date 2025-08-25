@@ -220,11 +220,11 @@
 <table>
   <tr>
     <th align="right">请求</th>
-    <td><code>GET /api/openid/connect/:id</code></td>
+    <td><code>GET /openid/:id/bind</code></td>
   </tr>
 </table>
 
-## 解除绑定 OpenID
+## 解绑 OpenID
 
 <table>
   <tr>
