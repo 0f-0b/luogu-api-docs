@@ -50,7 +50,7 @@
 ```js
 await fetch("https://www.luogu.com.cn/problem/list?type=P&keyword=模板", {
   headers: [
-    ["x-luogu-type", "content-only"],
+    ["x-lentille-request", "content-only"],
   ],
 });
 ```
