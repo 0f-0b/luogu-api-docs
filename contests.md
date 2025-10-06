@@ -103,7 +103,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ code?: string }</code>)</td>
+    <td><code>application/json</code> (<code>{ code?: string; unrated?: boolean }</code>)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
