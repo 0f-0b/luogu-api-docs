@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;UserData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;UserData&gt;</code>)</td>
   </tr>
 </table>
 
