@@ -995,6 +995,7 @@ export interface Forum {
   type: number;
   slug: string;
   color: string;
+  problem?: ProblemSummary & Maybe<ProblemStatus>;
 }
 
 export interface Activity {
