@@ -15,10 +15,16 @@
 对于响应主体类型为 `DataResponse` 的请求：
 
 - 需要参数 `_contentOnly`（值任意）或头字段 `x-luogu-type`（值为 `content-only`）。
+- 返回格式为 `{ code, currentTemplate, currentData, currentTitle, currentTheme, currentTime, currentUser }`，数据在 `currentData` 中。
 
 对于响应主体类型为 `LentilleDataResponse` 的请求：
 
 - 需要头字段 `x-lentille-request`（值为 `content-only`）。
+- 返回格式为 `{ instance, template, status, locale, data, user, time, theme }`，数据在 `data` 中。
+
+对于返回 HTML 的页面：
+
+- `<script>` 标签内嵌入完整的 JSON 数据，格式同 `LentilleDataResponse`。
 
 ## 目录
 

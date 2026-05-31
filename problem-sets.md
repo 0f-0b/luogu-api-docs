@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetListData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ProblemSetListData&gt;</code>)</td>
   </tr>
 </table>
 
@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;ProblemSetData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;ProblemSetData&gt;</code>)</td>
   </tr>
 </table>
 
