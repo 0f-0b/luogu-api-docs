@@ -6,7 +6,7 @@
       - name: user
         in: query
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 用户动态列表
@@ -18,14 +18,14 @@
                 feeds:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/Activity'
+                    $ref: "../openapi.yaml#/components/schemas/Activity"
 
 /api/feed/watching:
   get:
     tags: [动态]
     summary: 获取关注的用户的动态
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 关注用户的动态

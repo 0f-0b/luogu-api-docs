@@ -6,21 +6,21 @@
       - name: forum
         in: query
         schema: { type: string }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 帖子列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/createdPosts:
   get:
     tags: [讨论]
     summary: 列出发布的帖子
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: orderBy
         in: query
         schema: { type: string }
@@ -45,7 +45,7 @@
         in: path
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: sort
         in: query
         schema: { type: string }
@@ -55,7 +55,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/discuss/post:
   post:
@@ -65,7 +65,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/CreatePostRequest'
+            $ref: "../openapi.yaml#/components/schemas/CreatePostRequest"
     responses:
       "200":
         description: 发布成功

@@ -16,7 +16,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
 
 /api/image/detail/{id}:
   get:
@@ -36,7 +36,7 @@
               type: object
               properties:
                 image:
-                  $ref: '../openapi.yaml#/components/schemas/Image'
+                  $ref: "../openapi.yaml#/components/schemas/Image"
 
 /api/image/generateUploadLink:
   get:

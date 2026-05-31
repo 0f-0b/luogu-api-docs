@@ -814,4 +814,3 @@ LoginResponse:
     syncToken: { type: string }
     locked: { type: boolean }
     redirectTo: { type: string }
-

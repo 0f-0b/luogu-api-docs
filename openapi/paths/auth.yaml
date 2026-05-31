@@ -46,7 +46,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/RegisterRequest'
+            $ref: "../openapi.yaml#/components/schemas/RegisterRequest"
     responses:
       "200":
         description: 注册成功
@@ -63,14 +63,14 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/LoginRequest'
+            $ref: "../openapi.yaml#/components/schemas/LoginRequest"
     responses:
       "200":
         description: 登录成功
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LoginResponse'
+              $ref: "../openapi.yaml#/components/schemas/LoginResponse"
 
 /openid/{id}/connect:
   get:
@@ -120,7 +120,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LoginResponse'
+              $ref: "../openapi.yaml#/components/schemas/LoginResponse"
 
 /auth/motp/request:
   post:
@@ -165,7 +165,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LoginResponse'
+              $ref: "../openapi.yaml#/components/schemas/LoginResponse"
 
 /auth/unlock:
   get:
@@ -177,4 +177,4 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"

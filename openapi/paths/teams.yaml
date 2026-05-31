@@ -13,7 +13,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /user/mine/team:
   get:
@@ -25,7 +25,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /team/{id}/member:
   get:
@@ -42,7 +42,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /team/{id}/problem:
   get:
@@ -63,14 +63,14 @@
       - name: order
         in: query
         schema: { type: string, enum: [asc, desc] }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 团队题目列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /team/{id}/training:
   get:
@@ -82,14 +82,14 @@
         in: path
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 团队题单列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /team/{id}/contest:
   get:
@@ -100,14 +100,14 @@
         in: path
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 团队比赛列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/team/join/{id}:
   post:
@@ -263,14 +263,14 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/ManageTeamMemberRequest'
+            $ref: "../openapi.yaml#/components/schemas/ManageTeamMemberRequest"
     responses:
       "200":
         description: 管理成功
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/TeamMember'
+              $ref: "../openapi.yaml#/components/schemas/TeamMember"
 
 /api/team/review/{id}:
   post:

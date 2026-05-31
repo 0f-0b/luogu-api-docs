@@ -6,21 +6,21 @@
       - name: category
         in: query
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 文章列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /article/mine:
   get:
     tags: [专栏]
     summary: 列出创建的文章
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: category
         in: query
         schema: { type: integer }
@@ -42,7 +42,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /article/{lid}:
   get:
@@ -60,7 +60,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /article/collection/{id}:
   get:
@@ -71,14 +71,14 @@
         in: path
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 合集文章列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /article/{lid}/availableCollection:
   get:
@@ -100,7 +100,7 @@
                 collections:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/ArticleCollectionSummary'
+                    $ref: "../openapi.yaml#/components/schemas/ArticleCollectionSummary"
 
 /api/article/new:
   post:
@@ -110,7 +110,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/EditArticleRequest'
+            $ref: "../openapi.yaml#/components/schemas/EditArticleRequest"
     responses:
       "200":
         description: 创建成功
@@ -120,7 +120,7 @@
               type: object
               properties:
                 article:
-                  $ref: '../openapi.yaml#/components/schemas/ArticleDetails'
+                  $ref: "../openapi.yaml#/components/schemas/ArticleDetails"
 
 /api/article/edit/{lid}:
   post:
@@ -135,7 +135,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/EditArticleRequest'
+            $ref: "../openapi.yaml#/components/schemas/EditArticleRequest"
     responses:
       "200":
         description: 编辑成功
@@ -145,7 +145,7 @@
               type: object
               properties:
                 article:
-                  $ref: '../openapi.yaml#/components/schemas/ArticleDetails'
+                  $ref: "../openapi.yaml#/components/schemas/ArticleDetails"
 
 /api/article/delete/{lid}:
   post:
@@ -174,7 +174,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/BatchEditArticleRequest'
+            $ref: "../openapi.yaml#/components/schemas/BatchEditArticleRequest"
     responses:
       "200":
         description: 修改成功
@@ -284,7 +284,7 @@
                 replySlice:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/Comment'
+                    $ref: "../openapi.yaml#/components/schemas/Comment"
 
 /article/{lid}/reply:
   post:
@@ -312,7 +312,7 @@
               type: object
               properties:
                 reply:
-                  $ref: '../openapi.yaml#/components/schemas/Comment'
+                  $ref: "../openapi.yaml#/components/schemas/Comment"
 
 /article/{lid}/deleteReply/{id}:
   post:

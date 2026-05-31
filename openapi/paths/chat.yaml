@@ -8,7 +8,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
 
 /api/chat/record:
   get:
@@ -19,7 +19,7 @@
         in: query
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 私信列表
@@ -31,7 +31,7 @@
                 messages:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/Message'
+                    $ref: "../openapi.yaml#/components/schemas/Message"
 
 /api/chat/new:
   post:

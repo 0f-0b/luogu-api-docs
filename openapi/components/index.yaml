@@ -37,4 +37,4 @@ parameters:
     description: "DataResponse 端点的替代方案（也可用 `x-luogu-type: content-only` 头）"
 
 schemas:
-  $ref: './schemas.yaml'
+  $ref: "./schemas.yaml"

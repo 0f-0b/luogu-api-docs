@@ -69,349 +69,349 @@ security:
 paths:
   # 题目
   /problem/list:
-    $ref: './paths/problems.yaml#/~1problem~1list'
+    $ref: "./paths/problems.yaml#/~1problem~1list"
   /api/user/createdProblems:
-    $ref: './paths/problems.yaml#/~1api~1user~1createdProblems'
+    $ref: "./paths/problems.yaml#/~1api~1user~1createdProblems"
   /problem/{pid}:
-    $ref: './paths/problems.yaml#/~1problem~1{pid}'
+    $ref: "./paths/problems.yaml#/~1problem~1{pid}"
   /problem/solution/{pid}:
-    $ref: './paths/problems.yaml#/~1problem~1solution~1{pid}'
+    $ref: "./paths/problems.yaml#/~1problem~1solution~1{pid}"
   /fe/api/problem/tasklistAdd:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1tasklistAdd'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1tasklistAdd"
   /fe/api/problem/tasklistRemove:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1tasklistRemove'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1tasklistRemove"
   /fe/api/problem/submit/{pid}:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1submit~1{pid}'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1submit~1{pid}"
   /fe/api/problem/translate/{pid}:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1translate~1{pid}'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1translate~1{pid}"
   /fe/api/problem/new:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1new'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1new"
   /fe/api/problem/edit/{pid}:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1edit~1{pid}'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1edit~1{pid}"
   /fe/api/problem/editTestCase/{pid}:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1editTestCase~1{pid}'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1editTestCase~1{pid}"
   /fe/api/problem/transfer/{pid}:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1transfer~1{pid}'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1transfer~1{pid}"
   /fe/api/problem/delete/{id}:
-    $ref: './paths/problems.yaml#/~1fe~1api~1problem~1delete~1{pid}'
+    $ref: "./paths/problems.yaml#/~1fe~1api~1problem~1delete~1{pid}"
 
   # 题单
   /training/list:
-    $ref: './paths/problem-sets.yaml#/~1training~1list'
+    $ref: "./paths/problem-sets.yaml#/~1training~1list"
   /api/user/createdTrainings:
-    $ref: './paths/problem-sets.yaml#/~1api~1user~1createdTrainings'
+    $ref: "./paths/problem-sets.yaml#/~1api~1user~1createdTrainings"
   /training/{id}:
-    $ref: './paths/problem-sets.yaml#/~1training~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1training~1{id}"
   /api/user/markedTrainings:
-    $ref: './paths/problem-sets.yaml#/~1api~1user~1markedTrainings'
+    $ref: "./paths/problem-sets.yaml#/~1api~1user~1markedTrainings"
   /api/training/mark/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1mark~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1mark~1{id}"
   /api/training/unmark/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1unmark~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1unmark~1{id}"
   /api/training/new:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1new'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1new"
   /api/training/edit/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1edit~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1edit~1{id}"
   /api/training/addProblem/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1addProblem~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1addProblem~1{id}"
   /api/training/editProblems/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1editProblems~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1editProblems~1{id}"
   /api/training/clone/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1clone~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1clone~1{id}"
   /api/training/delete/{id}:
-    $ref: './paths/problem-sets.yaml#/~1api~1training~1delete~1{id}'
+    $ref: "./paths/problem-sets.yaml#/~1api~1training~1delete~1{id}"
 
   # 比赛
   /contest/list:
-    $ref: './paths/contests.yaml#/~1contest~1list'
+    $ref: "./paths/contests.yaml#/~1contest~1list"
   /api/user/joinedContests:
-    $ref: './paths/contests.yaml#/~1api~1user~1joinedContests'
+    $ref: "./paths/contests.yaml#/~1api~1user~1joinedContests"
   /api/user/createdContests:
-    $ref: './paths/contests.yaml#/~1api~1user~1createdContests'
+    $ref: "./paths/contests.yaml#/~1api~1user~1createdContests"
   /contest/{id}:
-    $ref: './paths/contests.yaml#/~1contest~1{id}'
+    $ref: "./paths/contests.yaml#/~1contest~1{id}"
   /contest/edit/{id}:
-    $ref: './paths/contests.yaml#/~1contest~1edit~1{id}'
+    $ref: "./paths/contests.yaml#/~1contest~1edit~1{id}"
   /fe/api/contest/scoreboard/{id}:
-    $ref: './paths/contests.yaml#/~1fe~1api~1contest~1scoreboard~1{id}'
+    $ref: "./paths/contests.yaml#/~1fe~1api~1contest~1scoreboard~1{id}"
   /contest/{id}/join:
-    $ref: './paths/contests.yaml#/~1contest~1{id}~1join'
+    $ref: "./paths/contests.yaml#/~1contest~1{id}~1join"
   /contest/{id}/squad:
-    $ref: './paths/contests.yaml#/~1contest~1{id}~1squad'
+    $ref: "./paths/contests.yaml#/~1contest~1{id}~1squad"
   /contest/{id}/squadMemberQuit:
-    $ref: './paths/contests.yaml#/~1contest~1{id}~1squadMemberQuit'
+    $ref: "./paths/contests.yaml#/~1contest~1{id}~1squadMemberQuit"
   /fe/api/contest/new:
-    $ref: './paths/contests.yaml#/~1fe~1api~1contest~1new'
+    $ref: "./paths/contests.yaml#/~1fe~1api~1contest~1new"
   /fe/api/contest/edit/{id}:
-    $ref: './paths/contests.yaml#/~1fe~1api~1contest~1edit~1{id}'
+    $ref: "./paths/contests.yaml#/~1fe~1api~1contest~1edit~1{id}"
   /fe/api/contest/editProblem/{id}:
-    $ref: './paths/contests.yaml#/~1fe~1api~1contest~1editProblem~1{id}'
+    $ref: "./paths/contests.yaml#/~1fe~1api~1contest~1editProblem~1{id}"
   /fe/api/contest/delete/{id}:
-    $ref: './paths/contests.yaml#/~1fe~1api~1contest~1delete~1{id}'
+    $ref: "./paths/contests.yaml#/~1fe~1api~1contest~1delete~1{id}"
 
   # 记录
   /record/list:
-    $ref: './paths/records.yaml#/~1record~1list'
+    $ref: "./paths/records.yaml#/~1record~1list"
   /record/{id}:
-    $ref: './paths/records.yaml#/~1record~1{id}'
+    $ref: "./paths/records.yaml#/~1record~1{id}"
   /fe/api/record/queryDownloadableTestcase/{id}:
-    $ref: './paths/records.yaml#/~1fe~1api~1record~1queryDownloadableTestcase~1{id}'
+    $ref: "./paths/records.yaml#/~1fe~1api~1record~1queryDownloadableTestcase~1{id}"
   /fe/api/record/downloadTestcase/{id}:
-    $ref: './paths/records.yaml#/~1fe~1api~1record~1downloadTestcase~1{id}'
+    $ref: "./paths/records.yaml#/~1fe~1api~1record~1downloadTestcase~1{id}"
 
   # 讨论
   /discuss:
-    $ref: './paths/discussions.yaml#/~1discuss'
+    $ref: "./paths/discussions.yaml#/~1discuss"
   /api/user/createdPosts:
-    $ref: './paths/discussions.yaml#/~1api~1user~1createdPosts'
+    $ref: "./paths/discussions.yaml#/~1api~1user~1createdPosts"
   /discuss/{id}:
-    $ref: './paths/discussions.yaml#/~1discuss~1{id}'
+    $ref: "./paths/discussions.yaml#/~1discuss~1{id}"
   /api/discuss/post:
-    $ref: './paths/discussions.yaml#/~1api~1discuss~1post'
+    $ref: "./paths/discussions.yaml#/~1api~1discuss~1post"
   /api/discuss/reply/{id}:
-    $ref: './paths/discussions.yaml#/~1api~1discuss~1reply~1{id}'
+    $ref: "./paths/discussions.yaml#/~1api~1discuss~1reply~1{id}"
   /api/discuss/delete/{id}:
-    $ref: './paths/discussions.yaml#/~1api~1discuss~1delete~1{id}'
+    $ref: "./paths/discussions.yaml#/~1api~1discuss~1delete~1{id}"
   /api/discuss/deleteReply/{id}:
-    $ref: './paths/discussions.yaml#/~1api~1discuss~1deleteReply~1{id}'
+    $ref: "./paths/discussions.yaml#/~1api~1discuss~1deleteReply~1{id}"
   /api/report/post:
-    $ref: './paths/discussions.yaml#/~1api~1report~1post'
+    $ref: "./paths/discussions.yaml#/~1api~1report~1post"
   /api/report/post_reply:
-    $ref: './paths/discussions.yaml#/~1api~1report~1post_reply'
+    $ref: "./paths/discussions.yaml#/~1api~1report~1post_reply"
 
   # 动态
   /api/feed/list:
-    $ref: './paths/activities.yaml#/~1api~1feed~1list'
+    $ref: "./paths/activities.yaml#/~1api~1feed~1list"
   /api/feed/watching:
-    $ref: './paths/activities.yaml#/~1api~1feed~1watching'
+    $ref: "./paths/activities.yaml#/~1api~1feed~1watching"
   /api/feed/postBenben:
-    $ref: './paths/activities.yaml#/~1api~1feed~1postBenben'
+    $ref: "./paths/activities.yaml#/~1api~1feed~1postBenben"
   /api/feed/delete/{id}:
-    $ref: './paths/activities.yaml#/~1api~1feed~1delete~1{id}'
+    $ref: "./paths/activities.yaml#/~1api~1feed~1delete~1{id}"
   /api/report/feed:
-    $ref: './paths/activities.yaml#/~1api~1report~1feed'
+    $ref: "./paths/activities.yaml#/~1api~1report~1feed"
 
   # 用户
   /user/{uid}:
-    $ref: './paths/users.yaml#/~1user~1{uid}'
+    $ref: "./paths/users.yaml#/~1user~1{uid}"
   /api/user/search:
-    $ref: './paths/users.yaml#/~1api~1user~1search'
+    $ref: "./paths/users.yaml#/~1api~1user~1search"
   /user/{uid}/practice:
-    $ref: './paths/users.yaml#/~1user~1{uid}~1practice'
+    $ref: "./paths/users.yaml#/~1user~1{uid}~1practice"
   /api/user/followings:
-    $ref: './paths/users.yaml#/~1api~1user~1followings'
+    $ref: "./paths/users.yaml#/~1api~1user~1followings"
   /api/user/followers:
-    $ref: './paths/users.yaml#/~1api~1user~1followers'
+    $ref: "./paths/users.yaml#/~1api~1user~1followers"
   /api/user/blacklist:
-    $ref: './paths/users.yaml#/~1api~1user~1blacklist'
+    $ref: "./paths/users.yaml#/~1api~1user~1blacklist"
   /user/setting:
-    $ref: './paths/users.yaml#/~1user~1setting'
+    $ref: "./paths/users.yaml#/~1user~1setting"
   /user/setting/preference:
-    $ref: './paths/users.yaml#/~1user~1setting~1preference'
+    $ref: "./paths/users.yaml#/~1user~1setting~1preference"
   /user/setting/preference/update:
-    $ref: './paths/users.yaml#/~1user~1setting~1preference~1update'
+    $ref: "./paths/users.yaml#/~1user~1setting~1preference~1update"
   /user/setting/prize:
-    $ref: './paths/users.yaml#/~1user~1setting~1prize'
+    $ref: "./paths/users.yaml#/~1user~1setting~1prize"
   /user/setting/security:
-    $ref: './paths/users.yaml#/~1user~1setting~1security'
+    $ref: "./paths/users.yaml#/~1user~1setting~1security"
   /api/user/updateSlogan:
-    $ref: './paths/users.yaml#/~1api~1user~1updateSlogan'
+    $ref: "./paths/users.yaml#/~1api~1user~1updateSlogan"
   /api/user/updateIntroduction:
-    $ref: './paths/users.yaml#/~1api~1user~1updateIntroduction'
+    $ref: "./paths/users.yaml#/~1api~1user~1updateIntroduction"
   /api/user/updateHeaderImage:
-    $ref: './paths/users.yaml#/~1api~1user~1updateHeaderImage'
+    $ref: "./paths/users.yaml#/~1api~1user~1updateHeaderImage"
   /api/user/bindVjudgeAccount:
-    $ref: './paths/users.yaml#/~1api~1user~1bindVjudgeAccount'
+    $ref: "./paths/users.yaml#/~1api~1user~1bindVjudgeAccount"
   /api/user/unbindVjudgeAccount:
-    $ref: './paths/users.yaml#/~1api~1user~1unbindVjudgeAccount'
+    $ref: "./paths/users.yaml#/~1api~1user~1unbindVjudgeAccount"
   /openid/{id}/bind:
-    $ref: './paths/users.yaml#/~1openid~1{id}~1bind'
+    $ref: "./paths/users.yaml#/~1openid~1{id}~1bind"
   /api/user/unbindOpenId/{id}:
-    $ref: './paths/users.yaml#/~1api~1user~1unbindOpenId~1{id}'
+    $ref: "./paths/users.yaml#/~1api~1user~1unbindOpenId~1{id}"
 
   # 团队
   /team/{id}:
-    $ref: './paths/teams.yaml#/~1team~1{id}'
+    $ref: "./paths/teams.yaml#/~1team~1{id}"
   /user/mine/team:
-    $ref: './paths/teams.yaml#/~1user~1mine~1team'
+    $ref: "./paths/teams.yaml#/~1user~1mine~1team"
   /team/{id}/member:
-    $ref: './paths/teams.yaml#/~1team~1{id}~1member'
+    $ref: "./paths/teams.yaml#/~1team~1{id}~1member"
   /team/{id}/problem:
-    $ref: './paths/teams.yaml#/~1team~1{id}~1problem'
+    $ref: "./paths/teams.yaml#/~1team~1{id}~1problem"
   /team/{id}/training:
-    $ref: './paths/teams.yaml#/~1team~1{id}~1training'
+    $ref: "./paths/teams.yaml#/~1team~1{id}~1training"
   /team/{id}/contest:
-    $ref: './paths/teams.yaml#/~1team~1{id}~1contest'
+    $ref: "./paths/teams.yaml#/~1team~1{id}~1contest"
   /api/team/join/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1join~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1join~1{id}"
   /api/team/exit/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1exit~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1exit~1{id}"
   /api/team/create:
-    $ref: './paths/teams.yaml#/~1api~1team~1create'
+    $ref: "./paths/teams.yaml#/~1api~1team~1create"
   /api/team/edit/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1edit~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1edit~1{id}"
   /api/team/setMaster/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1setMaster~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1setMaster~1{id}"
   /api/team/editNotice/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1editNotice~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1editNotice~1{id}"
   /api/team/editMember/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1editMember~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1editMember~1{id}"
   /api/team/review/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1review~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1review~1{id}"
   /api/team/kick/{id}:
-    $ref: './paths/teams.yaml#/~1api~1team~1kick~1{id}'
+    $ref: "./paths/teams.yaml#/~1api~1team~1kick~1{id}"
 
   # 私信
   /chat:
-    $ref: './paths/chat.yaml#/~1chat'
+    $ref: "./paths/chat.yaml#/~1chat"
   /api/chat/record:
-    $ref: './paths/chat.yaml#/~1api~1chat~1record'
+    $ref: "./paths/chat.yaml#/~1api~1chat~1record"
   /api/chat/new:
-    $ref: './paths/chat.yaml#/~1api~1chat~1new'
+    $ref: "./paths/chat.yaml#/~1api~1chat~1new"
   /api/chat/delete:
-    $ref: './paths/chat.yaml#/~1api~1chat~1delete'
+    $ref: "./paths/chat.yaml#/~1api~1chat~1delete"
   /api/chat/clearUnread:
-    $ref: './paths/chat.yaml#/~1api~1chat~1clearUnread'
+    $ref: "./paths/chat.yaml#/~1api~1chat~1clearUnread"
 
   # 专栏
   /article:
-    $ref: './paths/articles.yaml#/~1article'
+    $ref: "./paths/articles.yaml#/~1article"
   /article/mine:
-    $ref: './paths/articles.yaml#/~1article~1mine'
+    $ref: "./paths/articles.yaml#/~1article~1mine"
   /article/{lid}:
-    $ref: './paths/articles.yaml#/~1article~1{lid}'
+    $ref: "./paths/articles.yaml#/~1article~1{lid}"
   /article/collection/{id}:
-    $ref: './paths/articles.yaml#/~1article~1collection~1{id}'
+    $ref: "./paths/articles.yaml#/~1article~1collection~1{id}"
   /article/{lid}/availableCollection:
-    $ref: './paths/articles.yaml#/~1article~1{lid}~1availableCollection'
+    $ref: "./paths/articles.yaml#/~1article~1{lid}~1availableCollection"
   /api/article/new:
-    $ref: './paths/articles.yaml#/~1api~1article~1new'
+    $ref: "./paths/articles.yaml#/~1api~1article~1new"
   /api/article/edit/{lid}:
-    $ref: './paths/articles.yaml#/~1api~1article~1edit~1{lid}'
+    $ref: "./paths/articles.yaml#/~1api~1article~1edit~1{lid}"
   /api/article/delete/{lid}:
-    $ref: './paths/articles.yaml#/~1api~1article~1delete~1{lid}'
+    $ref: "./paths/articles.yaml#/~1api~1article~1delete~1{lid}"
   /api/article/batchEdit:
-    $ref: './paths/articles.yaml#/~1api~1article~1batchEdit'
+    $ref: "./paths/articles.yaml#/~1api~1article~1batchEdit"
   /api/article/favor/{lid}:
-    $ref: './paths/articles.yaml#/~1api~1article~1favor~1{lid}'
+    $ref: "./paths/articles.yaml#/~1api~1article~1favor~1{lid}"
   /api/article/vote/{lid}:
-    $ref: './paths/articles.yaml#/~1api~1article~1vote~1{lid}'
+    $ref: "./paths/articles.yaml#/~1api~1article~1vote~1{lid}"
   /api/article/requestPromotion/{lid}:
-    $ref: './paths/articles.yaml#/~1api~1article~1requestPromotion~1{lid}'
+    $ref: "./paths/articles.yaml#/~1api~1article~1requestPromotion~1{lid}"
   /api/article/withdrawPromotion/{lid}:
-    $ref: './paths/articles.yaml#/~1api~1article~1withdrawPromotion~1{lid}'
+    $ref: "./paths/articles.yaml#/~1api~1article~1withdrawPromotion~1{lid}"
   /article/{lid}/replies:
-    $ref: './paths/articles.yaml#/~1article~1{lid}~1replies'
+    $ref: "./paths/articles.yaml#/~1article~1{lid}~1replies"
   /article/{lid}/reply:
-    $ref: './paths/articles.yaml#/~1article~1{lid}~1reply'
+    $ref: "./paths/articles.yaml#/~1article~1{lid}~1reply"
   /article/{lid}/deleteReply/{id}:
-    $ref: './paths/articles.yaml#/~1article~1{lid}~1deleteReply~1{id}'
+    $ref: "./paths/articles.yaml#/~1article~1{lid}~1deleteReply~1{id}"
 
   # 博客
   /api/blog/userBlogs:
-    $ref: './paths/blog.yaml#/~1api~1blog~1userBlogs'
+    $ref: "./paths/blog.yaml#/~1api~1blog~1userBlogs"
   /api/blog/detail/{id}:
-    $ref: './paths/blog.yaml#/~1api~1blog~1detail~1{id}'
+    $ref: "./paths/blog.yaml#/~1api~1blog~1detail~1{id}"
   /blogAdmin/article/post_new:
-    $ref: './paths/blog.yaml#/~1blogAdmin~1article~1post_new'
+    $ref: "./paths/blog.yaml#/~1blogAdmin~1article~1post_new"
   /blogAdmin/article/post_edit/{id}:
-    $ref: './paths/blog.yaml#/~1blogAdmin~1article~1post_edit~1{id}'
+    $ref: "./paths/blog.yaml#/~1blogAdmin~1article~1post_edit~1{id}"
   /api/blog/delete/{id}:
-    $ref: './paths/blog.yaml#/~1api~1blog~1delete~1{id}'
+    $ref: "./paths/blog.yaml#/~1api~1blog~1delete~1{id}"
   /api/blog/replies/{id}:
-    $ref: './paths/blog.yaml#/~1api~1blog~1replies~1{id}'
+    $ref: "./paths/blog.yaml#/~1api~1blog~1replies~1{id}"
   /api/blog/reply/{id}:
-    $ref: './paths/blog.yaml#/~1api~1blog~1reply~1{id}'
+    $ref: "./paths/blog.yaml#/~1api~1blog~1reply~1{id}"
   /api/blog/vote/{id}:
-    $ref: './paths/blog.yaml#/~1api~1blog~1vote~1{id}'
+    $ref: "./paths/blog.yaml#/~1api~1blog~1vote~1{id}"
   /blogAdmin/article/deleteComment/{id}:
-    $ref: './paths/blog.yaml#/~1blogAdmin~1article~1deleteComment~1{id}'
+    $ref: "./paths/blog.yaml#/~1blogAdmin~1article~1deleteComment~1{id}"
   /blogAdmin/article/list:
-    $ref: './paths/blog.yaml#/~1blogAdmin~1article~1list'
+    $ref: "./paths/blog.yaml#/~1blogAdmin~1article~1list"
 
   # 主题
   /theme/list:
-    $ref: './paths/themes.yaml#/~1theme~1list'
+    $ref: "./paths/themes.yaml#/~1theme~1list"
   /theme/design/{id}:
-    $ref: './paths/themes.yaml#/~1theme~1design~1{id}'
+    $ref: "./paths/themes.yaml#/~1theme~1design~1{id}"
   /theme/setTheme/{id}:
-    $ref: './paths/themes.yaml#/~1theme~1setTheme~1{id}'
+    $ref: "./paths/themes.yaml#/~1theme~1setTheme~1{id}"
   /theme/edit/:
-    $ref: './paths/themes.yaml#/~1theme~1edit~1'
+    $ref: "./paths/themes.yaml#/~1theme~1edit~1"
   /theme/edit/{id}:
-    $ref: './paths/themes.yaml#/~1theme~1edit~1{id}'
+    $ref: "./paths/themes.yaml#/~1theme~1edit~1{id}"
   /theme/delete/{id}:
-    $ref: './paths/themes.yaml#/~1theme~1delete~1{id}'
+    $ref: "./paths/themes.yaml#/~1theme~1delete~1{id}"
 
   # 图片
   /image:
-    $ref: './paths/images.yaml#/~1image'
+    $ref: "./paths/images.yaml#/~1image"
   /api/image/detail/{id}:
-    $ref: './paths/images.yaml#/~1api~1image~1detail~1{id}'
+    $ref: "./paths/images.yaml#/~1api~1image~1detail~1{id}"
   /api/image/generateUploadLink:
-    $ref: './paths/images.yaml#/~1api~1image~1generateUploadLink'
+    $ref: "./paths/images.yaml#/~1api~1image~1generateUploadLink"
   /api/image/delete:
-    $ref: './paths/images.yaml#/~1api~1image~1delete'
+    $ref: "./paths/images.yaml#/~1api~1image~1delete"
 
   # IDE
   /api/ide_submit:
-    $ref: './paths/ide.yaml#/~1api~1ide_submit'
+    $ref: "./paths/ide.yaml#/~1api~1ide_submit"
 
   # 剪贴板
   /paste:
-    $ref: './paths/pastes.yaml#/~1paste'
+    $ref: "./paths/pastes.yaml#/~1paste"
   /paste/{id}:
-    $ref: './paths/pastes.yaml#/~1paste~1{id}'
+    $ref: "./paths/pastes.yaml#/~1paste~1{id}"
   /paste/new:
-    $ref: './paths/pastes.yaml#/~1paste~1new'
+    $ref: "./paths/pastes.yaml#/~1paste~1new"
   /paste/edit/{id}:
-    $ref: './paths/pastes.yaml#/~1paste~1edit~1{id}'
+    $ref: "./paths/pastes.yaml#/~1paste~1edit~1{id}"
   /paste/delete/{id}:
-    $ref: './paths/pastes.yaml#/~1paste~1delete~1{id}'
+    $ref: "./paths/pastes.yaml#/~1paste~1delete~1{id}"
 
   # 身份验证
   /lg4/captcha:
-    $ref: './paths/auth.yaml#/~1lg4~1captcha'
+    $ref: "./paths/auth.yaml#/~1lg4~1captcha"
   /auth/motp/to:
-    $ref: './paths/auth.yaml#/~1auth~1motp~1to'
+    $ref: "./paths/auth.yaml#/~1auth~1motp~1to"
   /auth/finish-signup:
-    $ref: './paths/auth.yaml#/~1auth~1finish-signup'
+    $ref: "./paths/auth.yaml#/~1auth~1finish-signup"
   /do-auth/password:
-    $ref: './paths/auth.yaml#/~1do-auth~1password'
+    $ref: "./paths/auth.yaml#/~1do-auth~1password"
   /openid/{id}/connect:
-    $ref: './paths/auth.yaml#/~1openid~1{id}~1connect'
+    $ref: "./paths/auth.yaml#/~1openid~1{id}~1connect"
   /auth/logout:
-    $ref: './paths/auth.yaml#/~1auth~1logout'
+    $ref: "./paths/auth.yaml#/~1auth~1logout"
   /auth/lock:
-    $ref: './paths/auth.yaml#/~1auth~1lock'
+    $ref: "./paths/auth.yaml#/~1auth~1lock"
   /do-auth/totp:
-    $ref: './paths/auth.yaml#/~1do-auth~1totp'
+    $ref: "./paths/auth.yaml#/~1do-auth~1totp"
   /auth/motp/request:
-    $ref: './paths/auth.yaml#/~1auth~1motp~1request'
+    $ref: "./paths/auth.yaml#/~1auth~1motp~1request"
   /do-auth/motp:
-    $ref: './paths/auth.yaml#/~1do-auth~1motp'
+    $ref: "./paths/auth.yaml#/~1do-auth~1motp"
   /auth/unlock:
-    $ref: './paths/auth.yaml#/~1auth~1unlock'
+    $ref: "./paths/auth.yaml#/~1auth~1unlock"
 
   # 杂项
   /_lfe/config:
-    $ref: './paths/misc.yaml#/~1_lfe~1config'
+    $ref: "./paths/misc.yaml#/~1_lfe~1config"
   /_lfe/tags:
-    $ref: './paths/misc.yaml#/~1_lfe~1tags'
+    $ref: "./paths/misc.yaml#/~1_lfe~1tags"
   /ranking:
-    $ref: './paths/misc.yaml#/~1ranking'
+    $ref: "./paths/misc.yaml#/~1ranking"
   /ranking/elo:
-    $ref: './paths/misc.yaml#/~1ranking~1elo'
+    $ref: "./paths/misc.yaml#/~1ranking~1elo"
   /user/notification:
-    $ref: './paths/misc.yaml#/~1user~1notification'
+    $ref: "./paths/misc.yaml#/~1user~1notification"
   /api/qiaFan/getFan/{id}:
-    $ref: './paths/misc.yaml#/~1api~1qiaFan~1getFan~1{id}'
+    $ref: "./paths/misc.yaml#/~1api~1qiaFan~1getFan~1{id}"
   /paintboard/board:
-    $ref: './paths/misc.yaml#/~1paintboard~1board'
+    $ref: "./paths/misc.yaml#/~1paintboard~1board"
   /paintboard/resetToken:
-    $ref: './paths/misc.yaml#/~1paintboard~1resetToken'
+    $ref: "./paths/misc.yaml#/~1paintboard~1resetToken"
   /paintboard/paint:
-    $ref: './paths/misc.yaml#/~1paintboard~1paint'
+    $ref: "./paths/misc.yaml#/~1paintboard~1paint"
 
 components:
-  $ref: './components/index.yaml'
+  $ref: "./components/index.yaml"

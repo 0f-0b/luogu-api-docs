@@ -2,23 +2,23 @@
 
 ## 评测状态码
 
-| status | 简称 | 含义 |
-|-------:|------|------|
-| -1 | Unshown | 隐藏 |
-| 0 | Waiting | 排队中 |
-| 1 | Judging | 评测中 |
-| 2 | CE | 编译错误 |
-| 3 | OLE | 输出过长 |
-| 4 | MLE | 内存超限 |
-| 5 | TLE | 时间超限 |
-| 6 | WA | 答案错误 |
-| 7 | RE | 运行错误 |
-| 11 | UKE | 未知错误 |
-| 12 | AC | 通过 |
-| 14 | Unaccepted | 未通过 |
-| 21 | Hack Success | Hack 成功 |
-| 22 | Hack Failure | Hack 失败 |
-| 23 | Hack Skipped | Hack 跳过 |
+| status | 简称         | 含义      |
+| -----: | ------------ | --------- |
+|     -1 | Unshown      | 隐藏      |
+|      0 | Waiting      | 排队中    |
+|      1 | Judging      | 评测中    |
+|      2 | CE           | 编译错误  |
+|      3 | OLE          | 输出过长  |
+|      4 | MLE          | 内存超限  |
+|      5 | TLE          | 时间超限  |
+|      6 | WA           | 答案错误  |
+|      7 | RE           | 运行错误  |
+|     11 | UKE          | 未知错误  |
+|     12 | AC           | 通过      |
+|     14 | Unaccepted   | 未通过    |
+|     21 | Hack Success | Hack 成功 |
+|     22 | Hack Failure | Hack 失败 |
+|     23 | Hack Skipped | Hack 跳过 |
 
 ## 列出记录
 

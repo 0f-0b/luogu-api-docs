@@ -3,7 +3,7 @@
     tags: [主题]
     summary: 列出主题
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: orderBy
         in: query
         schema: { type: string }
@@ -19,7 +19,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
 
 /theme/design/{id}:
   get:
@@ -36,7 +36,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
 
 /theme/setTheme/{id}:
   post:
@@ -64,7 +64,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/EditThemeRequest'
+            $ref: "../openapi.yaml#/components/schemas/EditThemeRequest"
     responses:
       "200":
         description: 创建成功
@@ -88,7 +88,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/EditThemeRequest'
+            $ref: "../openapi.yaml#/components/schemas/EditThemeRequest"
     responses:
       "200":
         description: 编辑成功

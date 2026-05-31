@@ -104,17 +104,17 @@
 
 **`lang` 取值**：
 
-| `lang` | 语言 | `lang` | 语言 | `lang` | 语言 |
-|-------:|------|-------:|------|-------:|------|
-| 1 | Pascal | 2 | C | 28 | C++14 (GCC 9) |
-| 3 | C++98 | 4 | C++11 | 11 | C++14 |
-| 12 | C++17 | 27 | C++20 | 34 | C++23 |
-| 7 | Python 3 | 25 | PyPy 3 | 8 | Java 8 |
-| 33 | Java 21 | 15 | Rust | 14 | Go |
-| 9 | Node.js LTS | 16 | PHP | 13 | Ruby |
-| 19 | Haskell | 21 | Kotlin/JVM | 22 | Scala |
-| 17 | C# Mono | 30 | OCaml | 31 | Julia |
-| 32 | Lua | 23 | Perl | 5 | 提交答案 |
+| `lang` | 语言        | `lang` | 语言       | `lang` | 语言          |
+| -----: | ----------- | -----: | ---------- | -----: | ------------- |
+|      1 | Pascal      |      2 | C          |     28 | C++14 (GCC 9) |
+|      3 | C++98       |      4 | C++11      |     11 | C++14         |
+|     12 | C++17       |     27 | C++20      |     34 | C++23         |
+|      7 | Python 3    |     25 | PyPy 3     |      8 | Java 8        |
+|     33 | Java 21     |     15 | Rust       |     14 | Go            |
+|      9 | Node.js LTS |     16 | PHP        |     13 | Ruby          |
+|     19 | Haskell     |     21 | Kotlin/JVM |     22 | Scala         |
+|     17 | C# Mono     |     30 | OCaml      |     31 | Julia         |
+|     32 | Lua         |     23 | Perl       |      5 | 提交答案      |
 
 已禁用的语言：6 (Python 2)、24 (PyPy 2)、10 (Shell)、20 (Kotlin/Native)、18 (Visual Basic Mono)、29 (F#.NET)、26 (文言)。
 

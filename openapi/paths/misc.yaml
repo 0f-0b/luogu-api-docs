@@ -23,7 +23,7 @@
     tags: [杂项]
     summary: 获取咕值排名
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: orderBy
         in: query
         schema: { type: integer }
@@ -33,21 +33,21 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /ranking/elo:
   get:
     tags: [杂项]
     summary: 获取等级分排名
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 等级分排名
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /user/notification:
   get:
@@ -57,14 +57,14 @@
       - name: type
         in: query
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 通知列表
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/qiaFan/getFan/{id}:
   get:
@@ -85,7 +85,7 @@
               properties:
                 advertisement:
                   allOf:
-                    - $ref: '../openapi.yaml#/components/schemas/Advertisement'
+                    - $ref: "../openapi.yaml#/components/schemas/Advertisement"
                     - nullable: true
 
 /paintboard/board:

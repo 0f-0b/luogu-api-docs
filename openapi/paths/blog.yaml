@@ -6,7 +6,7 @@
       - name: user
         in: query
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 博客文章列表
@@ -18,7 +18,7 @@
                 blogs:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/Blog'
+                    $ref: "../openapi.yaml#/components/schemas/Blog"
 
 /api/blog/detail/{id}:
   get:
@@ -131,7 +131,7 @@
         in: path
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 评论列表
@@ -144,7 +144,7 @@
                 data:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/Comment'
+                    $ref: "../openapi.yaml#/components/schemas/Comment"
 
 /api/blog/reply/{id}:
   post:
@@ -173,7 +173,7 @@
               properties:
                 status: { type: integer }
                 reply:
-                  $ref: '../openapi.yaml#/components/schemas/Comment'
+                  $ref: "../openapi.yaml#/components/schemas/Comment"
 
 /api/blog/vote/{id}:
   post:

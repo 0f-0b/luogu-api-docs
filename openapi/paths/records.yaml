@@ -3,7 +3,7 @@
     tags: [记录]
     summary: 列出记录
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: pid
         in: query
         schema: { type: string }
@@ -29,7 +29,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
 
 /record/{id}:
   get:
@@ -46,7 +46,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
 
 /fe/api/record/queryDownloadableTestcase/{id}:
   get:

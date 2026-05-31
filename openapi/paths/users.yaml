@@ -13,7 +13,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/search:
   get:
@@ -36,7 +36,7 @@
                   type: array
                   items:
                     allOf:
-                      - $ref: '../openapi.yaml#/components/schemas/UserSummary'
+                      - $ref: "../openapi.yaml#/components/schemas/UserSummary"
                       - nullable: true
 
 /user/{uid}/practice:
@@ -54,7 +54,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/followings:
   get:
@@ -65,7 +65,7 @@
         in: query
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 关注列表
@@ -77,7 +77,7 @@
                 users:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/User'
+                    $ref: "../openapi.yaml#/components/schemas/User"
 
 /api/user/followers:
   get:
@@ -88,7 +88,7 @@
         in: query
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 粉丝列表
@@ -100,7 +100,7 @@
                 users:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/User'
+                    $ref: "../openapi.yaml#/components/schemas/User"
 
 /api/user/blacklist:
   get:
@@ -111,7 +111,7 @@
         in: query
         required: true
         schema: { type: integer }
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 黑名单列表
@@ -123,7 +123,7 @@
                 users:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/User'
+                    $ref: "../openapi.yaml#/components/schemas/User"
 
 /user/setting:
   get:
@@ -135,7 +135,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /user/setting/preference:
   get:
@@ -147,7 +147,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /user/setting/preference/update:
   post:
@@ -157,7 +157,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/UserPreferences'
+            $ref: "../openapi.yaml#/components/schemas/UserPreferences"
     responses:
       "200":
         description: 更新成功
@@ -167,7 +167,7 @@
               type: object
               properties:
                 setting:
-                  $ref: '../openapi.yaml#/components/schemas/UserPreferences'
+                  $ref: "../openapi.yaml#/components/schemas/UserPreferences"
 
 /user/setting/prize:
   get:
@@ -179,7 +179,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /user/setting/security:
   get:
@@ -191,7 +191,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/updateSlogan:
   post:

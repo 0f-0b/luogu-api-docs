@@ -3,7 +3,7 @@
     tags: [题单]
     summary: 列出题单
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
       - name: keyword
         in: query
         schema: { type: string }
@@ -16,14 +16,14 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/createdTrainings:
   get:
     tags: [题单]
     summary: 列出创建的题单
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 创建的题单列表
@@ -35,7 +35,7 @@
                 trainings:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/ProblemSet'
+                    $ref: "../openapi.yaml#/components/schemas/ProblemSet"
 
 /training/{id}:
   get:
@@ -52,14 +52,14 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/markedTrainings:
   get:
     tags: [题单]
     summary: 列出收藏的题单
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 收藏的题单列表
@@ -74,9 +74,9 @@
                     type: object
                     properties:
                       training:
-                        $ref: '../openapi.yaml#/components/schemas/ProblemSet'
+                        $ref: "../openapi.yaml#/components/schemas/ProblemSet"
                       user:
-                        $ref: '../openapi.yaml#/components/schemas/UserSummary'
+                        $ref: "../openapi.yaml#/components/schemas/UserSummary"
 
 /api/training/mark/{id}:
   post:
@@ -123,7 +123,7 @@
             type: object
             properties:
               settings:
-                $ref: '../openapi.yaml#/components/schemas/ProblemSetSettings'
+                $ref: "../openapi.yaml#/components/schemas/ProblemSetSettings"
               providerID: { type: integer, nullable: true }
     responses:
       "200":
@@ -151,7 +151,7 @@
             type: object
             properties:
               settings:
-                $ref: '../openapi.yaml#/components/schemas/ProblemSetSettings'
+                $ref: "../openapi.yaml#/components/schemas/ProblemSetSettings"
     responses:
       "200":
         description: 编辑成功

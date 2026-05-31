@@ -35,14 +35,14 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /api/user/createdProblems:
   get:
     tags: [题目]
     summary: 列出创建的题目
     parameters:
-      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - $ref: "../openapi.yaml#/components/parameters/Page"
     responses:
       "200":
         description: 创建的题目列表
@@ -54,7 +54,7 @@
                 problems:
                   type: array
                   items:
-                    $ref: '../openapi.yaml#/components/schemas/Problem'
+                    $ref: "../openapi.yaml#/components/schemas/Problem"
 
 /problem/{pid}:
   get:
@@ -74,7 +74,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /problem/solution/{pid}:
   get:
@@ -91,7 +91,7 @@
         content:
           application/json:
             schema:
-              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
 
 /fe/api/problem/tasklistAdd:
   post:
@@ -156,7 +156,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/SubmitCodeRequest'
+            $ref: "../openapi.yaml#/components/schemas/SubmitCodeRequest"
         multipart/form-data:
           schema:
             type: object
@@ -205,7 +205,7 @@
       content:
         application/json:
           schema:
-            $ref: '../openapi.yaml#/components/schemas/CreateProblemRequest'
+            $ref: "../openapi.yaml#/components/schemas/CreateProblemRequest"
     responses:
       "200":
         description: 创建成功
@@ -232,7 +232,7 @@
             type: object
             properties:
               settings:
-                $ref: '../openapi.yaml#/components/schemas/ProblemSettings'
+                $ref: "../openapi.yaml#/components/schemas/ProblemSettings"
     responses:
       "200":
         description: 编辑成功
