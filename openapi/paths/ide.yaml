@@ -1,0 +1,29 @@
+/api/ide_submit:
+  post:
+    tags: [IDE]
+    summary: 提交代码
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [code, lang, csrf-token]
+            properties:
+              code: { type: string }
+              lang: { type: integer }
+              input: { type: string }
+              o2: { type: boolean }
+              csrf-token: { type: string }
+    responses:
+      "200":
+        description: 提交成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data:
+                  type: object
+                  properties:
+                    rid: { type: integer }

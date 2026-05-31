@@ -1,0 +1,95 @@
+/chat:
+  get:
+    tags: [私信]
+    summary: 列出最近联系
+    responses:
+      "200":
+        description: 最近联系列表
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"
+
+/api/chat/record:
+  get:
+    tags: [私信]
+    summary: 获取私信
+    parameters:
+      - name: user
+        in: query
+        required: true
+        schema: { type: integer }
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+    responses:
+      "200":
+        description: 私信列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                messages:
+                  type: array
+                  items:
+                    $ref: "../openapi.yaml#/components/schemas/Message"
+
+/api/chat/new:
+  post:
+    tags: [私信]
+    summary: 发送私信
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [user, content]
+            properties:
+              user: { type: integer }
+              content: { type: string }
+    responses:
+      "200":
+        description: 发送成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/chat/delete:
+  post:
+    tags: [私信]
+    summary: 删除私信
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [id]
+            properties:
+              id: { type: integer }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/chat/clearUnread:
+  post:
+    tags: [私信]
+    summary: 清除未读私信通知
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [user]
+            properties:
+              user: { type: integer }
+    responses:
+      "200":
+        description: 清除成功
+        content:
+          application/json:
+            schema:
+              type: object

@@ -26,6 +26,29 @@
   </tr>
 </table>
 
+### 题目难度
+
+| id | 名称        |
+| -: | ----------- |
+|  0 | 暂无评定    |
+|  1 | 入门        |
+|  2 | 普及−       |
+|  3 | 普及/提高−  |
+|  4 | 普及+/提高  |
+|  5 | 提高+/省选− |
+|  6 | 省选/NOI−   |
+|  7 | NOI/NOI+    |
+
+### 比赛赛制
+
+| id | 名称                   |
+| -: | ---------------------- |
+|  1 | OI                     |
+|  2 | ICPC                   |
+|  3 | 乐多                   |
+|  4 | IOI                    |
+|  5 | CodeForces（暂不可用） |
+
 ## 获取标签
 
 <table>
@@ -86,7 +109,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><code>application/json</code> (<code>DataResponse&lt;NotificationsData&gt;</code>)</td>
+    <td><code>application/json</code> (<code>LentilleDataResponse&lt;NotificationsData&gt;</code>)</td>
   </tr>
 </table>
 
@@ -128,21 +151,6 @@
     <td><code>application/json</code> (<code>{ token: string }</code>)</td>
   </tr>
 </table>
-
-<!--
-## 冬日绘版更新检测
-
-<table>
-  <tr>
-    <th align="right">请求</th>
-    <td><code>GET wss://ws.luogu.com.cn/ws </code></td>
-  </tr>
-  <tr>
-    <th align="right">响应主体</th>
-    <td>自己意会</td>
-  </tr>
-</table>
--->
 
 ## 冬日绘版绘制
 

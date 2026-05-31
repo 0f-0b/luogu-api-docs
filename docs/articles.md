@@ -17,7 +17,9 @@
   </tr>
 </table>
 
-## 列出用户文章
+## ~~列出用户文章~~
+
+> 已移除。
 
 <table>
   <tr>
@@ -51,7 +53,9 @@
   </tr>
 </table>
 
-## 列出收藏的文章
+## ~~列出收藏的文章~~
+
+> 已移除。
 
 <table>
   <tr>
@@ -222,7 +226,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><!-- TODO --></td>
+    <td><code>application/json</code> (<code>{ status: number }</code>)</td>
   </tr>
 </table>
 
@@ -235,7 +239,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><!-- TODO --></td>
+    <td><code>application/json</code> (<code>{ status: number }</code>)</td>
   </tr>
 </table>
 

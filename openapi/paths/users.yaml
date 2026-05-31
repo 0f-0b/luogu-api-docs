@@ -1,0 +1,327 @@
+/user/{uid}:
+  get:
+    tags: [用户]
+    summary: 获取用户
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 用户详情
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/api/user/search:
+  get:
+    tags: [用户]
+    summary: 根据 UID 或名字搜索用户
+    parameters:
+      - name: keyword
+        in: query
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 搜索结果
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    allOf:
+                      - $ref: "../openapi.yaml#/components/schemas/UserSummary"
+                      - nullable: true
+
+/user/{uid}/practice:
+  get:
+    tags: [用户]
+    summary: 获取练习情况
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 练习数据
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/api/user/followings:
+  get:
+    tags: [用户]
+    summary: 列出关注
+    parameters:
+      - name: user
+        in: query
+        required: true
+        schema: { type: integer }
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+    responses:
+      "200":
+        description: 关注列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    $ref: "../openapi.yaml#/components/schemas/User"
+
+/api/user/followers:
+  get:
+    tags: [用户]
+    summary: 列出粉丝
+    parameters:
+      - name: user
+        in: query
+        required: true
+        schema: { type: integer }
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+    responses:
+      "200":
+        description: 粉丝列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    $ref: "../openapi.yaml#/components/schemas/User"
+
+/api/user/blacklist:
+  get:
+    tags: [用户]
+    summary: 获取黑名单
+    parameters:
+      - name: user
+        in: query
+        required: true
+        schema: { type: integer }
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+    responses:
+      "200":
+        description: 黑名单列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    $ref: "../openapi.yaml#/components/schemas/User"
+
+/user/setting:
+  get:
+    tags: [用户]
+    summary: 获取账号设置
+    responses:
+      "200":
+        description: 账号设置
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/user/setting/preference:
+  get:
+    tags: [用户]
+    summary: 获取偏好设置
+    responses:
+      "200":
+        description: 偏好设置
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/user/setting/preference/update:
+  post:
+    tags: [用户]
+    summary: 更新偏好设置
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserPreferences"
+    responses:
+      "200":
+        description: 更新成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                setting:
+                  $ref: "../openapi.yaml#/components/schemas/UserPreferences"
+
+/user/setting/prize:
+  get:
+    tags: [用户]
+    summary: 获取奖项认证设置
+    responses:
+      "200":
+        description: 奖项设置
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/user/setting/security:
+  get:
+    tags: [用户]
+    summary: 获取安全设置
+    responses:
+      "200":
+        description: 安全设置
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/api/user/updateSlogan:
+  post:
+    tags: [用户]
+    summary: 更新签名
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [slogan]
+            properties:
+              slogan: { type: string }
+    responses:
+      "200":
+        description: 更新成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/user/updateIntroduction:
+  post:
+    tags: [用户]
+    summary: 更新介绍
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [introduction]
+            properties:
+              introduction: { type: string }
+    responses:
+      "200":
+        description: 更新成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/user/updateHeaderImage:
+  post:
+    tags: [用户]
+    summary: 更新封面
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              imageID: { type: string, nullable: true }
+    responses:
+      "200":
+        description: 更新成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/user/bindVjudgeAccount:
+  post:
+    tags: [用户]
+    summary: 绑定 RemoteJudge
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [oj, username, password, captcha]
+            properties:
+              oj: { type: string }
+              username: { type: string }
+              password: { type: string }
+              captcha: { type: string }
+    responses:
+      "200":
+        description: 绑定成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/user/unbindVjudgeAccount:
+  post:
+    tags: [用户]
+    summary: 解除绑定 RemoteJudge
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [oj]
+            properties:
+              oj: { type: string }
+    responses:
+      "200":
+        description: 解绑成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/openid/{id}/bind:
+  get:
+    tags: [用户]
+    summary: 绑定 OpenID
+    description: 重定向到对应的认证页面
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "302":
+        description: 重定向到认证页面
+
+/api/user/unbindOpenId/{id}:
+  post:
+    tags: [用户]
+    summary: 解绑 OpenID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 解绑成功
+        content:
+          application/json:
+            schema:
+              type: object

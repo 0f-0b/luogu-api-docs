@@ -1,0 +1,180 @@
+/lg4/captcha:
+  get:
+    tags: [身份验证]
+    summary: 获取图片验证码
+    responses:
+      "200":
+        description: 验证码图片
+        content:
+          image/jpeg: {}
+
+/auth/motp/to:
+  post:
+    tags: [身份验证]
+    summary: 发送注册验证码
+    parameters:
+      - name: endpoint
+        in: query
+        required: true
+        schema: { type: integer }
+      - name: exist
+        in: query
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [endpoint, captcha]
+            properties:
+              endpoint: { type: string }
+              captcha: { type: string }
+    responses:
+      "200":
+        description: 发送成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/auth/finish-signup:
+  post:
+    tags: [身份验证]
+    summary: 注册
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/RegisterRequest"
+    responses:
+      "200":
+        description: 注册成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/do-auth/password:
+  post:
+    tags: [身份验证]
+    summary: 登录
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/LoginRequest"
+    responses:
+      "200":
+        description: 登录成功
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LoginResponse"
+
+/openid/{id}/connect:
+  get:
+    tags: [身份验证]
+    summary: 通过 OpenID 登录
+    description: 重定向到对应的认证页面
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "302":
+        description: 重定向到认证页面
+
+/auth/logout:
+  post:
+    tags: [身份验证]
+    summary: 登出
+    responses:
+      "200":
+        description: 登出成功
+
+/auth/lock:
+  post:
+    tags: [身份验证]
+    summary: 锁定
+    responses:
+      "200":
+        description: 锁定成功
+
+/do-auth/totp:
+  post:
+    tags: [身份验证]
+    summary: 使用 TOTP 解锁
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [code]
+            properties:
+              code: { type: string }
+    responses:
+      "200":
+        description: 解锁成功
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LoginResponse"
+
+/auth/motp/request:
+  post:
+    tags: [身份验证]
+    summary: 发送一次性验证码
+    parameters:
+      - name: endpoint
+        in: query
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [captcha]
+            properties:
+              captcha: { type: string }
+    responses:
+      "200":
+        description: 发送成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/do-auth/motp:
+  post:
+    tags: [身份验证]
+    summary: 使用一次性验证码解锁
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [code]
+            properties:
+              code: { type: string }
+    responses:
+      "200":
+        description: 解锁成功
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LoginResponse"
+
+/auth/unlock:
+  get:
+    tags: [身份验证]
+    summary: 获取解锁方式
+    responses:
+      "200":
+        description: 解锁方式
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/DataResponse"

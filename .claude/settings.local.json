@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"G:/luogu-api/api_test\")",
+      "Bash(uv init *)",
+      "Bash(uv add *)",
+      "Bash(uv run *)",
+      "Bash(echo \"---EXIT:$?\")",
+      "Bash(git commit -m ' *)",
+      "Bash(git *)"
+    ]
+  }
+}

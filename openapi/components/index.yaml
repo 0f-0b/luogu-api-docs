@@ -1,0 +1,40 @@
+securitySchemes:
+  cookieAuth:
+    type: apiKey
+    in: cookie
+    name: _uid
+    description: "会话 cookie，需要 `_uid` 和 `__client_id`"
+
+headers:
+  X-CsrfToken:
+    description: CSRF 令牌，从页面 HTML `<meta name="csrf-token">` 获取
+    schema:
+      type: string
+  X-LentilleRequest:
+    description: "值固定为 `content-only`，用于 LentilleDataResponse 类型端点"
+    schema:
+      type: string
+      enum: [content-only]
+  X-LuoguType:
+    description: "值固定为 `content-only`，用于 DataResponse 类型端点"
+    schema:
+      type: string
+      enum: [content-only]
+
+parameters:
+  Page:
+    name: page
+    in: query
+    schema:
+      type: integer
+      minimum: 1
+    description: 页码
+  ContentOnly:
+    name: _contentOnly
+    in: query
+    schema:
+      type: string
+    description: "DataResponse 端点的替代方案（也可用 `x-luogu-type: content-only` 头）"
+
+schemas:
+  $ref: "./schemas.yaml"

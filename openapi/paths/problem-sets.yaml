@@ -1,0 +1,255 @@
+/training/list:
+  get:
+    tags: [题单]
+    summary: 列出题单
+    parameters:
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+      - name: keyword
+        in: query
+        schema: { type: string }
+      - name: type
+        in: query
+        schema: { type: string, enum: [official, select] }
+    responses:
+      "200":
+        description: 题单列表
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/api/user/createdTrainings:
+  get:
+    tags: [题单]
+    summary: 列出创建的题单
+    parameters:
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+    responses:
+      "200":
+        description: 创建的题单列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trainings:
+                  type: array
+                  items:
+                    $ref: "../openapi.yaml#/components/schemas/ProblemSet"
+
+/training/{id}:
+  get:
+    tags: [题单]
+    summary: 获取题单
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 题单详情
+        content:
+          application/json:
+            schema:
+              $ref: "../openapi.yaml#/components/schemas/LentilleDataResponse"
+
+/api/user/markedTrainings:
+  get:
+    tags: [题单]
+    summary: 列出收藏的题单
+    parameters:
+      - $ref: "../openapi.yaml#/components/parameters/Page"
+    responses:
+      "200":
+        description: 收藏的题单列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trainingParticipations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      training:
+                        $ref: "../openapi.yaml#/components/schemas/ProblemSet"
+                      user:
+                        $ref: "../openapi.yaml#/components/schemas/UserSummary"
+
+/api/training/mark/{id}:
+  post:
+    tags: [题单]
+    summary: 收藏题单
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 收藏成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/training/unmark/{id}:
+  post:
+    tags: [题单]
+    summary: 取消收藏题单
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 取消收藏成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/training/new:
+  post:
+    tags: [题单]
+    summary: 创建题单
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                $ref: "../openapi.yaml#/components/schemas/ProblemSetSettings"
+              providerID: { type: integer, nullable: true }
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: integer }
+
+/api/training/edit/{id}:
+  post:
+    tags: [题单]
+    summary: 编辑题单
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                $ref: "../openapi.yaml#/components/schemas/ProblemSetSettings"
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: integer }
+
+/api/training/addProblem/{id}:
+  post:
+    tags: [题单]
+    summary: 添加题单题目
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pids: { type: array, items: { type: string } }
+    responses:
+      "200":
+        description: 添加成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addedProblems: { type: array, items: { type: string } }
+
+/api/training/editProblems/{id}:
+  post:
+    tags: [题单]
+    summary: 编排题单题目
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pids: { type: array, items: { type: string } }
+    responses:
+      "200":
+        description: 编排成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/training/clone/{id}:
+  post:
+    tags: [题单]
+    summary: 转存题单
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type: { type: integer }
+              providerID: { type: integer, nullable: true }
+    responses:
+      "200":
+        description: 转存成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/training/delete/{id}:
+  post:
+    tags: [题单]
+    summary: 删除题单
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
