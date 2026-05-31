@@ -1,0 +1,4213 @@
+openapi: 3.1.0
+
+info:
+  title: 洛谷 API
+  description: |
+    洛谷（luogu.com.cn）非官方 API 文档。
+
+    ## 通用约定
+
+    - 文本编码为 UTF-8
+    - `user-agent` 不能含有子串 `python-requests`（忽略大小写），也不能以 `mozilla/` 开头
+    - 非 GET 请求需要 `referer: https://www.luogu.com.cn/` 和 `x-csrf-token` 头
+    - CSRF 令牌从页面 HTML 的 `<meta name="csrf-token">` 获取
+
+    ## 响应格式
+
+    - **DataResponse**：需要 `_contentOnly` 参数或 `x-luogu-type: content-only` 头
+    - **LentilleDataResponse**：需要 `x-lentille-request: content-only` 头
+  version: 0.1.0
+  license:
+    name: Unlicense
+    identifier: Unlicense
+
+servers:
+  - url: https://www.luogu.com.cn
+    description: 主站
+  - url: wss://ws.luogu.com.cn/ws
+    description: WebSocket
+
+tags:
+  - name: 题目
+    description: 题目的增删改查与提交
+  - name: 题单
+    description: 题单（训练计划）管理
+  - name: 比赛
+    description: 比赛的创建、参加与排行榜
+  - name: 记录
+    description: 评测记录查询与状态监听
+  - name: 讨论
+    description: 讨论帖子的发布与管理
+  - name: 动态
+    description: 用户动态（犇犇）
+  - name: 用户
+    description: 用户信息与设置
+  - name: 团队
+    description: 团队管理
+  - name: 私信
+    description: 私信收发
+  - name: 专栏
+    description: 专栏文章
+  - name: 博客
+    description: 旧版博客
+  - name: 主题
+    description: 自定义主题
+  - name: 图片
+    description: 图床
+  - name: IDE
+    description: 在线 IDE
+  - name: 剪贴板
+    description: 代码剪贴板
+  - name: 身份验证
+    description: 登录、注册、验证码
+  - name: 杂项
+    description: 配置、标签、排名等
+  - name: WebSocket
+    description: 实时消息通道
+
+security:
+  - cookieAuth: []
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: _uid
+      description: "会话 cookie，需要 `_uid` 和 `__client_id`"
+
+  headers:
+    X-CsrfToken:
+      description: CSRF 令牌，从页面 HTML `<meta name="csrf-token">` 获取
+      schema:
+        type: string
+    X-LentilleRequest:
+      description: "值固定为 `content-only`，用于 LentilleDataResponse 类型端点"
+      schema:
+        type: string
+        enum: [content-only]
+    X-LuoguType:
+      description: "值固定为 `content-only`，用于 DataResponse 类型端点"
+      schema:
+        type: string
+        enum: [content-only]
+
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: 页码
+    ContentOnly:
+      name: _contentOnly
+      in: query
+      schema:
+        type: string
+      description: "DataResponse 端点的替代方案（也可用 `x-luogu-type: content-only` 头）"
+
+  schemas:
+    # ===== 通用包装 =====
+    List:
+      type: object
+      properties:
+        result:
+          type: array
+          items: {}
+        count:
+          type: integer
+        perPage:
+          type: integer
+          nullable: true
+
+    Maybe:
+      description: "T 或其所有字段为空的对象"
+
+    DataResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        currentTemplate:
+          type: string
+        currentData: {}
+        currentTitle:
+          type: string
+        currentTheme:
+          nullable: true
+        currentTime:
+          type: integer
+        currentUser: {}
+
+    LentilleDataResponse:
+      type: object
+      properties:
+        instance:
+          type: string
+        template:
+          type: string
+        status:
+          type: integer
+        locale:
+          type: string
+        data: {}
+        user:
+          nullable: true
+        time:
+          type: integer
+        theme:
+          nullable: true
+
+    # ===== 用户相关 =====
+    UserColor:
+      type: string
+      enum: [Cheater, Gray, Blue, Green, Orange, Red, Purple]
+
+    UserSummary:
+      type: object
+      properties:
+        uid:
+          type: integer
+        name:
+          type: string
+        avatar:
+          type: string
+        slogan:
+          type: string
+          nullable: true
+        badge:
+          type: string
+          nullable: true
+        isAdmin:
+          type: boolean
+        isBanned:
+          type: boolean
+        color:
+          $ref: "#/components/schemas/UserColor"
+        ccfLevel:
+          type: integer
+        xcpcLevel:
+          type: integer
+        background:
+          type: string
+          nullable: true
+        isRoot:
+          type: boolean
+
+    User:
+      allOf:
+        - $ref: "#/components/schemas/UserSummary"
+        - type: object
+          properties:
+            followingCount:
+              type: integer
+            followerCount:
+              type: integer
+            ranking:
+              type: integer
+              nullable: true
+            eloValue:
+              type: integer
+              nullable: true
+
+    UserDetails:
+      allOf:
+        - $ref: "#/components/schemas/User"
+        - type: object
+          properties:
+            rating: {}
+            registerTime:
+              type: integer
+            introduction:
+              type: string
+              nullable: true
+            prize:
+              type: array
+              items:
+                type: object
+                properties:
+                  year: { type: integer }
+                  contestName: { type: string }
+                  prize: { type: string }
+            elo: {}
+
+    UserPreferences:
+      type: object
+      properties:
+        codeFont:
+          type: string
+          nullable: true
+        colorScheme: {}
+        openSource:
+          type: integer
+        codeSharingWithAi:
+          type: boolean
+        learningMode:
+          type: boolean
+        messageMode:
+          type: integer
+        acceptPromotion:
+          type: boolean
+
+    # ===== 题目相关 =====
+    ProblemSummary:
+      type: object
+      properties:
+        pid:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        difficulty:
+          type: integer
+          nullable: true
+
+    Problem:
+      allOf:
+        - $ref: "#/components/schemas/ProblemSummary"
+        - type: object
+          properties:
+            tags:
+              type: array
+              items: { type: integer }
+            wantsTranslation:
+              type: boolean
+            totalSubmit:
+              type: integer
+            totalAccepted:
+              type: integer
+            flag:
+              type: integer
+
+    ProblemStatus:
+      type: object
+      properties:
+        submitted:
+          type: boolean
+        accepted:
+          type: boolean
+
+    ProblemDetails:
+      allOf:
+        - $ref: "#/components/schemas/Problem"
+        - type: object
+          properties:
+            provider: {}
+            content: {}
+            attachments:
+              type: array
+              items:
+                $ref: "#/components/schemas/ProblemAttachment"
+            acceptSolution:
+              type: boolean
+            acceptLanguages:
+              type: array
+              items: { type: integer }
+            samples:
+              type: array
+              items:
+                type: array
+                items: { type: string }
+                minItems: 2
+                maxItems: 2
+            limits:
+              type: object
+              properties:
+                time: { type: array, items: { type: integer } }
+                memory: { type: array, items: { type: integer } }
+            showScore:
+              type: boolean
+            score:
+              type: integer
+              nullable: true
+            bestRecord: {}
+            vjudge: {}
+            translation:
+              type: string
+
+    ProblemAttachment:
+      type: object
+      properties:
+        id: { type: string }
+        filename: { type: string }
+        size: { type: integer }
+        uploadTime: { type: integer }
+        downloadLink: { type: string }
+
+    ProblemSettings:
+      type: object
+      properties:
+        title: { type: string }
+        background: { type: string }
+        description: { type: string }
+        inputFormat: { type: string }
+        outputFormat: { type: string }
+        samples:
+          type: array
+          items:
+            type: array
+            items: { type: string }
+        hint: { type: string }
+        translation: { type: string }
+        needsTranslation: { type: boolean }
+        acceptSolution: { type: boolean }
+        allowDataDownload: { type: boolean }
+        difficulty: { type: integer }
+        showScore: { type: boolean }
+        flag: { type: integer }
+        tags:
+          type: array
+          items: { type: integer }
+
+    # ===== 题单相关 =====
+    ProblemSet:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        type: { type: integer }
+        provider: {}
+        createTime: { type: integer }
+        deadline: { type: integer, nullable: true }
+        problemCount: { type: integer }
+        marked: { type: boolean }
+        markCount: { type: integer }
+
+    ProblemSetDetails:
+      allOf:
+        - $ref: "#/components/schemas/ProblemSet"
+        - type: object
+          properties:
+            description: { type: string }
+            problems: { type: array, items: {} }
+            userScore: {}
+
+    ProblemSetSettings:
+      type: object
+      properties:
+        title: { type: string }
+        description: { type: string }
+        type: { type: integer }
+        deadline: { type: integer, nullable: true }
+
+    # ===== 比赛相关 =====
+    ContestSummary:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        startTime: { type: integer }
+        endTime: { type: integer }
+
+    Contest:
+      allOf:
+        - $ref: "#/components/schemas/ContestSummary"
+        - type: object
+          properties:
+            method: { type: integer }
+            visibility: { type: integer }
+            invitationCodeType: { type: integer }
+            rated: {}
+            host: {}
+            problemCount: { type: integer }
+            squad: { type: boolean }
+
+    ContestDetails:
+      allOf:
+        - $ref: "#/components/schemas/Contest"
+        - type: object
+          properties:
+            description: { type: string }
+            totalParticipants: { type: integer }
+            eloThreshold: { type: integer, nullable: true }
+            eloDone: { type: boolean }
+
+    ContestSettings:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        visibilityType: { type: integer }
+        invitationCodeType: { type: integer }
+        ruleType: { type: integer }
+        startTime: { type: integer }
+        endTime: { type: integer }
+        rated: { type: boolean }
+        ratingGroup: { type: string, nullable: true }
+        eloThreshold: { type: integer, nullable: true }
+        eloCenter: { type: integer, nullable: true }
+        squadMax: { type: integer, nullable: true }
+
+    Squad:
+      type: object
+      properties:
+        name: { type: string }
+        leader:
+          $ref: "#/components/schemas/UserSummary"
+        members:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserSummary"
+        code: { type: string }
+
+    Score:
+      type: object
+      properties:
+        details: {}
+        user: {}
+        squad:
+          $ref: "#/components/schemas/Squad"
+        score:
+          type: integer
+          nullable: true
+        runningTime:
+          type: integer
+
+    # ===== 记录相关 =====
+    RecordBase:
+      type: object
+      properties:
+        time: { type: integer, nullable: true }
+        memory: { type: integer, nullable: true }
+        problem: {}
+        contest: { nullable: true }
+        sourceCodeLength: { type: integer }
+        submitTime: { type: integer }
+        language: { type: integer }
+        user: {}
+        id: { type: integer }
+        status: { type: integer }
+        enableO2: { type: boolean }
+        score: { type: integer, nullable: true }
+
+    RecordDetails:
+      allOf:
+        - $ref: "#/components/schemas/RecordBase"
+        - type: object
+          properties:
+            detail: {}
+            sourceCode: { type: string, nullable: true }
+
+    # ===== 讨论相关 =====
+    PostSummary:
+      type: object
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        author:
+          $ref: "#/components/schemas/UserSummary"
+        time: { type: integer }
+
+    Post:
+      allOf:
+        - $ref: "#/components/schemas/PostSummary"
+        - type: object
+          properties:
+            forum: {}
+            topped: { type: boolean }
+            valid: { type: boolean }
+            locked: { type: boolean }
+            replyCount: { type: integer }
+            recentReply: {}
+
+    PostDetails:
+      allOf:
+        - $ref: "#/components/schemas/Post"
+        - type: object
+          properties:
+            content: { type: string }
+            pinnedReply: {}
+
+    Reply:
+      type: object
+      properties:
+        id: { type: integer }
+        author:
+          $ref: "#/components/schemas/UserSummary"
+        time: { type: integer }
+        content: { type: string }
+
+    Forum:
+      type: object
+      properties:
+        name: { type: string }
+        type: { type: integer }
+        slug: { type: string }
+        color: { type: string, nullable: true }
+        problem: {}
+        team: {}
+
+    # ===== 团队相关 =====
+    TeamSummary:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        isPremium: { type: boolean }
+
+    Team:
+      allOf:
+        - $ref: "#/components/schemas/TeamSummary"
+        - type: object
+          properties:
+            type: { type: integer }
+            memberCount: { type: integer }
+            createTime: { type: integer }
+            master:
+              $ref: "#/components/schemas/UserSummary"
+            description: { type: string }
+            openness: { type: integer }
+            premiumUntil: { type: integer, nullable: true }
+
+    TeamMember:
+      type: object
+      properties:
+        group: {}
+        user: {}
+        type: { type: integer }
+        permission: { type: integer }
+        realName: { type: string }
+
+    Group:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        no: { type: integer }
+
+    # ===== 专栏相关 =====
+    Article:
+      type: object
+      properties:
+        lid: { type: string }
+        title: { type: string }
+        time: { type: integer }
+        author: {}
+        upvote: { type: integer }
+        replyCount: { type: integer }
+        favorCount: { type: integer }
+        category: { type: integer }
+        status: { type: integer }
+        solutionFor: {}
+        promoteStatus: { type: integer }
+        collection: {}
+        content: { type: string }
+        top: { type: integer }
+
+    ArticleDetails:
+      allOf:
+        - $ref: "#/components/schemas/Article"
+        - type: object
+          properties:
+            contentFull: { type: boolean }
+            adminNote: { type: string, nullable: true }
+            voted: { type: integer, nullable: true }
+            canReply: { type: boolean }
+            canEdit: { type: boolean }
+
+    ArticleCollectionSummary:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+
+    # ===== 博客相关 =====
+    BlogSummary:
+      type: object
+      properties:
+        lid: { type: string }
+        id: { type: integer }
+        identifier: { type: string }
+        title: { type: string }
+
+    Blog:
+      allOf:
+        - $ref: "#/components/schemas/BlogSummary"
+        - type: object
+          properties:
+            type: { type: string }
+            status: { type: integer }
+            postTime: { type: integer }
+            author:
+              $ref: "#/components/schemas/UserSummary"
+            thumbUp: { type: integer }
+            commentCount: { type: integer }
+            currentUserVoteType: { type: integer }
+            contentDescription: { type: string }
+
+    Comment:
+      type: object
+      properties:
+        id: { type: integer }
+        author: {}
+        time: { type: integer }
+        content: { type: string }
+
+    # ===== 私信相关 =====
+    Message:
+      type: object
+      properties:
+        id: { type: integer }
+        sender:
+          $ref: "#/components/schemas/UserSummary"
+        receiver:
+          $ref: "#/components/schemas/UserSummary"
+        time: { type: integer }
+        status: { type: integer }
+        content: { type: string }
+
+    # ===== 主题相关 =====
+    Theme:
+      type: object
+      properties:
+        id: { type: integer }
+        header: {}
+        sideNav: {}
+        footer: {}
+
+    ThemeDetails:
+      allOf:
+        - $ref: "#/components/schemas/Theme"
+        - type: object
+          properties:
+            name: { type: string }
+            type: { type: integer }
+            author:
+              $ref: "#/components/schemas/UserSummary"
+            updateTime: { type: integer }
+            userCount: { type: integer }
+
+    ThemeHeaderFooter:
+      type: object
+      properties:
+        imagePath: { type: string, nullable: true }
+        color:
+          type: array
+          items:
+            type: array
+            items: { type: integer }
+            minItems: 4
+            maxItems: 4
+        blur: { type: number }
+        brightness: { type: number }
+        degree: { type: number }
+        repeat: { type: integer }
+        position:
+          type: array
+          items: { type: integer }
+          minItems: 2
+          maxItems: 2
+        size:
+          type: array
+          items: { type: integer }
+          minItems: 2
+          maxItems: 2
+        type: { type: integer }
+
+    ThemeSideNav:
+      type: object
+      properties:
+        logoBackgroundColor:
+          type: array
+          items: { type: integer }
+          minItems: 4
+          maxItems: 4
+        color:
+          type: array
+          items: { type: integer }
+          minItems: 4
+          maxItems: 4
+        invertColor: { type: boolean }
+
+    # ===== 图片相关 =====
+    Image:
+      type: object
+      properties:
+        thumbnailUrl: { type: string }
+        url: { type: string }
+        id: { type: string }
+        provider:
+          $ref: "#/components/schemas/UserSummary"
+        uploadTime: { type: integer }
+        size: { type: integer }
+
+    # ===== 剪贴板相关 =====
+    Paste:
+      type: object
+      properties:
+        data: { type: string }
+        id: { type: string }
+        user:
+          $ref: "#/components/schemas/UserSummary"
+        time: { type: integer }
+        public: { type: boolean }
+
+    # ===== 动态相关 =====
+    Activity:
+      type: object
+      properties:
+        content: { type: string }
+        id: { type: integer }
+        type: { type: integer }
+        time: { type: integer }
+        user:
+          $ref: "#/components/schemas/UserSummary"
+
+    # ===== 咕值/等级分 =====
+    GuRatingDetails:
+      type: object
+      properties:
+        rating: { type: integer }
+        time: { type: integer }
+        scores:
+          type: object
+          properties:
+            rating: { type: integer }
+            social: { type: integer }
+            basic: { type: integer }
+            contest: { type: integer }
+            practice: { type: integer }
+            prize: { type: integer }
+        user:
+          $ref: "#/components/schemas/UserSummary"
+
+    EloRatingDetails:
+      type: object
+      properties:
+        rating: { type: integer }
+        time: { type: integer }
+        latest: { type: boolean }
+        contest: {}
+        userCount: { type: integer }
+        prevDiff: { type: integer, nullable: true }
+        user:
+          $ref: "#/components/schemas/UserSummary"
+
+    # ===== 通知 =====
+    Notification:
+      type: object
+      properties:
+        id: { type: integer }
+        time: { type: integer }
+        type: { type: integer }
+        title: { type: string }
+        content: { type: string }
+        read: { type: boolean }
+
+    # ===== 杂项 =====
+    Advertisement:
+      type: object
+      properties:
+        image:
+          $ref: "#/components/schemas/Image"
+        imageUrl: { type: string }
+        url: { type: string }
+        id: { type: integer }
+
+    # ===== 请求体 =====
+    SubmitCodeRequest:
+      type: object
+      required: [code]
+      properties:
+        code:
+          type: string
+        lang:
+          type: integer
+          description: |
+            语言 ID：
+            | ID | 语言 | ID | 语言 | ID | 语言 |
+            |---|------|---|------|---|------|
+            | 1 | Pascal | 2 | C | 28 | C++14 (GCC 9) |
+            | 3 | C++98 | 4 | C++11 | 11 | C++14 |
+            | 12 | C++17 | 27 | C++20 | 34 | C++23 |
+            | 7 | Python 3 | 25 | PyPy 3 | 8 | Java 8 |
+            | 33 | Java 21 | 15 | Rust | 14 | Go |
+            | 9 | Node.js LTS | 16 | PHP | 13 | Ruby |
+            | 19 | Haskell | 21 | Kotlin/JVM | 22 | Scala |
+            | 17 | C# Mono | 30 | OCaml | 31 | Julia |
+            | 32 | Lua | 23 | Perl | 5 | 提交答案 |
+        enableO2:
+          type: integer
+        captcha:
+          type: string
+
+    CreateProblemRequest:
+      type: object
+      required: [settings, type, providerID]
+      properties:
+        settings:
+          $ref: "#/components/schemas/ProblemSettings"
+        type: { type: string }
+        providerID: { type: integer, nullable: true }
+
+    EditContestRequest:
+      type: object
+      properties:
+        settings:
+          $ref: "#/components/schemas/ContestSettings"
+        hostID: { type: integer, nullable: true }
+
+    CreatePostRequest:
+      type: object
+      required: [captcha, content, title, forum]
+      properties:
+        captcha: { type: string }
+        content: { type: string }
+        title: { type: string }
+        forum: { type: string }
+
+    EditArticleRequest:
+      type: object
+      required: [title, category, content, solutionFor, status, top]
+      properties:
+        title: { type: string }
+        category: { type: integer }
+        content: { type: string }
+        solutionFor: { type: string, nullable: true }
+        status: { type: integer }
+        top: { type: integer }
+
+    BatchEditArticleRequest:
+      type: object
+      properties:
+        status: { type: integer }
+        category: { type: integer }
+        lids:
+          type: array
+          items: { type: string }
+
+    EditThemeRequest:
+      type: object
+      required: [name, header, sideNav, footer]
+      properties:
+        name: { type: string }
+        header:
+          $ref: "#/components/schemas/ThemeHeaderFooter"
+        sideNav:
+          $ref: "#/components/schemas/ThemeSideNav"
+        footer:
+          $ref: "#/components/schemas/ThemeHeaderFooter"
+
+    ManageTeamMemberRequest:
+      type: object
+      required: [uid, realName, group, permission]
+      properties:
+        uid: { type: integer }
+        realName: { type: string }
+        group: { type: string }
+        permission: { type: integer }
+
+    LoginRequest:
+      type: object
+      required: [username, password, captcha]
+      properties:
+        username: { type: string }
+        password: { type: string }
+        captcha: { type: string }
+
+    RegisterRequest:
+      type: object
+      required: [username, password, endpoint, endpointType, verificationCode]
+      properties:
+        username: { type: string }
+        password: { type: string }
+        endpoint: { type: string }
+        endpointType: { type: integer }
+        verificationCode: { type: string }
+
+    LoginResponse:
+      type: object
+      properties:
+        username: { type: string }
+        syncToken: { type: string }
+        locked: { type: boolean }
+        redirectTo: { type: string }
+
+paths:
+  # ==================== 题目 ====================
+  /problem/list:
+    get:
+      tags: [题目]
+      summary: 列出题目
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer }
+        - name: keyword
+          in: query
+          schema: { type: string }
+        - name: content
+          in: query
+          schema: { type: boolean }
+        - name: orderBy
+          in: query
+          schema: { type: string }
+        - name: order
+          in: query
+          schema: { type: string }
+        - name: type
+          in: query
+          schema: { type: string }
+          description: "题目类型前缀，如 P、AT、CF 等"
+        - name: difficulty
+          in: query
+          schema: { type: integer }
+          description: "难度 ID（0-7）"
+        - name: tag
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 题目列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/createdProblems:
+    get:
+      tags: [题目]
+      summary: 列出创建的题目
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 创建的题目列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  problems:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Problem"
+
+  /problem/{pid}:
+    get:
+      tags: [题目]
+      summary: 获取题目
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+        - name: contestId
+          in: query
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 题目详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /problem/solution/{pid}:
+    get:
+      tags: [题目]
+      summary: 获取题解
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 题解列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /fe/api/problem/tasklistAdd:
+    post:
+      tags: [题目]
+      summary: 收藏题目
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pid]
+              properties:
+                pid: { type: string }
+      responses:
+        "200":
+          description: 收藏成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+
+  /fe/api/problem/tasklistRemove:
+    post:
+      tags: [题目]
+      summary: 取消收藏题目
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pid]
+              properties:
+                pid: { type: string }
+      responses:
+        "200":
+          description: 取消收藏成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+
+  /fe/api/problem/submit/{pid}:
+    post:
+      tags: [题目]
+      summary: 提交代码
+      description: |
+        CSRF 令牌需从**对应题目页面** HTML 的 `<meta name="csrf-token">` 获取，
+        而非主页或其他页面。
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+        - name: contestId
+          in: query
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubmitCodeRequest"
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                captcha:
+                  type: string
+      responses:
+        "200":
+          description: 提交成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rid: { type: integer }
+
+  /fe/api/problem/translate/{pid}:
+    post:
+      tags: [题目]
+      summary: 提交翻译
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [translation]
+              properties:
+                translation: { type: string }
+      responses:
+        "200":
+          description: 提交成功
+
+  /fe/api/problem/new:
+    post:
+      tags: [题目]
+      summary: 创建题目
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProblemRequest"
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pid: { type: string }
+
+  /fe/api/problem/edit/{pid}:
+    post:
+      tags: [题目]
+      summary: 编辑题目
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                settings:
+                  $ref: "#/components/schemas/ProblemSettings"
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pid: { type: string }
+
+  /fe/api/problem/editTestCase/{pid}:
+    post:
+      tags: [题目]
+      summary: 更新数据点设置
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cases: { type: array, items: {} }
+                subtaskScoringStrategies: {}
+                scoringStrategy: {}
+                showSubtask: { type: boolean }
+      responses:
+        "200":
+          description: 更新成功
+
+  /fe/api/problem/transfer/{pid}:
+    post:
+      tags: [题目]
+      summary: 迁移题目
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    type: { type: string }
+                    teamID: { type: integer }
+                - type: object
+                  properties:
+                    operation: { type: string, enum: [clone] }
+                    type: { type: string, enum: [T] }
+                    teamID: { type: integer }
+      responses:
+        "200":
+          description: 迁移成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pid: { type: string }
+
+  /fe/api/problem/delete/{id}:
+    post:
+      tags: [题目]
+      summary: 删除题目
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 题单 ====================
+  /training/list:
+    get:
+      tags: [题单]
+      summary: 列出题单
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: keyword
+          in: query
+          schema: { type: string }
+        - name: type
+          in: query
+          schema: { type: string, enum: [official, select] }
+      responses:
+        "200":
+          description: 题单列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/createdTrainings:
+    get:
+      tags: [题单]
+      summary: 列出创建的题单
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 创建的题单列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trainings:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ProblemSet"
+
+  /training/{id}:
+    get:
+      tags: [题单]
+      summary: 获取题单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 题单详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/markedTrainings:
+    get:
+      tags: [题单]
+      summary: 列出收藏的题单
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 收藏的题单列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trainingParticipations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        training:
+                          $ref: "#/components/schemas/ProblemSet"
+                        user:
+                          $ref: "#/components/schemas/UserSummary"
+
+  /api/training/mark/{id}:
+    post:
+      tags: [题单]
+      summary: 收藏题单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 收藏成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/training/unmark/{id}:
+    post:
+      tags: [题单]
+      summary: 取消收藏题单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 取消收藏成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/training/new:
+    post:
+      tags: [题单]
+      summary: 创建题单
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                settings:
+                  $ref: "#/components/schemas/ProblemSetSettings"
+                providerID: { type: integer, nullable: true }
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+
+  /api/training/edit/{id}:
+    post:
+      tags: [题单]
+      summary: 编辑题单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                settings:
+                  $ref: "#/components/schemas/ProblemSetSettings"
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+
+  /api/training/addProblem/{id}:
+    post:
+      tags: [题单]
+      summary: 添加题单题目
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pids: { type: array, items: { type: string } }
+      responses:
+        "200":
+          description: 添加成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  addedProblems: { type: array, items: { type: string } }
+
+  /api/training/editProblems/{id}:
+    post:
+      tags: [题单]
+      summary: 编排题单题目
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pids: { type: array, items: { type: string } }
+      responses:
+        "200":
+          description: 编排成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/training/clone/{id}:
+    post:
+      tags: [题单]
+      summary: 转存题单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: integer }
+                providerID: { type: integer, nullable: true }
+      responses:
+        "200":
+          description: 转存成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/training/delete/{id}:
+    post:
+      tags: [题单]
+      summary: 删除题单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 比赛 ====================
+  /contest/list:
+    get:
+      tags: [比赛]
+      summary: 列出比赛
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: name
+          in: query
+          schema: { type: string }
+          description: 比赛名称或编号
+        - name: method
+          in: query
+          schema: { type: integer }
+          description: "赛制：1=OI, 2=ICPC, 3=乐多, 4=IOI"
+        - name: public
+          in: query
+          schema: { type: integer }
+          description: "分类：1=官方, 2=团队公开赛, 4=个人公开赛, 11=重现赛"
+      responses:
+        "200":
+          description: 比赛列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/joinedContests:
+    get:
+      tags: [比赛]
+      summary: 列出参加的比赛
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 参加的比赛列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contests:
+                    type: array
+                    items: {}
+
+  /api/user/createdContests:
+    get:
+      tags: [比赛]
+      summary: 列出创建的比赛
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 创建的比赛列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contests:
+                    type: array
+                    items: {}
+
+  /contest/{id}:
+    get:
+      tags: [比赛]
+      summary: 获取比赛
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 比赛详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /contest/edit/{id}:
+    get:
+      tags: [比赛]
+      summary: 获取创建的比赛（编辑用）
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 比赛编辑数据
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /fe/api/contest/scoreboard/{id}:
+    get:
+      tags: [比赛]
+      summary: 获取排行榜
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 排行榜数据
+
+  /contest/{id}/join:
+    post:
+      tags: [比赛]
+      summary: 参加比赛
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code: { type: string }
+                unrated: { type: boolean }
+                squadCode: { type: string }
+      responses:
+        "200":
+          description: 参加成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+
+  /contest/{id}/squad:
+    post:
+      tags: [比赛]
+      summary: 创建小队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  squad:
+                    $ref: "#/components/schemas/Squad"
+
+  /contest/{id}/squadMemberQuit:
+    post:
+      tags: [比赛]
+      summary: 退出小队/踢出队员/解散小队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uid]
+              properties:
+                uid: { type: integer }
+      responses:
+        "200":
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  squad:
+                    allOf:
+                      - $ref: "#/components/schemas/Squad"
+                      - nullable: true
+
+  /fe/api/contest/new:
+    post:
+      tags: [比赛]
+      summary: 创建比赛
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditContestRequest"
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+
+  /fe/api/contest/edit/{id}:
+    post:
+      tags: [比赛]
+      summary: 编辑比赛
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditContestRequest"
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+
+  /fe/api/contest/editProblem/{id}:
+    post:
+      tags: [比赛]
+      summary: 编排比赛题目
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pids: { type: array, items: { type: string } }
+                scores:
+                  type: object
+                  additionalProperties: { type: integer }
+      responses:
+        "200":
+          description: 编排成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /fe/api/contest/delete/{id}:
+    post:
+      tags: [比赛]
+      summary: 删除比赛
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 记录 ====================
+  /record/list:
+    get:
+      tags: [记录]
+      summary: 列出记录
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: pid
+          in: query
+          schema: { type: string }
+        - name: contestId
+          in: query
+          schema: { type: integer }
+        - name: user
+          in: query
+          schema: { type: string }
+        - name: status
+          in: query
+          schema: { type: integer }
+          description: "评测状态码"
+        - name: language
+          in: query
+          schema: { type: integer }
+        - name: orderBy
+          in: query
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 记录列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /record/{id}:
+    get:
+      tags: [记录]
+      summary: 获取记录
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 记录详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /fe/api/record/queryDownloadableTestcase/{id}:
+    get:
+      tags: [记录]
+      summary: 获取可下载的数据点
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 可下载数据点 ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  testcaseId: { type: integer, nullable: true }
+
+  /fe/api/record/downloadTestcase/{id}:
+    post:
+      tags: [记录]
+      summary: 获取数据点内容
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [testcaseId]
+              properties:
+                testcaseId: { type: integer }
+      responses:
+        "200":
+          description: 数据点内容
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data:
+                    type: object
+                    properties:
+                      input: { type: string }
+                      output: { type: string }
+
+  # ==================== 讨论 ====================
+  /discuss:
+    get:
+      tags: [讨论]
+      summary: 列出帖子
+      parameters:
+        - name: forum
+          in: query
+          schema: { type: string }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 帖子列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/createdPosts:
+    get:
+      tags: [讨论]
+      summary: 列出发布的帖子
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: orderBy
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 发布的帖子列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items: {}
+
+  /discuss/{id}:
+    get:
+      tags: [讨论]
+      summary: 获取帖子
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+        - name: sort
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 帖子详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/discuss/post:
+    post:
+      tags: [讨论]
+      summary: 发布帖子
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePostRequest"
+      responses:
+        "200":
+          description: 发布成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: integer }
+
+  /api/discuss/reply/{id}:
+    post:
+      tags: [讨论]
+      summary: 发表回复
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [captcha, content]
+              properties:
+                captcha: { type: string }
+                content: { type: string }
+      responses:
+        "200":
+          description: 回复成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: array, items: {} }
+
+  /api/discuss/delete/{id}:
+    delete:
+      tags: [讨论]
+      summary: 删除帖子
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: array, items: {} }
+
+  /api/discuss/deleteReply/{id}:
+    delete:
+      tags: [讨论]
+      summary: 删除回复
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: array, items: {} }
+
+  /api/report/post:
+    post:
+      tags: [讨论]
+      summary: 举报帖子
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [relevantID, reason]
+              properties:
+                relevantID: { type: integer }
+                reason: { type: string }
+      responses:
+        "200":
+          description: 举报成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: string }
+
+  /api/report/post_reply:
+    post:
+      tags: [讨论]
+      summary: 举报回复
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [relevantID, reason]
+              properties:
+                relevantID: { type: integer }
+                reason: { type: string }
+      responses:
+        "200":
+          description: 举报成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: string }
+
+  # ==================== 动态 ====================
+  /api/feed/list:
+    get:
+      tags: [动态]
+      summary: 获取用户动态
+      parameters:
+        - name: user
+          in: query
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 用户动态列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  feeds:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Activity"
+
+  /api/feed/watching:
+    get:
+      tags: [动态]
+      summary: 获取关注的用户的动态
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 关注用户的动态
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: array, items: {} }
+
+  /api/feed/postBenben:
+    post:
+      tags: [动态]
+      summary: 发布动态
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [content]
+              properties:
+                content: { type: string }
+      responses:
+        "200":
+          description: 发布成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: {}
+
+  /api/feed/delete/{id}:
+    post:
+      tags: [动态]
+      summary: 删除动态
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: array, items: {} }
+
+  /api/report/feed:
+    post:
+      tags: [动态]
+      summary: 举报动态
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [relevantID, reason]
+              properties:
+                relevantID: { type: integer }
+                reason: { type: string }
+      responses:
+        "200":
+          description: 举报成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: string }
+
+  # ==================== 用户 ====================
+  /user/{uid}:
+    get:
+      tags: [用户]
+      summary: 获取用户
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 用户详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/search:
+    get:
+      tags: [用户]
+      summary: 根据 UID 或名字搜索用户
+      parameters:
+        - name: keyword
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 搜索结果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: "#/components/schemas/UserSummary"
+                        - nullable: true
+
+  /user/{uid}/practice:
+    get:
+      tags: [用户]
+      summary: 获取练习情况
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 练习数据
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/followings:
+    get:
+      tags: [用户]
+      summary: 列出关注
+      parameters:
+        - name: user
+          in: query
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 关注列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+
+  /api/user/followers:
+    get:
+      tags: [用户]
+      summary: 列出粉丝
+      parameters:
+        - name: user
+          in: query
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 粉丝列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+
+  /api/user/blacklist:
+    get:
+      tags: [用户]
+      summary: 获取黑名单
+      parameters:
+        - name: user
+          in: query
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 黑名单列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+
+  /user/setting:
+    get:
+      tags: [用户]
+      summary: 获取账号设置
+      responses:
+        "200":
+          description: 账号设置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /user/setting/preference:
+    get:
+      tags: [用户]
+      summary: 获取偏好设置
+      responses:
+        "200":
+          description: 偏好设置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /user/setting/preference/update:
+    post:
+      tags: [用户]
+      summary: 更新偏好设置
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPreferences"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  setting:
+                    $ref: "#/components/schemas/UserPreferences"
+
+  /user/setting/prize:
+    get:
+      tags: [用户]
+      summary: 获取奖项认证设置
+      responses:
+        "200":
+          description: 奖项设置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /user/setting/security:
+    get:
+      tags: [用户]
+      summary: 获取安全设置
+      responses:
+        "200":
+          description: 安全设置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/user/updateSlogan:
+    post:
+      tags: [用户]
+      summary: 更新签名
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [slogan]
+              properties:
+                slogan: { type: string }
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/user/updateIntroduction:
+    post:
+      tags: [用户]
+      summary: 更新介绍
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [introduction]
+              properties:
+                introduction: { type: string }
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/user/updateHeaderImage:
+    post:
+      tags: [用户]
+      summary: 更新封面
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageID: { type: string, nullable: true }
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/user/bindVjudgeAccount:
+    post:
+      tags: [用户]
+      summary: 绑定 RemoteJudge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [oj, username, password, captcha]
+              properties:
+                oj: { type: string }
+                username: { type: string }
+                password: { type: string }
+                captcha: { type: string }
+      responses:
+        "200":
+          description: 绑定成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/user/unbindVjudgeAccount:
+    post:
+      tags: [用户]
+      summary: 解除绑定 RemoteJudge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [oj]
+              properties:
+                oj: { type: string }
+      responses:
+        "200":
+          description: 解绑成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /openid/{id}/bind:
+    get:
+      tags: [用户]
+      summary: 绑定 OpenID
+      description: 重定向到对应的认证页面
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "302":
+          description: 重定向到认证页面
+
+  /api/user/unbindOpenId/{id}:
+    post:
+      tags: [用户]
+      summary: 解绑 OpenID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 解绑成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 团队 ====================
+  /team/{id}:
+    get:
+      tags: [团队]
+      summary: 获取团队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 团队详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /user/mine/team:
+    get:
+      tags: [团队]
+      summary: 列出加入的团队
+      responses:
+        "200":
+          description: 加入的团队列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /team/{id}/member:
+    get:
+      tags: [团队]
+      summary: 列出团队成员
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 成员列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /team/{id}/problem:
+    get:
+      tags: [团队]
+      summary: 列出团队题目
+      description: 需要是团队成员才能访问
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - name: keyword
+          in: query
+          schema: { type: string }
+        - name: orderBy
+          in: query
+          schema: { type: string, enum: [pid, name] }
+        - name: order
+          in: query
+          schema: { type: string, enum: [asc, desc] }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 团队题目列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /team/{id}/training:
+    get:
+      tags: [团队]
+      summary: 列出团队题单
+      description: 需要是团队成员才能访问
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 团队题单列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /team/{id}/contest:
+    get:
+      tags: [团队]
+      summary: 列出团队比赛
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 团队比赛列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/team/join/{id}:
+    post:
+      tags: [团队]
+      summary: 加入团队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applyMessage: { type: string }
+      responses:
+        "200":
+          description: 申请成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/team/exit/{id}:
+    post:
+      tags: [团队]
+      summary: 退出团队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 退出成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/team/create:
+    post:
+      tags: [团队]
+      summary: 创建团队
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  teamId: { type: integer }
+
+  /api/team/edit/{id}:
+    post:
+      tags: [团队]
+      summary: 编辑团队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                settings:
+                  type: object
+                  properties:
+                    description: { type: string }
+                    joinPermission: { type: integer }
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/team/setMaster/{id}:
+    post:
+      tags: [团队]
+      summary: 转让团队
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uid]
+              properties:
+                uid: { type: integer }
+      responses:
+        "200":
+          description: 转让成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/team/editNotice/{id}:
+    post:
+      tags: [团队]
+      summary: 更新公告
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [notice]
+              properties:
+                notice: { type: string }
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/team/editMember/{id}:
+    post:
+      tags: [团队]
+      summary: 管理成员
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ManageTeamMemberRequest"
+      responses:
+        "200":
+          description: 管理成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamMember"
+
+  /api/team/review/{id}:
+    post:
+      tags: [团队]
+      summary: 审核成员
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uid, reviewResult]
+              properties:
+                uid: { type: integer }
+                reviewResult: { type: string, enum: [apply, refuse, ban] }
+      responses:
+        "200":
+          description: 审核成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/team/kick/{id}:
+    post:
+      tags: [团队]
+      summary: 移除成员
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uid]
+              properties:
+                uid: { type: integer }
+      responses:
+        "200":
+          description: 移除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 私信 ====================
+  /chat:
+    get:
+      tags: [私信]
+      summary: 列出最近联系
+      responses:
+        "200":
+          description: 最近联系列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /api/chat/record:
+    get:
+      tags: [私信]
+      summary: 获取私信
+      parameters:
+        - name: user
+          in: query
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 私信列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Message"
+
+  /api/chat/new:
+    post:
+      tags: [私信]
+      summary: 发送私信
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user, content]
+              properties:
+                user: { type: integer }
+                content: { type: string }
+      responses:
+        "200":
+          description: 发送成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/chat/delete:
+    post:
+      tags: [私信]
+      summary: 删除私信
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id]
+              properties:
+                id: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/chat/clearUnread:
+    post:
+      tags: [私信]
+      summary: 清除未读私信通知
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user]
+              properties:
+                user: { type: integer }
+      responses:
+        "200":
+          description: 清除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 专栏 ====================
+  /article:
+    get:
+      tags: [专栏]
+      summary: 列出文章
+      parameters:
+        - name: category
+          in: query
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 文章列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /article/mine:
+    get:
+      tags: [专栏]
+      summary: 列出创建的文章
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: category
+          in: query
+          schema: { type: integer }
+        - name: status
+          in: query
+          schema: { type: integer }
+        - name: time
+          in: query
+          schema: { type: string, enum: [asc, desc] }
+        - name: type
+          in: query
+          schema: { type: string, enum: [all, promotion] }
+        - name: title
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 创建的文章列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /article/{lid}:
+    get:
+      tags: [专栏]
+      summary: 获取文章
+      description: 域名为 www.luogu.com（注意非 .com.cn）
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 文章详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /article/collection/{id}:
+    get:
+      tags: [专栏]
+      summary: 列出合集文章
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 合集文章列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /article/{lid}/availableCollection:
+    get:
+      tags: [专栏]
+      summary: 获取可投稿的官方合集
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 可用合集列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ArticleCollectionSummary"
+
+  /api/article/new:
+    post:
+      tags: [专栏]
+      summary: 创建文章
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditArticleRequest"
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  article:
+                    $ref: "#/components/schemas/ArticleDetails"
+
+  /api/article/edit/{lid}:
+    post:
+      tags: [专栏]
+      summary: 编辑文章
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditArticleRequest"
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  article:
+                    $ref: "#/components/schemas/ArticleDetails"
+
+  /api/article/delete/{lid}:
+    post:
+      tags: [专栏]
+      summary: 删除文章
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lid: { type: string }
+
+  /api/article/batchEdit:
+    post:
+      tags: [专栏]
+      summary: 批量修改文章
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchEditArticleRequest"
+      responses:
+        "200":
+          description: 修改成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lids: { type: array, items: { type: string } }
+
+  /api/article/favor/{lid}:
+    post:
+      tags: [专栏]
+      summary: 收藏文章
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+        - name: remove
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 收藏/取消收藏成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lid: { type: string }
+
+  /api/article/vote/{lid}:
+    post:
+      tags: [专栏]
+      summary: 赞/踩文章
+      description: 通过 URL 参数而非请求主体传参
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+        - name: vote
+          in: query
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 投票成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  voted: { type: integer }
+                  upvotes: { type: integer }
+
+  /api/article/requestPromotion/{lid}:
+    post:
+      tags: [专栏]
+      summary: 申请全站推荐
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 申请成功
+
+  /api/article/withdrawPromotion/{lid}:
+    post:
+      tags: [专栏]
+      summary: 撤回全站推荐
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 撤回成功
+
+  /article/{lid}/replies:
+    get:
+      tags: [专栏]
+      summary: 获取评论
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+        - name: sort
+          in: query
+          schema: { type: string }
+        - name: after
+          in: query
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 评论列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replySlice:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Comment"
+
+  /article/{lid}/reply:
+    post:
+      tags: [专栏]
+      summary: 发表评论
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [content]
+              properties:
+                content: { type: string }
+      responses:
+        "200":
+          description: 评论成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reply:
+                    $ref: "#/components/schemas/Comment"
+
+  /article/{lid}/deleteReply/{id}:
+    post:
+      tags: [专栏]
+      summary: 删除评论
+      parameters:
+        - name: lid
+          in: path
+          required: true
+          schema: { type: string }
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+
+  # ==================== 博客 ====================
+  /api/blog/userBlogs:
+    get:
+      tags: [博客]
+      summary: 列出所有文章
+      parameters:
+        - name: user
+          in: query
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 博客文章列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  blogs:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Blog"
+
+  /api/blog/detail/{id}:
+    get:
+      tags: [博客]
+      summary: 获取文章
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 博客文章详情
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data:
+                    type: array
+                    items: {}
+
+  /blogAdmin/article/post_new:
+    post:
+      tags: [博客]
+      summary: 创建文章
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                content: { type: string }
+                identifier: { type: string }
+                type: { type: string }
+                top: { type: integer }
+                status: { type: integer }
+                csrf-token: { type: string }
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: integer }
+
+  /blogAdmin/article/post_edit/{id}:
+    post:
+      tags: [博客]
+      summary: 编辑文章
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                content: { type: string }
+                identifier: { type: string }
+                type: { type: string }
+                top: { type: integer }
+                status: { type: integer }
+                csrf-token: { type: string }
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: integer }
+
+  /api/blog/delete/{id}:
+    post:
+      tags: [博客]
+      summary: 删除文章
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+
+  /api/blog/replies/{id}:
+    get:
+      tags: [博客]
+      summary: 获取评论
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 评论列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Comment"
+
+  /api/blog/reply/{id}:
+    post:
+      tags: [博客]
+      summary: 发表评论
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [content]
+              properties:
+                content: { type: string }
+      responses:
+        "200":
+          description: 评论成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  reply:
+                    $ref: "#/components/schemas/Comment"
+
+  /api/blog/vote/{id}:
+    post:
+      tags: [博客]
+      summary: 赞/踩文章
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [Type]
+              properties:
+                Type: { type: integer }
+      responses:
+        "200":
+          description: 投票成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: integer }
+
+  /blogAdmin/article/deleteComment/{id}:
+    post:
+      tags: [博客]
+      summary: 删除评论
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [reply-id, csrf-token]
+              properties:
+                reply-id: { type: integer }
+                csrf-token: { type: string }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data: { type: string }
+
+  /blogAdmin/article/list:
+    post:
+      tags: [博客]
+      summary: 批量更新文章状态 / 批量恢复/删除回收站中的文章
+      parameters:
+        - name: pageType
+          in: query
+          required: true
+          schema: { type: string, enum: [list, trash] }
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    method: { type: string, enum: [update] }
+                    blog-id: { type: array, items: { type: integer } }
+                    edit-status: { type: integer }
+                    csrf-token: { type: string }
+                - type: object
+                  properties:
+                    method: { type: string, enum: [recover, delete] }
+                    blog-id: { type: array, items: { type: integer } }
+                    csrf-token: { type: string }
+      responses:
+        "200":
+          description: 操作成功
+          content:
+            text/html: {}
+
+  # ==================== 主题 ====================
+  /theme/list:
+    get:
+      tags: [主题]
+      summary: 列出主题
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: orderBy
+          in: query
+          schema: { type: string }
+        - name: order
+          in: query
+          schema: { type: string }
+        - name: type
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 主题列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /theme/design/{id}:
+    get:
+      tags: [主题]
+      summary: 获取主题
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 主题详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /theme/setTheme/{id}:
+    post:
+      tags: [主题]
+      summary: 应用主题
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 应用成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+
+  /theme/edit/:
+    post:
+      tags: [主题]
+      summary: 创建主题
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditThemeRequest"
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+
+  /theme/edit/{id}:
+    post:
+      tags: [主题]
+      summary: 编辑主题
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditThemeRequest"
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+
+  /theme/delete/{id}:
+    post:
+      tags: [主题]
+      summary: 删除主题
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+
+  # ==================== 图片 ====================
+  /image:
+    get:
+      tags: [图片]
+      summary: 列出图片
+      parameters:
+        - name: user
+          in: query
+          required: true
+          schema: { type: integer }
+        - name: content
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: 图片列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /api/image/detail/{id}:
+    get:
+      tags: [图片]
+      summary: 获取图片
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 图片详情
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image:
+                    $ref: "#/components/schemas/Image"
+
+  /api/image/generateUploadLink:
+    get:
+      tags: [图片]
+      summary: 生成上传参数
+      parameters:
+        - name: watermarkType
+          in: query
+          required: true
+          schema: { type: integer }
+        - name: captcha
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 上传参数
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uploadLink:
+                    type: object
+                    properties:
+                      host: { type: string }
+                      policy: { type: string }
+                      accessKeyID: { type: string }
+                      callback: { type: string }
+                      signature: { type: string }
+                      expiredTime: { type: integer }
+                      dir: { type: string }
+
+  /api/image/delete:
+    post:
+      tags: [图片]
+      summary: 删除图片
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [images]
+              properties:
+                images: { type: array, items: { type: string } }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== IDE ====================
+  /api/ide_submit:
+    post:
+      tags: [IDE]
+      summary: 提交代码
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [code, lang, csrf-token]
+              properties:
+                code: { type: string }
+                lang: { type: integer }
+                input: { type: string }
+                o2: { type: boolean }
+                csrf-token: { type: string }
+      responses:
+        "200":
+          description: 提交成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: integer }
+                  data:
+                    type: object
+                    properties:
+                      rid: { type: integer }
+
+  # ==================== 剪贴板 ====================
+  /paste:
+    get:
+      tags: [剪贴板]
+      summary: 列出剪贴板
+      responses:
+        "200":
+          description: 剪贴板列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /paste/{id}:
+    get:
+      tags: [剪贴板]
+      summary: 获取剪贴板
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 剪贴板内容
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  /paste/new:
+    post:
+      tags: [剪贴板]
+      summary: 创建剪贴板
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data: { type: string }
+                public: { type: boolean }
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+
+  /paste/edit/{id}:
+    post:
+      tags: [剪贴板]
+      summary: 编辑剪贴板
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data: { type: string }
+                public: { type: boolean }
+      responses:
+        "200":
+          description: 编辑成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+
+  /paste/delete/{id}:
+    post:
+      tags: [剪贴板]
+      summary: 删除剪贴板
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+
+  # ==================== 身份验证 ====================
+  /lg4/captcha:
+    get:
+      tags: [身份验证]
+      summary: 获取图片验证码
+      responses:
+        "200":
+          description: 验证码图片
+          content:
+            image/jpeg: {}
+
+  /auth/motp/to:
+    post:
+      tags: [身份验证]
+      summary: 发送注册验证码
+      parameters:
+        - name: endpoint
+          in: query
+          required: true
+          schema: { type: integer }
+        - name: exist
+          in: query
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [endpoint, captcha]
+              properties:
+                endpoint: { type: string }
+                captcha: { type: string }
+      responses:
+        "200":
+          description: 发送成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /auth/finish-signup:
+    post:
+      tags: [身份验证]
+      summary: 注册
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "200":
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /do-auth/password:
+    post:
+      tags: [身份验证]
+      summary: 登录
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /openid/{id}/connect:
+    get:
+      tags: [身份验证]
+      summary: 通过 OpenID 登录
+      description: 重定向到对应的认证页面
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "302":
+          description: 重定向到认证页面
+
+  /auth/logout:
+    post:
+      tags: [身份验证]
+      summary: 登出
+      responses:
+        "200":
+          description: 登出成功
+
+  /auth/lock:
+    post:
+      tags: [身份验证]
+      summary: 锁定
+      responses:
+        "200":
+          description: 锁定成功
+
+  /do-auth/totp:
+    post:
+      tags: [身份验证]
+      summary: 使用 TOTP 解锁
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code: { type: string }
+      responses:
+        "200":
+          description: 解锁成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /auth/motp/request:
+    post:
+      tags: [身份验证]
+      summary: 发送一次性验证码
+      parameters:
+        - name: endpoint
+          in: query
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [captcha]
+              properties:
+                captcha: { type: string }
+      responses:
+        "200":
+          description: 发送成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /do-auth/motp:
+    post:
+      tags: [身份验证]
+      summary: 使用一次性验证码解锁
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code: { type: string }
+      responses:
+        "200":
+          description: 解锁成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /auth/unlock:
+    get:
+      tags: [身份验证]
+      summary: 获取解锁方式
+      responses:
+        "200":
+          description: 解锁方式
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataResponse"
+
+  # ==================== 杂项 ====================
+  /_lfe/config:
+    get:
+      tags: [杂项]
+      summary: 获取配置
+      responses:
+        "200":
+          description: 站点配置
+          content:
+            application/json: {}
+
+  /_lfe/tags:
+    get:
+      tags: [杂项]
+      summary: 获取标签
+      responses:
+        "200":
+          description: 标签列表
+          content:
+            application/json: {}
+
+  /ranking:
+    get:
+      tags: [杂项]
+      summary: 获取咕值排名
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - name: orderBy
+          in: query
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 咕值排名
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /ranking/elo:
+    get:
+      tags: [杂项]
+      summary: 获取等级分排名
+      parameters:
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 等级分排名
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /user/notification:
+    get:
+      tags: [杂项]
+      summary: 获取通知
+      parameters:
+        - name: type
+          in: query
+          schema: { type: integer }
+        - $ref: "#/components/parameters/Page"
+      responses:
+        "200":
+          description: 通知列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LentilleDataResponse"
+
+  /api/qiaFan/getFan/{id}:
+    get:
+      tags: [杂项]
+      summary: 获取广告
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: 广告内容
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  advertisement:
+                    allOf:
+                      - $ref: "#/components/schemas/Advertisement"
+                      - nullable: true
+
+  /paintboard/board:
+    get:
+      tags: [杂项]
+      summary: 冬日绘版内容
+      responses:
+        "200":
+          description: "1000 行 * 600 列的字符矩阵"
+          content:
+            text/plain: {}
+
+  /paintboard/resetToken:
+    post:
+      tags: [杂项]
+      summary: 冬日绘版重置 token
+      responses:
+        "200":
+          description: 新 token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: { type: string }
+
+  /paintboard/paint:
+    post:
+      tags: [杂项]
+      summary: 冬日绘版绘制
+      parameters:
+        - name: token
+          in: query
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [x, y, color]
+              properties:
+                x: { type: integer }
+                y: { type: integer }
+                color: { type: integer }
+      responses:
+        "200":
+          description: 绘制成功
+          content:
+            application/json:
+              schema:
+                type: object

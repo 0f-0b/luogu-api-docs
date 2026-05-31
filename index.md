@@ -46,38 +46,85 @@
 - [身份验证](auth)
 - [杂项](misc)
 - [WebSocket](ws)
+- [OpenAPI 规范](openapi.yaml)
+
+## 常见错误
+
+| HTTP 状态码 | 含义 |
+|------------|------|
+| 200 | 成功（具体业务状态见响应体） |
+| 302 | 重定向（如 OpenID 登录） |
+| 403 | 权限不足（未登录或无权访问） |
+| 404 | 资源不存在或 API 已移除 |
+| 429 | 请求频率过高 |
+
+业务层面，部分接口在响应体中使用 `status` 字段表示结果（非零通常表示失败）。
 
 ## 范例
 
-### `GET` 请求
+### `GET` 请求（JavaScript）
 
-列出主题库中标题含有“模板”的题目。
+列出主题库中标题含有”模板”的题目。
 
 ```js
-await fetch("https://www.luogu.com.cn/problem/list?type=P&keyword=模板", {
+await fetch(“https://www.luogu.com.cn/problem/list?type=P&keyword=模板”, {
   headers: [
-    ["x-lentille-request", "content-only"],
+    [“x-lentille-request”, “content-only”],
   ],
 });
 ```
 
-### `POST` 请求
+### `GET` 请求（cURL）
 
-向[此文档的编者](https://www.luogu.com.cn/user/206953)发送一条内容为“Hi”的私信。
+```bash
+curl -G “https://www.luogu.com.cn/problem/list” \
+  --header “x-lentille-request: content-only” \
+  --data-urlencode “type=P” \
+  --data-urlencode “keyword=模板”
+```
+
+### `GET` 请求（Python）
+
+```python
+import requests
+
+resp = requests.get(
+    “https://www.luogu.com.cn/problem/list”,
+    params={“type”: “P”, “keyword”: “模板”},
+    headers={“x-lentille-request”: “content-only”},
+    cookies={“_uid”: “YOUR_UID”, “__client_id”: “YOUR_CLIENT_ID”},
+)
+print(resp.json()[“data”])
+```
+
+### `POST` 请求（JavaScript）
+
+向[此文档的编者](https://www.luogu.com.cn/user/206953)发送一条内容为”Hi”的私信。
 
 ```js
-await fetch("https://www.luogu.com.cn/api/chat/new", {
+await fetch(“https://www.luogu.com.cn/api/chat/new”, {
   headers: [
-    ["content-type", "application/json"],
-    ["referer", "https://www.luogu.com.cn/"],
-    ["x-csrf-token", document.querySelector("meta[name=csrf-token]").content],
+    [“content-type”, “application/json”],
+    [“referer”, “https://www.luogu.com.cn/”],
+    [“x-csrf-token”, document.querySelector(“meta[name=csrf-token]”).content],
   ],
   body: JSON.stringify({
     user: 206953,
-    content: "Hi",
+    content: “Hi”,
   }),
-  method: "POST",
+  method: “POST”,
 });
+```
+
+### `POST` 请求（cURL）
+
+```bash
+curl -X POST “https://www.luogu.com.cn/api/chat/new” \
+  --header “content-type: application/json” \
+  --header “referer: https://www.luogu.com.cn/” \
+  --header “x-csrf-token: YOUR_CSRF_TOKEN” \
+  --cookie “_uid=YOUR_UID; __client_id=YOUR_CLIENT_ID” \
+  --data '{“user”:206953,”content”:”Hi”}'
 ```
 
 ### WebSocket 连接
@@ -85,18 +132,18 @@ await fetch("https://www.luogu.com.cn/api/chat/new", {
 监听私信，在日志中记录内容和双方的用户名。
 
 ```js
-const ws = new WebSocket("wss://ws.luogu.com.cn/ws");
+const ws = new WebSocket(“wss://ws.luogu.com.cn/ws”);
 ws.onopen = () => {
   ws.send(JSON.stringify({
-    channel: "chat",
+    channel: “chat”,
     channel_param: `${_feInstance.currentUser.uid}`,
-    type: "join_channel",
+    type: “join_channel”,
   }));
 };
 ws.onmessage = (event) => {
   const data = JSON.parse(event.data);
   switch (data._ws_type) {
-    case "server_broadcast": {
+    case “server_broadcast”: {
       const { message } = data;
       console.log(
         `${message.sender.name} → ${message.receiver.name}: ${message.content}`,
