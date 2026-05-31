@@ -1,6 +1,6 @@
 # 洛谷 API 文档
 
-不方便直接列出的类型定义在 [luogu-api.d.ts](luogu-api.d.ts)。
+不方便直接列出的类型定义在 [luogu-api.d.ts](../luogu-api.d.ts)。
 
 对于所有请求：
 
@@ -46,7 +46,7 @@
 - [身份验证](auth)
 - [杂项](misc)
 - [WebSocket](ws)
-- [OpenAPI 规范](openapi/openapi.yaml)
+- [OpenAPI 规范](../openapi/openapi.yaml)
 
 ## 常见错误
 
