@@ -1,0 +1,338 @@
+/article:
+  get:
+    tags: [专栏]
+    summary: 列出文章
+    parameters:
+      - name: category
+        in: query
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 文章列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/article/mine:
+  get:
+    tags: [专栏]
+    summary: 列出创建的文章
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - name: category
+        in: query
+        schema: { type: integer }
+      - name: status
+        in: query
+        schema: { type: integer }
+      - name: time
+        in: query
+        schema: { type: string, enum: [asc, desc] }
+      - name: type
+        in: query
+        schema: { type: string, enum: [all, promotion] }
+      - name: title
+        in: query
+        schema: { type: string }
+    responses:
+      "200":
+        description: 创建的文章列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/article/{lid}:
+  get:
+    tags: [专栏]
+    summary: 获取文章
+    description: 域名为 www.luogu.com（注意非 .com.cn）
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 文章详情
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/article/collection/{id}:
+  get:
+    tags: [专栏]
+    summary: 列出合集文章
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 合集文章列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/article/{lid}/availableCollection:
+  get:
+    tags: [专栏]
+    summary: 获取可投稿的官方合集
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 可用合集列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collections:
+                  type: array
+                  items:
+                    $ref: '../openapi.yaml#/components/schemas/ArticleCollectionSummary'
+
+/api/article/new:
+  post:
+    tags: [专栏]
+    summary: 创建文章
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/EditArticleRequest'
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                article:
+                  $ref: '../openapi.yaml#/components/schemas/ArticleDetails'
+
+/api/article/edit/{lid}:
+  post:
+    tags: [专栏]
+    summary: 编辑文章
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/EditArticleRequest'
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                article:
+                  $ref: '../openapi.yaml#/components/schemas/ArticleDetails'
+
+/api/article/delete/{lid}:
+  post:
+    tags: [专栏]
+    summary: 删除文章
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lid: { type: string }
+
+/api/article/batchEdit:
+  post:
+    tags: [专栏]
+    summary: 批量修改文章
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/BatchEditArticleRequest'
+    responses:
+      "200":
+        description: 修改成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lids: { type: array, items: { type: string } }
+
+/api/article/favor/{lid}:
+  post:
+    tags: [专栏]
+    summary: 收藏文章
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+      - name: remove
+        in: query
+        schema: { type: string }
+    responses:
+      "200":
+        description: 收藏/取消收藏成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lid: { type: string }
+
+/api/article/vote/{lid}:
+  post:
+    tags: [专栏]
+    summary: 赞/踩文章
+    description: 通过 URL 参数而非请求主体传参
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+      - name: vote
+        in: query
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 投票成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voted: { type: integer }
+                upvotes: { type: integer }
+
+/api/article/requestPromotion/{lid}:
+  post:
+    tags: [专栏]
+    summary: 申请全站推荐
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 申请成功
+
+/api/article/withdrawPromotion/{lid}:
+  post:
+    tags: [专栏]
+    summary: 撤回全站推荐
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 撤回成功
+
+/article/{lid}/replies:
+  get:
+    tags: [专栏]
+    summary: 获取评论
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+      - name: sort
+        in: query
+        schema: { type: string }
+      - name: after
+        in: query
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 评论列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                replySlice:
+                  type: array
+                  items:
+                    $ref: '../openapi.yaml#/components/schemas/Comment'
+
+/article/{lid}/reply:
+  post:
+    tags: [专栏]
+    summary: 发表评论
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [content]
+            properties:
+              content: { type: string }
+    responses:
+      "200":
+        description: 评论成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reply:
+                  $ref: '../openapi.yaml#/components/schemas/Comment'
+
+/article/{lid}/deleteReply/{id}:
+  post:
+    tags: [专栏]
+    summary: 删除评论
+    parameters:
+      - name: lid
+        in: path
+        required: true
+        schema: { type: string }
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: integer }

@@ -1,0 +1,100 @@
+/record/list:
+  get:
+    tags: [记录]
+    summary: 列出记录
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - name: pid
+        in: query
+        schema: { type: string }
+      - name: contestId
+        in: query
+        schema: { type: integer }
+      - name: user
+        in: query
+        schema: { type: string }
+      - name: status
+        in: query
+        schema: { type: integer }
+        description: "评测状态码"
+      - name: language
+        in: query
+        schema: { type: integer }
+      - name: orderBy
+        in: query
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 记录列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/record/{id}:
+  get:
+    tags: [记录]
+    summary: 获取记录
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 记录详情
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/fe/api/record/queryDownloadableTestcase/{id}:
+  get:
+    tags: [记录]
+    summary: 获取可下载的数据点
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 可下载数据点 ID
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                testcaseId: { type: integer, nullable: true }
+
+/fe/api/record/downloadTestcase/{id}:
+  post:
+    tags: [记录]
+    summary: 获取数据点内容
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [testcaseId]
+            properties:
+              testcaseId: { type: integer }
+    responses:
+      "200":
+        description: 数据点内容
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data:
+                  type: object
+                  properties:
+                    input: { type: string }
+                    output: { type: string }

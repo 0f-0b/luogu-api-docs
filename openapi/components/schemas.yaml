@@ -1,0 +1,817 @@
+# ===== 通用包装 =====
+List:
+  type: object
+  properties:
+    result:
+      type: array
+      items: {}
+    count:
+      type: integer
+    perPage:
+      type: integer
+      nullable: true
+
+Maybe:
+  description: "T 或其所有字段为空的对象"
+
+DataResponse:
+  type: object
+  properties:
+    code:
+      type: integer
+    currentTemplate:
+      type: string
+    currentData: {}
+    currentTitle:
+      type: string
+    currentTheme:
+      nullable: true
+    currentTime:
+      type: integer
+    currentUser: {}
+
+LentilleDataResponse:
+  type: object
+  properties:
+    instance:
+      type: string
+    template:
+      type: string
+    status:
+      type: integer
+    locale:
+      type: string
+    data: {}
+    user:
+      nullable: true
+    time:
+      type: integer
+    theme:
+      nullable: true
+
+# ===== 用户相关 =====
+UserColor:
+  type: string
+  enum: [Cheater, Gray, Blue, Green, Orange, Red, Purple]
+
+UserSummary:
+  type: object
+  properties:
+    uid:
+      type: integer
+    name:
+      type: string
+    avatar:
+      type: string
+    slogan:
+      type: string
+      nullable: true
+    badge:
+      type: string
+      nullable: true
+    isAdmin:
+      type: boolean
+    isBanned:
+      type: boolean
+    color:
+      $ref: "./schemas.yaml#/UserColor"
+    ccfLevel:
+      type: integer
+    xcpcLevel:
+      type: integer
+    background:
+      type: string
+      nullable: true
+    isRoot:
+      type: boolean
+
+User:
+  allOf:
+    - $ref: "./schemas.yaml#/UserSummary"
+    - type: object
+      properties:
+        followingCount:
+          type: integer
+        followerCount:
+          type: integer
+        ranking:
+          type: integer
+          nullable: true
+        eloValue:
+          type: integer
+          nullable: true
+
+UserDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/User"
+    - type: object
+      properties:
+        rating: {}
+        registerTime:
+          type: integer
+        introduction:
+          type: string
+          nullable: true
+        prize:
+          type: array
+          items:
+            type: object
+            properties:
+              year: { type: integer }
+              contestName: { type: string }
+              prize: { type: string }
+        elo: {}
+
+UserPreferences:
+  type: object
+  properties:
+    codeFont:
+      type: string
+      nullable: true
+    colorScheme: {}
+    openSource:
+      type: integer
+    codeSharingWithAi:
+      type: boolean
+    learningMode:
+      type: boolean
+    messageMode:
+      type: integer
+    acceptPromotion:
+      type: boolean
+
+# ===== 题目相关 =====
+ProblemSummary:
+  type: object
+  properties:
+    pid:
+      type: string
+    type:
+      type: string
+    title:
+      type: string
+    difficulty:
+      type: integer
+      nullable: true
+
+Problem:
+  allOf:
+    - $ref: "./schemas.yaml#/ProblemSummary"
+    - type: object
+      properties:
+        tags:
+          type: array
+          items: { type: integer }
+        wantsTranslation:
+          type: boolean
+        totalSubmit:
+          type: integer
+        totalAccepted:
+          type: integer
+        flag:
+          type: integer
+
+ProblemStatus:
+  type: object
+  properties:
+    submitted:
+      type: boolean
+    accepted:
+      type: boolean
+
+ProblemDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/Problem"
+    - type: object
+      properties:
+        provider: {}
+        content: {}
+        attachments:
+          type: array
+          items:
+            $ref: "./schemas.yaml#/ProblemAttachment"
+        acceptSolution:
+          type: boolean
+        acceptLanguages:
+          type: array
+          items: { type: integer }
+        samples:
+          type: array
+          items:
+            type: array
+            items: { type: string }
+            minItems: 2
+            maxItems: 2
+        limits:
+          type: object
+          properties:
+            time: { type: array, items: { type: integer } }
+            memory: { type: array, items: { type: integer } }
+        showScore:
+          type: boolean
+        score:
+          type: integer
+          nullable: true
+        bestRecord: {}
+        vjudge: {}
+        translation:
+          type: string
+
+ProblemAttachment:
+  type: object
+  properties:
+    id: { type: string }
+    filename: { type: string }
+    size: { type: integer }
+    uploadTime: { type: integer }
+    downloadLink: { type: string }
+
+ProblemSettings:
+  type: object
+  properties:
+    title: { type: string }
+    background: { type: string }
+    description: { type: string }
+    inputFormat: { type: string }
+    outputFormat: { type: string }
+    samples:
+      type: array
+      items:
+        type: array
+        items: { type: string }
+    hint: { type: string }
+    translation: { type: string }
+    needsTranslation: { type: boolean }
+    acceptSolution: { type: boolean }
+    allowDataDownload: { type: boolean }
+    difficulty: { type: integer }
+    showScore: { type: boolean }
+    flag: { type: integer }
+    tags:
+      type: array
+      items: { type: integer }
+
+# ===== 题单相关 =====
+ProblemSet:
+  type: object
+  properties:
+    id: { type: integer }
+    name: { type: string }
+    type: { type: integer }
+    provider: {}
+    createTime: { type: integer }
+    deadline: { type: integer, nullable: true }
+    problemCount: { type: integer }
+    marked: { type: boolean }
+    markCount: { type: integer }
+
+ProblemSetDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/ProblemSet"
+    - type: object
+      properties:
+        description: { type: string }
+        problems: { type: array, items: {} }
+        userScore: {}
+
+ProblemSetSettings:
+  type: object
+  properties:
+    title: { type: string }
+    description: { type: string }
+    type: { type: integer }
+    deadline: { type: integer, nullable: true }
+
+# ===== 比赛相关 =====
+ContestSummary:
+  type: object
+  properties:
+    id: { type: integer }
+    name: { type: string }
+    startTime: { type: integer }
+    endTime: { type: integer }
+
+Contest:
+  allOf:
+    - $ref: "./schemas.yaml#/ContestSummary"
+    - type: object
+      properties:
+        method: { type: integer }
+        visibility: { type: integer }
+        invitationCodeType: { type: integer }
+        rated: {}
+        host: {}
+        problemCount: { type: integer }
+        squad: { type: boolean }
+
+ContestDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/Contest"
+    - type: object
+      properties:
+        description: { type: string }
+        totalParticipants: { type: integer }
+        eloThreshold: { type: integer, nullable: true }
+        eloDone: { type: boolean }
+
+ContestSettings:
+  type: object
+  properties:
+    name: { type: string }
+    description: { type: string }
+    visibilityType: { type: integer }
+    invitationCodeType: { type: integer }
+    ruleType: { type: integer }
+    startTime: { type: integer }
+    endTime: { type: integer }
+    rated: { type: boolean }
+    ratingGroup: { type: string, nullable: true }
+    eloThreshold: { type: integer, nullable: true }
+    eloCenter: { type: integer, nullable: true }
+    squadMax: { type: integer, nullable: true }
+
+Squad:
+  type: object
+  properties:
+    name: { type: string }
+    leader:
+      $ref: "./schemas.yaml#/UserSummary"
+    members:
+      type: array
+      items:
+        $ref: "./schemas.yaml#/UserSummary"
+    code: { type: string }
+
+Score:
+  type: object
+  properties:
+    details: {}
+    user: {}
+    squad:
+      $ref: "./schemas.yaml#/Squad"
+    score:
+      type: integer
+      nullable: true
+    runningTime:
+      type: integer
+
+# ===== 记录相关 =====
+RecordBase:
+  type: object
+  properties:
+    time: { type: integer, nullable: true }
+    memory: { type: integer, nullable: true }
+    problem: {}
+    contest: { nullable: true }
+    sourceCodeLength: { type: integer }
+    submitTime: { type: integer }
+    language: { type: integer }
+    user: {}
+    id: { type: integer }
+    status: { type: integer }
+    enableO2: { type: boolean }
+    score: { type: integer, nullable: true }
+
+RecordDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/RecordBase"
+    - type: object
+      properties:
+        detail: {}
+        sourceCode: { type: string, nullable: true }
+
+# ===== 讨论相关 =====
+PostSummary:
+  type: object
+  properties:
+    id: { type: integer }
+    title: { type: string }
+    author:
+      $ref: "./schemas.yaml#/UserSummary"
+    time: { type: integer }
+
+Post:
+  allOf:
+    - $ref: "./schemas.yaml#/PostSummary"
+    - type: object
+      properties:
+        forum: {}
+        topped: { type: boolean }
+        valid: { type: boolean }
+        locked: { type: boolean }
+        replyCount: { type: integer }
+        recentReply: {}
+
+PostDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/Post"
+    - type: object
+      properties:
+        content: { type: string }
+        pinnedReply: {}
+
+Reply:
+  type: object
+  properties:
+    id: { type: integer }
+    author:
+      $ref: "./schemas.yaml#/UserSummary"
+    time: { type: integer }
+    content: { type: string }
+
+Forum:
+  type: object
+  properties:
+    name: { type: string }
+    type: { type: integer }
+    slug: { type: string }
+    color: { type: string, nullable: true }
+    problem: {}
+    team: {}
+
+# ===== 团队相关 =====
+TeamSummary:
+  type: object
+  properties:
+    id: { type: integer }
+    name: { type: string }
+    isPremium: { type: boolean }
+
+Team:
+  allOf:
+    - $ref: "./schemas.yaml#/TeamSummary"
+    - type: object
+      properties:
+        type: { type: integer }
+        memberCount: { type: integer }
+        createTime: { type: integer }
+        master:
+          $ref: "./schemas.yaml#/UserSummary"
+        description: { type: string }
+        openness: { type: integer }
+        premiumUntil: { type: integer, nullable: true }
+
+TeamMember:
+  type: object
+  properties:
+    group: {}
+    user: {}
+    type: { type: integer }
+    permission: { type: integer }
+    realName: { type: string }
+
+Group:
+  type: object
+  properties:
+    id: { type: integer }
+    name: { type: string }
+    no: { type: integer }
+
+# ===== 专栏相关 =====
+Article:
+  type: object
+  properties:
+    lid: { type: string }
+    title: { type: string }
+    time: { type: integer }
+    author: {}
+    upvote: { type: integer }
+    replyCount: { type: integer }
+    favorCount: { type: integer }
+    category: { type: integer }
+    status: { type: integer }
+    solutionFor: {}
+    promoteStatus: { type: integer }
+    collection: {}
+    content: { type: string }
+    top: { type: integer }
+
+ArticleDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/Article"
+    - type: object
+      properties:
+        contentFull: { type: boolean }
+        adminNote: { type: string, nullable: true }
+        voted: { type: integer, nullable: true }
+        canReply: { type: boolean }
+        canEdit: { type: boolean }
+
+ArticleCollectionSummary:
+  type: object
+  properties:
+    id: { type: integer }
+    name: { type: string }
+
+# ===== 博客相关 =====
+BlogSummary:
+  type: object
+  properties:
+    lid: { type: string }
+    id: { type: integer }
+    identifier: { type: string }
+    title: { type: string }
+
+Blog:
+  allOf:
+    - $ref: "./schemas.yaml#/BlogSummary"
+    - type: object
+      properties:
+        type: { type: string }
+        status: { type: integer }
+        postTime: { type: integer }
+        author:
+          $ref: "./schemas.yaml#/UserSummary"
+        thumbUp: { type: integer }
+        commentCount: { type: integer }
+        currentUserVoteType: { type: integer }
+        contentDescription: { type: string }
+
+Comment:
+  type: object
+  properties:
+    id: { type: integer }
+    author: {}
+    time: { type: integer }
+    content: { type: string }
+
+# ===== 私信相关 =====
+Message:
+  type: object
+  properties:
+    id: { type: integer }
+    sender:
+      $ref: "./schemas.yaml#/UserSummary"
+    receiver:
+      $ref: "./schemas.yaml#/UserSummary"
+    time: { type: integer }
+    status: { type: integer }
+    content: { type: string }
+
+# ===== 主题相关 =====
+Theme:
+  type: object
+  properties:
+    id: { type: integer }
+    header: {}
+    sideNav: {}
+    footer: {}
+
+ThemeDetails:
+  allOf:
+    - $ref: "./schemas.yaml#/Theme"
+    - type: object
+      properties:
+        name: { type: string }
+        type: { type: integer }
+        author:
+          $ref: "./schemas.yaml#/UserSummary"
+        updateTime: { type: integer }
+        userCount: { type: integer }
+
+ThemeHeaderFooter:
+  type: object
+  properties:
+    imagePath: { type: string, nullable: true }
+    color:
+      type: array
+      items:
+        type: array
+        items: { type: integer }
+        minItems: 4
+        maxItems: 4
+    blur: { type: number }
+    brightness: { type: number }
+    degree: { type: number }
+    repeat: { type: integer }
+    position:
+      type: array
+      items: { type: integer }
+      minItems: 2
+      maxItems: 2
+    size:
+      type: array
+      items: { type: integer }
+      minItems: 2
+      maxItems: 2
+    type: { type: integer }
+
+ThemeSideNav:
+  type: object
+  properties:
+    logoBackgroundColor:
+      type: array
+      items: { type: integer }
+      minItems: 4
+      maxItems: 4
+    color:
+      type: array
+      items: { type: integer }
+      minItems: 4
+      maxItems: 4
+    invertColor: { type: boolean }
+
+# ===== 图片相关 =====
+Image:
+  type: object
+  properties:
+    thumbnailUrl: { type: string }
+    url: { type: string }
+    id: { type: string }
+    provider:
+      $ref: "./schemas.yaml#/UserSummary"
+    uploadTime: { type: integer }
+    size: { type: integer }
+
+# ===== 剪贴板相关 =====
+Paste:
+  type: object
+  properties:
+    data: { type: string }
+    id: { type: string }
+    user:
+      $ref: "./schemas.yaml#/UserSummary"
+    time: { type: integer }
+    public: { type: boolean }
+
+# ===== 动态相关 =====
+Activity:
+  type: object
+  properties:
+    content: { type: string }
+    id: { type: integer }
+    type: { type: integer }
+    time: { type: integer }
+    user:
+      $ref: "./schemas.yaml#/UserSummary"
+
+# ===== 咕值/等级分 =====
+GuRatingDetails:
+  type: object
+  properties:
+    rating: { type: integer }
+    time: { type: integer }
+    scores:
+      type: object
+      properties:
+        rating: { type: integer }
+        social: { type: integer }
+        basic: { type: integer }
+        contest: { type: integer }
+        practice: { type: integer }
+        prize: { type: integer }
+    user:
+      $ref: "./schemas.yaml#/UserSummary"
+
+EloRatingDetails:
+  type: object
+  properties:
+    rating: { type: integer }
+    time: { type: integer }
+    latest: { type: boolean }
+    contest: {}
+    userCount: { type: integer }
+    prevDiff: { type: integer, nullable: true }
+    user:
+      $ref: "./schemas.yaml#/UserSummary"
+
+# ===== 通知 =====
+Notification:
+  type: object
+  properties:
+    id: { type: integer }
+    time: { type: integer }
+    type: { type: integer }
+    title: { type: string }
+    content: { type: string }
+    read: { type: boolean }
+
+# ===== 杂项 =====
+Advertisement:
+  type: object
+  properties:
+    image:
+      $ref: "./schemas.yaml#/Image"
+    imageUrl: { type: string }
+    url: { type: string }
+    id: { type: integer }
+
+# ===== 请求体 =====
+SubmitCodeRequest:
+  type: object
+  required: [code]
+  properties:
+    code:
+      type: string
+    lang:
+      type: integer
+      description: |
+        语言 ID：
+        | ID | 语言 | ID | 语言 | ID | 语言 |
+        |---|------|---|------|---|------|
+        | 1 | Pascal | 2 | C | 28 | C++14 (GCC 9) |
+        | 3 | C++98 | 4 | C++11 | 11 | C++14 |
+        | 12 | C++17 | 27 | C++20 | 34 | C++23 |
+        | 7 | Python 3 | 25 | PyPy 3 | 8 | Java 8 |
+        | 33 | Java 21 | 15 | Rust | 14 | Go |
+        | 9 | Node.js LTS | 16 | PHP | 13 | Ruby |
+        | 19 | Haskell | 21 | Kotlin/JVM | 22 | Scala |
+        | 17 | C# Mono | 30 | OCaml | 31 | Julia |
+        | 32 | Lua | 23 | Perl | 5 | 提交答案 |
+    enableO2:
+      type: integer
+    captcha:
+      type: string
+
+CreateProblemRequest:
+  type: object
+  required: [settings, type, providerID]
+  properties:
+    settings:
+      $ref: "./schemas.yaml#/ProblemSettings"
+    type: { type: string }
+    providerID: { type: integer, nullable: true }
+
+EditContestRequest:
+  type: object
+  properties:
+    settings:
+      $ref: "./schemas.yaml#/ContestSettings"
+    hostID: { type: integer, nullable: true }
+
+CreatePostRequest:
+  type: object
+  required: [captcha, content, title, forum]
+  properties:
+    captcha: { type: string }
+    content: { type: string }
+    title: { type: string }
+    forum: { type: string }
+
+EditArticleRequest:
+  type: object
+  required: [title, category, content, solutionFor, status, top]
+  properties:
+    title: { type: string }
+    category: { type: integer }
+    content: { type: string }
+    solutionFor: { type: string, nullable: true }
+    status: { type: integer }
+    top: { type: integer }
+
+BatchEditArticleRequest:
+  type: object
+  properties:
+    status: { type: integer }
+    category: { type: integer }
+    lids:
+      type: array
+      items: { type: string }
+
+EditThemeRequest:
+  type: object
+  required: [name, header, sideNav, footer]
+  properties:
+    name: { type: string }
+    header:
+      $ref: "./schemas.yaml#/ThemeHeaderFooter"
+    sideNav:
+      $ref: "./schemas.yaml#/ThemeSideNav"
+    footer:
+      $ref: "./schemas.yaml#/ThemeHeaderFooter"
+
+ManageTeamMemberRequest:
+  type: object
+  required: [uid, realName, group, permission]
+  properties:
+    uid: { type: integer }
+    realName: { type: string }
+    group: { type: string }
+    permission: { type: integer }
+
+LoginRequest:
+  type: object
+  required: [username, password, captcha]
+  properties:
+    username: { type: string }
+    password: { type: string }
+    captcha: { type: string }
+
+RegisterRequest:
+  type: object
+  required: [username, password, endpoint, endpointType, verificationCode]
+  properties:
+    username: { type: string }
+    password: { type: string }
+    endpoint: { type: string }
+    endpointType: { type: integer }
+    verificationCode: { type: string }
+
+LoginResponse:
+  type: object
+  properties:
+    username: { type: string }
+    syncToken: { type: string }
+    locked: { type: boolean }
+    redirectTo: { type: string }
+

@@ -1,0 +1,279 @@
+/contest/list:
+  get:
+    tags: [比赛]
+    summary: 列出比赛
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - name: name
+        in: query
+        schema: { type: string }
+        description: 比赛名称或编号
+      - name: method
+        in: query
+        schema: { type: integer }
+        description: "赛制：1=OI, 2=ICPC, 3=乐多, 4=IOI"
+      - name: public
+        in: query
+        schema: { type: integer }
+        description: "分类：1=官方, 2=团队公开赛, 4=个人公开赛, 11=重现赛"
+    responses:
+      "200":
+        description: 比赛列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/api/user/joinedContests:
+  get:
+    tags: [比赛]
+    summary: 列出参加的比赛
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 参加的比赛列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contests:
+                  type: array
+                  items: {}
+
+/api/user/createdContests:
+  get:
+    tags: [比赛]
+    summary: 列出创建的比赛
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 创建的比赛列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contests:
+                  type: array
+                  items: {}
+
+/contest/{id}:
+  get:
+    tags: [比赛]
+    summary: 获取比赛
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 比赛详情
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/contest/edit/{id}:
+  get:
+    tags: [比赛]
+    summary: 获取创建的比赛（编辑用）
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 比赛编辑数据
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/fe/api/contest/scoreboard/{id}:
+  get:
+    tags: [比赛]
+    summary: 获取排行榜
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 排行榜数据
+
+/contest/{id}/join:
+  post:
+    tags: [比赛]
+    summary: 参加比赛
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code: { type: string }
+              unrated: { type: boolean }
+              squadCode: { type: string }
+    responses:
+      "200":
+        description: 参加成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: integer }
+
+/contest/{id}/squad:
+  post:
+    tags: [比赛]
+    summary: 创建小队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                squad:
+                  $ref: '../openapi.yaml#/components/schemas/Squad'
+
+/contest/{id}/squadMemberQuit:
+  post:
+    tags: [比赛]
+    summary: 退出小队/踢出队员/解散小队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [uid]
+            properties:
+              uid: { type: integer }
+    responses:
+      "200":
+        description: 操作成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                squad:
+                  allOf:
+                    - $ref: '../openapi.yaml#/components/schemas/Squad'
+                    - nullable: true
+
+/fe/api/contest/new:
+  post:
+    tags: [比赛]
+    summary: 创建比赛
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/EditContestRequest'
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: integer }
+
+/fe/api/contest/edit/{id}:
+  post:
+    tags: [比赛]
+    summary: 编辑比赛
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/EditContestRequest'
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: integer }
+
+/fe/api/contest/editProblem/{id}:
+  post:
+    tags: [比赛]
+    summary: 编排比赛题目
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pids: { type: array, items: { type: string } }
+              scores:
+                type: object
+                additionalProperties: { type: integer }
+    responses:
+      "200":
+        description: 编排成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/fe/api/contest/delete/{id}:
+  post:
+    tags: [比赛]
+    summary: 删除比赛
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object

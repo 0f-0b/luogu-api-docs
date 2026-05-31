@@ -46,7 +46,7 @@
 - [身份验证](auth)
 - [杂项](misc)
 - [WebSocket](ws)
-- [OpenAPI 规范](openapi.yaml)
+- [OpenAPI 规范](openapi/openapi.yaml)
 
 ## 常见错误
 

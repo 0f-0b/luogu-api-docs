@@ -1,0 +1,91 @@
+/image:
+  get:
+    tags: [图片]
+    summary: 列出图片
+    parameters:
+      - name: user
+        in: query
+        required: true
+        schema: { type: integer }
+      - name: content
+        in: query
+        schema: { type: string }
+    responses:
+      "200":
+        description: 图片列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/api/image/detail/{id}:
+  get:
+    tags: [图片]
+    summary: 获取图片
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 图片详情
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image:
+                  $ref: '../openapi.yaml#/components/schemas/Image'
+
+/api/image/generateUploadLink:
+  get:
+    tags: [图片]
+    summary: 生成上传参数
+    parameters:
+      - name: watermarkType
+        in: query
+        required: true
+        schema: { type: integer }
+      - name: captcha
+        in: query
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 上传参数
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uploadLink:
+                  type: object
+                  properties:
+                    host: { type: string }
+                    policy: { type: string }
+                    accessKeyID: { type: string }
+                    callback: { type: string }
+                    signature: { type: string }
+                    expiredTime: { type: integer }
+                    dir: { type: string }
+
+/api/image/delete:
+  post:
+    tags: [图片]
+    summary: 删除图片
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [images]
+            properties:
+              images: { type: array, items: { type: string } }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object

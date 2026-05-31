@@ -1,0 +1,105 @@
+/api/feed/list:
+  get:
+    tags: [动态]
+    summary: 获取用户动态
+    parameters:
+      - name: user
+        in: query
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 用户动态列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                feeds:
+                  type: array
+                  items:
+                    $ref: '../openapi.yaml#/components/schemas/Activity'
+
+/api/feed/watching:
+  get:
+    tags: [动态]
+    summary: 获取关注的用户的动态
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 关注用户的动态
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: array, items: {} }
+
+/api/feed/postBenben:
+  post:
+    tags: [动态]
+    summary: 发布动态
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [content]
+            properties:
+              content: { type: string }
+    responses:
+      "200":
+        description: 发布成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: {}
+
+/api/feed/delete/{id}:
+  post:
+    tags: [动态]
+    summary: 删除动态
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: array, items: {} }
+
+/api/report/feed:
+  post:
+    tags: [动态]
+    summary: 举报动态
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [relevantID, reason]
+            properties:
+              relevantID: { type: integer }
+              reason: { type: string }
+    responses:
+      "200":
+        description: 举报成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: string }

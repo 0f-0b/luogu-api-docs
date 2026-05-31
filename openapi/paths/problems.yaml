@@ -1,0 +1,317 @@
+/problem/list:
+  get:
+    tags: [题目]
+    summary: 列出题目
+    parameters:
+      - name: page
+        in: query
+        schema: { type: integer }
+      - name: keyword
+        in: query
+        schema: { type: string }
+      - name: content
+        in: query
+        schema: { type: boolean }
+      - name: orderBy
+        in: query
+        schema: { type: string }
+      - name: order
+        in: query
+        schema: { type: string }
+      - name: type
+        in: query
+        schema: { type: string }
+        description: "题目类型前缀，如 P、AT、CF 等"
+      - name: difficulty
+        in: query
+        schema: { type: integer }
+        description: "难度 ID（0-7）"
+      - name: tag
+        in: query
+        schema: { type: string }
+    responses:
+      "200":
+        description: 题目列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/api/user/createdProblems:
+  get:
+    tags: [题目]
+    summary: 列出创建的题目
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 创建的题目列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                problems:
+                  type: array
+                  items:
+                    $ref: '../openapi.yaml#/components/schemas/Problem'
+
+/problem/{pid}:
+  get:
+    tags: [题目]
+    summary: 获取题目
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+      - name: contestId
+        in: query
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 题目详情
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/problem/solution/{pid}:
+  get:
+    tags: [题目]
+    summary: 获取题解
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 题解列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/fe/api/problem/tasklistAdd:
+  post:
+    tags: [题目]
+    summary: 收藏题目
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [pid]
+            properties:
+              pid: { type: string }
+    responses:
+      "200":
+        description: 收藏成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+
+/fe/api/problem/tasklistRemove:
+  post:
+    tags: [题目]
+    summary: 取消收藏题目
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [pid]
+            properties:
+              pid: { type: string }
+    responses:
+      "200":
+        description: 取消收藏成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+
+/fe/api/problem/submit/{pid}:
+  post:
+    tags: [题目]
+    summary: 提交代码
+    description: |
+      CSRF 令牌需从**对应题目页面** HTML 的 `<meta name="csrf-token">` 获取，
+      而非主页或其他页面。
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+      - name: contestId
+        in: query
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/SubmitCodeRequest'
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+              captcha:
+                type: string
+    responses:
+      "200":
+        description: 提交成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rid: { type: integer }
+
+/fe/api/problem/translate/{pid}:
+  post:
+    tags: [题目]
+    summary: 提交翻译
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [translation]
+            properties:
+              translation: { type: string }
+    responses:
+      "200":
+        description: 提交成功
+
+/fe/api/problem/new:
+  post:
+    tags: [题目]
+    summary: 创建题目
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/CreateProblemRequest'
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pid: { type: string }
+
+/fe/api/problem/edit/{pid}:
+  post:
+    tags: [题目]
+    summary: 编辑题目
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                $ref: '../openapi.yaml#/components/schemas/ProblemSettings'
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pid: { type: string }
+
+/fe/api/problem/editTestCase/{pid}:
+  post:
+    tags: [题目]
+    summary: 更新数据点设置
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cases: { type: array, items: {} }
+              subtaskScoringStrategies: {}
+              scoringStrategy: {}
+              showSubtask: { type: boolean }
+    responses:
+      "200":
+        description: 更新成功
+
+/fe/api/problem/transfer/{pid}:
+  post:
+    tags: [题目]
+    summary: 迁移题目
+    parameters:
+      - name: pid
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - type: object
+                properties:
+                  type: { type: string }
+                  teamID: { type: integer }
+              - type: object
+                properties:
+                  operation: { type: string, enum: [clone] }
+                  type: { type: string, enum: [T] }
+                  teamID: { type: integer }
+    responses:
+      "200":
+        description: 迁移成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pid: { type: string }
+
+/fe/api/problem/delete/{id}:
+  post:
+    tags: [题目]
+    summary: 删除题目
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object

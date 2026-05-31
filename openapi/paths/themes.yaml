@@ -1,0 +1,118 @@
+/theme/list:
+  get:
+    tags: [主题]
+    summary: 列出主题
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - name: orderBy
+        in: query
+        schema: { type: string }
+      - name: order
+        in: query
+        schema: { type: string }
+      - name: type
+        in: query
+        schema: { type: string }
+    responses:
+      "200":
+        description: 主题列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/theme/design/{id}:
+  get:
+    tags: [主题]
+    summary: 获取主题
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 主题详情
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/theme/setTheme/{id}:
+  post:
+    tags: [主题]
+    summary: 应用主题
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 应用成功
+        content:
+          application/json:
+            schema:
+              type: array
+              items: {}
+
+/theme/edit/:
+  post:
+    tags: [主题]
+    summary: 创建主题
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/EditThemeRequest'
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: string }
+
+/theme/edit/{id}:
+  post:
+    tags: [主题]
+    summary: 编辑主题
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/EditThemeRequest'
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: string }
+
+/theme/delete/{id}:
+  post:
+    tags: [主题]
+    summary: 删除主题
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: array
+              items: {}

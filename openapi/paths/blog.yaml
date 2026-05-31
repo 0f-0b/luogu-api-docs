@@ -1,0 +1,264 @@
+/api/blog/userBlogs:
+  get:
+    tags: [博客]
+    summary: 列出所有文章
+    parameters:
+      - name: user
+        in: query
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 博客文章列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blogs:
+                  type: array
+                  items:
+                    $ref: '../openapi.yaml#/components/schemas/Blog'
+
+/api/blog/detail/{id}:
+  get:
+    tags: [博客]
+    summary: 获取文章
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 博客文章详情
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data:
+                  type: array
+                  items: {}
+
+/blogAdmin/article/post_new:
+  post:
+    tags: [博客]
+    summary: 创建文章
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              title: { type: string }
+              content: { type: string }
+              identifier: { type: string }
+              type: { type: string }
+              top: { type: integer }
+              status: { type: integer }
+              csrf-token: { type: string }
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: integer }
+
+/blogAdmin/article/post_edit/{id}:
+  post:
+    tags: [博客]
+    summary: 编辑文章
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              title: { type: string }
+              content: { type: string }
+              identifier: { type: string }
+              type: { type: string }
+              top: { type: integer }
+              status: { type: integer }
+              csrf-token: { type: string }
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: integer }
+
+/api/blog/delete/{id}:
+  post:
+    tags: [博客]
+    summary: 删除文章
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+
+/api/blog/replies/{id}:
+  get:
+    tags: [博客]
+    summary: 获取评论
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 评论列表
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data:
+                  type: array
+                  items:
+                    $ref: '../openapi.yaml#/components/schemas/Comment'
+
+/api/blog/reply/{id}:
+  post:
+    tags: [博客]
+    summary: 发表评论
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [content]
+            properties:
+              content: { type: string }
+    responses:
+      "200":
+        description: 评论成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                reply:
+                  $ref: '../openapi.yaml#/components/schemas/Comment'
+
+/api/blog/vote/{id}:
+  post:
+    tags: [博客]
+    summary: 赞/踩文章
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [Type]
+            properties:
+              Type: { type: integer }
+    responses:
+      "200":
+        description: 投票成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: integer }
+
+/blogAdmin/article/deleteComment/{id}:
+  post:
+    tags: [博客]
+    summary: 删除评论
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [reply-id, csrf-token]
+            properties:
+              reply-id: { type: integer }
+              csrf-token: { type: string }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: integer }
+                data: { type: string }
+
+/blogAdmin/article/list:
+  post:
+    tags: [博客]
+    summary: 批量更新文章状态 / 批量恢复/删除回收站中的文章
+    parameters:
+      - name: pageType
+        in: query
+        required: true
+        schema: { type: string, enum: [list, trash] }
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            oneOf:
+              - type: object
+                properties:
+                  method: { type: string, enum: [update] }
+                  blog-id: { type: array, items: { type: integer } }
+                  edit-status: { type: integer }
+                  csrf-token: { type: string }
+              - type: object
+                properties:
+                  method: { type: string, enum: [recover, delete] }
+                  blog-id: { type: array, items: { type: integer } }
+                  csrf-token: { type: string }
+    responses:
+      "200":
+        description: 操作成功
+        content:
+          text/html: {}

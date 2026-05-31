@@ -1,0 +1,96 @@
+/paste:
+  get:
+    tags: [剪贴板]
+    summary: 列出剪贴板
+    responses:
+      "200":
+        description: 剪贴板列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/paste/{id}:
+  get:
+    tags: [剪贴板]
+    summary: 获取剪贴板
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 剪贴板内容
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/DataResponse'
+
+/paste/new:
+  post:
+    tags: [剪贴板]
+    summary: 创建剪贴板
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data: { type: string }
+              public: { type: boolean }
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: string }
+
+/paste/edit/{id}:
+  post:
+    tags: [剪贴板]
+    summary: 编辑剪贴板
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data: { type: string }
+              public: { type: boolean }
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: string }
+
+/paste/delete/{id}:
+  post:
+    tags: [剪贴板]
+    summary: 删除剪贴板
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      "200":
+        description: 删除成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: string }

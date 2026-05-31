@@ -1,0 +1,139 @@
+/_lfe/config:
+  get:
+    tags: [杂项]
+    summary: 获取配置
+    responses:
+      "200":
+        description: 站点配置
+        content:
+          application/json: {}
+
+/_lfe/tags:
+  get:
+    tags: [杂项]
+    summary: 获取标签
+    responses:
+      "200":
+        description: 标签列表
+        content:
+          application/json: {}
+
+/ranking:
+  get:
+    tags: [杂项]
+    summary: 获取咕值排名
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+      - name: orderBy
+        in: query
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 咕值排名
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/ranking/elo:
+  get:
+    tags: [杂项]
+    summary: 获取等级分排名
+    parameters:
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 等级分排名
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/user/notification:
+  get:
+    tags: [杂项]
+    summary: 获取通知
+    parameters:
+      - name: type
+        in: query
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 通知列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/api/qiaFan/getFan/{id}:
+  get:
+    tags: [杂项]
+    summary: 获取广告
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 广告内容
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advertisement:
+                  allOf:
+                    - $ref: '../openapi.yaml#/components/schemas/Advertisement'
+                    - nullable: true
+
+/paintboard/board:
+  get:
+    tags: [杂项]
+    summary: 冬日绘版内容
+    responses:
+      "200":
+        description: "1000 行 * 600 列的字符矩阵"
+        content:
+          text/plain: {}
+
+/paintboard/resetToken:
+  post:
+    tags: [杂项]
+    summary: 冬日绘版重置 token
+    responses:
+      "200":
+        description: 新 token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token: { type: string }
+
+/paintboard/paint:
+  post:
+    tags: [杂项]
+    summary: 冬日绘版绘制
+    parameters:
+      - name: token
+        in: query
+        schema: { type: string }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [x, y, color]
+            properties:
+              x: { type: integer }
+              y: { type: integer }
+              color: { type: integer }
+    responses:
+      "200":
+        description: 绘制成功
+        content:
+          application/json:
+            schema:
+              type: object

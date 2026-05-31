@@ -1,0 +1,324 @@
+/team/{id}:
+  get:
+    tags: [团队]
+    summary: 获取团队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 团队详情
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/user/mine/team:
+  get:
+    tags: [团队]
+    summary: 列出加入的团队
+    responses:
+      "200":
+        description: 加入的团队列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/team/{id}/member:
+  get:
+    tags: [团队]
+    summary: 列出团队成员
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 成员列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/team/{id}/problem:
+  get:
+    tags: [团队]
+    summary: 列出团队题目
+    description: 需要是团队成员才能访问
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+      - name: keyword
+        in: query
+        schema: { type: string }
+      - name: orderBy
+        in: query
+        schema: { type: string, enum: [pid, name] }
+      - name: order
+        in: query
+        schema: { type: string, enum: [asc, desc] }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 团队题目列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/team/{id}/training:
+  get:
+    tags: [团队]
+    summary: 列出团队题单
+    description: 需要是团队成员才能访问
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 团队题单列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/team/{id}/contest:
+  get:
+    tags: [团队]
+    summary: 列出团队比赛
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+      - $ref: '../openapi.yaml#/components/parameters/Page'
+    responses:
+      "200":
+        description: 团队比赛列表
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/LentilleDataResponse'
+
+/api/team/join/{id}:
+  post:
+    tags: [团队]
+    summary: 加入团队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              applyMessage: { type: string }
+    responses:
+      "200":
+        description: 申请成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/team/exit/{id}:
+  post:
+    tags: [团队]
+    summary: 退出团队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    responses:
+      "200":
+        description: 退出成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/team/create:
+  post:
+    tags: [团队]
+    summary: 创建团队
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [name]
+            properties:
+              name: { type: string }
+    responses:
+      "200":
+        description: 创建成功
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                teamId: { type: integer }
+
+/api/team/edit/{id}:
+  post:
+    tags: [团队]
+    summary: 编辑团队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                type: object
+                properties:
+                  description: { type: string }
+                  joinPermission: { type: integer }
+    responses:
+      "200":
+        description: 编辑成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/team/setMaster/{id}:
+  post:
+    tags: [团队]
+    summary: 转让团队
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [uid]
+            properties:
+              uid: { type: integer }
+    responses:
+      "200":
+        description: 转让成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/team/editNotice/{id}:
+  post:
+    tags: [团队]
+    summary: 更新公告
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [notice]
+            properties:
+              notice: { type: string }
+    responses:
+      "200":
+        description: 更新成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/team/editMember/{id}:
+  post:
+    tags: [团队]
+    summary: 管理成员
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../openapi.yaml#/components/schemas/ManageTeamMemberRequest'
+    responses:
+      "200":
+        description: 管理成功
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/TeamMember'
+
+/api/team/review/{id}:
+  post:
+    tags: [团队]
+    summary: 审核成员
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [uid, reviewResult]
+            properties:
+              uid: { type: integer }
+              reviewResult: { type: string, enum: [apply, refuse, ban] }
+    responses:
+      "200":
+        description: 审核成功
+        content:
+          application/json:
+            schema:
+              type: object
+
+/api/team/kick/{id}:
+  post:
+    tags: [团队]
+    summary: 移除成员
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [uid]
+            properties:
+              uid: { type: integer }
+    responses:
+      "200":
+        description: 移除成功
+        content:
+          application/json:
+            schema:
+              type: object
