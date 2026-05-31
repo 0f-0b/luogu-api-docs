@@ -181,7 +181,7 @@
   </tr>
   <tr>
     <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{ Type: number }</code>)</td>
+    <td><code>application/json</code> (<code>{ Type: number }</code>，`Type` 在原始 API 中为首字母大写)</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>

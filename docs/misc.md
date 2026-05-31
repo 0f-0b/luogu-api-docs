@@ -152,21 +152,6 @@
   </tr>
 </table>
 
-<!--
-## 冬日绘版更新检测
-
-<table>
-  <tr>
-    <th align="right">请求</th>
-    <td><code>GET wss://ws.luogu.com.cn/ws </code></td>
-  </tr>
-  <tr>
-    <th align="right">响应主体</th>
-    <td>自己意会</td>
-  </tr>
-</table>
--->
-
 ## 冬日绘版绘制
 
 <table>

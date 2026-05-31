@@ -150,7 +150,7 @@
   </tr>
   <tr>
     <th align="right">响应主体</th>
-    <td><!-- TODO --></td>
+    <td><code>application/json</code> (<code>{ status: number }</code>)</td>
   </tr>
 </table>
 

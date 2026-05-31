@@ -2,6 +2,8 @@
 
 洛谷（luogu.com.cn）非官方 API 文档。
 
+**[阅读文档](docs/index.md)**
+
 ## 文档结构
 
 ```
