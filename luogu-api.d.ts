@@ -1493,3 +1493,9 @@ export interface LegacyBlog {
   ThumbUp: number;
   Content: string;
 }
+
+
+export interface FavoriteArticleParams {
+  /** 该参数若存在，则表示取消收藏。值必须为 1 。 */
+  remove: number;
+}

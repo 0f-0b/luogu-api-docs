@@ -169,10 +169,6 @@
     <td><code>`POST /article/:lid/delete</code></td>
   </tr>
   <tr>
-    <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{}</code>) 必填!</td>
-  </tr>
-  <tr>
     <th align="right">响应主体</th>
     <td><code>application/json</code> (<code>{ lid: string }</code>)</td>
   </tr>
@@ -204,11 +200,7 @@
   </tr>
   <tr>
     <th align="right">参数</th>
-    <td><code>{ remove?: number }</code> 非必填项 1 为删除</td>
-  </tr>
-  <tr>
-    <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{}</code>) 必填!</td>
+    <td><code>FavoriteArticleParams</code></td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -227,10 +219,6 @@
   <tr>
     <th align="right">参数</th>
     <td><code>{ vote: number }</code></td>
-  </tr>
-  <tr>
-    <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{}</code>) 必填!</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
@@ -304,10 +292,6 @@
   <tr>
     <th align="right">请求</th>
     <td><code>POST /article/:lid/deleteReply/:id</code></td>
-  </tr>
-  <tr>
-    <th align="right">请求主体</th>
-    <td><code>application/json</code> (<code>{}</code>) 必填!</td>
   </tr>
   <tr>
     <th align="right">响应主体</th>
