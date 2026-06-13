@@ -13,6 +13,21 @@
   </tr>
 </table>
 
+## 获取用户（旧）
+
+**注**: 该旧接口能访问不可见（如被封禁）的用户，但不返回做题热度图和等级分历史。
+
+<table>
+  <tr>
+    <th align="right">请求</th>
+    <td><code>GET /api/user/info/:uid</code></td>
+  </tr>
+  <tr>
+    <th align="right">响应主体</th>
+    <td><code>application/json</code> (<code>{ user: LegacyUserDetails & UserStats & Maybe&lt;LegacySelfDetails&gt; }</code>)</td>
+  </tr>
+</table>
+
 ## 根据 UID 或名字搜索用户
 
 <table>

@@ -1479,9 +1479,29 @@ export interface LegacyUser extends User {
 }
 
 /** @deprecated */
+export interface LegacyUserDetails extends UserDetails, LegacyUser {}
+
+/** @deprecated */
 export interface LegacySelf extends Self {
   unreadMessageCount: number;
   unreadNoticeCount: number;
+}
+
+/** @deprecated */
+export interface LegacySelfDetails extends LegacySelf {
+  rating: {
+    contestRating: number;
+    socialRating: number;
+    practiceRating: number;
+    basicRating: number;
+    prizeRating: number;
+    calculateTime: number;
+    user: UserSummary;
+    rating: number;
+  };
+  organization: null; // TODO
+  email: string | null;
+  phone: string | null;
 }
 
 /** @deprecated */
